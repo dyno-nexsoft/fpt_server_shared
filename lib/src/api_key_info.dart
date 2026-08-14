@@ -14,9 +14,13 @@ abstract class ApiKeyInfo with _$ApiKeyInfo {
     required String name,
     required String keyHash,
 
-    /// Comma-of-strings, not `List<Permission>`: a scope is a `Permission`
-    /// name today but this is stored/compared as free text, matching how
-    /// `admin.apiKeys.list` itself reads it back off Hive.
+    /// `List<String>`, not `List<Permission>`: each entry is a `Permission`'s
+    /// Dart-convention `.name` (`invokeDangerous`, not [Permission.toWire]'s
+    /// `invoke_dangerous`) — this is how API key scopes are actually stored
+    /// in Hive today, a separate, pre-existing format from the REST-facing
+    /// wire value `toWire` fixes elsewhere. Kept as free text rather than
+    /// `List<Permission>` so an unparseable scope round-trips instead of
+    /// silently disappearing.
     @Default([]) List<String> scopes,
 
     /// A Discord snowflake, always read as a string — routinely exceeds the
@@ -30,10 +34,10 @@ abstract class ApiKeyInfo with _$ApiKeyInfo {
   factory ApiKeyInfo.fromJson(Map<String, dynamic> json) =>
       _$ApiKeyInfoFromJson(json);
 
-  bool get isAdmin => scopes.contains(Permission.admin.toWire());
+  bool get isAdmin => scopes.contains(Permission.admin.name);
 
   bool can(Permission permission) =>
-      isAdmin || scopes.contains(permission.toWire());
+      isAdmin || scopes.contains(permission.name);
 }
 
 String? _discordUserIdFromJson(Object? value) => value?.toString();

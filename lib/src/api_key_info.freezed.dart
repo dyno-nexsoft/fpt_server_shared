@@ -24,9 +24,13 @@ mixin _$ApiKeyInfo {
   String get name => throw _privateConstructorUsedError;
   String get keyHash => throw _privateConstructorUsedError;
 
-  /// Comma-of-strings, not `List<Permission>`: a scope is a `Permission`
-  /// name today but this is stored/compared as free text, matching how
-  /// `admin.apiKeys.list` itself reads it back off Hive.
+  /// `List<String>`, not `List<Permission>`: each entry is a `Permission`'s
+  /// Dart-convention `.name` (`invokeDangerous`, not [Permission.toWire]'s
+  /// `invoke_dangerous`) — this is how API key scopes are actually stored
+  /// in Hive today, a separate, pre-existing format from the REST-facing
+  /// wire value `toWire` fixes elsewhere. Kept as free text rather than
+  /// `List<Permission>` so an unparseable scope round-trips instead of
+  /// silently disappearing.
   List<String> get scopes => throw _privateConstructorUsedError;
 
   /// A Discord snowflake, always read as a string — routinely exceeds the
@@ -179,14 +183,22 @@ class _$ApiKeyInfoImpl extends _ApiKeyInfo {
   @override
   final String keyHash;
 
-  /// Comma-of-strings, not `List<Permission>`: a scope is a `Permission`
-  /// name today but this is stored/compared as free text, matching how
-  /// `admin.apiKeys.list` itself reads it back off Hive.
+  /// `List<String>`, not `List<Permission>`: each entry is a `Permission`'s
+  /// Dart-convention `.name` (`invokeDangerous`, not [Permission.toWire]'s
+  /// `invoke_dangerous`) — this is how API key scopes are actually stored
+  /// in Hive today, a separate, pre-existing format from the REST-facing
+  /// wire value `toWire` fixes elsewhere. Kept as free text rather than
+  /// `List<Permission>` so an unparseable scope round-trips instead of
+  /// silently disappearing.
   final List<String> _scopes;
 
-  /// Comma-of-strings, not `List<Permission>`: a scope is a `Permission`
-  /// name today but this is stored/compared as free text, matching how
-  /// `admin.apiKeys.list` itself reads it back off Hive.
+  /// `List<String>`, not `List<Permission>`: each entry is a `Permission`'s
+  /// Dart-convention `.name` (`invokeDangerous`, not [Permission.toWire]'s
+  /// `invoke_dangerous`) — this is how API key scopes are actually stored
+  /// in Hive today, a separate, pre-existing format from the REST-facing
+  /// wire value `toWire` fixes elsewhere. Kept as free text rather than
+  /// `List<Permission>` so an unparseable scope round-trips instead of
+  /// silently disappearing.
   @override
   @JsonKey()
   List<String> get scopes {
@@ -260,9 +272,13 @@ abstract class _ApiKeyInfo extends ApiKeyInfo {
   String get keyHash;
   @override
 
-  /// Comma-of-strings, not `List<Permission>`: a scope is a `Permission`
-  /// name today but this is stored/compared as free text, matching how
-  /// `admin.apiKeys.list` itself reads it back off Hive.
+  /// `List<String>`, not `List<Permission>`: each entry is a `Permission`'s
+  /// Dart-convention `.name` (`invokeDangerous`, not [Permission.toWire]'s
+  /// `invoke_dangerous`) — this is how API key scopes are actually stored
+  /// in Hive today, a separate, pre-existing format from the REST-facing
+  /// wire value `toWire` fixes elsewhere. Kept as free text rather than
+  /// `List<Permission>` so an unparseable scope round-trips instead of
+  /// silently disappearing.
   List<String> get scopes;
   @override
 

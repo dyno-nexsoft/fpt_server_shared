@@ -30,4 +30,18 @@ enum Permission {
     'admin' => Permission.admin,
     _ => throw ArgumentError.value(value, 'value', 'Unknown permission'),
   };
+
+  /// Matches the enum's own Dart-convention name (`invokeDangerous`), not
+  /// [toWire]'s wire value — for API-key `scopes`, which are stored in Hive
+  /// this way already and are a separate, pre-existing format from the
+  /// REST-facing wire value [toWire] fixes. Null (not found, or `name` is
+  /// itself null) rather than a throw: an unparseable scope should be
+  /// dropped, not take down the whole key.
+  static Permission? tryParse(String? name) {
+    if (name == null) return null;
+    for (final permission in Permission.values) {
+      if (permission.name == name) return permission;
+    }
+    return null;
+  }
 }
