@@ -70,4 +70,65 @@ void main() {
       expect(parsed.uptimeSeconds, health.uptimeSeconds);
     });
   });
+
+  group('Job', () {
+    test('round-trips through JSON with snake_case keys', () {
+      final job = Job(
+        id: 'j-abc-1',
+        state: JobState.running,
+        command: 'bash ./assets/build.sh',
+        createdAt: DateTime.utc(2026, 1, 1),
+      );
+      final json = job.toJson();
+      expect(json['state'], 'running');
+      expect(Job.fromJson(json).state, JobState.running);
+    });
+
+    test('an unrecognized state degrades to unknown, not a throw', () {
+      final json = {
+        'id': 'j-abc-1',
+        'state': 'some_future_state',
+        'command': 'bash ./assets/build.sh',
+        'created_at': DateTime.utc(2026, 1, 1).toIso8601String(),
+      };
+      expect(Job.fromJson(json).state, JobState.unknown);
+    });
+
+    test('isTerminal delegates to JobState', () {
+      final job = Job(
+        id: 'j-abc-1',
+        state: JobState.succeeded,
+        command: 'bash ./assets/build.sh',
+        createdAt: DateTime.utc(2026, 1, 1),
+      );
+      expect(job.isTerminal, isTrue);
+    });
+  });
+
+  group('JobEvent', () {
+    test('round-trips a finished event with the state converter', () {
+      final event = JobEvent.finished(
+        seq: 1,
+        at: DateTime.utc(2026, 1, 1),
+        state: JobState.failed,
+        exitCode: 1,
+      );
+      final json = event.toJson();
+      expect(json['type'], 'finished');
+      expect(json['state'], 'failed');
+      expect(JobEvent.fromJson(json), event);
+    });
+  });
+
+  group('ActionSchema', () {
+    test('isDangerous matches the permission', () {
+      const schema = ActionSchema(
+        name: 'ci.clean',
+        kind: ActionKind.job,
+        permission: Permission.invokeDangerous,
+      );
+      expect(schema.isDangerous, isTrue);
+      expect(schema.toJson()['permission'], 'invoke_dangerous');
+    });
+  });
 }

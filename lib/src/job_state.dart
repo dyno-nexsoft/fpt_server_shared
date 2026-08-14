@@ -1,3 +1,5 @@
+import 'package:json_annotation/json_annotation.dart';
+
 /// A CI job's lifecycle state, as it appears on the wire (`Job.state`,
 /// `JobFinishedEvent.state`, etc.) — shared so the backend and the dashboard
 /// can never independently drift on what values exist.
@@ -30,4 +32,16 @@ enum JobState {
     (state) => state.name == value,
     orElse: () => JobState.unknown,
   );
+}
+
+/// json_serializable hook — the default enum handling has no fallback for an
+/// unrecognized value and would throw instead of degrading to [JobState.unknown].
+class JobStateConverter implements JsonConverter<JobState, String> {
+  const JobStateConverter();
+
+  @override
+  JobState fromJson(String json) => JobState.fromWire(json);
+
+  @override
+  String toJson(JobState object) => object.toWire();
 }
