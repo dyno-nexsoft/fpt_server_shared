@@ -1,8 +1,10 @@
-/// Minimum permission an action/principal needs, lowest to highest.
+/// Minimum permission an action needs, and what a principal may hold.
 ///
-/// `read < invoke < invokeDangerous < admin` — a caller with a higher
-/// permission satisfies any check requiring a lower one; enforcement of that
-/// ordering lives with each side's own auth code, not here.
+/// Not a strict hierarchy: a principal's permission set is flat membership
+/// (e.g. a non-owner Discord user gets exactly `{read, invoke}`, never
+/// `invokeDangerous` just because they hold `invoke`) — `admin` is the only
+/// value that acts as a universal override, and that special-casing lives in
+/// each side's own auth code (`Principal.can`), not here.
 enum Permission {
   read,
   invoke,
