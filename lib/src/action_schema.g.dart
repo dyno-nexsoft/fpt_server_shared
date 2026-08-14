@@ -38,7 +38,7 @@ _$ActionParamImpl _$$ActionParamImplFromJson(Map<String, dynamic> json) =>
     _$ActionParamImpl(
       name: json['name'] as String,
       description: json['description'] as String? ?? '',
-      paramType: $enumDecode(_$ParamTypeEnumMap, json['type']),
+      type: $enumDecode(_$ParamTypeEnumMap, json['type']),
       isRequired: json['required'] as bool? ?? false,
       choices: (json['choices'] as List<dynamic>?)
               ?.map((e) => e as String)
@@ -52,7 +52,7 @@ Map<String, dynamic> _$$ActionParamImplToJson(_$ActionParamImpl instance) {
   final val = <String, dynamic>{
     'name': instance.name,
     'description': instance.description,
-    'type': _$ParamTypeEnumMap[instance.paramType]!,
+    'type': _$ParamTypeEnumMap[instance.type]!,
     'required': instance.isRequired,
     'choices': instance.choices,
   };

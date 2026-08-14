@@ -258,8 +258,7 @@ ActionParam _$ActionParamFromJson(Map<String, dynamic> json) {
 mixin _$ActionParam {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'type')
-  ParamType get paramType => throw _privateConstructorUsedError;
+  ParamType get type => throw _privateConstructorUsedError;
   @JsonKey(name: 'required')
   bool get isRequired => throw _privateConstructorUsedError;
   List<String> get choices => throw _privateConstructorUsedError;
@@ -282,7 +281,7 @@ abstract class $ActionParamCopyWith<$Res> {
   $Res call(
       {String name,
       String description,
-      @JsonKey(name: 'type') ParamType paramType,
+      ParamType type,
       @JsonKey(name: 'required') bool isRequired,
       List<String> choices,
       @JsonKey(name: 'default') dynamic defaultValue,
@@ -304,7 +303,7 @@ class _$ActionParamCopyWithImpl<$Res, $Val extends ActionParam>
   $Res call({
     Object? name = null,
     Object? description = null,
-    Object? paramType = null,
+    Object? type = null,
     Object? isRequired = null,
     Object? choices = null,
     Object? defaultValue = freezed,
@@ -319,9 +318,9 @@ class _$ActionParamCopyWithImpl<$Res, $Val extends ActionParam>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      paramType: null == paramType
-          ? _value.paramType
-          : paramType // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as ParamType,
       isRequired: null == isRequired
           ? _value.isRequired
@@ -354,7 +353,7 @@ abstract class _$$ActionParamImplCopyWith<$Res>
   $Res call(
       {String name,
       String description,
-      @JsonKey(name: 'type') ParamType paramType,
+      ParamType type,
       @JsonKey(name: 'required') bool isRequired,
       List<String> choices,
       @JsonKey(name: 'default') dynamic defaultValue,
@@ -374,7 +373,7 @@ class __$$ActionParamImplCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? description = null,
-    Object? paramType = null,
+    Object? type = null,
     Object? isRequired = null,
     Object? choices = null,
     Object? defaultValue = freezed,
@@ -389,9 +388,9 @@ class __$$ActionParamImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      paramType: null == paramType
-          ? _value.paramType
-          : paramType // ignore: cast_nullable_to_non_nullable
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
               as ParamType,
       isRequired: null == isRequired
           ? _value.isRequired
@@ -419,7 +418,7 @@ class _$ActionParamImpl implements _ActionParam {
   const _$ActionParamImpl(
       {required this.name,
       this.description = '',
-      @JsonKey(name: 'type') required this.paramType,
+      required this.type,
       @JsonKey(name: 'required') this.isRequired = false,
       final List<String> choices = const [],
       @JsonKey(name: 'default') this.defaultValue,
@@ -435,8 +434,7 @@ class _$ActionParamImpl implements _ActionParam {
   @JsonKey()
   final String description;
   @override
-  @JsonKey(name: 'type')
-  final ParamType paramType;
+  final ParamType type;
   @override
   @JsonKey(name: 'required')
   final bool isRequired;
@@ -458,7 +456,7 @@ class _$ActionParamImpl implements _ActionParam {
 
   @override
   String toString() {
-    return 'ActionParam(name: $name, description: $description, paramType: $paramType, isRequired: $isRequired, choices: $choices, defaultValue: $defaultValue, isBranchRef: $isBranchRef)';
+    return 'ActionParam(name: $name, description: $description, type: $type, isRequired: $isRequired, choices: $choices, defaultValue: $defaultValue, isBranchRef: $isBranchRef)';
   }
 
   @override
@@ -469,8 +467,7 @@ class _$ActionParamImpl implements _ActionParam {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            (identical(other.paramType, paramType) ||
-                other.paramType == paramType) &&
+            (identical(other.type, type) || other.type == type) &&
             (identical(other.isRequired, isRequired) ||
                 other.isRequired == isRequired) &&
             const DeepCollectionEquality().equals(other._choices, _choices) &&
@@ -486,7 +483,7 @@ class _$ActionParamImpl implements _ActionParam {
       runtimeType,
       name,
       description,
-      paramType,
+      type,
       isRequired,
       const DeepCollectionEquality().hash(_choices),
       const DeepCollectionEquality().hash(defaultValue),
@@ -510,7 +507,7 @@ abstract class _ActionParam implements ActionParam {
   const factory _ActionParam(
       {required final String name,
       final String description,
-      @JsonKey(name: 'type') required final ParamType paramType,
+      required final ParamType type,
       @JsonKey(name: 'required') final bool isRequired,
       final List<String> choices,
       @JsonKey(name: 'default') final dynamic defaultValue,
@@ -524,8 +521,7 @@ abstract class _ActionParam implements ActionParam {
   @override
   String get description;
   @override
-  @JsonKey(name: 'type')
-  ParamType get paramType;
+  ParamType get type;
   @override
   @JsonKey(name: 'required')
   bool get isRequired;

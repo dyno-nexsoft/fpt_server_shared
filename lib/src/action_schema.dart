@@ -46,7 +46,7 @@ abstract class ActionParam with _$ActionParam {
   const factory ActionParam({
     required String name,
     @Default('') String description,
-    @JsonKey(name: 'type') required ParamType paramType,
+    required ParamType type,
     @JsonKey(name: 'required') @Default(false) bool isRequired,
     @Default([]) List<String> choices,
     @JsonKey(name: 'default') dynamic defaultValue,
