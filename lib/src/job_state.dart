@@ -16,8 +16,11 @@ enum JobState {
   /// newly added state degrades to "something changed" instead of a crash.
   unknown;
 
-  bool get isTerminal =>
-      this == succeeded || this == failed || this == cancelled;
+  /// Everything except the two states a job actively moves through — not an
+  /// explicit list of terminal values, so a state neither side recognises
+  /// yet ([unknown]) fails safe as "treat this as finished" rather than
+  /// "still active and worth waiting on".
+  bool get isTerminal => this != queued && this != running;
 
   /// The exact string this state serializes to on the wire — always the enum
   /// member's own name, kept as an explicit method (rather than relying on

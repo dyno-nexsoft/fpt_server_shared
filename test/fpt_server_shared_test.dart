@@ -13,13 +13,14 @@ void main() {
       expect(JobState.fromWire('some_future_state'), JobState.unknown);
     });
 
-    test('isTerminal matches the terminal states', () {
+    test('isTerminal is everything except queued/running', () {
       expect(JobState.succeeded.isTerminal, isTrue);
       expect(JobState.failed.isTerminal, isTrue);
       expect(JobState.cancelled.isTerminal, isTrue);
+      expect(JobState.interrupted.isTerminal, isTrue);
+      expect(JobState.unknown.isTerminal, isTrue);
       expect(JobState.queued.isTerminal, isFalse);
       expect(JobState.running.isTerminal, isFalse);
-      expect(JobState.interrupted.isTerminal, isFalse);
     });
   });
 

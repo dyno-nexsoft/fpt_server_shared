@@ -203,13 +203,14 @@ class __$$JobQueuedEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$JobQueuedEventImpl implements JobQueuedEvent {
+class _$JobQueuedEventImpl extends JobQueuedEvent {
   const _$JobQueuedEventImpl(
       {required this.seq,
       required this.at,
       required this.position,
       final String? $type})
-      : $type = $type ?? 'queued';
+      : $type = $type ?? 'queued',
+        super._();
 
   factory _$JobQueuedEventImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobQueuedEventImplFromJson(json);
@@ -218,6 +219,8 @@ class _$JobQueuedEventImpl implements JobQueuedEvent {
   final int seq;
   @override
   final DateTime at;
+
+  /// 1-based position in the queue at the time of queuing.
   @override
   final int position;
 
@@ -357,11 +360,12 @@ class _$JobQueuedEventImpl implements JobQueuedEvent {
   }
 }
 
-abstract class JobQueuedEvent implements JobEvent {
+abstract class JobQueuedEvent extends JobEvent {
   const factory JobQueuedEvent(
       {required final int seq,
       required final DateTime at,
       required final int position}) = _$JobQueuedEventImpl;
+  const JobQueuedEvent._() : super._();
 
   factory JobQueuedEvent.fromJson(Map<String, dynamic> json) =
       _$JobQueuedEventImpl.fromJson;
@@ -370,6 +374,8 @@ abstract class JobQueuedEvent implements JobEvent {
   int get seq;
   @override
   DateTime get at;
+
+  /// 1-based position in the queue at the time of queuing.
   int get position;
   @override
   @JsonKey(ignore: true)
@@ -422,13 +428,14 @@ class __$$JobStartedEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$JobStartedEventImpl implements JobStartedEvent {
+class _$JobStartedEventImpl extends JobStartedEvent {
   const _$JobStartedEventImpl(
       {required this.seq,
       required this.at,
       required this.immediate,
       final String? $type})
-      : $type = $type ?? 'started';
+      : $type = $type ?? 'started',
+        super._();
 
   factory _$JobStartedEventImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobStartedEventImplFromJson(json);
@@ -437,6 +444,8 @@ class _$JobStartedEventImpl implements JobStartedEvent {
   final int seq;
   @override
   final DateTime at;
+
+  /// True when the job runs in the parallel lane rather than the queue.
   @override
   final bool immediate;
 
@@ -576,11 +585,12 @@ class _$JobStartedEventImpl implements JobStartedEvent {
   }
 }
 
-abstract class JobStartedEvent implements JobEvent {
+abstract class JobStartedEvent extends JobEvent {
   const factory JobStartedEvent(
       {required final int seq,
       required final DateTime at,
       required final bool immediate}) = _$JobStartedEventImpl;
+  const JobStartedEvent._() : super._();
 
   factory JobStartedEvent.fromJson(Map<String, dynamic> json) =
       _$JobStartedEventImpl.fromJson;
@@ -589,6 +599,8 @@ abstract class JobStartedEvent implements JobEvent {
   int get seq;
   @override
   DateTime get at;
+
+  /// True when the job runs in the parallel lane rather than the queue.
   bool get immediate;
   @override
   @JsonKey(ignore: true)
@@ -636,10 +648,11 @@ class __$$JobPromotedEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$JobPromotedEventImpl implements JobPromotedEvent {
+class _$JobPromotedEventImpl extends JobPromotedEvent {
   const _$JobPromotedEventImpl(
       {required this.seq, required this.at, final String? $type})
-      : $type = $type ?? 'promoted';
+      : $type = $type ?? 'promoted',
+        super._();
 
   factory _$JobPromotedEventImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobPromotedEventImplFromJson(json);
@@ -783,10 +796,11 @@ class _$JobPromotedEventImpl implements JobPromotedEvent {
   }
 }
 
-abstract class JobPromotedEvent implements JobEvent {
+abstract class JobPromotedEvent extends JobEvent {
   const factory JobPromotedEvent(
       {required final int seq,
       required final DateTime at}) = _$JobPromotedEventImpl;
+  const JobPromotedEvent._() : super._();
 
   factory JobPromotedEvent.fromJson(Map<String, dynamic> json) =
       _$JobPromotedEventImpl.fromJson;
@@ -846,13 +860,14 @@ class __$$JobStatusEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$JobStatusEventImpl implements JobStatusEvent {
+class _$JobStatusEventImpl extends JobStatusEvent {
   const _$JobStatusEventImpl(
       {required this.seq,
       required this.at,
       required this.line,
       final String? $type})
-      : $type = $type ?? 'status';
+      : $type = $type ?? 'status',
+        super._();
 
   factory _$JobStatusEventImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobStatusEventImplFromJson(json);
@@ -999,11 +1014,12 @@ class _$JobStatusEventImpl implements JobStatusEvent {
   }
 }
 
-abstract class JobStatusEvent implements JobEvent {
+abstract class JobStatusEvent extends JobEvent {
   const factory JobStatusEvent(
       {required final int seq,
       required final DateTime at,
       required final String line}) = _$JobStatusEventImpl;
+  const JobStatusEvent._() : super._();
 
   factory JobStatusEvent.fromJson(Map<String, dynamic> json) =
       _$JobStatusEventImpl.fromJson;
@@ -1064,13 +1080,14 @@ class __$$JobLogEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$JobLogEventImpl implements JobLogEvent {
+class _$JobLogEventImpl extends JobLogEvent {
   const _$JobLogEventImpl(
       {required this.seq,
       required this.at,
       required this.chunk,
       final String? $type})
-      : $type = $type ?? 'log';
+      : $type = $type ?? 'log',
+        super._();
 
   factory _$JobLogEventImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobLogEventImplFromJson(json);
@@ -1216,11 +1233,12 @@ class _$JobLogEventImpl implements JobLogEvent {
   }
 }
 
-abstract class JobLogEvent implements JobEvent {
+abstract class JobLogEvent extends JobEvent {
   const factory JobLogEvent(
       {required final int seq,
       required final DateTime at,
       required final String chunk}) = _$JobLogEventImpl;
+  const JobLogEvent._() : super._();
 
   factory JobLogEvent.fromJson(Map<String, dynamic> json) =
       _$JobLogEventImpl.fromJson;
@@ -1281,13 +1299,14 @@ class __$$JobErrorEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$JobErrorEventImpl implements JobErrorEvent {
+class _$JobErrorEventImpl extends JobErrorEvent {
   const _$JobErrorEventImpl(
       {required this.seq,
       required this.at,
       required this.message,
       final String? $type})
-      : $type = $type ?? 'error';
+      : $type = $type ?? 'error',
+        super._();
 
   factory _$JobErrorEventImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobErrorEventImplFromJson(json);
@@ -1433,11 +1452,12 @@ class _$JobErrorEventImpl implements JobErrorEvent {
   }
 }
 
-abstract class JobErrorEvent implements JobEvent {
+abstract class JobErrorEvent extends JobEvent {
   const factory JobErrorEvent(
       {required final int seq,
       required final DateTime at,
       required final String message}) = _$JobErrorEventImpl;
+  const JobErrorEvent._() : super._();
 
   factory JobErrorEvent.fromJson(Map<String, dynamic> json) =
       _$JobErrorEventImpl.fromJson;
@@ -1507,14 +1527,15 @@ class __$$JobFinishedEventImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$JobFinishedEventImpl implements JobFinishedEvent {
+class _$JobFinishedEventImpl extends JobFinishedEvent {
   const _$JobFinishedEventImpl(
       {required this.seq,
       required this.at,
       @JobStateConverter() required this.state,
       this.exitCode,
       final String? $type})
-      : $type = $type ?? 'finished';
+      : $type = $type ?? 'finished',
+        super._();
 
   factory _$JobFinishedEventImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobFinishedEventImplFromJson(json);
@@ -1666,12 +1687,13 @@ class _$JobFinishedEventImpl implements JobFinishedEvent {
   }
 }
 
-abstract class JobFinishedEvent implements JobEvent {
+abstract class JobFinishedEvent extends JobEvent {
   const factory JobFinishedEvent(
       {required final int seq,
       required final DateTime at,
       @JobStateConverter() required final JobState state,
       final int? exitCode}) = _$JobFinishedEventImpl;
+  const JobFinishedEvent._() : super._();
 
   factory JobFinishedEvent.fromJson(Map<String, dynamic> json) =
       _$JobFinishedEventImpl.fromJson;
