@@ -10,6 +10,7 @@ export 'src/gitlab_mr_url.dart';
 export 'src/health.dart';
 export 'src/job.dart';
 export 'src/job_event.dart';
+export 'src/job_submission.dart';
 export 'src/job_state.dart';
 export 'src/param_type.dart';
 export 'src/permission.dart';
