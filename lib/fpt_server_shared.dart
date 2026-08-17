@@ -1,7 +1,12 @@
 export 'src/action_schema.dart';
 export 'src/api_key_info.dart';
+export 'src/api_key_role.dart';
 export 'src/artifact.dart';
+export 'src/build_target.dart';
+export 'src/daily_task.dart';
 export 'src/discord_message_ref.dart';
+export 'src/gitlab_models.dart';
+export 'src/gitlab_mr_url.dart';
 export 'src/health.dart';
 export 'src/job.dart';
 export 'src/job_event.dart';
@@ -9,3 +14,4 @@ export 'src/job_state.dart';
 export 'src/param_type.dart';
 export 'src/permission.dart';
 export 'src/system_status.dart';
+export 'src/zentao_user.dart';
