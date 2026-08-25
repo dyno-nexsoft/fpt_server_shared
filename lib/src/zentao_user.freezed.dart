@@ -12,7 +12,8 @@ part of 'zentao_user.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 ZentaoUser _$ZentaoUserFromJson(Map<String, dynamic> json) {
   return _ZentaoUser.fromJson(json);
@@ -33,8 +34,9 @@ mixin _$ZentaoUser {
 /// @nodoc
 abstract class $ZentaoUserCopyWith<$Res> {
   factory $ZentaoUserCopyWith(
-          ZentaoUser value, $Res Function(ZentaoUser) then) =
-      _$ZentaoUserCopyWithImpl<$Res, ZentaoUser>;
+    ZentaoUser value,
+    $Res Function(ZentaoUser) then,
+  ) = _$ZentaoUserCopyWithImpl<$Res, ZentaoUser>;
   @useResult
   $Res call({String account, String password, int? module});
 }
@@ -56,20 +58,23 @@ class _$ZentaoUserCopyWithImpl<$Res, $Val extends ZentaoUser>
     Object? password = null,
     Object? module = freezed,
   }) {
-    return _then(_value.copyWith(
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      module: freezed == module
-          ? _value.module
-          : module // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            account: null == account
+                ? _value.account
+                : account // ignore: cast_nullable_to_non_nullable
+                      as String,
+            password: null == password
+                ? _value.password
+                : password // ignore: cast_nullable_to_non_nullable
+                      as String,
+            module: freezed == module
+                ? _value.module
+                : module // ignore: cast_nullable_to_non_nullable
+                      as int?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -77,8 +82,9 @@ class _$ZentaoUserCopyWithImpl<$Res, $Val extends ZentaoUser>
 abstract class _$$ZentaoUserImplCopyWith<$Res>
     implements $ZentaoUserCopyWith<$Res> {
   factory _$$ZentaoUserImplCopyWith(
-          _$ZentaoUserImpl value, $Res Function(_$ZentaoUserImpl) then) =
-      __$$ZentaoUserImplCopyWithImpl<$Res>;
+    _$ZentaoUserImpl value,
+    $Res Function(_$ZentaoUserImpl) then,
+  ) = __$$ZentaoUserImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String account, String password, int? module});
@@ -89,8 +95,9 @@ class __$$ZentaoUserImplCopyWithImpl<$Res>
     extends _$ZentaoUserCopyWithImpl<$Res, _$ZentaoUserImpl>
     implements _$$ZentaoUserImplCopyWith<$Res> {
   __$$ZentaoUserImplCopyWithImpl(
-      _$ZentaoUserImpl _value, $Res Function(_$ZentaoUserImpl) _then)
-      : super(_value, _then);
+    _$ZentaoUserImpl _value,
+    $Res Function(_$ZentaoUserImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -99,28 +106,33 @@ class __$$ZentaoUserImplCopyWithImpl<$Res>
     Object? password = null,
     Object? module = freezed,
   }) {
-    return _then(_$ZentaoUserImpl(
-      account: null == account
-          ? _value.account
-          : account // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-      module: freezed == module
-          ? _value.module
-          : module // ignore: cast_nullable_to_non_nullable
-              as int?,
-    ));
+    return _then(
+      _$ZentaoUserImpl(
+        account: null == account
+            ? _value.account
+            : account // ignore: cast_nullable_to_non_nullable
+                  as String,
+        password: null == password
+            ? _value.password
+            : password // ignore: cast_nullable_to_non_nullable
+                  as String,
+        module: freezed == module
+            ? _value.module
+            : module // ignore: cast_nullable_to_non_nullable
+                  as int?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ZentaoUserImpl implements _ZentaoUser {
-  const _$ZentaoUserImpl(
-      {required this.account, required this.password, this.module});
+  const _$ZentaoUserImpl({
+    required this.account,
+    required this.password,
+    this.module,
+  });
 
   factory _$ZentaoUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$ZentaoUserImplFromJson(json);
@@ -160,17 +172,16 @@ class _$ZentaoUserImpl implements _ZentaoUser {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ZentaoUserImplToJson(
-      this,
-    );
+    return _$$ZentaoUserImplToJson(this);
   }
 }
 
 abstract class _ZentaoUser implements ZentaoUser {
-  const factory _ZentaoUser(
-      {required final String account,
-      required final String password,
-      final int? module}) = _$ZentaoUserImpl;
+  const factory _ZentaoUser({
+    required final String account,
+    required final String password,
+    final int? module,
+  }) = _$ZentaoUserImpl;
 
   factory _ZentaoUser.fromJson(Map<String, dynamic> json) =
       _$ZentaoUserImpl.fromJson;

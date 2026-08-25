@@ -1,6 +1,7 @@
 export 'src/action_schema.dart';
 export 'src/api_key_info.dart';
 export 'src/api_key_role.dart';
+export 'src/arb_translate_result.dart';
 export 'src/artifact.dart';
 export 'src/build_target.dart';
 export 'src/daily_task.dart';
@@ -15,4 +16,5 @@ export 'src/job_state.dart';
 export 'src/param_type.dart';
 export 'src/permission.dart';
 export 'src/system_status.dart';
+export 'src/tbchat_module.dart';
 export 'src/zentao_user.dart';

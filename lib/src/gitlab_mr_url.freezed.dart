@@ -12,7 +12,8 @@ part of 'gitlab_mr_url.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 GitLabMrUrl _$GitLabMrUrlFromJson(Map<String, dynamic> json) {
   return _GitLabMrUrl.fromJson(json);
@@ -35,8 +36,9 @@ mixin _$GitLabMrUrl {
 /// @nodoc
 abstract class $GitLabMrUrlCopyWith<$Res> {
   factory $GitLabMrUrlCopyWith(
-          GitLabMrUrl value, $Res Function(GitLabMrUrl) then) =
-      _$GitLabMrUrlCopyWithImpl<$Res, GitLabMrUrl>;
+    GitLabMrUrl value,
+    $Res Function(GitLabMrUrl) then,
+  ) = _$GitLabMrUrlCopyWithImpl<$Res, GitLabMrUrl>;
   @useResult
   $Res call({String projectPath, int mrIid});
 }
@@ -53,20 +55,20 @@ class _$GitLabMrUrlCopyWithImpl<$Res, $Val extends GitLabMrUrl>
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? projectPath = null,
-    Object? mrIid = null,
-  }) {
-    return _then(_value.copyWith(
-      projectPath: null == projectPath
-          ? _value.projectPath
-          : projectPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      mrIid: null == mrIid
-          ? _value.mrIid
-          : mrIid // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  $Res call({Object? projectPath = null, Object? mrIid = null}) {
+    return _then(
+      _value.copyWith(
+            projectPath: null == projectPath
+                ? _value.projectPath
+                : projectPath // ignore: cast_nullable_to_non_nullable
+                      as String,
+            mrIid: null == mrIid
+                ? _value.mrIid
+                : mrIid // ignore: cast_nullable_to_non_nullable
+                      as int,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -74,8 +76,9 @@ class _$GitLabMrUrlCopyWithImpl<$Res, $Val extends GitLabMrUrl>
 abstract class _$$GitLabMrUrlImplCopyWith<$Res>
     implements $GitLabMrUrlCopyWith<$Res> {
   factory _$$GitLabMrUrlImplCopyWith(
-          _$GitLabMrUrlImpl value, $Res Function(_$GitLabMrUrlImpl) then) =
-      __$$GitLabMrUrlImplCopyWithImpl<$Res>;
+    _$GitLabMrUrlImpl value,
+    $Res Function(_$GitLabMrUrlImpl) then,
+  ) = __$$GitLabMrUrlImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String projectPath, int mrIid});
@@ -86,25 +89,25 @@ class __$$GitLabMrUrlImplCopyWithImpl<$Res>
     extends _$GitLabMrUrlCopyWithImpl<$Res, _$GitLabMrUrlImpl>
     implements _$$GitLabMrUrlImplCopyWith<$Res> {
   __$$GitLabMrUrlImplCopyWithImpl(
-      _$GitLabMrUrlImpl _value, $Res Function(_$GitLabMrUrlImpl) _then)
-      : super(_value, _then);
+    _$GitLabMrUrlImpl _value,
+    $Res Function(_$GitLabMrUrlImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? projectPath = null,
-    Object? mrIid = null,
-  }) {
-    return _then(_$GitLabMrUrlImpl(
-      projectPath: null == projectPath
-          ? _value.projectPath
-          : projectPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      mrIid: null == mrIid
-          ? _value.mrIid
-          : mrIid // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? projectPath = null, Object? mrIid = null}) {
+    return _then(
+      _$GitLabMrUrlImpl(
+        projectPath: null == projectPath
+            ? _value.projectPath
+            : projectPath // ignore: cast_nullable_to_non_nullable
+                  as String,
+        mrIid: null == mrIid
+            ? _value.mrIid
+            : mrIid // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }
 
@@ -112,7 +115,7 @@ class __$$GitLabMrUrlImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$GitLabMrUrlImpl extends _GitLabMrUrl {
   const _$GitLabMrUrlImpl({required this.projectPath, required this.mrIid})
-      : super._();
+    : super._();
 
   factory _$GitLabMrUrlImpl.fromJson(Map<String, dynamic> json) =>
       _$$GitLabMrUrlImplFromJson(json);
@@ -147,27 +150,24 @@ class _$GitLabMrUrlImpl extends _GitLabMrUrl {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GitLabMrUrlImplToJson(
-      this,
-    );
+    return _$$GitLabMrUrlImplToJson(this);
   }
 }
 
 abstract class _GitLabMrUrl extends GitLabMrUrl {
-  const factory _GitLabMrUrl(
-      {required final String projectPath,
-      required final int mrIid}) = _$GitLabMrUrlImpl;
+  const factory _GitLabMrUrl({
+    required final String projectPath,
+    required final int mrIid,
+  }) = _$GitLabMrUrlImpl;
   const _GitLabMrUrl._() : super._();
 
   factory _GitLabMrUrl.fromJson(Map<String, dynamic> json) =
       _$GitLabMrUrlImpl.fromJson;
 
   @override
-
   /// The `namespace/project` path (e.g. `root/tbchat_socialfi`).
   String get projectPath;
   @override
-
   /// Internal ID of the merge request (the `!123` number).
   int get mrIid;
   @override

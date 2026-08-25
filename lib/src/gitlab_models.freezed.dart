@@ -12,7 +12,8 @@ part of 'gitlab_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 GitLabMergeRequest _$GitLabMergeRequestFromJson(Map<String, dynamic> json) {
   return _GitLabMergeRequest.fromJson(json);
@@ -65,21 +66,23 @@ mixin _$GitLabMergeRequest {
 /// @nodoc
 abstract class $GitLabMergeRequestCopyWith<$Res> {
   factory $GitLabMergeRequestCopyWith(
-          GitLabMergeRequest value, $Res Function(GitLabMergeRequest) then) =
-      _$GitLabMergeRequestCopyWithImpl<$Res, GitLabMergeRequest>;
+    GitLabMergeRequest value,
+    $Res Function(GitLabMergeRequest) then,
+  ) = _$GitLabMergeRequestCopyWithImpl<$Res, GitLabMergeRequest>;
   @useResult
-  $Res call(
-      {int iid,
-      String title,
-      String sourceBranch,
-      String targetBranch,
-      @JsonKey(name: 'author', readValue: _readAuthorName) String authorName,
-      String webUrl,
-      String state,
-      String description,
-      List<String> labels,
-      String changesCount,
-      String sha});
+  $Res call({
+    int iid,
+    String title,
+    String sourceBranch,
+    String targetBranch,
+    @JsonKey(name: 'author', readValue: _readAuthorName) String authorName,
+    String webUrl,
+    String state,
+    String description,
+    List<String> labels,
+    String changesCount,
+    String sha,
+  });
 }
 
 /// @nodoc
@@ -107,84 +110,90 @@ class _$GitLabMergeRequestCopyWithImpl<$Res, $Val extends GitLabMergeRequest>
     Object? changesCount = null,
     Object? sha = null,
   }) {
-    return _then(_value.copyWith(
-      iid: null == iid
-          ? _value.iid
-          : iid // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      sourceBranch: null == sourceBranch
-          ? _value.sourceBranch
-          : sourceBranch // ignore: cast_nullable_to_non_nullable
-              as String,
-      targetBranch: null == targetBranch
-          ? _value.targetBranch
-          : targetBranch // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorName: null == authorName
-          ? _value.authorName
-          : authorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      webUrl: null == webUrl
-          ? _value.webUrl
-          : webUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      state: null == state
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      labels: null == labels
-          ? _value.labels
-          : labels // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      changesCount: null == changesCount
-          ? _value.changesCount
-          : changesCount // ignore: cast_nullable_to_non_nullable
-              as String,
-      sha: null == sha
-          ? _value.sha
-          : sha // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            iid: null == iid
+                ? _value.iid
+                : iid // ignore: cast_nullable_to_non_nullable
+                      as int,
+            title: null == title
+                ? _value.title
+                : title // ignore: cast_nullable_to_non_nullable
+                      as String,
+            sourceBranch: null == sourceBranch
+                ? _value.sourceBranch
+                : sourceBranch // ignore: cast_nullable_to_non_nullable
+                      as String,
+            targetBranch: null == targetBranch
+                ? _value.targetBranch
+                : targetBranch // ignore: cast_nullable_to_non_nullable
+                      as String,
+            authorName: null == authorName
+                ? _value.authorName
+                : authorName // ignore: cast_nullable_to_non_nullable
+                      as String,
+            webUrl: null == webUrl
+                ? _value.webUrl
+                : webUrl // ignore: cast_nullable_to_non_nullable
+                      as String,
+            state: null == state
+                ? _value.state
+                : state // ignore: cast_nullable_to_non_nullable
+                      as String,
+            description: null == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String,
+            labels: null == labels
+                ? _value.labels
+                : labels // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            changesCount: null == changesCount
+                ? _value.changesCount
+                : changesCount // ignore: cast_nullable_to_non_nullable
+                      as String,
+            sha: null == sha
+                ? _value.sha
+                : sha // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$GitLabMergeRequestImplCopyWith<$Res>
     implements $GitLabMergeRequestCopyWith<$Res> {
-  factory _$$GitLabMergeRequestImplCopyWith(_$GitLabMergeRequestImpl value,
-          $Res Function(_$GitLabMergeRequestImpl) then) =
-      __$$GitLabMergeRequestImplCopyWithImpl<$Res>;
+  factory _$$GitLabMergeRequestImplCopyWith(
+    _$GitLabMergeRequestImpl value,
+    $Res Function(_$GitLabMergeRequestImpl) then,
+  ) = __$$GitLabMergeRequestImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {int iid,
-      String title,
-      String sourceBranch,
-      String targetBranch,
-      @JsonKey(name: 'author', readValue: _readAuthorName) String authorName,
-      String webUrl,
-      String state,
-      String description,
-      List<String> labels,
-      String changesCount,
-      String sha});
+  $Res call({
+    int iid,
+    String title,
+    String sourceBranch,
+    String targetBranch,
+    @JsonKey(name: 'author', readValue: _readAuthorName) String authorName,
+    String webUrl,
+    String state,
+    String description,
+    List<String> labels,
+    String changesCount,
+    String sha,
+  });
 }
 
 /// @nodoc
 class __$$GitLabMergeRequestImplCopyWithImpl<$Res>
     extends _$GitLabMergeRequestCopyWithImpl<$Res, _$GitLabMergeRequestImpl>
     implements _$$GitLabMergeRequestImplCopyWith<$Res> {
-  __$$GitLabMergeRequestImplCopyWithImpl(_$GitLabMergeRequestImpl _value,
-      $Res Function(_$GitLabMergeRequestImpl) _then)
-      : super(_value, _then);
+  __$$GitLabMergeRequestImplCopyWithImpl(
+    _$GitLabMergeRequestImpl _value,
+    $Res Function(_$GitLabMergeRequestImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -201,73 +210,75 @@ class __$$GitLabMergeRequestImplCopyWithImpl<$Res>
     Object? changesCount = null,
     Object? sha = null,
   }) {
-    return _then(_$GitLabMergeRequestImpl(
-      iid: null == iid
-          ? _value.iid
-          : iid // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      sourceBranch: null == sourceBranch
-          ? _value.sourceBranch
-          : sourceBranch // ignore: cast_nullable_to_non_nullable
-              as String,
-      targetBranch: null == targetBranch
-          ? _value.targetBranch
-          : targetBranch // ignore: cast_nullable_to_non_nullable
-              as String,
-      authorName: null == authorName
-          ? _value.authorName
-          : authorName // ignore: cast_nullable_to_non_nullable
-              as String,
-      webUrl: null == webUrl
-          ? _value.webUrl
-          : webUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      state: null == state
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      labels: null == labels
-          ? _value._labels
-          : labels // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      changesCount: null == changesCount
-          ? _value.changesCount
-          : changesCount // ignore: cast_nullable_to_non_nullable
-              as String,
-      sha: null == sha
-          ? _value.sha
-          : sha // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$GitLabMergeRequestImpl(
+        iid: null == iid
+            ? _value.iid
+            : iid // ignore: cast_nullable_to_non_nullable
+                  as int,
+        title: null == title
+            ? _value.title
+            : title // ignore: cast_nullable_to_non_nullable
+                  as String,
+        sourceBranch: null == sourceBranch
+            ? _value.sourceBranch
+            : sourceBranch // ignore: cast_nullable_to_non_nullable
+                  as String,
+        targetBranch: null == targetBranch
+            ? _value.targetBranch
+            : targetBranch // ignore: cast_nullable_to_non_nullable
+                  as String,
+        authorName: null == authorName
+            ? _value.authorName
+            : authorName // ignore: cast_nullable_to_non_nullable
+                  as String,
+        webUrl: null == webUrl
+            ? _value.webUrl
+            : webUrl // ignore: cast_nullable_to_non_nullable
+                  as String,
+        state: null == state
+            ? _value.state
+            : state // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        labels: null == labels
+            ? _value._labels
+            : labels // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        changesCount: null == changesCount
+            ? _value.changesCount
+            : changesCount // ignore: cast_nullable_to_non_nullable
+                  as String,
+        sha: null == sha
+            ? _value.sha
+            : sha // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$GitLabMergeRequestImpl extends _GitLabMergeRequest {
-  const _$GitLabMergeRequestImpl(
-      {required this.iid,
-      required this.title,
-      required this.sourceBranch,
-      required this.targetBranch,
-      @JsonKey(name: 'author', readValue: _readAuthorName)
-      required this.authorName,
-      required this.webUrl,
-      required this.state,
-      this.description = '',
-      final List<String> labels = const <String>[],
-      this.changesCount = '0',
-      this.sha = ''})
-      : _labels = labels,
-        super._();
+  const _$GitLabMergeRequestImpl({
+    required this.iid,
+    required this.title,
+    required this.sourceBranch,
+    required this.targetBranch,
+    @JsonKey(name: 'author', readValue: _readAuthorName)
+    required this.authorName,
+    required this.webUrl,
+    required this.state,
+    this.description = '',
+    final List<String> labels = const <String>[],
+    this.changesCount = '0',
+    this.sha = '',
+  }) : _labels = labels,
+       super._();
 
   factory _$GitLabMergeRequestImpl.fromJson(Map<String, dynamic> json) =>
       _$$GitLabMergeRequestImplFromJson(json);
@@ -361,96 +372,87 @@ class _$GitLabMergeRequestImpl extends _GitLabMergeRequest {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      iid,
-      title,
-      sourceBranch,
-      targetBranch,
-      authorName,
-      webUrl,
-      state,
-      description,
-      const DeepCollectionEquality().hash(_labels),
-      changesCount,
-      sha);
+    runtimeType,
+    iid,
+    title,
+    sourceBranch,
+    targetBranch,
+    authorName,
+    webUrl,
+    state,
+    description,
+    const DeepCollectionEquality().hash(_labels),
+    changesCount,
+    sha,
+  );
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GitLabMergeRequestImplCopyWith<_$GitLabMergeRequestImpl> get copyWith =>
       __$$GitLabMergeRequestImplCopyWithImpl<_$GitLabMergeRequestImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GitLabMergeRequestImplToJson(
-      this,
-    );
+    return _$$GitLabMergeRequestImplToJson(this);
   }
 }
 
 abstract class _GitLabMergeRequest extends GitLabMergeRequest {
-  const factory _GitLabMergeRequest(
-      {required final int iid,
-      required final String title,
-      required final String sourceBranch,
-      required final String targetBranch,
-      @JsonKey(name: 'author', readValue: _readAuthorName)
-      required final String authorName,
-      required final String webUrl,
-      required final String state,
-      final String description,
-      final List<String> labels,
-      final String changesCount,
-      final String sha}) = _$GitLabMergeRequestImpl;
+  const factory _GitLabMergeRequest({
+    required final int iid,
+    required final String title,
+    required final String sourceBranch,
+    required final String targetBranch,
+    @JsonKey(name: 'author', readValue: _readAuthorName)
+    required final String authorName,
+    required final String webUrl,
+    required final String state,
+    final String description,
+    final List<String> labels,
+    final String changesCount,
+    final String sha,
+  }) = _$GitLabMergeRequestImpl;
   const _GitLabMergeRequest._() : super._();
 
   factory _GitLabMergeRequest.fromJson(Map<String, dynamic> json) =
       _$GitLabMergeRequestImpl.fromJson;
 
   @override
-
   /// Internal ID of the MR within its project (the `!123` number on GitLab).
   int get iid;
   @override
-
   /// Title of the Merge Request.
   String get title;
   @override
-
   /// Source branch name (feature branch).
   String get sourceBranch;
   @override
-
   /// Target branch name (usually `develop` or `main`).
   String get targetBranch;
   @override
-
   /// Display name of the author on GitLab.
   @JsonKey(name: 'author', readValue: _readAuthorName)
   String get authorName;
   @override
-
   /// Full URL to open the MR in a browser.
   String get webUrl;
   @override
-
   /// Current state: `opened`, `closed`, `merged`, or `locked`.
   String get state;
   @override
-
   /// Description written by the author, may be empty.
   String get description;
   @override
-
   /// Labels applied to this merge request.
   List<String> get labels;
   @override
-
   /// Number of changed files as reported by GitLab (e.g. "15").
   String get changesCount;
   @override
-
   /// Head commit SHA of the source branch at the time of the API call.
   ///
   /// Used by the cron job to detect new commits and trigger re-reviews.
@@ -497,16 +499,18 @@ mixin _$GitLabMrDiff {
 /// @nodoc
 abstract class $GitLabMrDiffCopyWith<$Res> {
   factory $GitLabMrDiffCopyWith(
-          GitLabMrDiff value, $Res Function(GitLabMrDiff) then) =
-      _$GitLabMrDiffCopyWithImpl<$Res, GitLabMrDiff>;
+    GitLabMrDiff value,
+    $Res Function(GitLabMrDiff) then,
+  ) = _$GitLabMrDiffCopyWithImpl<$Res, GitLabMrDiff>;
   @useResult
-  $Res call(
-      {String newPath,
-      String oldPath,
-      String diff,
-      @JsonKey(name: 'deleted_file') bool isDeleted,
-      @JsonKey(name: 'renamed_file') bool isRenamed,
-      @JsonKey(name: 'new_file') bool isNewFile});
+  $Res call({
+    String newPath,
+    String oldPath,
+    String diff,
+    @JsonKey(name: 'deleted_file') bool isDeleted,
+    @JsonKey(name: 'renamed_file') bool isRenamed,
+    @JsonKey(name: 'new_file') bool isNewFile,
+  });
 }
 
 /// @nodoc
@@ -529,32 +533,35 @@ class _$GitLabMrDiffCopyWithImpl<$Res, $Val extends GitLabMrDiff>
     Object? isRenamed = null,
     Object? isNewFile = null,
   }) {
-    return _then(_value.copyWith(
-      newPath: null == newPath
-          ? _value.newPath
-          : newPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      oldPath: null == oldPath
-          ? _value.oldPath
-          : oldPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      diff: null == diff
-          ? _value.diff
-          : diff // ignore: cast_nullable_to_non_nullable
-              as String,
-      isDeleted: null == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isRenamed: null == isRenamed
-          ? _value.isRenamed
-          : isRenamed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isNewFile: null == isNewFile
-          ? _value.isNewFile
-          : isNewFile // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            newPath: null == newPath
+                ? _value.newPath
+                : newPath // ignore: cast_nullable_to_non_nullable
+                      as String,
+            oldPath: null == oldPath
+                ? _value.oldPath
+                : oldPath // ignore: cast_nullable_to_non_nullable
+                      as String,
+            diff: null == diff
+                ? _value.diff
+                : diff // ignore: cast_nullable_to_non_nullable
+                      as String,
+            isDeleted: null == isDeleted
+                ? _value.isDeleted
+                : isDeleted // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isRenamed: null == isRenamed
+                ? _value.isRenamed
+                : isRenamed // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isNewFile: null == isNewFile
+                ? _value.isNewFile
+                : isNewFile // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -562,17 +569,19 @@ class _$GitLabMrDiffCopyWithImpl<$Res, $Val extends GitLabMrDiff>
 abstract class _$$GitLabMrDiffImplCopyWith<$Res>
     implements $GitLabMrDiffCopyWith<$Res> {
   factory _$$GitLabMrDiffImplCopyWith(
-          _$GitLabMrDiffImpl value, $Res Function(_$GitLabMrDiffImpl) then) =
-      __$$GitLabMrDiffImplCopyWithImpl<$Res>;
+    _$GitLabMrDiffImpl value,
+    $Res Function(_$GitLabMrDiffImpl) then,
+  ) = __$$GitLabMrDiffImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String newPath,
-      String oldPath,
-      String diff,
-      @JsonKey(name: 'deleted_file') bool isDeleted,
-      @JsonKey(name: 'renamed_file') bool isRenamed,
-      @JsonKey(name: 'new_file') bool isNewFile});
+  $Res call({
+    String newPath,
+    String oldPath,
+    String diff,
+    @JsonKey(name: 'deleted_file') bool isDeleted,
+    @JsonKey(name: 'renamed_file') bool isRenamed,
+    @JsonKey(name: 'new_file') bool isNewFile,
+  });
 }
 
 /// @nodoc
@@ -580,8 +589,9 @@ class __$$GitLabMrDiffImplCopyWithImpl<$Res>
     extends _$GitLabMrDiffCopyWithImpl<$Res, _$GitLabMrDiffImpl>
     implements _$$GitLabMrDiffImplCopyWith<$Res> {
   __$$GitLabMrDiffImplCopyWithImpl(
-      _$GitLabMrDiffImpl _value, $Res Function(_$GitLabMrDiffImpl) _then)
-      : super(_value, _then);
+    _$GitLabMrDiffImpl _value,
+    $Res Function(_$GitLabMrDiffImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -593,45 +603,48 @@ class __$$GitLabMrDiffImplCopyWithImpl<$Res>
     Object? isRenamed = null,
     Object? isNewFile = null,
   }) {
-    return _then(_$GitLabMrDiffImpl(
-      newPath: null == newPath
-          ? _value.newPath
-          : newPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      oldPath: null == oldPath
-          ? _value.oldPath
-          : oldPath // ignore: cast_nullable_to_non_nullable
-              as String,
-      diff: null == diff
-          ? _value.diff
-          : diff // ignore: cast_nullable_to_non_nullable
-              as String,
-      isDeleted: null == isDeleted
-          ? _value.isDeleted
-          : isDeleted // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isRenamed: null == isRenamed
-          ? _value.isRenamed
-          : isRenamed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isNewFile: null == isNewFile
-          ? _value.isNewFile
-          : isNewFile // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$GitLabMrDiffImpl(
+        newPath: null == newPath
+            ? _value.newPath
+            : newPath // ignore: cast_nullable_to_non_nullable
+                  as String,
+        oldPath: null == oldPath
+            ? _value.oldPath
+            : oldPath // ignore: cast_nullable_to_non_nullable
+                  as String,
+        diff: null == diff
+            ? _value.diff
+            : diff // ignore: cast_nullable_to_non_nullable
+                  as String,
+        isDeleted: null == isDeleted
+            ? _value.isDeleted
+            : isDeleted // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isRenamed: null == isRenamed
+            ? _value.isRenamed
+            : isRenamed // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isNewFile: null == isNewFile
+            ? _value.isNewFile
+            : isNewFile // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$GitLabMrDiffImpl implements _GitLabMrDiff {
-  const _$GitLabMrDiffImpl(
-      {required this.newPath,
-      required this.oldPath,
-      this.diff = '',
-      @JsonKey(name: 'deleted_file') this.isDeleted = false,
-      @JsonKey(name: 'renamed_file') this.isRenamed = false,
-      @JsonKey(name: 'new_file') this.isNewFile = false});
+  const _$GitLabMrDiffImpl({
+    required this.newPath,
+    required this.oldPath,
+    this.diff = '',
+    @JsonKey(name: 'deleted_file') this.isDeleted = false,
+    @JsonKey(name: 'renamed_file') this.isRenamed = false,
+    @JsonKey(name: 'new_file') this.isNewFile = false,
+  });
 
   factory _$GitLabMrDiffImpl.fromJson(Map<String, dynamic> json) =>
       _$$GitLabMrDiffImplFromJson(json);
@@ -688,7 +701,14 @@ class _$GitLabMrDiffImpl implements _GitLabMrDiff {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, newPath, oldPath, diff, isDeleted, isRenamed, isNewFile);
+    runtimeType,
+    newPath,
+    oldPath,
+    diff,
+    isDeleted,
+    isRenamed,
+    isNewFile,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -698,48 +718,41 @@ class _$GitLabMrDiffImpl implements _GitLabMrDiff {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$GitLabMrDiffImplToJson(
-      this,
-    );
+    return _$$GitLabMrDiffImplToJson(this);
   }
 }
 
 abstract class _GitLabMrDiff implements GitLabMrDiff {
-  const factory _GitLabMrDiff(
-      {required final String newPath,
-      required final String oldPath,
-      final String diff,
-      @JsonKey(name: 'deleted_file') final bool isDeleted,
-      @JsonKey(name: 'renamed_file') final bool isRenamed,
-      @JsonKey(name: 'new_file') final bool isNewFile}) = _$GitLabMrDiffImpl;
+  const factory _GitLabMrDiff({
+    required final String newPath,
+    required final String oldPath,
+    final String diff,
+    @JsonKey(name: 'deleted_file') final bool isDeleted,
+    @JsonKey(name: 'renamed_file') final bool isRenamed,
+    @JsonKey(name: 'new_file') final bool isNewFile,
+  }) = _$GitLabMrDiffImpl;
 
   factory _GitLabMrDiff.fromJson(Map<String, dynamic> json) =
       _$GitLabMrDiffImpl.fromJson;
 
   @override
-
   /// File path after the change.
   String get newPath;
   @override
-
   /// File path before the change (differs from [newPath] on rename).
   String get oldPath;
   @override
-
   /// Unified diff content for this file.
   String get diff;
   @override
-
   /// `true` if the file was deleted in this MR.
   @JsonKey(name: 'deleted_file')
   bool get isDeleted;
   @override
-
   /// `true` if the file was renamed (move/rename).
   @JsonKey(name: 'renamed_file')
   bool get isRenamed;
   @override
-
   /// Whether this diff entry represents a newly created file.
   @JsonKey(name: 'new_file')
   bool get isNewFile;

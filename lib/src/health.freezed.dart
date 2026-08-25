@@ -12,7 +12,8 @@ part of 'health.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 Health _$HealthFromJson(Map<String, dynamic> json) {
   return _Health.fromJson(json);
@@ -36,12 +37,13 @@ abstract class $HealthCopyWith<$Res> {
   factory $HealthCopyWith(Health value, $Res Function(Health) then) =
       _$HealthCopyWithImpl<$Res, Health>;
   @useResult
-  $Res call(
-      {bool ok,
-      String version,
-      String appVersion,
-      int uptimeSeconds,
-      String hostname});
+  $Res call({
+    bool ok,
+    String version,
+    String appVersion,
+    int uptimeSeconds,
+    String hostname,
+  });
 }
 
 /// @nodoc
@@ -63,44 +65,49 @@ class _$HealthCopyWithImpl<$Res, $Val extends Health>
     Object? uptimeSeconds = null,
     Object? hostname = null,
   }) {
-    return _then(_value.copyWith(
-      ok: null == ok
-          ? _value.ok
-          : ok // ignore: cast_nullable_to_non_nullable
-              as bool,
-      version: null == version
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-      appVersion: null == appVersion
-          ? _value.appVersion
-          : appVersion // ignore: cast_nullable_to_non_nullable
-              as String,
-      uptimeSeconds: null == uptimeSeconds
-          ? _value.uptimeSeconds
-          : uptimeSeconds // ignore: cast_nullable_to_non_nullable
-              as int,
-      hostname: null == hostname
-          ? _value.hostname
-          : hostname // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            ok: null == ok
+                ? _value.ok
+                : ok // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            version: null == version
+                ? _value.version
+                : version // ignore: cast_nullable_to_non_nullable
+                      as String,
+            appVersion: null == appVersion
+                ? _value.appVersion
+                : appVersion // ignore: cast_nullable_to_non_nullable
+                      as String,
+            uptimeSeconds: null == uptimeSeconds
+                ? _value.uptimeSeconds
+                : uptimeSeconds // ignore: cast_nullable_to_non_nullable
+                      as int,
+            hostname: null == hostname
+                ? _value.hostname
+                : hostname // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$HealthImplCopyWith<$Res> implements $HealthCopyWith<$Res> {
   factory _$$HealthImplCopyWith(
-          _$HealthImpl value, $Res Function(_$HealthImpl) then) =
-      __$$HealthImplCopyWithImpl<$Res>;
+    _$HealthImpl value,
+    $Res Function(_$HealthImpl) then,
+  ) = __$$HealthImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool ok,
-      String version,
-      String appVersion,
-      int uptimeSeconds,
-      String hostname});
+  $Res call({
+    bool ok,
+    String version,
+    String appVersion,
+    int uptimeSeconds,
+    String hostname,
+  });
 }
 
 /// @nodoc
@@ -108,8 +115,9 @@ class __$$HealthImplCopyWithImpl<$Res>
     extends _$HealthCopyWithImpl<$Res, _$HealthImpl>
     implements _$$HealthImplCopyWith<$Res> {
   __$$HealthImplCopyWithImpl(
-      _$HealthImpl _value, $Res Function(_$HealthImpl) _then)
-      : super(_value, _then);
+    _$HealthImpl _value,
+    $Res Function(_$HealthImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -120,40 +128,43 @@ class __$$HealthImplCopyWithImpl<$Res>
     Object? uptimeSeconds = null,
     Object? hostname = null,
   }) {
-    return _then(_$HealthImpl(
-      ok: null == ok
-          ? _value.ok
-          : ok // ignore: cast_nullable_to_non_nullable
-              as bool,
-      version: null == version
-          ? _value.version
-          : version // ignore: cast_nullable_to_non_nullable
-              as String,
-      appVersion: null == appVersion
-          ? _value.appVersion
-          : appVersion // ignore: cast_nullable_to_non_nullable
-              as String,
-      uptimeSeconds: null == uptimeSeconds
-          ? _value.uptimeSeconds
-          : uptimeSeconds // ignore: cast_nullable_to_non_nullable
-              as int,
-      hostname: null == hostname
-          ? _value.hostname
-          : hostname // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    return _then(
+      _$HealthImpl(
+        ok: null == ok
+            ? _value.ok
+            : ok // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        version: null == version
+            ? _value.version
+            : version // ignore: cast_nullable_to_non_nullable
+                  as String,
+        appVersion: null == appVersion
+            ? _value.appVersion
+            : appVersion // ignore: cast_nullable_to_non_nullable
+                  as String,
+        uptimeSeconds: null == uptimeSeconds
+            ? _value.uptimeSeconds
+            : uptimeSeconds // ignore: cast_nullable_to_non_nullable
+                  as int,
+        hostname: null == hostname
+            ? _value.hostname
+            : hostname // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$HealthImpl implements _Health {
-  const _$HealthImpl(
-      {required this.ok,
-      required this.version,
-      required this.appVersion,
-      required this.uptimeSeconds,
-      required this.hostname});
+  const _$HealthImpl({
+    required this.ok,
+    required this.version,
+    required this.appVersion,
+    required this.uptimeSeconds,
+    required this.hostname,
+  });
 
   factory _$HealthImpl.fromJson(Map<String, dynamic> json) =>
       _$$HealthImplFromJson(json);
@@ -192,7 +203,13 @@ class _$HealthImpl implements _Health {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, ok, version, appVersion, uptimeSeconds, hostname);
+    runtimeType,
+    ok,
+    version,
+    appVersion,
+    uptimeSeconds,
+    hostname,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -202,19 +219,18 @@ class _$HealthImpl implements _Health {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$HealthImplToJson(
-      this,
-    );
+    return _$$HealthImplToJson(this);
   }
 }
 
 abstract class _Health implements Health {
-  const factory _Health(
-      {required final bool ok,
-      required final String version,
-      required final String appVersion,
-      required final int uptimeSeconds,
-      required final String hostname}) = _$HealthImpl;
+  const factory _Health({
+    required final bool ok,
+    required final String version,
+    required final String appVersion,
+    required final int uptimeSeconds,
+    required final String hostname,
+  }) = _$HealthImpl;
 
   factory _Health.fromJson(Map<String, dynamic> json) = _$HealthImpl.fromJson;
 

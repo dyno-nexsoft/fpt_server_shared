@@ -12,7 +12,8 @@ part of 'action_schema.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 ActionSchema _$ActionSchemaFromJson(Map<String, dynamic> json) {
   return _ActionSchema.fromJson(json);
@@ -36,15 +37,17 @@ mixin _$ActionSchema {
 /// @nodoc
 abstract class $ActionSchemaCopyWith<$Res> {
   factory $ActionSchemaCopyWith(
-          ActionSchema value, $Res Function(ActionSchema) then) =
-      _$ActionSchemaCopyWithImpl<$Res, ActionSchema>;
+    ActionSchema value,
+    $Res Function(ActionSchema) then,
+  ) = _$ActionSchemaCopyWithImpl<$Res, ActionSchema>;
   @useResult
-  $Res call(
-      {String name,
-      String description,
-      ActionKind kind,
-      @PermissionConverter() Permission permission,
-      List<ActionParam> params});
+  $Res call({
+    String name,
+    String description,
+    ActionKind kind,
+    @PermissionConverter() Permission permission,
+    List<ActionParam> params,
+  });
 }
 
 /// @nodoc
@@ -66,28 +69,31 @@ class _$ActionSchemaCopyWithImpl<$Res, $Val extends ActionSchema>
     Object? permission = null,
     Object? params = null,
   }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      kind: null == kind
-          ? _value.kind
-          : kind // ignore: cast_nullable_to_non_nullable
-              as ActionKind,
-      permission: null == permission
-          ? _value.permission
-          : permission // ignore: cast_nullable_to_non_nullable
-              as Permission,
-      params: null == params
-          ? _value.params
-          : params // ignore: cast_nullable_to_non_nullable
-              as List<ActionParam>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            name: null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                      as String,
+            description: null == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String,
+            kind: null == kind
+                ? _value.kind
+                : kind // ignore: cast_nullable_to_non_nullable
+                      as ActionKind,
+            permission: null == permission
+                ? _value.permission
+                : permission // ignore: cast_nullable_to_non_nullable
+                      as Permission,
+            params: null == params
+                ? _value.params
+                : params // ignore: cast_nullable_to_non_nullable
+                      as List<ActionParam>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -95,16 +101,18 @@ class _$ActionSchemaCopyWithImpl<$Res, $Val extends ActionSchema>
 abstract class _$$ActionSchemaImplCopyWith<$Res>
     implements $ActionSchemaCopyWith<$Res> {
   factory _$$ActionSchemaImplCopyWith(
-          _$ActionSchemaImpl value, $Res Function(_$ActionSchemaImpl) then) =
-      __$$ActionSchemaImplCopyWithImpl<$Res>;
+    _$ActionSchemaImpl value,
+    $Res Function(_$ActionSchemaImpl) then,
+  ) = __$$ActionSchemaImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String name,
-      String description,
-      ActionKind kind,
-      @PermissionConverter() Permission permission,
-      List<ActionParam> params});
+  $Res call({
+    String name,
+    String description,
+    ActionKind kind,
+    @PermissionConverter() Permission permission,
+    List<ActionParam> params,
+  });
 }
 
 /// @nodoc
@@ -112,8 +120,9 @@ class __$$ActionSchemaImplCopyWithImpl<$Res>
     extends _$ActionSchemaCopyWithImpl<$Res, _$ActionSchemaImpl>
     implements _$$ActionSchemaImplCopyWith<$Res> {
   __$$ActionSchemaImplCopyWithImpl(
-      _$ActionSchemaImpl _value, $Res Function(_$ActionSchemaImpl) _then)
-      : super(_value, _then);
+    _$ActionSchemaImpl _value,
+    $Res Function(_$ActionSchemaImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -124,42 +133,44 @@ class __$$ActionSchemaImplCopyWithImpl<$Res>
     Object? permission = null,
     Object? params = null,
   }) {
-    return _then(_$ActionSchemaImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      kind: null == kind
-          ? _value.kind
-          : kind // ignore: cast_nullable_to_non_nullable
-              as ActionKind,
-      permission: null == permission
-          ? _value.permission
-          : permission // ignore: cast_nullable_to_non_nullable
-              as Permission,
-      params: null == params
-          ? _value._params
-          : params // ignore: cast_nullable_to_non_nullable
-              as List<ActionParam>,
-    ));
+    return _then(
+      _$ActionSchemaImpl(
+        name: null == name
+            ? _value.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        kind: null == kind
+            ? _value.kind
+            : kind // ignore: cast_nullable_to_non_nullable
+                  as ActionKind,
+        permission: null == permission
+            ? _value.permission
+            : permission // ignore: cast_nullable_to_non_nullable
+                  as Permission,
+        params: null == params
+            ? _value._params
+            : params // ignore: cast_nullable_to_non_nullable
+                  as List<ActionParam>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ActionSchemaImpl extends _ActionSchema {
-  const _$ActionSchemaImpl(
-      {required this.name,
-      this.description = '',
-      required this.kind,
-      @PermissionConverter() required this.permission,
-      final List<ActionParam> params = const []})
-      : _params = params,
-        super._();
+  const _$ActionSchemaImpl({
+    required this.name,
+    this.description = '',
+    required this.kind,
+    @PermissionConverter() required this.permission,
+    final List<ActionParam> params = const [],
+  }) : _params = params,
+       super._();
 
   factory _$ActionSchemaImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActionSchemaImplFromJson(json);
@@ -204,8 +215,14 @@ class _$ActionSchemaImpl extends _ActionSchema {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, kind,
-      permission, const DeepCollectionEquality().hash(_params));
+  int get hashCode => Object.hash(
+    runtimeType,
+    name,
+    description,
+    kind,
+    permission,
+    const DeepCollectionEquality().hash(_params),
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -215,19 +232,18 @@ class _$ActionSchemaImpl extends _ActionSchema {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ActionSchemaImplToJson(
-      this,
-    );
+    return _$$ActionSchemaImplToJson(this);
   }
 }
 
 abstract class _ActionSchema extends ActionSchema {
-  const factory _ActionSchema(
-      {required final String name,
-      final String description,
-      required final ActionKind kind,
-      @PermissionConverter() required final Permission permission,
-      final List<ActionParam> params}) = _$ActionSchemaImpl;
+  const factory _ActionSchema({
+    required final String name,
+    final String description,
+    required final ActionKind kind,
+    @PermissionConverter() required final Permission permission,
+    final List<ActionParam> params,
+  }) = _$ActionSchemaImpl;
   const _ActionSchema._() : super._();
 
   factory _ActionSchema.fromJson(Map<String, dynamic> json) =
@@ -275,17 +291,19 @@ mixin _$ActionParam {
 /// @nodoc
 abstract class $ActionParamCopyWith<$Res> {
   factory $ActionParamCopyWith(
-          ActionParam value, $Res Function(ActionParam) then) =
-      _$ActionParamCopyWithImpl<$Res, ActionParam>;
+    ActionParam value,
+    $Res Function(ActionParam) then,
+  ) = _$ActionParamCopyWithImpl<$Res, ActionParam>;
   @useResult
-  $Res call(
-      {String name,
-      String description,
-      ParamType type,
-      @JsonKey(name: 'required') bool isRequired,
-      List<String> choices,
-      @JsonKey(name: 'default') dynamic defaultValue,
-      bool isBranchRef});
+  $Res call({
+    String name,
+    String description,
+    ParamType type,
+    @JsonKey(name: 'required') bool isRequired,
+    List<String> choices,
+    @JsonKey(name: 'default') dynamic defaultValue,
+    bool isBranchRef,
+  });
 }
 
 /// @nodoc
@@ -309,36 +327,39 @@ class _$ActionParamCopyWithImpl<$Res, $Val extends ActionParam>
     Object? defaultValue = freezed,
     Object? isBranchRef = null,
   }) {
-    return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ParamType,
-      isRequired: null == isRequired
-          ? _value.isRequired
-          : isRequired // ignore: cast_nullable_to_non_nullable
-              as bool,
-      choices: null == choices
-          ? _value.choices
-          : choices // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      defaultValue: freezed == defaultValue
-          ? _value.defaultValue
-          : defaultValue // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isBranchRef: null == isBranchRef
-          ? _value.isBranchRef
-          : isBranchRef // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            name: null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                      as String,
+            description: null == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String,
+            type: null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                      as ParamType,
+            isRequired: null == isRequired
+                ? _value.isRequired
+                : isRequired // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            choices: null == choices
+                ? _value.choices
+                : choices // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            defaultValue: freezed == defaultValue
+                ? _value.defaultValue
+                : defaultValue // ignore: cast_nullable_to_non_nullable
+                      as dynamic,
+            isBranchRef: null == isBranchRef
+                ? _value.isBranchRef
+                : isBranchRef // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -346,18 +367,20 @@ class _$ActionParamCopyWithImpl<$Res, $Val extends ActionParam>
 abstract class _$$ActionParamImplCopyWith<$Res>
     implements $ActionParamCopyWith<$Res> {
   factory _$$ActionParamImplCopyWith(
-          _$ActionParamImpl value, $Res Function(_$ActionParamImpl) then) =
-      __$$ActionParamImplCopyWithImpl<$Res>;
+    _$ActionParamImpl value,
+    $Res Function(_$ActionParamImpl) then,
+  ) = __$$ActionParamImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String name,
-      String description,
-      ParamType type,
-      @JsonKey(name: 'required') bool isRequired,
-      List<String> choices,
-      @JsonKey(name: 'default') dynamic defaultValue,
-      bool isBranchRef});
+  $Res call({
+    String name,
+    String description,
+    ParamType type,
+    @JsonKey(name: 'required') bool isRequired,
+    List<String> choices,
+    @JsonKey(name: 'default') dynamic defaultValue,
+    bool isBranchRef,
+  });
 }
 
 /// @nodoc
@@ -365,8 +388,9 @@ class __$$ActionParamImplCopyWithImpl<$Res>
     extends _$ActionParamCopyWithImpl<$Res, _$ActionParamImpl>
     implements _$$ActionParamImplCopyWith<$Res> {
   __$$ActionParamImplCopyWithImpl(
-      _$ActionParamImpl _value, $Res Function(_$ActionParamImpl) _then)
-      : super(_value, _then);
+    _$ActionParamImpl _value,
+    $Res Function(_$ActionParamImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -379,51 +403,53 @@ class __$$ActionParamImplCopyWithImpl<$Res>
     Object? defaultValue = freezed,
     Object? isBranchRef = null,
   }) {
-    return _then(_$ActionParamImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as ParamType,
-      isRequired: null == isRequired
-          ? _value.isRequired
-          : isRequired // ignore: cast_nullable_to_non_nullable
-              as bool,
-      choices: null == choices
-          ? _value._choices
-          : choices // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      defaultValue: freezed == defaultValue
-          ? _value.defaultValue
-          : defaultValue // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      isBranchRef: null == isBranchRef
-          ? _value.isBranchRef
-          : isBranchRef // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$ActionParamImpl(
+        name: null == name
+            ? _value.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        description: null == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        type: null == type
+            ? _value.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as ParamType,
+        isRequired: null == isRequired
+            ? _value.isRequired
+            : isRequired // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        choices: null == choices
+            ? _value._choices
+            : choices // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        defaultValue: freezed == defaultValue
+            ? _value.defaultValue
+            : defaultValue // ignore: cast_nullable_to_non_nullable
+                  as dynamic,
+        isBranchRef: null == isBranchRef
+            ? _value.isBranchRef
+            : isBranchRef // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ActionParamImpl implements _ActionParam {
-  const _$ActionParamImpl(
-      {required this.name,
-      this.description = '',
-      required this.type,
-      @JsonKey(name: 'required') this.isRequired = false,
-      final List<String> choices = const [],
-      @JsonKey(name: 'default') this.defaultValue,
-      this.isBranchRef = false})
-      : _choices = choices;
+  const _$ActionParamImpl({
+    required this.name,
+    this.description = '',
+    required this.type,
+    @JsonKey(name: 'required') this.isRequired = false,
+    final List<String> choices = const [],
+    @JsonKey(name: 'default') this.defaultValue,
+    this.isBranchRef = false,
+  }) : _choices = choices;
 
   factory _$ActionParamImpl.fromJson(Map<String, dynamic> json) =>
       _$$ActionParamImplFromJson(json);
@@ -471,8 +497,10 @@ class _$ActionParamImpl implements _ActionParam {
             (identical(other.isRequired, isRequired) ||
                 other.isRequired == isRequired) &&
             const DeepCollectionEquality().equals(other._choices, _choices) &&
-            const DeepCollectionEquality()
-                .equals(other.defaultValue, defaultValue) &&
+            const DeepCollectionEquality().equals(
+              other.defaultValue,
+              defaultValue,
+            ) &&
             (identical(other.isBranchRef, isBranchRef) ||
                 other.isBranchRef == isBranchRef));
   }
@@ -480,14 +508,15 @@ class _$ActionParamImpl implements _ActionParam {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      description,
-      type,
-      isRequired,
-      const DeepCollectionEquality().hash(_choices),
-      const DeepCollectionEquality().hash(defaultValue),
-      isBranchRef);
+    runtimeType,
+    name,
+    description,
+    type,
+    isRequired,
+    const DeepCollectionEquality().hash(_choices),
+    const DeepCollectionEquality().hash(defaultValue),
+    isBranchRef,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -497,21 +526,20 @@ class _$ActionParamImpl implements _ActionParam {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ActionParamImplToJson(
-      this,
-    );
+    return _$$ActionParamImplToJson(this);
   }
 }
 
 abstract class _ActionParam implements ActionParam {
-  const factory _ActionParam(
-      {required final String name,
-      final String description,
-      required final ParamType type,
-      @JsonKey(name: 'required') final bool isRequired,
-      final List<String> choices,
-      @JsonKey(name: 'default') final dynamic defaultValue,
-      final bool isBranchRef}) = _$ActionParamImpl;
+  const factory _ActionParam({
+    required final String name,
+    final String description,
+    required final ParamType type,
+    @JsonKey(name: 'required') final bool isRequired,
+    final List<String> choices,
+    @JsonKey(name: 'default') final dynamic defaultValue,
+    final bool isBranchRef,
+  }) = _$ActionParamImpl;
 
   factory _ActionParam.fromJson(Map<String, dynamic> json) =
       _$ActionParamImpl.fromJson;

@@ -12,7 +12,8 @@ part of 'system_status.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 SystemStatus _$SystemStatusFromJson(Map<String, dynamic> json) {
   return _SystemStatus.fromJson(json);
@@ -38,18 +39,20 @@ mixin _$SystemStatus {
 /// @nodoc
 abstract class $SystemStatusCopyWith<$Res> {
   factory $SystemStatusCopyWith(
-          SystemStatus value, $Res Function(SystemStatus) then) =
-      _$SystemStatusCopyWithImpl<$Res, SystemStatus>;
+    SystemStatus value,
+    $Res Function(SystemStatus) then,
+  ) = _$SystemStatusCopyWithImpl<$Res, SystemStatus>;
   @useResult
-  $Res call(
-      {String appVersion,
-      String dartVersion,
-      String hostname,
-      int uptimeSeconds,
-      String uptime,
-      String workingDirectory,
-      List<Job> running,
-      List<Job> queued});
+  $Res call({
+    String appVersion,
+    String dartVersion,
+    String hostname,
+    int uptimeSeconds,
+    String uptime,
+    String workingDirectory,
+    List<Job> running,
+    List<Job> queued,
+  });
 }
 
 /// @nodoc
@@ -74,40 +77,43 @@ class _$SystemStatusCopyWithImpl<$Res, $Val extends SystemStatus>
     Object? running = null,
     Object? queued = null,
   }) {
-    return _then(_value.copyWith(
-      appVersion: null == appVersion
-          ? _value.appVersion
-          : appVersion // ignore: cast_nullable_to_non_nullable
-              as String,
-      dartVersion: null == dartVersion
-          ? _value.dartVersion
-          : dartVersion // ignore: cast_nullable_to_non_nullable
-              as String,
-      hostname: null == hostname
-          ? _value.hostname
-          : hostname // ignore: cast_nullable_to_non_nullable
-              as String,
-      uptimeSeconds: null == uptimeSeconds
-          ? _value.uptimeSeconds
-          : uptimeSeconds // ignore: cast_nullable_to_non_nullable
-              as int,
-      uptime: null == uptime
-          ? _value.uptime
-          : uptime // ignore: cast_nullable_to_non_nullable
-              as String,
-      workingDirectory: null == workingDirectory
-          ? _value.workingDirectory
-          : workingDirectory // ignore: cast_nullable_to_non_nullable
-              as String,
-      running: null == running
-          ? _value.running
-          : running // ignore: cast_nullable_to_non_nullable
-              as List<Job>,
-      queued: null == queued
-          ? _value.queued
-          : queued // ignore: cast_nullable_to_non_nullable
-              as List<Job>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            appVersion: null == appVersion
+                ? _value.appVersion
+                : appVersion // ignore: cast_nullable_to_non_nullable
+                      as String,
+            dartVersion: null == dartVersion
+                ? _value.dartVersion
+                : dartVersion // ignore: cast_nullable_to_non_nullable
+                      as String,
+            hostname: null == hostname
+                ? _value.hostname
+                : hostname // ignore: cast_nullable_to_non_nullable
+                      as String,
+            uptimeSeconds: null == uptimeSeconds
+                ? _value.uptimeSeconds
+                : uptimeSeconds // ignore: cast_nullable_to_non_nullable
+                      as int,
+            uptime: null == uptime
+                ? _value.uptime
+                : uptime // ignore: cast_nullable_to_non_nullable
+                      as String,
+            workingDirectory: null == workingDirectory
+                ? _value.workingDirectory
+                : workingDirectory // ignore: cast_nullable_to_non_nullable
+                      as String,
+            running: null == running
+                ? _value.running
+                : running // ignore: cast_nullable_to_non_nullable
+                      as List<Job>,
+            queued: null == queued
+                ? _value.queued
+                : queued // ignore: cast_nullable_to_non_nullable
+                      as List<Job>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -115,19 +121,21 @@ class _$SystemStatusCopyWithImpl<$Res, $Val extends SystemStatus>
 abstract class _$$SystemStatusImplCopyWith<$Res>
     implements $SystemStatusCopyWith<$Res> {
   factory _$$SystemStatusImplCopyWith(
-          _$SystemStatusImpl value, $Res Function(_$SystemStatusImpl) then) =
-      __$$SystemStatusImplCopyWithImpl<$Res>;
+    _$SystemStatusImpl value,
+    $Res Function(_$SystemStatusImpl) then,
+  ) = __$$SystemStatusImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String appVersion,
-      String dartVersion,
-      String hostname,
-      int uptimeSeconds,
-      String uptime,
-      String workingDirectory,
-      List<Job> running,
-      List<Job> queued});
+  $Res call({
+    String appVersion,
+    String dartVersion,
+    String hostname,
+    int uptimeSeconds,
+    String uptime,
+    String workingDirectory,
+    List<Job> running,
+    List<Job> queued,
+  });
 }
 
 /// @nodoc
@@ -135,8 +143,9 @@ class __$$SystemStatusImplCopyWithImpl<$Res>
     extends _$SystemStatusCopyWithImpl<$Res, _$SystemStatusImpl>
     implements _$$SystemStatusImplCopyWith<$Res> {
   __$$SystemStatusImplCopyWithImpl(
-      _$SystemStatusImpl _value, $Res Function(_$SystemStatusImpl) _then)
-      : super(_value, _then);
+    _$SystemStatusImpl _value,
+    $Res Function(_$SystemStatusImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -150,58 +159,60 @@ class __$$SystemStatusImplCopyWithImpl<$Res>
     Object? running = null,
     Object? queued = null,
   }) {
-    return _then(_$SystemStatusImpl(
-      appVersion: null == appVersion
-          ? _value.appVersion
-          : appVersion // ignore: cast_nullable_to_non_nullable
-              as String,
-      dartVersion: null == dartVersion
-          ? _value.dartVersion
-          : dartVersion // ignore: cast_nullable_to_non_nullable
-              as String,
-      hostname: null == hostname
-          ? _value.hostname
-          : hostname // ignore: cast_nullable_to_non_nullable
-              as String,
-      uptimeSeconds: null == uptimeSeconds
-          ? _value.uptimeSeconds
-          : uptimeSeconds // ignore: cast_nullable_to_non_nullable
-              as int,
-      uptime: null == uptime
-          ? _value.uptime
-          : uptime // ignore: cast_nullable_to_non_nullable
-              as String,
-      workingDirectory: null == workingDirectory
-          ? _value.workingDirectory
-          : workingDirectory // ignore: cast_nullable_to_non_nullable
-              as String,
-      running: null == running
-          ? _value._running
-          : running // ignore: cast_nullable_to_non_nullable
-              as List<Job>,
-      queued: null == queued
-          ? _value._queued
-          : queued // ignore: cast_nullable_to_non_nullable
-              as List<Job>,
-    ));
+    return _then(
+      _$SystemStatusImpl(
+        appVersion: null == appVersion
+            ? _value.appVersion
+            : appVersion // ignore: cast_nullable_to_non_nullable
+                  as String,
+        dartVersion: null == dartVersion
+            ? _value.dartVersion
+            : dartVersion // ignore: cast_nullable_to_non_nullable
+                  as String,
+        hostname: null == hostname
+            ? _value.hostname
+            : hostname // ignore: cast_nullable_to_non_nullable
+                  as String,
+        uptimeSeconds: null == uptimeSeconds
+            ? _value.uptimeSeconds
+            : uptimeSeconds // ignore: cast_nullable_to_non_nullable
+                  as int,
+        uptime: null == uptime
+            ? _value.uptime
+            : uptime // ignore: cast_nullable_to_non_nullable
+                  as String,
+        workingDirectory: null == workingDirectory
+            ? _value.workingDirectory
+            : workingDirectory // ignore: cast_nullable_to_non_nullable
+                  as String,
+        running: null == running
+            ? _value._running
+            : running // ignore: cast_nullable_to_non_nullable
+                  as List<Job>,
+        queued: null == queued
+            ? _value._queued
+            : queued // ignore: cast_nullable_to_non_nullable
+                  as List<Job>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$SystemStatusImpl extends _SystemStatus {
-  const _$SystemStatusImpl(
-      {required this.appVersion,
-      required this.dartVersion,
-      required this.hostname,
-      required this.uptimeSeconds,
-      required this.uptime,
-      required this.workingDirectory,
-      final List<Job> running = const [],
-      final List<Job> queued = const []})
-      : _running = running,
-        _queued = queued,
-        super._();
+  const _$SystemStatusImpl({
+    required this.appVersion,
+    required this.dartVersion,
+    required this.hostname,
+    required this.uptimeSeconds,
+    required this.uptime,
+    required this.workingDirectory,
+    final List<Job> running = const [],
+    final List<Job> queued = const [],
+  }) : _running = running,
+       _queued = queued,
+       super._();
 
   factory _$SystemStatusImpl.fromJson(Map<String, dynamic> json) =>
       _$$SystemStatusImplFromJson(json);
@@ -264,15 +275,16 @@ class _$SystemStatusImpl extends _SystemStatus {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      appVersion,
-      dartVersion,
-      hostname,
-      uptimeSeconds,
-      uptime,
-      workingDirectory,
-      const DeepCollectionEquality().hash(_running),
-      const DeepCollectionEquality().hash(_queued));
+    runtimeType,
+    appVersion,
+    dartVersion,
+    hostname,
+    uptimeSeconds,
+    uptime,
+    workingDirectory,
+    const DeepCollectionEquality().hash(_running),
+    const DeepCollectionEquality().hash(_queued),
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -282,22 +294,21 @@ class _$SystemStatusImpl extends _SystemStatus {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$SystemStatusImplToJson(
-      this,
-    );
+    return _$$SystemStatusImplToJson(this);
   }
 }
 
 abstract class _SystemStatus extends SystemStatus {
-  const factory _SystemStatus(
-      {required final String appVersion,
-      required final String dartVersion,
-      required final String hostname,
-      required final int uptimeSeconds,
-      required final String uptime,
-      required final String workingDirectory,
-      final List<Job> running,
-      final List<Job> queued}) = _$SystemStatusImpl;
+  const factory _SystemStatus({
+    required final String appVersion,
+    required final String dartVersion,
+    required final String hostname,
+    required final int uptimeSeconds,
+    required final String uptime,
+    required final String workingDirectory,
+    final List<Job> running,
+    final List<Job> queued,
+  }) = _$SystemStatusImpl;
   const _SystemStatus._() : super._();
 
   factory _SystemStatus.fromJson(Map<String, dynamic> json) =

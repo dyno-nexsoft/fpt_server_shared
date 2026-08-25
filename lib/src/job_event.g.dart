@@ -15,47 +15,47 @@ _$JobQueuedEventImpl _$$JobQueuedEventImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$JobQueuedEventImplToJson(
-        _$JobQueuedEventImpl instance) =>
-    <String, dynamic>{
-      'seq': instance.seq,
-      'at': instance.at.toIso8601String(),
-      'position': instance.position,
-      'type': instance.$type,
-    };
+  _$JobQueuedEventImpl instance,
+) => <String, dynamic>{
+  'seq': instance.seq,
+  'at': instance.at.toIso8601String(),
+  'position': instance.position,
+  'type': instance.$type,
+};
 
 _$JobStartedEventImpl _$$JobStartedEventImplFromJson(
-        Map<String, dynamic> json) =>
-    _$JobStartedEventImpl(
-      seq: (json['seq'] as num).toInt(),
-      at: DateTime.parse(json['at'] as String),
-      immediate: json['immediate'] as bool,
-      $type: json['type'] as String?,
-    );
+  Map<String, dynamic> json,
+) => _$JobStartedEventImpl(
+  seq: (json['seq'] as num).toInt(),
+  at: DateTime.parse(json['at'] as String),
+  immediate: json['immediate'] as bool,
+  $type: json['type'] as String?,
+);
 
 Map<String, dynamic> _$$JobStartedEventImplToJson(
-        _$JobStartedEventImpl instance) =>
-    <String, dynamic>{
-      'seq': instance.seq,
-      'at': instance.at.toIso8601String(),
-      'immediate': instance.immediate,
-      'type': instance.$type,
-    };
+  _$JobStartedEventImpl instance,
+) => <String, dynamic>{
+  'seq': instance.seq,
+  'at': instance.at.toIso8601String(),
+  'immediate': instance.immediate,
+  'type': instance.$type,
+};
 
 _$JobPromotedEventImpl _$$JobPromotedEventImplFromJson(
-        Map<String, dynamic> json) =>
-    _$JobPromotedEventImpl(
-      seq: (json['seq'] as num).toInt(),
-      at: DateTime.parse(json['at'] as String),
-      $type: json['type'] as String?,
-    );
+  Map<String, dynamic> json,
+) => _$JobPromotedEventImpl(
+  seq: (json['seq'] as num).toInt(),
+  at: DateTime.parse(json['at'] as String),
+  $type: json['type'] as String?,
+);
 
 Map<String, dynamic> _$$JobPromotedEventImplToJson(
-        _$JobPromotedEventImpl instance) =>
-    <String, dynamic>{
-      'seq': instance.seq,
-      'at': instance.at.toIso8601String(),
-      'type': instance.$type,
-    };
+  _$JobPromotedEventImpl instance,
+) => <String, dynamic>{
+  'seq': instance.seq,
+  'at': instance.at.toIso8601String(),
+  'type': instance.$type,
+};
 
 _$JobStatusEventImpl _$$JobStatusEventImplFromJson(Map<String, dynamic> json) =>
     _$JobStatusEventImpl(
@@ -66,13 +66,13 @@ _$JobStatusEventImpl _$$JobStatusEventImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$JobStatusEventImplToJson(
-        _$JobStatusEventImpl instance) =>
-    <String, dynamic>{
-      'seq': instance.seq,
-      'at': instance.at.toIso8601String(),
-      'line': instance.line,
-      'type': instance.$type,
-    };
+  _$JobStatusEventImpl instance,
+) => <String, dynamic>{
+  'seq': instance.seq,
+  'at': instance.at.toIso8601String(),
+  'line': instance.line,
+  'type': instance.$type,
+};
 
 _$JobLogEventImpl _$$JobLogEventImplFromJson(Map<String, dynamic> json) =>
     _$JobLogEventImpl(
@@ -107,17 +107,18 @@ Map<String, dynamic> _$$JobErrorEventImplToJson(_$JobErrorEventImpl instance) =>
     };
 
 _$JobFinishedEventImpl _$$JobFinishedEventImplFromJson(
-        Map<String, dynamic> json) =>
-    _$JobFinishedEventImpl(
-      seq: (json['seq'] as num).toInt(),
-      at: DateTime.parse(json['at'] as String),
-      state: const JobStateConverter().fromJson(json['state'] as String),
-      exitCode: (json['exit_code'] as num?)?.toInt(),
-      $type: json['type'] as String?,
-    );
+  Map<String, dynamic> json,
+) => _$JobFinishedEventImpl(
+  seq: (json['seq'] as num).toInt(),
+  at: DateTime.parse(json['at'] as String),
+  state: const JobStateConverter().fromJson(json['state'] as String),
+  exitCode: (json['exit_code'] as num?)?.toInt(),
+  $type: json['type'] as String?,
+);
 
 Map<String, dynamic> _$$JobFinishedEventImplToJson(
-    _$JobFinishedEventImpl instance) {
+  _$JobFinishedEventImpl instance,
+) {
   final val = <String, dynamic>{
     'seq': instance.seq,
     'at': instance.at.toIso8601String(),

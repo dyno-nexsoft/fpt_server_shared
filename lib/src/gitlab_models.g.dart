@@ -7,39 +7,38 @@ part of 'gitlab_models.dart';
 // **************************************************************************
 
 _$GitLabMergeRequestImpl _$$GitLabMergeRequestImplFromJson(
-        Map<String, dynamic> json) =>
-    _$GitLabMergeRequestImpl(
-      iid: (json['iid'] as num).toInt(),
-      title: json['title'] as String,
-      sourceBranch: json['source_branch'] as String,
-      targetBranch: json['target_branch'] as String,
-      authorName: _readAuthorName(json, 'author') as String,
-      webUrl: json['web_url'] as String,
-      state: json['state'] as String,
-      description: json['description'] as String? ?? '',
-      labels: (json['labels'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      changesCount: json['changes_count'] as String? ?? '0',
-      sha: json['sha'] as String? ?? '',
-    );
+  Map<String, dynamic> json,
+) => _$GitLabMergeRequestImpl(
+  iid: (json['iid'] as num).toInt(),
+  title: json['title'] as String,
+  sourceBranch: json['source_branch'] as String,
+  targetBranch: json['target_branch'] as String,
+  authorName: _readAuthorName(json, 'author') as String,
+  webUrl: json['web_url'] as String,
+  state: json['state'] as String,
+  description: json['description'] as String? ?? '',
+  labels:
+      (json['labels'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      const <String>[],
+  changesCount: json['changes_count'] as String? ?? '0',
+  sha: json['sha'] as String? ?? '',
+);
 
 Map<String, dynamic> _$$GitLabMergeRequestImplToJson(
-        _$GitLabMergeRequestImpl instance) =>
-    <String, dynamic>{
-      'iid': instance.iid,
-      'title': instance.title,
-      'source_branch': instance.sourceBranch,
-      'target_branch': instance.targetBranch,
-      'author': instance.authorName,
-      'web_url': instance.webUrl,
-      'state': instance.state,
-      'description': instance.description,
-      'labels': instance.labels,
-      'changes_count': instance.changesCount,
-      'sha': instance.sha,
-    };
+  _$GitLabMergeRequestImpl instance,
+) => <String, dynamic>{
+  'iid': instance.iid,
+  'title': instance.title,
+  'source_branch': instance.sourceBranch,
+  'target_branch': instance.targetBranch,
+  'author': instance.authorName,
+  'web_url': instance.webUrl,
+  'state': instance.state,
+  'description': instance.description,
+  'labels': instance.labels,
+  'changes_count': instance.changesCount,
+  'sha': instance.sha,
+};
 
 _$GitLabMrDiffImpl _$$GitLabMrDiffImplFromJson(Map<String, dynamic> json) =>
     _$GitLabMrDiffImpl(

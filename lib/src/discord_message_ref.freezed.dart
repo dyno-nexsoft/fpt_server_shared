@@ -12,7 +12,8 @@ part of 'discord_message_ref.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 DiscordMessageRef _$DiscordMessageRefFromJson(Map<String, dynamic> json) {
   return _DiscordMessageRef.fromJson(json);
@@ -32,8 +33,9 @@ mixin _$DiscordMessageRef {
 /// @nodoc
 abstract class $DiscordMessageRefCopyWith<$Res> {
   factory $DiscordMessageRefCopyWith(
-          DiscordMessageRef value, $Res Function(DiscordMessageRef) then) =
-      _$DiscordMessageRefCopyWithImpl<$Res, DiscordMessageRef>;
+    DiscordMessageRef value,
+    $Res Function(DiscordMessageRef) then,
+  ) = _$DiscordMessageRefCopyWithImpl<$Res, DiscordMessageRef>;
   @useResult
   $Res call({String channelId, String messageId});
 }
@@ -50,29 +52,30 @@ class _$DiscordMessageRefCopyWithImpl<$Res, $Val extends DiscordMessageRef>
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? channelId = null,
-    Object? messageId = null,
-  }) {
-    return _then(_value.copyWith(
-      channelId: null == channelId
-          ? _value.channelId
-          : channelId // ignore: cast_nullable_to_non_nullable
-              as String,
-      messageId: null == messageId
-          ? _value.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  $Res call({Object? channelId = null, Object? messageId = null}) {
+    return _then(
+      _value.copyWith(
+            channelId: null == channelId
+                ? _value.channelId
+                : channelId // ignore: cast_nullable_to_non_nullable
+                      as String,
+            messageId: null == messageId
+                ? _value.messageId
+                : messageId // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$DiscordMessageRefImplCopyWith<$Res>
     implements $DiscordMessageRefCopyWith<$Res> {
-  factory _$$DiscordMessageRefImplCopyWith(_$DiscordMessageRefImpl value,
-          $Res Function(_$DiscordMessageRefImpl) then) =
-      __$$DiscordMessageRefImplCopyWithImpl<$Res>;
+  factory _$$DiscordMessageRefImplCopyWith(
+    _$DiscordMessageRefImpl value,
+    $Res Function(_$DiscordMessageRefImpl) then,
+  ) = __$$DiscordMessageRefImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String channelId, String messageId});
@@ -82,34 +85,36 @@ abstract class _$$DiscordMessageRefImplCopyWith<$Res>
 class __$$DiscordMessageRefImplCopyWithImpl<$Res>
     extends _$DiscordMessageRefCopyWithImpl<$Res, _$DiscordMessageRefImpl>
     implements _$$DiscordMessageRefImplCopyWith<$Res> {
-  __$$DiscordMessageRefImplCopyWithImpl(_$DiscordMessageRefImpl _value,
-      $Res Function(_$DiscordMessageRefImpl) _then)
-      : super(_value, _then);
+  __$$DiscordMessageRefImplCopyWithImpl(
+    _$DiscordMessageRefImpl _value,
+    $Res Function(_$DiscordMessageRefImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? channelId = null,
-    Object? messageId = null,
-  }) {
-    return _then(_$DiscordMessageRefImpl(
-      channelId: null == channelId
-          ? _value.channelId
-          : channelId // ignore: cast_nullable_to_non_nullable
-              as String,
-      messageId: null == messageId
-          ? _value.messageId
-          : messageId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? channelId = null, Object? messageId = null}) {
+    return _then(
+      _$DiscordMessageRefImpl(
+        channelId: null == channelId
+            ? _value.channelId
+            : channelId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        messageId: null == messageId
+            ? _value.messageId
+            : messageId // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$DiscordMessageRefImpl implements _DiscordMessageRef {
-  const _$DiscordMessageRefImpl(
-      {required this.channelId, required this.messageId});
+  const _$DiscordMessageRefImpl({
+    required this.channelId,
+    required this.messageId,
+  });
 
   factory _$DiscordMessageRefImpl.fromJson(Map<String, dynamic> json) =>
       _$$DiscordMessageRefImplFromJson(json);
@@ -144,20 +149,21 @@ class _$DiscordMessageRefImpl implements _DiscordMessageRef {
   @pragma('vm:prefer-inline')
   _$$DiscordMessageRefImplCopyWith<_$DiscordMessageRefImpl> get copyWith =>
       __$$DiscordMessageRefImplCopyWithImpl<_$DiscordMessageRefImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$DiscordMessageRefImplToJson(
-      this,
-    );
+    return _$$DiscordMessageRefImplToJson(this);
   }
 }
 
 abstract class _DiscordMessageRef implements DiscordMessageRef {
-  const factory _DiscordMessageRef(
-      {required final String channelId,
-      required final String messageId}) = _$DiscordMessageRefImpl;
+  const factory _DiscordMessageRef({
+    required final String channelId,
+    required final String messageId,
+  }) = _$DiscordMessageRefImpl;
 
   factory _DiscordMessageRef.fromJson(Map<String, dynamic> json) =
       _$DiscordMessageRefImpl.fromJson;

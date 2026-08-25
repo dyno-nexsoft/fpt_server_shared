@@ -12,7 +12,8 @@ part of 'api_key_info.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 ApiKeyInfo _$ApiKeyInfoFromJson(Map<String, dynamic> json) {
   return _ApiKeyInfo.fromJson(json);
@@ -48,15 +49,17 @@ mixin _$ApiKeyInfo {
 /// @nodoc
 abstract class $ApiKeyInfoCopyWith<$Res> {
   factory $ApiKeyInfoCopyWith(
-          ApiKeyInfo value, $Res Function(ApiKeyInfo) then) =
-      _$ApiKeyInfoCopyWithImpl<$Res, ApiKeyInfo>;
+    ApiKeyInfo value,
+    $Res Function(ApiKeyInfo) then,
+  ) = _$ApiKeyInfoCopyWithImpl<$Res, ApiKeyInfo>;
   @useResult
-  $Res call(
-      {String id,
-      String name,
-      String keyHash,
-      List<String> scopes,
-      @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId});
+  $Res call({
+    String id,
+    String name,
+    String keyHash,
+    List<String> scopes,
+    @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId,
+  });
 }
 
 /// @nodoc
@@ -78,28 +81,31 @@ class _$ApiKeyInfoCopyWithImpl<$Res, $Val extends ApiKeyInfo>
     Object? scopes = null,
     Object? discordUserId = freezed,
   }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      keyHash: null == keyHash
-          ? _value.keyHash
-          : keyHash // ignore: cast_nullable_to_non_nullable
-              as String,
-      scopes: null == scopes
-          ? _value.scopes
-          : scopes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      discordUserId: freezed == discordUserId
-          ? _value.discordUserId
-          : discordUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            id: null == id
+                ? _value.id
+                : id // ignore: cast_nullable_to_non_nullable
+                      as String,
+            name: null == name
+                ? _value.name
+                : name // ignore: cast_nullable_to_non_nullable
+                      as String,
+            keyHash: null == keyHash
+                ? _value.keyHash
+                : keyHash // ignore: cast_nullable_to_non_nullable
+                      as String,
+            scopes: null == scopes
+                ? _value.scopes
+                : scopes // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+            discordUserId: freezed == discordUserId
+                ? _value.discordUserId
+                : discordUserId // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -107,16 +113,18 @@ class _$ApiKeyInfoCopyWithImpl<$Res, $Val extends ApiKeyInfo>
 abstract class _$$ApiKeyInfoImplCopyWith<$Res>
     implements $ApiKeyInfoCopyWith<$Res> {
   factory _$$ApiKeyInfoImplCopyWith(
-          _$ApiKeyInfoImpl value, $Res Function(_$ApiKeyInfoImpl) then) =
-      __$$ApiKeyInfoImplCopyWithImpl<$Res>;
+    _$ApiKeyInfoImpl value,
+    $Res Function(_$ApiKeyInfoImpl) then,
+  ) = __$$ApiKeyInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id,
-      String name,
-      String keyHash,
-      List<String> scopes,
-      @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId});
+  $Res call({
+    String id,
+    String name,
+    String keyHash,
+    List<String> scopes,
+    @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId,
+  });
 }
 
 /// @nodoc
@@ -124,8 +132,9 @@ class __$$ApiKeyInfoImplCopyWithImpl<$Res>
     extends _$ApiKeyInfoCopyWithImpl<$Res, _$ApiKeyInfoImpl>
     implements _$$ApiKeyInfoImplCopyWith<$Res> {
   __$$ApiKeyInfoImplCopyWithImpl(
-      _$ApiKeyInfoImpl _value, $Res Function(_$ApiKeyInfoImpl) _then)
-      : super(_value, _then);
+    _$ApiKeyInfoImpl _value,
+    $Res Function(_$ApiKeyInfoImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -136,42 +145,44 @@ class __$$ApiKeyInfoImplCopyWithImpl<$Res>
     Object? scopes = null,
     Object? discordUserId = freezed,
   }) {
-    return _then(_$ApiKeyInfoImpl(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      keyHash: null == keyHash
-          ? _value.keyHash
-          : keyHash // ignore: cast_nullable_to_non_nullable
-              as String,
-      scopes: null == scopes
-          ? _value._scopes
-          : scopes // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      discordUserId: freezed == discordUserId
-          ? _value.discordUserId
-          : discordUserId // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$ApiKeyInfoImpl(
+        id: null == id
+            ? _value.id
+            : id // ignore: cast_nullable_to_non_nullable
+                  as String,
+        name: null == name
+            ? _value.name
+            : name // ignore: cast_nullable_to_non_nullable
+                  as String,
+        keyHash: null == keyHash
+            ? _value.keyHash
+            : keyHash // ignore: cast_nullable_to_non_nullable
+                  as String,
+        scopes: null == scopes
+            ? _value._scopes
+            : scopes // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+        discordUserId: freezed == discordUserId
+            ? _value.discordUserId
+            : discordUserId // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ApiKeyInfoImpl extends _ApiKeyInfo {
-  const _$ApiKeyInfoImpl(
-      {required this.id,
-      required this.name,
-      required this.keyHash,
-      final List<String> scopes = const [],
-      @JsonKey(fromJson: _discordUserIdFromJson) this.discordUserId})
-      : _scopes = scopes,
-        super._();
+  const _$ApiKeyInfoImpl({
+    required this.id,
+    required this.name,
+    required this.keyHash,
+    final List<String> scopes = const [],
+    @JsonKey(fromJson: _discordUserIdFromJson) this.discordUserId,
+  }) : _scopes = scopes,
+       super._();
 
   factory _$ApiKeyInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ApiKeyInfoImplFromJson(json);
@@ -234,8 +245,14 @@ class _$ApiKeyInfoImpl extends _ApiKeyInfo {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, keyHash,
-      const DeepCollectionEquality().hash(_scopes), discordUserId);
+  int get hashCode => Object.hash(
+    runtimeType,
+    id,
+    name,
+    keyHash,
+    const DeepCollectionEquality().hash(_scopes),
+    discordUserId,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -245,20 +262,18 @@ class _$ApiKeyInfoImpl extends _ApiKeyInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ApiKeyInfoImplToJson(
-      this,
-    );
+    return _$$ApiKeyInfoImplToJson(this);
   }
 }
 
 abstract class _ApiKeyInfo extends ApiKeyInfo {
-  const factory _ApiKeyInfo(
-      {required final String id,
-      required final String name,
-      required final String keyHash,
-      final List<String> scopes,
-      @JsonKey(fromJson: _discordUserIdFromJson)
-      final String? discordUserId}) = _$ApiKeyInfoImpl;
+  const factory _ApiKeyInfo({
+    required final String id,
+    required final String name,
+    required final String keyHash,
+    final List<String> scopes,
+    @JsonKey(fromJson: _discordUserIdFromJson) final String? discordUserId,
+  }) = _$ApiKeyInfoImpl;
   const _ApiKeyInfo._() : super._();
 
   factory _ApiKeyInfo.fromJson(Map<String, dynamic> json) =
@@ -271,7 +286,6 @@ abstract class _ApiKeyInfo extends ApiKeyInfo {
   @override
   String get keyHash;
   @override
-
   /// `List<String>`, not `List<Permission>`: each entry is a `Permission`'s
   /// Dart-convention `.name` (`invokeDangerous`, not [Permission.toWire]'s
   /// `invoke_dangerous`) — this is how API key scopes are actually stored
@@ -281,7 +295,6 @@ abstract class _ApiKeyInfo extends ApiKeyInfo {
   /// silently disappearing.
   List<String> get scopes;
   @override
-
   /// A Discord snowflake, always read as a string — routinely exceeds the
   /// 2^53 precision limit of a browser's JS engine. This reader
   /// additionally tolerates a raw JSON number for older persisted records.
