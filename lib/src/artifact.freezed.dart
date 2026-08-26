@@ -138,13 +138,13 @@ class __$$ArtifactFileImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$ArtifactFileImpl implements _ArtifactFile {
+class _$ArtifactFileImpl extends _ArtifactFile {
   const _$ArtifactFileImpl({
     required this.name,
     this.isDirectory = false,
     this.size,
     required this.modified,
-  });
+  }) : super._();
 
   factory _$ArtifactFileImpl.fromJson(Map<String, dynamic> json) =>
       _$$ArtifactFileImplFromJson(json);
@@ -194,13 +194,14 @@ class _$ArtifactFileImpl implements _ArtifactFile {
   }
 }
 
-abstract class _ArtifactFile implements ArtifactFile {
+abstract class _ArtifactFile extends ArtifactFile {
   const factory _ArtifactFile({
     required final String name,
     final bool isDirectory,
     final int? size,
     required final DateTime modified,
   }) = _$ArtifactFileImpl;
+  const _ArtifactFile._() : super._();
 
   factory _ArtifactFile.fromJson(Map<String, dynamic> json) =
       _$ArtifactFileImpl.fromJson;

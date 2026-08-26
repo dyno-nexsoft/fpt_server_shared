@@ -21,7 +21,11 @@ ArbTranslateResult _$ArbTranslateResultFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ArbTranslateResult {
-  /// tbchat module folder name, e.g. `social_fi`, `wallet`, `im`.
+  /// `TbchatModule.toWire()`'s spelling (e.g. `socialfi`, `cloud_storage`,
+  /// `im`) — the vocabulary `ci.build` already uses, not the on-disk
+  /// folder name (`TbchatModule.folderName`), which differs for two of
+  /// these modules. Callers only ever display this string; nothing
+  /// treats it as a filesystem path.
   String get module => throw _privateConstructorUsedError;
 
   /// Branch the arb files were read from, and the MR was opened into.
@@ -237,7 +241,11 @@ class _$ArbTranslateResultImpl extends _ArbTranslateResult {
   factory _$ArbTranslateResultImpl.fromJson(Map<String, dynamic> json) =>
       _$$ArbTranslateResultImplFromJson(json);
 
-  /// tbchat module folder name, e.g. `social_fi`, `wallet`, `im`.
+  /// `TbchatModule.toWire()`'s spelling (e.g. `socialfi`, `cloud_storage`,
+  /// `im`) — the vocabulary `ci.build` already uses, not the on-disk
+  /// folder name (`TbchatModule.folderName`), which differs for two of
+  /// these modules. Callers only ever display this string; nothing
+  /// treats it as a filesystem path.
   @override
   final String module;
 
@@ -378,7 +386,11 @@ abstract class _ArbTranslateResult extends ArbTranslateResult {
       _$ArbTranslateResultImpl.fromJson;
 
   @override
-  /// tbchat module folder name, e.g. `social_fi`, `wallet`, `im`.
+  /// `TbchatModule.toWire()`'s spelling (e.g. `socialfi`, `cloud_storage`,
+  /// `im`) — the vocabulary `ci.build` already uses, not the on-disk
+  /// folder name (`TbchatModule.folderName`), which differs for two of
+  /// these modules. Callers only ever display this string; nothing
+  /// treats it as a filesystem path.
   String get module;
   @override
   /// Branch the arb files were read from, and the MR was opened into.
