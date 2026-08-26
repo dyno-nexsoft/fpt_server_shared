@@ -24,6 +24,10 @@ abstract class ArbTranslateResult with _$ArbTranslateResult {
     /// Null when there was nothing missing to translate — no branch/MR made.
     String? mrUrl,
 
+    /// Total distinct keys actually written into the MR — both newly
+    /// translated this run and any earlier, not-yet-merged run's carried
+    /// forward (same accounting as [keysByFile], just deduplicated across
+    /// locales rather than summed per file).
     @Default(0) int translatedKeyCount,
     @Default(<String>[]) List<String> localesUpdated,
 
