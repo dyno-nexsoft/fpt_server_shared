@@ -23,10 +23,22 @@ abstract class ArbTranslateResult with _$ArbTranslateResult {
     @Default(0) int translatedKeyCount,
     @Default(<String>[]) List<String> localesUpdated,
 
+    /// Arb filename (e.g. `im_ja.arb`) to how many keys were written into
+    /// it this run — both newly translated ones and any earlier,
+    /// not-yet-merged run's carried forward.
+    @Default(<String, int>{}) Map<String, int> keysByFile,
+
     /// Keys the AI failed to translate (a batch call errored, or came back
     /// in a shape the parser couldn't use) — still reported rather than
     /// silently dropped, so a partial run doesn't look like a complete one.
     @Default(0) int failedKeyCount,
+
+    /// Pre-existing data-quality issues found in the module's own arb
+    /// files (currently: a key repeated more than once in one file — see
+    /// `findDuplicateArbKeys`) — reported rather than fixed, since deciding
+    /// which occurrence was meant is a judgment call this pipeline
+    /// shouldn't make silently.
+    @Default(<String>[]) List<String> warnings,
   }) = _ArbTranslateResult;
 
   factory ArbTranslateResult.fromJson(Map<String, dynamic> json) =>

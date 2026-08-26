@@ -18,7 +18,15 @@ _$ArbTranslateResultImpl _$$ArbTranslateResultImplFromJson(
           ?.map((e) => e as String)
           .toList() ??
       const <String>[],
+  keysByFile:
+      (json['keys_by_file'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, (e as num).toInt()),
+      ) ??
+      const <String, int>{},
   failedKeyCount: (json['failed_key_count'] as num?)?.toInt() ?? 0,
+  warnings:
+      (json['warnings'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      const <String>[],
 );
 
 Map<String, dynamic> _$$ArbTranslateResultImplToJson(
@@ -38,6 +46,8 @@ Map<String, dynamic> _$$ArbTranslateResultImplToJson(
   writeNotNull('mr_url', instance.mrUrl);
   val['translated_key_count'] = instance.translatedKeyCount;
   val['locales_updated'] = instance.localesUpdated;
+  val['keys_by_file'] = instance.keysByFile;
   val['failed_key_count'] = instance.failedKeyCount;
+  val['warnings'] = instance.warnings;
   return val;
 }

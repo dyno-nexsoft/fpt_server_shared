@@ -32,10 +32,22 @@ mixin _$ArbTranslateResult {
   int get translatedKeyCount => throw _privateConstructorUsedError;
   List<String> get localesUpdated => throw _privateConstructorUsedError;
 
+  /// Arb filename (e.g. `im_ja.arb`) to how many keys were written into
+  /// it this run — both newly translated ones and any earlier,
+  /// not-yet-merged run's carried forward.
+  Map<String, int> get keysByFile => throw _privateConstructorUsedError;
+
   /// Keys the AI failed to translate (a batch call errored, or came back
   /// in a shape the parser couldn't use) — still reported rather than
   /// silently dropped, so a partial run doesn't look like a complete one.
   int get failedKeyCount => throw _privateConstructorUsedError;
+
+  /// Pre-existing data-quality issues found in the module's own arb
+  /// files (currently: a key repeated more than once in one file — see
+  /// `findDuplicateArbKeys`) — reported rather than fixed, since deciding
+  /// which occurrence was meant is a judgment call this pipeline
+  /// shouldn't make silently.
+  List<String> get warnings => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,7 +68,9 @@ abstract class $ArbTranslateResultCopyWith<$Res> {
     String? mrUrl,
     int translatedKeyCount,
     List<String> localesUpdated,
+    Map<String, int> keysByFile,
     int failedKeyCount,
+    List<String> warnings,
   });
 }
 
@@ -78,7 +92,9 @@ class _$ArbTranslateResultCopyWithImpl<$Res, $Val extends ArbTranslateResult>
     Object? mrUrl = freezed,
     Object? translatedKeyCount = null,
     Object? localesUpdated = null,
+    Object? keysByFile = null,
     Object? failedKeyCount = null,
+    Object? warnings = null,
   }) {
     return _then(
       _value.copyWith(
@@ -102,10 +118,18 @@ class _$ArbTranslateResultCopyWithImpl<$Res, $Val extends ArbTranslateResult>
                 ? _value.localesUpdated
                 : localesUpdated // ignore: cast_nullable_to_non_nullable
                       as List<String>,
+            keysByFile: null == keysByFile
+                ? _value.keysByFile
+                : keysByFile // ignore: cast_nullable_to_non_nullable
+                      as Map<String, int>,
             failedKeyCount: null == failedKeyCount
                 ? _value.failedKeyCount
                 : failedKeyCount // ignore: cast_nullable_to_non_nullable
                       as int,
+            warnings: null == warnings
+                ? _value.warnings
+                : warnings // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
           )
           as $Val,
     );
@@ -127,7 +151,9 @@ abstract class _$$ArbTranslateResultImplCopyWith<$Res>
     String? mrUrl,
     int translatedKeyCount,
     List<String> localesUpdated,
+    Map<String, int> keysByFile,
     int failedKeyCount,
+    List<String> warnings,
   });
 }
 
@@ -148,7 +174,9 @@ class __$$ArbTranslateResultImplCopyWithImpl<$Res>
     Object? mrUrl = freezed,
     Object? translatedKeyCount = null,
     Object? localesUpdated = null,
+    Object? keysByFile = null,
     Object? failedKeyCount = null,
+    Object? warnings = null,
   }) {
     return _then(
       _$ArbTranslateResultImpl(
@@ -172,10 +200,18 @@ class __$$ArbTranslateResultImplCopyWithImpl<$Res>
             ? _value._localesUpdated
             : localesUpdated // ignore: cast_nullable_to_non_nullable
                   as List<String>,
+        keysByFile: null == keysByFile
+            ? _value._keysByFile
+            : keysByFile // ignore: cast_nullable_to_non_nullable
+                  as Map<String, int>,
         failedKeyCount: null == failedKeyCount
             ? _value.failedKeyCount
             : failedKeyCount // ignore: cast_nullable_to_non_nullable
                   as int,
+        warnings: null == warnings
+            ? _value._warnings
+            : warnings // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
       ),
     );
   }
@@ -190,8 +226,12 @@ class _$ArbTranslateResultImpl extends _ArbTranslateResult {
     this.mrUrl,
     this.translatedKeyCount = 0,
     final List<String> localesUpdated = const <String>[],
+    final Map<String, int> keysByFile = const <String, int>{},
     this.failedKeyCount = 0,
+    final List<String> warnings = const <String>[],
   }) : _localesUpdated = localesUpdated,
+       _keysByFile = keysByFile,
+       _warnings = warnings,
        super._();
 
   factory _$ArbTranslateResultImpl.fromJson(Map<String, dynamic> json) =>
@@ -220,6 +260,22 @@ class _$ArbTranslateResultImpl extends _ArbTranslateResult {
     return EqualUnmodifiableListView(_localesUpdated);
   }
 
+  /// Arb filename (e.g. `im_ja.arb`) to how many keys were written into
+  /// it this run — both newly translated ones and any earlier,
+  /// not-yet-merged run's carried forward.
+  final Map<String, int> _keysByFile;
+
+  /// Arb filename (e.g. `im_ja.arb`) to how many keys were written into
+  /// it this run — both newly translated ones and any earlier,
+  /// not-yet-merged run's carried forward.
+  @override
+  @JsonKey()
+  Map<String, int> get keysByFile {
+    if (_keysByFile is EqualUnmodifiableMapView) return _keysByFile;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_keysByFile);
+  }
+
   /// Keys the AI failed to translate (a batch call errored, or came back
   /// in a shape the parser couldn't use) — still reported rather than
   /// silently dropped, so a partial run doesn't look like a complete one.
@@ -227,9 +283,29 @@ class _$ArbTranslateResultImpl extends _ArbTranslateResult {
   @JsonKey()
   final int failedKeyCount;
 
+  /// Pre-existing data-quality issues found in the module's own arb
+  /// files (currently: a key repeated more than once in one file — see
+  /// `findDuplicateArbKeys`) — reported rather than fixed, since deciding
+  /// which occurrence was meant is a judgment call this pipeline
+  /// shouldn't make silently.
+  final List<String> _warnings;
+
+  /// Pre-existing data-quality issues found in the module's own arb
+  /// files (currently: a key repeated more than once in one file — see
+  /// `findDuplicateArbKeys`) — reported rather than fixed, since deciding
+  /// which occurrence was meant is a judgment call this pipeline
+  /// shouldn't make silently.
+  @override
+  @JsonKey()
+  List<String> get warnings {
+    if (_warnings is EqualUnmodifiableListView) return _warnings;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_warnings);
+  }
+
   @override
   String toString() {
-    return 'ArbTranslateResult(module: $module, targetBranch: $targetBranch, mrUrl: $mrUrl, translatedKeyCount: $translatedKeyCount, localesUpdated: $localesUpdated, failedKeyCount: $failedKeyCount)';
+    return 'ArbTranslateResult(module: $module, targetBranch: $targetBranch, mrUrl: $mrUrl, translatedKeyCount: $translatedKeyCount, localesUpdated: $localesUpdated, keysByFile: $keysByFile, failedKeyCount: $failedKeyCount, warnings: $warnings)';
   }
 
   @override
@@ -247,8 +323,13 @@ class _$ArbTranslateResultImpl extends _ArbTranslateResult {
               other._localesUpdated,
               _localesUpdated,
             ) &&
+            const DeepCollectionEquality().equals(
+              other._keysByFile,
+              _keysByFile,
+            ) &&
             (identical(other.failedKeyCount, failedKeyCount) ||
-                other.failedKeyCount == failedKeyCount));
+                other.failedKeyCount == failedKeyCount) &&
+            const DeepCollectionEquality().equals(other._warnings, _warnings));
   }
 
   @JsonKey(ignore: true)
@@ -260,7 +341,9 @@ class _$ArbTranslateResultImpl extends _ArbTranslateResult {
     mrUrl,
     translatedKeyCount,
     const DeepCollectionEquality().hash(_localesUpdated),
+    const DeepCollectionEquality().hash(_keysByFile),
     failedKeyCount,
+    const DeepCollectionEquality().hash(_warnings),
   );
 
   @JsonKey(ignore: true)
@@ -285,7 +368,9 @@ abstract class _ArbTranslateResult extends ArbTranslateResult {
     final String? mrUrl,
     final int translatedKeyCount,
     final List<String> localesUpdated,
+    final Map<String, int> keysByFile,
     final int failedKeyCount,
+    final List<String> warnings,
   }) = _$ArbTranslateResultImpl;
   const _ArbTranslateResult._() : super._();
 
@@ -306,10 +391,22 @@ abstract class _ArbTranslateResult extends ArbTranslateResult {
   @override
   List<String> get localesUpdated;
   @override
+  /// Arb filename (e.g. `im_ja.arb`) to how many keys were written into
+  /// it this run — both newly translated ones and any earlier,
+  /// not-yet-merged run's carried forward.
+  Map<String, int> get keysByFile;
+  @override
   /// Keys the AI failed to translate (a batch call errored, or came back
   /// in a shape the parser couldn't use) — still reported rather than
   /// silently dropped, so a partial run doesn't look like a complete one.
   int get failedKeyCount;
+  @override
+  /// Pre-existing data-quality issues found in the module's own arb
+  /// files (currently: a key repeated more than once in one file — see
+  /// `findDuplicateArbKeys`) — reported rather than fixed, since deciding
+  /// which occurrence was meant is a judgment call this pipeline
+  /// shouldn't make silently.
+  List<String> get warnings;
   @override
   @JsonKey(ignore: true)
   _$$ArbTranslateResultImplCopyWith<_$ArbTranslateResultImpl> get copyWith =>
