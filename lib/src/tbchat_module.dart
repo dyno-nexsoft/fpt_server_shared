@@ -9,6 +9,11 @@ enum TbchatModule {
   im,
   wallet,
   cloudStorage,
+  // Deliberately all-lowercase, not `socialFi` — this is the literal wire
+  // value `toWire()` returns for it (the default `_ => name` branch), so
+  // renaming it for casing consistency with `cloudStorage` would silently
+  // change the wire value and break every existing caller that already
+  // sends `socialfi` (ci.build's own module list included).
   socialfi,
   main,
   miner;
@@ -22,8 +27,18 @@ enum TbchatModule {
     _ => name,
   };
 
-  static TbchatModule fromWire(String value) =>
-      TbchatModule.values.firstWhere((m) => m.toWire() == value);
+  /// Throws [ArgumentError] (not a bare `StateError`) naming the bad value,
+  /// for whichever caller ends up needing this — currently none do; every
+  /// real lookup in this codebase uses `.where(...).firstOrNull` instead so
+  /// it can render its own "unknown module" message.
+  static TbchatModule fromWire(String value) => TbchatModule.values.firstWhere(
+    (m) => m.toWire() == value,
+    orElse: () => throw ArgumentError.value(
+      value,
+      'value',
+      'Not a known TbchatModule wire value',
+    ),
+  );
 
   /// Actual folder name under `lib/app/global/languages/modules/` — differs
   /// from [toWire] only for `cloudStorage` (`cloud` on disk) and `socialfi`

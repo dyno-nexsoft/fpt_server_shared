@@ -11,7 +11,11 @@ abstract class ArbTranslateResult with _$ArbTranslateResult {
   const ArbTranslateResult._();
 
   const factory ArbTranslateResult({
-    /// tbchat module folder name, e.g. `social_fi`, `wallet`, `im`.
+    /// `TbchatModule.toWire()`'s spelling (e.g. `socialfi`, `cloud_storage`,
+    /// `im`) — the vocabulary `ci.build` already uses, not the on-disk
+    /// folder name (`TbchatModule.folderName`), which differs for two of
+    /// these modules. Callers only ever display this string; nothing
+    /// treats it as a filesystem path.
     required String module,
 
     /// Branch the arb files were read from, and the MR was opened into.

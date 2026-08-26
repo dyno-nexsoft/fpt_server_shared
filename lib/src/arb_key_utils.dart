@@ -62,6 +62,19 @@ List<RawArbEntry> scanRawStringEntries(String raw) {
     while (i < raw.length && raw[i] != '"') {
       i += raw[i] == '\\' ? 2 : 1;
     }
+    // An unterminated string (malformed/truncated input) would otherwise
+    // walk `i` past `raw.length` here and make the `substring` below throw
+    // a bare RangeError. The one real caller already runs `jsonDecode`
+    // first, which rejects malformed JSON before this ever sees it, but
+    // this is a public, exported utility — a future caller operating on
+    // unvalidated text deserves a clear error, not one.
+    if (i >= raw.length) {
+      throw FormatException(
+        'Unterminated string starting at $start',
+        raw,
+        start,
+      );
+    }
     i++; // closing quote
     return jsonDecode(raw.substring(start, i)) as String;
   }
