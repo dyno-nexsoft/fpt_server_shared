@@ -11,11 +11,9 @@ _$ActionSchemaImpl _$$ActionSchemaImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       description: json['description'] as String? ?? '',
       kind: $enumDecode(_$ActionKindEnumMap, json['kind']),
-      permission: const PermissionConverter().fromJson(
-        json['permission'] as String,
-      ),
-      params:
-          (json['params'] as List<dynamic>?)
+      permission:
+          const PermissionConverter().fromJson(json['permission'] as String),
+      params: (json['params'] as List<dynamic>?)
               ?.map((e) => ActionParam.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -42,13 +40,13 @@ _$ActionParamImpl _$$ActionParamImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String? ?? '',
       type: $enumDecode(_$ParamTypeEnumMap, json['type']),
       isRequired: json['required'] as bool? ?? false,
-      choices:
-          (json['choices'] as List<dynamic>?)
+      choices: (json['choices'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           const [],
       defaultValue: json['default'],
       isBranchRef: json['is_branch_ref'] as bool? ?? false,
+      isStringList: json['is_string_list'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$ActionParamImplToJson(_$ActionParamImpl instance) {
@@ -68,6 +66,7 @@ Map<String, dynamic> _$$ActionParamImplToJson(_$ActionParamImpl instance) {
 
   writeNotNull('default', instance.defaultValue);
   val['is_branch_ref'] = instance.isBranchRef;
+  val['is_string_list'] = instance.isStringList;
   return val;
 }
 

@@ -51,6 +51,15 @@ abstract class ActionParam with _$ActionParam {
     @Default([]) List<String> choices,
     @JsonKey(name: 'default') dynamic defaultValue,
     @Default(false) bool isBranchRef,
+
+    /// A `string` param whose wire value is actually a JSON array of
+    /// strings, one per logical entry (e.g. `gitlab.analyze`'s `urls` —
+    /// there's no dedicated `ParamType` for "list of strings", since every
+    /// other consumer of this schema only cares that the value is
+    /// ultimately JSON-encoded text). The dashboard renders this as a
+    /// multi-line field (one entry per line) instead of a single-line one,
+    /// and splits/joins on `\n` when building/restoring the request body.
+    @Default(false) bool isStringList,
   }) = _ActionParam;
 
   factory ActionParam.fromJson(Map<String, dynamic> json) =>
