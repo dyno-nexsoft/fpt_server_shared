@@ -11,7 +11,8 @@ _$ApiKeyInfoImpl _$$ApiKeyInfoImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       keyHash: json['key_hash'] as String,
-      scopes: (json['scopes'] as List<dynamic>?)
+      scopes:
+          (json['scopes'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           const [],

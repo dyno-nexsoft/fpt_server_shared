@@ -12,7 +12,8 @@ part of 'review_issue.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 ReviewIssue _$ReviewIssueFromJson(Map<String, dynamic> json) {
   return _ReviewIssue.fromJson(json);
@@ -43,16 +44,18 @@ mixin _$ReviewIssue {
 /// @nodoc
 abstract class $ReviewIssueCopyWith<$Res> {
   factory $ReviewIssueCopyWith(
-          ReviewIssue value, $Res Function(ReviewIssue) then) =
-      _$ReviewIssueCopyWithImpl<$Res, ReviewIssue>;
+    ReviewIssue value,
+    $Res Function(ReviewIssue) then,
+  ) = _$ReviewIssueCopyWithImpl<$Res, ReviewIssue>;
   @useResult
-  $Res call(
-      {@JsonKey(unknownEnumValue: ReviewSeverity.low) ReviewSeverity severity,
-      String file,
-      int lineStart,
-      int? lineEnd,
-      String description,
-      String? url});
+  $Res call({
+    @JsonKey(unknownEnumValue: ReviewSeverity.low) ReviewSeverity severity,
+    String file,
+    int lineStart,
+    int? lineEnd,
+    String description,
+    String? url,
+  });
 }
 
 /// @nodoc
@@ -75,32 +78,35 @@ class _$ReviewIssueCopyWithImpl<$Res, $Val extends ReviewIssue>
     Object? description = null,
     Object? url = freezed,
   }) {
-    return _then(_value.copyWith(
-      severity: null == severity
-          ? _value.severity
-          : severity // ignore: cast_nullable_to_non_nullable
-              as ReviewSeverity,
-      file: null == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as String,
-      lineStart: null == lineStart
-          ? _value.lineStart
-          : lineStart // ignore: cast_nullable_to_non_nullable
-              as int,
-      lineEnd: freezed == lineEnd
-          ? _value.lineEnd
-          : lineEnd // ignore: cast_nullable_to_non_nullable
-              as int?,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            severity: null == severity
+                ? _value.severity
+                : severity // ignore: cast_nullable_to_non_nullable
+                      as ReviewSeverity,
+            file: null == file
+                ? _value.file
+                : file // ignore: cast_nullable_to_non_nullable
+                      as String,
+            lineStart: null == lineStart
+                ? _value.lineStart
+                : lineStart // ignore: cast_nullable_to_non_nullable
+                      as int,
+            lineEnd: freezed == lineEnd
+                ? _value.lineEnd
+                : lineEnd // ignore: cast_nullable_to_non_nullable
+                      as int?,
+            description: null == description
+                ? _value.description
+                : description // ignore: cast_nullable_to_non_nullable
+                      as String,
+            url: freezed == url
+                ? _value.url
+                : url // ignore: cast_nullable_to_non_nullable
+                      as String?,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -108,17 +114,19 @@ class _$ReviewIssueCopyWithImpl<$Res, $Val extends ReviewIssue>
 abstract class _$$ReviewIssueImplCopyWith<$Res>
     implements $ReviewIssueCopyWith<$Res> {
   factory _$$ReviewIssueImplCopyWith(
-          _$ReviewIssueImpl value, $Res Function(_$ReviewIssueImpl) then) =
-      __$$ReviewIssueImplCopyWithImpl<$Res>;
+    _$ReviewIssueImpl value,
+    $Res Function(_$ReviewIssueImpl) then,
+  ) = __$$ReviewIssueImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {@JsonKey(unknownEnumValue: ReviewSeverity.low) ReviewSeverity severity,
-      String file,
-      int lineStart,
-      int? lineEnd,
-      String description,
-      String? url});
+  $Res call({
+    @JsonKey(unknownEnumValue: ReviewSeverity.low) ReviewSeverity severity,
+    String file,
+    int lineStart,
+    int? lineEnd,
+    String description,
+    String? url,
+  });
 }
 
 /// @nodoc
@@ -126,8 +134,9 @@ class __$$ReviewIssueImplCopyWithImpl<$Res>
     extends _$ReviewIssueCopyWithImpl<$Res, _$ReviewIssueImpl>
     implements _$$ReviewIssueImplCopyWith<$Res> {
   __$$ReviewIssueImplCopyWithImpl(
-      _$ReviewIssueImpl _value, $Res Function(_$ReviewIssueImpl) _then)
-      : super(_value, _then);
+    _$ReviewIssueImpl _value,
+    $Res Function(_$ReviewIssueImpl) _then,
+  ) : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -139,46 +148,48 @@ class __$$ReviewIssueImplCopyWithImpl<$Res>
     Object? description = null,
     Object? url = freezed,
   }) {
-    return _then(_$ReviewIssueImpl(
-      severity: null == severity
-          ? _value.severity
-          : severity // ignore: cast_nullable_to_non_nullable
-              as ReviewSeverity,
-      file: null == file
-          ? _value.file
-          : file // ignore: cast_nullable_to_non_nullable
-              as String,
-      lineStart: null == lineStart
-          ? _value.lineStart
-          : lineStart // ignore: cast_nullable_to_non_nullable
-              as int,
-      lineEnd: freezed == lineEnd
-          ? _value.lineEnd
-          : lineEnd // ignore: cast_nullable_to_non_nullable
-              as int?,
-      description: null == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$ReviewIssueImpl(
+        severity: null == severity
+            ? _value.severity
+            : severity // ignore: cast_nullable_to_non_nullable
+                  as ReviewSeverity,
+        file: null == file
+            ? _value.file
+            : file // ignore: cast_nullable_to_non_nullable
+                  as String,
+        lineStart: null == lineStart
+            ? _value.lineStart
+            : lineStart // ignore: cast_nullable_to_non_nullable
+                  as int,
+        lineEnd: freezed == lineEnd
+            ? _value.lineEnd
+            : lineEnd // ignore: cast_nullable_to_non_nullable
+                  as int?,
+        description: null == description
+            ? _value.description
+            : description // ignore: cast_nullable_to_non_nullable
+                  as String,
+        url: freezed == url
+            ? _value.url
+            : url // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ReviewIssueImpl extends _ReviewIssue {
-  const _$ReviewIssueImpl(
-      {@JsonKey(unknownEnumValue: ReviewSeverity.low) required this.severity,
-      required this.file,
-      required this.lineStart,
-      this.lineEnd,
-      required this.description,
-      this.url})
-      : super._();
+  const _$ReviewIssueImpl({
+    @JsonKey(unknownEnumValue: ReviewSeverity.low) required this.severity,
+    required this.file,
+    required this.lineStart,
+    this.lineEnd,
+    required this.description,
+    this.url,
+  }) : super._();
 
   factory _$ReviewIssueImpl.fromJson(Map<String, dynamic> json) =>
       _$$ReviewIssueImplFromJson(json);
@@ -227,7 +238,14 @@ class _$ReviewIssueImpl extends _ReviewIssue {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, severity, file, lineStart, lineEnd, description, url);
+    runtimeType,
+    severity,
+    file,
+    lineStart,
+    lineEnd,
+    description,
+    url,
+  );
 
   @JsonKey(ignore: true)
   @override
@@ -237,21 +255,20 @@ class _$ReviewIssueImpl extends _ReviewIssue {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ReviewIssueImplToJson(
-      this,
-    );
+    return _$$ReviewIssueImplToJson(this);
   }
 }
 
 abstract class _ReviewIssue extends ReviewIssue {
-  const factory _ReviewIssue(
-      {@JsonKey(unknownEnumValue: ReviewSeverity.low)
-      required final ReviewSeverity severity,
-      required final String file,
-      required final int lineStart,
-      final int? lineEnd,
-      required final String description,
-      final String? url}) = _$ReviewIssueImpl;
+  const factory _ReviewIssue({
+    @JsonKey(unknownEnumValue: ReviewSeverity.low)
+    required final ReviewSeverity severity,
+    required final String file,
+    required final int lineStart,
+    final int? lineEnd,
+    required final String description,
+    final String? url,
+  }) = _$ReviewIssueImpl;
   const _ReviewIssue._() : super._();
 
   factory _ReviewIssue.fromJson(Map<String, dynamic> json) =
@@ -263,7 +280,6 @@ abstract class _ReviewIssue extends ReviewIssue {
   @override
   String get file;
   @override
-
   /// `0` for a synthetic pipeline notice, which reports a failed batch
   /// rather than a finding and so has no real line to cite.
   int get lineStart;
@@ -272,7 +288,6 @@ abstract class _ReviewIssue extends ReviewIssue {
   @override
   String get description;
   @override
-
   /// Direct link to the exact line(s) in GitLab's blob view — null for a
   /// pipeline notice, which has no file to link to.
   String? get url;

@@ -8,8 +8,11 @@ part of 'review_issue.dart';
 
 _$ReviewIssueImpl _$$ReviewIssueImplFromJson(Map<String, dynamic> json) =>
     _$ReviewIssueImpl(
-      severity: $enumDecode(_$ReviewSeverityEnumMap, json['severity'],
-          unknownValue: ReviewSeverity.low),
+      severity: $enumDecode(
+        _$ReviewSeverityEnumMap,
+        json['severity'],
+        unknownValue: ReviewSeverity.low,
+      ),
       file: json['file'] as String,
       lineStart: (json['line_start'] as num).toInt(),
       lineEnd: (json['line_end'] as num?)?.toInt(),

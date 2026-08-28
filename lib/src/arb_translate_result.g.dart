@@ -7,29 +7,31 @@ part of 'arb_translate_result.dart';
 // **************************************************************************
 
 _$ArbTranslateResultImpl _$$ArbTranslateResultImplFromJson(
-        Map<String, dynamic> json) =>
-    _$ArbTranslateResultImpl(
-      module: json['module'] as String,
-      targetBranch: json['target_branch'] as String,
-      mrUrl: json['mr_url'] as String?,
-      translatedKeyCount: (json['translated_key_count'] as num?)?.toInt() ?? 0,
-      localesUpdated: (json['locales_updated'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-      keysByFile: (json['keys_by_file'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, (e as num).toInt()),
-          ) ??
-          const <String, int>{},
-      failedKeyCount: (json['failed_key_count'] as num?)?.toInt() ?? 0,
-      warnings: (json['warnings'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const <String>[],
-    );
+  Map<String, dynamic> json,
+) => _$ArbTranslateResultImpl(
+  module: json['module'] as String,
+  targetBranch: json['target_branch'] as String,
+  mrUrl: json['mr_url'] as String?,
+  translatedKeyCount: (json['translated_key_count'] as num?)?.toInt() ?? 0,
+  localesUpdated:
+      (json['locales_updated'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList() ??
+      const <String>[],
+  keysByFile:
+      (json['keys_by_file'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, (e as num).toInt()),
+      ) ??
+      const <String, int>{},
+  failedKeyCount: (json['failed_key_count'] as num?)?.toInt() ?? 0,
+  warnings:
+      (json['warnings'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+      const <String>[],
+);
 
 Map<String, dynamic> _$$ArbTranslateResultImplToJson(
-    _$ArbTranslateResultImpl instance) {
+  _$ArbTranslateResultImpl instance,
+) {
   final val = <String, dynamic>{
     'module': instance.module,
     'target_branch': instance.targetBranch,

@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 /// Build target enums shared by the Discord converters, the CI request
 /// builders, and the REST layer.
@@ -28,13 +29,46 @@ enum EnvironmentBuild {
 enum PlatformBuild {
   android,
   ios,
-  mobile,
+  androidIos,
   macos,
   windows,
-  desktop;
+  macosWindows;
 
-  static PlatformBuild? tryParse(String? name) =>
-      PlatformBuild.values.where((e) => e.name == name).firstOrNull;
+  /// The wire spelling for the two combined platforms — `+` is not a legal
+  /// Dart identifier character, so [androidIos]/[macosWindows] can't just be
+  /// [name] the way every other value's wire form still is.
+  String toWire() => switch (this) {
+    PlatformBuild.androidIos => 'android+ios',
+    PlatformBuild.macosWindows => 'macos+windows',
+    _ => name,
+  };
+
+  /// Parses a wire value. Also accepts `mobile`/`desktop` — the spelling
+  /// [androidIos]/[macosWindows] replaced — because a job's persisted
+  /// `actionParams` (read back verbatim on Retry) can still carry the old
+  /// value from before that rename, and a retry must resolve to the same
+  /// platform rather than fail validation on data the rename never touched.
+  static PlatformBuild? tryParse(String? value) => switch (value) {
+    'mobile' => PlatformBuild.androidIos,
+    'desktop' => PlatformBuild.macosWindows,
+    _ => PlatformBuild.values.where((e) => e.toWire() == value).firstOrNull,
+  };
+}
+
+/// Serializes [PlatformBuild] through [PlatformBuild.toWire]/
+/// [PlatformBuild.tryParse] instead of json_serializable's default `.name`
+/// mapping, which cannot represent [PlatformBuild.androidIos]/
+/// [PlatformBuild.macosWindows]'s wire spelling — no Dart identifier can
+/// contain `+`.
+class PlatformBuildConverter implements JsonConverter<PlatformBuild, String> {
+  const PlatformBuildConverter();
+
+  @override
+  PlatformBuild fromJson(String json) =>
+      PlatformBuild.tryParse(json) ?? PlatformBuild.androidIos;
+
+  @override
+  String toJson(PlatformBuild object) => object.toWire();
 }
 
 /// `ci.clean`'s `mode` param. The wire value (Discord option, REST param,

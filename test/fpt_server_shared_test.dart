@@ -193,6 +193,59 @@ void main() {
     });
   });
 
+  group('PlatformBuild', () {
+    test('the two combined platforms use a wire spelling name can\'t', () {
+      expect(PlatformBuild.androidIos.toWire(), 'android+ios');
+      expect(PlatformBuild.macosWindows.toWire(), 'macos+windows');
+    });
+
+    test('every other value is still its own bare name', () {
+      expect(PlatformBuild.android.toWire(), 'android');
+      expect(PlatformBuild.ios.toWire(), 'ios');
+      expect(PlatformBuild.macos.toWire(), 'macos');
+      expect(PlatformBuild.windows.toWire(), 'windows');
+    });
+
+    test('tryParse round-trips every value through its own wire spelling', () {
+      for (final platform in PlatformBuild.values) {
+        expect(PlatformBuild.tryParse(platform.toWire()), platform);
+      }
+    });
+
+    test('tryParse still accepts mobile/desktop — the spelling this enum used '
+        'before androidIos/macosWindows replaced them, which a job persisted '
+        'before that rename can still carry', () {
+      expect(PlatformBuild.tryParse('mobile'), PlatformBuild.androidIos);
+      expect(PlatformBuild.tryParse('desktop'), PlatformBuild.macosWindows);
+    });
+
+    test('an unrecognized value returns null, not a throw', () {
+      expect(PlatformBuild.tryParse('nintendo'), isNull);
+      expect(PlatformBuild.tryParse(null), isNull);
+    });
+
+    group('PlatformBuildConverter', () {
+      const converter = PlatformBuildConverter();
+
+      test('serializes through toWire, not the bare enum name', () {
+        expect(converter.toJson(PlatformBuild.androidIos), 'android+ios');
+      });
+
+      test('parses back the same value it serialized', () {
+        for (final platform in PlatformBuild.values) {
+          expect(converter.fromJson(converter.toJson(platform)), platform);
+        }
+      });
+
+      test(
+        'an unrecognized wire value degrades to androidIos, not a throw',
+        () {
+          expect(converter.fromJson('nintendo'), PlatformBuild.androidIos);
+        },
+      );
+    });
+  });
+
   group('ActionSchema', () {
     test('isDangerous matches the permission', () {
       const schema = ActionSchema(
