@@ -27,6 +27,10 @@ abstract class ApiKeyInfo with _$ApiKeyInfo {
     /// 2^53 precision limit of a browser's JS engine. This reader
     /// additionally tolerates a raw JSON number for older persisted records.
     @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId,
+
+    /// When this key last successfully authenticated a request — null if it
+    /// has never been used since that started being recorded.
+    DateTime? lastUsedAt,
   }) = _ApiKeyInfo;
 
   const ApiKeyInfo._();
