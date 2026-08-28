@@ -34,23 +34,28 @@ enum PlatformBuild {
   windows,
   macosWindows;
 
-  /// The wire spelling for the two combined platforms — `+` is not a legal
-  /// Dart identifier character, so [androidIos]/[macosWindows] can't just be
-  /// [name] the way every other value's wire form still is.
+  /// The wire spelling for the two combined platforms — a comma-joined list
+  /// of the concrete platforms they stand for, which is exactly the
+  /// `--platform` syntax `build.sh`'s `parse_targets` expects (it only ever
+  /// splits on comma and validates each token as one of the four concrete
+  /// names — it has no idea `androidIos`/`macosWindows` exist). Every other
+  /// value's wire form is still its own bare [name].
   String toWire() => switch (this) {
-    PlatformBuild.androidIos => 'android+ios',
-    PlatformBuild.macosWindows => 'macos+windows',
+    PlatformBuild.androidIos => 'android,ios',
+    PlatformBuild.macosWindows => 'macos,windows',
     _ => name,
   };
 
-  /// Parses a wire value. Also accepts `mobile`/`desktop` — the spelling
-  /// [androidIos]/[macosWindows] replaced — because a job's persisted
-  /// `actionParams` (read back verbatim on Retry) can still carry the old
-  /// value from before that rename, and a retry must resolve to the same
-  /// platform rather than fail validation on data the rename never touched.
+  /// Parses a wire value. Also accepts every spelling this combination has
+  /// ever had on the wire before landing on the comma form above —
+  /// `mobile`/`android+ios` for [androidIos], `desktop`/`macos+windows` for
+  /// [macosWindows] — because a job's persisted `actionParams` (read back
+  /// verbatim on Retry) can still carry any of them, and a retry must
+  /// resolve to the same platform rather than fail validation on data no
+  /// rename ever touched.
   static PlatformBuild? tryParse(String? value) => switch (value) {
-    'mobile' => PlatformBuild.androidIos,
-    'desktop' => PlatformBuild.macosWindows,
+    'mobile' || 'android+ios' => PlatformBuild.androidIos,
+    'desktop' || 'macos+windows' => PlatformBuild.macosWindows,
     _ => PlatformBuild.values.where((e) => e.toWire() == value).firstOrNull,
   };
 }
@@ -59,7 +64,7 @@ enum PlatformBuild {
 /// [PlatformBuild.tryParse] instead of json_serializable's default `.name`
 /// mapping, which cannot represent [PlatformBuild.androidIos]/
 /// [PlatformBuild.macosWindows]'s wire spelling — no Dart identifier can
-/// contain `+`.
+/// contain a comma either.
 class PlatformBuildConverter implements JsonConverter<PlatformBuild, String> {
   const PlatformBuildConverter();
 

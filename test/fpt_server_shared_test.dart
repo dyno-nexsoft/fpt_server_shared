@@ -194,9 +194,10 @@ void main() {
   });
 
   group('PlatformBuild', () {
-    test('the two combined platforms use a wire spelling name can\'t', () {
-      expect(PlatformBuild.androidIos.toWire(), 'android+ios');
-      expect(PlatformBuild.macosWindows.toWire(), 'macos+windows');
+    test('the two combined platforms serialize as the comma list build.sh '
+        "expects, not a wire spelling name can't express", () {
+      expect(PlatformBuild.androidIos.toWire(), 'android,ios');
+      expect(PlatformBuild.macosWindows.toWire(), 'macos,windows');
     });
 
     test('every other value is still its own bare name', () {
@@ -212,11 +213,16 @@ void main() {
       }
     });
 
-    test('tryParse still accepts mobile/desktop — the spelling this enum used '
-        'before androidIos/macosWindows replaced them, which a job persisted '
-        'before that rename can still carry', () {
+    test('tryParse still accepts every earlier wire spelling — mobile/desktop, '
+        'then android+ios/macos+windows, before the comma form replaced them — '
+        'since a job persisted under any of those can still carry it', () {
       expect(PlatformBuild.tryParse('mobile'), PlatformBuild.androidIos);
+      expect(PlatformBuild.tryParse('android+ios'), PlatformBuild.androidIos);
       expect(PlatformBuild.tryParse('desktop'), PlatformBuild.macosWindows);
+      expect(
+        PlatformBuild.tryParse('macos+windows'),
+        PlatformBuild.macosWindows,
+      );
     });
 
     test('an unrecognized value returns null, not a throw', () {
@@ -228,7 +234,7 @@ void main() {
       const converter = PlatformBuildConverter();
 
       test('serializes through toWire, not the bare enum name', () {
-        expect(converter.toJson(PlatformBuild.androidIos), 'android+ios');
+        expect(converter.toJson(PlatformBuild.androidIos), 'android,ios');
       });
 
       test('parses back the same value it serialized', () {
