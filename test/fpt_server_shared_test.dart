@@ -121,6 +121,78 @@ void main() {
     });
   });
 
+  group('ReviewIssue', () {
+    // The exact bytes `gitlab.review` has been putting on the wire, from
+    // before this was a shared model. Both sides used to spell these six keys
+    // out by hand, in four separate places; this pins that the generated
+    // definition replacing them did not quietly rename one.
+    const wire = {
+      'severity': 'HIGH',
+      'file': 'lib/main.dart',
+      'line_start': 42,
+      'line_end': 47,
+      'description': 'Missing await.',
+      'url': 'https://gitlab/blob/lib/main.dart#L42-47',
+    };
+
+    test('parses the shape the server sends', () {
+      final issue = ReviewIssue.fromJson(wire);
+      expect(issue.severity, ReviewSeverity.high);
+      expect(issue.lineStart, 42);
+      expect(issue.lineEnd, 47);
+      expect(issue.url, 'https://gitlab/blob/lib/main.dart#L42-47');
+    });
+
+    test('serializes back to the same keys, snake_case', () {
+      expect(ReviewIssue.fromJson(wire).toJson(), wire);
+    });
+
+    test('an unknown severity degrades to low rather than throwing', () {
+      // It originates from an AI response, so this is a real possibility —
+      // and losing the whole review over one odd word would be far worse.
+      final issue = ReviewIssue.fromJson({...wire, 'severity': 'CRITICAL'});
+      expect(issue.severity, ReviewSeverity.low);
+    });
+
+    test('severity ranks order high above medium above low', () {
+      expect(ReviewSeverity.high.rank, greaterThan(ReviewSeverity.medium.rank));
+      expect(ReviewSeverity.medium.rank, greaterThan(ReviewSeverity.low.rank));
+    });
+
+    test('fromWire never throws, whatever it is handed', () {
+      expect(ReviewSeverity.fromWire('medium'), ReviewSeverity.medium);
+      expect(ReviewSeverity.fromWire(null), ReviewSeverity.low);
+      expect(ReviewSeverity.fromWire(''), ReviewSeverity.low);
+    });
+
+    group('location', () {
+      ReviewIssue at({required int start, int? end, String file = 'a.dart'}) =>
+          ReviewIssue(
+            severity: ReviewSeverity.low,
+            file: file,
+            lineStart: start,
+            lineEnd: end,
+            description: '',
+          );
+
+      test('cites a single line', () {
+        expect(at(start: 42).location, 'a.dart:42');
+      });
+
+      test('cites a range only when it really spans lines', () {
+        expect(at(start: 42, end: 47).location, 'a.dart:42-47');
+        expect(at(start: 42, end: 42).location, 'a.dart:42');
+      });
+
+      test('omits the line for a pipeline notice, which has none', () {
+        expect(
+          at(start: 0, file: '(AI review pipeline)').location,
+          '(AI review pipeline)',
+        );
+      });
+    });
+  });
+
   group('ActionSchema', () {
     test('isDangerous matches the permission', () {
       const schema = ActionSchema(

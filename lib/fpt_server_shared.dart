@@ -16,6 +16,7 @@ export 'src/job_submission.dart';
 export 'src/job_state.dart';
 export 'src/param_type.dart';
 export 'src/permission.dart';
+export 'src/review_issue.dart';
 export 'src/system_status.dart';
 export 'src/tbchat_module.dart';
 export 'src/zentao_user.dart';
