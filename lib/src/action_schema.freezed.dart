@@ -27,6 +27,18 @@ mixin _$ActionSchema {
   Permission get permission => throw _privateConstructorUsedError;
   List<ActionParam> get params => throw _privateConstructorUsedError;
 
+  /// Whether this action reports intermediate progress a caller can watch
+  /// live (`GET /api/v1/invocations/{id}/events`) while its request is
+  /// still in flight. Declared here rather than inferred from a hardcoded
+  /// action-name list, so the dashboard decides whether to open a progress
+  /// stream from the catalogue alone — a new long-running action needs no
+  /// dashboard change to get a real progress bar.
+  ///
+  /// Only meaningful for [ActionKind.mutation]: a [ActionKind.job] already
+  /// streams through `GET /api/v1/jobs/{id}/events`, and a
+  /// [ActionKind.query] finishes too fast to watch.
+  bool get supportsProgress => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ActionSchemaCopyWith<ActionSchema> get copyWith =>
@@ -44,7 +56,8 @@ abstract class $ActionSchemaCopyWith<$Res> {
       String description,
       ActionKind kind,
       @PermissionConverter() Permission permission,
-      List<ActionParam> params});
+      List<ActionParam> params,
+      bool supportsProgress});
 }
 
 /// @nodoc
@@ -65,6 +78,7 @@ class _$ActionSchemaCopyWithImpl<$Res, $Val extends ActionSchema>
     Object? kind = null,
     Object? permission = null,
     Object? params = null,
+    Object? supportsProgress = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -87,6 +101,10 @@ class _$ActionSchemaCopyWithImpl<$Res, $Val extends ActionSchema>
           ? _value.params
           : params // ignore: cast_nullable_to_non_nullable
               as List<ActionParam>,
+      supportsProgress: null == supportsProgress
+          ? _value.supportsProgress
+          : supportsProgress // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -104,7 +122,8 @@ abstract class _$$ActionSchemaImplCopyWith<$Res>
       String description,
       ActionKind kind,
       @PermissionConverter() Permission permission,
-      List<ActionParam> params});
+      List<ActionParam> params,
+      bool supportsProgress});
 }
 
 /// @nodoc
@@ -123,6 +142,7 @@ class __$$ActionSchemaImplCopyWithImpl<$Res>
     Object? kind = null,
     Object? permission = null,
     Object? params = null,
+    Object? supportsProgress = null,
   }) {
     return _then(_$ActionSchemaImpl(
       name: null == name
@@ -145,6 +165,10 @@ class __$$ActionSchemaImplCopyWithImpl<$Res>
           ? _value._params
           : params // ignore: cast_nullable_to_non_nullable
               as List<ActionParam>,
+      supportsProgress: null == supportsProgress
+          ? _value.supportsProgress
+          : supportsProgress // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -157,7 +181,8 @@ class _$ActionSchemaImpl extends _ActionSchema {
       this.description = '',
       required this.kind,
       @PermissionConverter() required this.permission,
-      final List<ActionParam> params = const []})
+      final List<ActionParam> params = const [],
+      this.supportsProgress = false})
       : _params = params,
         super._();
 
@@ -183,9 +208,23 @@ class _$ActionSchemaImpl extends _ActionSchema {
     return EqualUnmodifiableListView(_params);
   }
 
+  /// Whether this action reports intermediate progress a caller can watch
+  /// live (`GET /api/v1/invocations/{id}/events`) while its request is
+  /// still in flight. Declared here rather than inferred from a hardcoded
+  /// action-name list, so the dashboard decides whether to open a progress
+  /// stream from the catalogue alone — a new long-running action needs no
+  /// dashboard change to get a real progress bar.
+  ///
+  /// Only meaningful for [ActionKind.mutation]: a [ActionKind.job] already
+  /// streams through `GET /api/v1/jobs/{id}/events`, and a
+  /// [ActionKind.query] finishes too fast to watch.
+  @override
+  @JsonKey()
+  final bool supportsProgress;
+
   @override
   String toString() {
-    return 'ActionSchema(name: $name, description: $description, kind: $kind, permission: $permission, params: $params)';
+    return 'ActionSchema(name: $name, description: $description, kind: $kind, permission: $permission, params: $params, supportsProgress: $supportsProgress)';
   }
 
   @override
@@ -199,13 +238,21 @@ class _$ActionSchemaImpl extends _ActionSchema {
             (identical(other.kind, kind) || other.kind == kind) &&
             (identical(other.permission, permission) ||
                 other.permission == permission) &&
-            const DeepCollectionEquality().equals(other._params, _params));
+            const DeepCollectionEquality().equals(other._params, _params) &&
+            (identical(other.supportsProgress, supportsProgress) ||
+                other.supportsProgress == supportsProgress));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, description, kind,
-      permission, const DeepCollectionEquality().hash(_params));
+  int get hashCode => Object.hash(
+      runtimeType,
+      name,
+      description,
+      kind,
+      permission,
+      const DeepCollectionEquality().hash(_params),
+      supportsProgress);
 
   @JsonKey(ignore: true)
   @override
@@ -227,7 +274,8 @@ abstract class _ActionSchema extends ActionSchema {
       final String description,
       required final ActionKind kind,
       @PermissionConverter() required final Permission permission,
-      final List<ActionParam> params}) = _$ActionSchemaImpl;
+      final List<ActionParam> params,
+      final bool supportsProgress}) = _$ActionSchemaImpl;
   const _ActionSchema._() : super._();
 
   factory _ActionSchema.fromJson(Map<String, dynamic> json) =
@@ -244,6 +292,19 @@ abstract class _ActionSchema extends ActionSchema {
   Permission get permission;
   @override
   List<ActionParam> get params;
+  @override
+
+  /// Whether this action reports intermediate progress a caller can watch
+  /// live (`GET /api/v1/invocations/{id}/events`) while its request is
+  /// still in flight. Declared here rather than inferred from a hardcoded
+  /// action-name list, so the dashboard decides whether to open a progress
+  /// stream from the catalogue alone — a new long-running action needs no
+  /// dashboard change to get a real progress bar.
+  ///
+  /// Only meaningful for [ActionKind.mutation]: a [ActionKind.job] already
+  /// streams through `GET /api/v1/jobs/{id}/events`, and a
+  /// [ActionKind.query] finishes too fast to watch.
+  bool get supportsProgress;
   @override
   @JsonKey(ignore: true)
   _$$ActionSchemaImplCopyWith<_$ActionSchemaImpl> get copyWith =>

@@ -17,6 +17,7 @@ _$ActionSchemaImpl _$$ActionSchemaImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => ActionParam.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      supportsProgress: json['supports_progress'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$ActionSchemaImplToJson(_$ActionSchemaImpl instance) =>
@@ -26,6 +27,7 @@ Map<String, dynamic> _$$ActionSchemaImplToJson(_$ActionSchemaImpl instance) =>
       'kind': _$ActionKindEnumMap[instance.kind]!,
       'permission': const PermissionConverter().toJson(instance.permission),
       'params': instance.params.map((e) => e.toJson()).toList(),
+      'supports_progress': instance.supportsProgress,
     };
 
 const _$ActionKindEnumMap = {

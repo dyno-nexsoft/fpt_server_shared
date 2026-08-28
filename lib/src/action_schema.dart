@@ -20,6 +20,18 @@ abstract class ActionSchema with _$ActionSchema {
     required ActionKind kind,
     @PermissionConverter() required Permission permission,
     @Default([]) List<ActionParam> params,
+
+    /// Whether this action reports intermediate progress a caller can watch
+    /// live (`GET /api/v1/invocations/{id}/events`) while its request is
+    /// still in flight. Declared here rather than inferred from a hardcoded
+    /// action-name list, so the dashboard decides whether to open a progress
+    /// stream from the catalogue alone — a new long-running action needs no
+    /// dashboard change to get a real progress bar.
+    ///
+    /// Only meaningful for [ActionKind.mutation]: a [ActionKind.job] already
+    /// streams through `GET /api/v1/jobs/{id}/events`, and a
+    /// [ActionKind.query] finishes too fast to watch.
+    @Default(false) bool supportsProgress,
   }) = _ActionSchema;
 
   const ActionSchema._();
