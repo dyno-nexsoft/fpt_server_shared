@@ -7,6 +7,7 @@ export 'src/artifact.dart';
 export 'src/build_target.dart';
 export 'src/daily_task.dart';
 export 'src/discord_message_ref.dart';
+export 'src/gemini_model.dart';
 export 'src/gitlab_models.dart';
 export 'src/gitlab_mr_url.dart';
 export 'src/health.dart';
