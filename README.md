@@ -46,8 +46,6 @@ Anything that isn't a data shape, or that only one repo will ever need:
   here, as this package's `Job`; the domain object builds one via `toDto()`.
 - `ApiKey` (hashing/verification logic) and `StreamTokenService` — server-only
   security logic, not data. `ApiKeyInfo` here is the wire shape they produce.
-- `AttendanceRules`/`AttendanceCalculator` — pure business logic, no data
-  shape to extract.
 - `SseEvent`/`sseResponse` — depends on `package:shelf`/`dart:io` to stream an
   HTTP response; this package is pure Dart with no server dependency, and
   clients never see this type, only the raw SSE text it produces.

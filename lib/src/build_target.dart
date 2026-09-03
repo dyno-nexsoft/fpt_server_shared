@@ -76,6 +76,33 @@ class PlatformBuildConverter implements JsonConverter<PlatformBuild, String> {
   String toJson(PlatformBuild object) => object.toWire();
 }
 
+/// Repositories `GitBranchService`/branch-autocomplete know how to resolve a
+/// remote URL for. [tbchat] is the default repo (its URL lives in
+/// `GitBranchService.defaultRemoteUrl`, not here — it needs no override);
+/// every other value has an entry in `GitBranchService.moduleConfig`.
+///
+/// Kept here rather than only in `GitBranchService` so `fpt_server_mcp`'s
+/// `fpt_autocomplete_branches` tool can list valid repo names without its
+/// own hardcoded copy — the two drifted before this existed.
+enum GitRepo {
+  tbchat,
+  database,
+  im,
+  wallet,
+  cloudStorage,
+  socialfi;
+
+  /// The wire spelling — `cloud_storage`, not `cloudStorage`; every other
+  /// value is already its own [name].
+  String get slug => switch (this) {
+    GitRepo.cloudStorage => 'cloud_storage',
+    _ => name,
+  };
+
+  static GitRepo? tryParse(String? slug) =>
+      GitRepo.values.where((e) => e.slug == slug).firstOrNull;
+}
+
 /// `ci.clean`'s `mode` param. The wire value (Discord option, REST param,
 /// cron) is always this enum's plain `name` — only `CleanRequest.toCommand`
 /// converts it to the raw CLI flag `clean.sh` expects, via [flag].
