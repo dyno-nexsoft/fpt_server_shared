@@ -11,6 +11,7 @@ enum GeminiModel {
   flash38,
   flash37,
   flash36,
+  flash35,
   pro31;
 
   /// The literal model id Google's Generative Language API expects.
@@ -18,6 +19,7 @@ enum GeminiModel {
     GeminiModel.flash38 => 'gemini-3.8-flash',
     GeminiModel.flash37 => 'gemini-3.7-flash',
     GeminiModel.flash36 => 'gemini-3.6-flash',
+    GeminiModel.flash35 => 'gemini-3.5-flash',
     GeminiModel.pro31 => 'gemini-3.1-pro',
   };
 
@@ -26,6 +28,7 @@ enum GeminiModel {
     GeminiModel.flash38 => 'Gemini 3.8 Flash',
     GeminiModel.flash37 => 'Gemini 3.7 Flash',
     GeminiModel.flash36 => 'Gemini 3.6 Flash',
+    GeminiModel.flash35 => 'Gemini 3.5 Flash',
     GeminiModel.pro31 => 'Gemini 3.1 Pro',
   };
 
