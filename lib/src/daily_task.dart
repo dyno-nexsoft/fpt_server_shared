@@ -29,6 +29,27 @@ class DailyTask with _$DailyTask {
     required String url,
   }) = _DailyTask;
 
+  /// `parseJson`, not `fromJson`: naming it `fromJson` makes freezed treat
+  /// this class as json_serializable's and emit a `.g.dart` expecting to own
+  /// both directions — which would replace [toJson] with a generated one that
+  /// drops the derived `available_actions` key every client reads.
+  ///
+  /// Hand-written to match the equally hand-written [toJson]. No `.g.dart`
+  /// means the global `field_rename: snake` does not apply here, so both
+  /// directions spell the keys out and have to be kept in step by hand.
+  /// `available_actions` is deliberately not read back: it is derived from
+  /// [status], so parsing it would create a second source of truth a stale
+  /// payload could contradict.
+  factory DailyTask.parseJson(Map<String, dynamic> json) => DailyTask(
+    id: json['id'] as int,
+    name: json['name'] as String,
+    description: json['description'] as String,
+    status: json['status'] as String,
+    assignee: json['assignee'] as String,
+    lastEdited: DateTime.parse(json['last_edited'] as String),
+    url: json['url'] as String,
+  );
+
   bool get isDone => status == 'done';
   bool get isInProgress => status == 'doing';
 

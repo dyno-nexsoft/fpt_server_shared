@@ -20,4 +20,5 @@ export 'src/permission.dart';
 export 'src/review_issue.dart';
 export 'src/system_status.dart';
 export 'src/tbchat_module.dart';
+export 'src/zentao_status.dart';
 export 'src/zentao_user.dart';

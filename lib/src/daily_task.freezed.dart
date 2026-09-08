@@ -12,8 +12,7 @@ part of 'daily_task.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DailyTask {
@@ -41,15 +40,14 @@ abstract class $DailyTaskCopyWith<$Res> {
   factory $DailyTaskCopyWith(DailyTask value, $Res Function(DailyTask) then) =
       _$DailyTaskCopyWithImpl<$Res, DailyTask>;
   @useResult
-  $Res call({
-    int id,
-    String name,
-    String description,
-    String status,
-    String assignee,
-    DateTime lastEdited,
-    String url,
-  });
+  $Res call(
+      {int id,
+      String name,
+      String description,
+      String status,
+      String assignee,
+      DateTime lastEdited,
+      String url});
 }
 
 /// @nodoc
@@ -73,39 +71,36 @@ class _$DailyTaskCopyWithImpl<$Res, $Val extends DailyTask>
     Object? lastEdited = null,
     Object? url = null,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as int,
-            name: null == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                      as String,
-            description: null == description
-                ? _value.description
-                : description // ignore: cast_nullable_to_non_nullable
-                      as String,
-            status: null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                      as String,
-            assignee: null == assignee
-                ? _value.assignee
-                : assignee // ignore: cast_nullable_to_non_nullable
-                      as String,
-            lastEdited: null == lastEdited
-                ? _value.lastEdited
-                : lastEdited // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            url: null == url
-                ? _value.url
-                : url // ignore: cast_nullable_to_non_nullable
-                      as String,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      assignee: null == assignee
+          ? _value.assignee
+          : assignee // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastEdited: null == lastEdited
+          ? _value.lastEdited
+          : lastEdited // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
   }
 }
 
@@ -113,20 +108,18 @@ class _$DailyTaskCopyWithImpl<$Res, $Val extends DailyTask>
 abstract class _$$DailyTaskImplCopyWith<$Res>
     implements $DailyTaskCopyWith<$Res> {
   factory _$$DailyTaskImplCopyWith(
-    _$DailyTaskImpl value,
-    $Res Function(_$DailyTaskImpl) then,
-  ) = __$$DailyTaskImplCopyWithImpl<$Res>;
+          _$DailyTaskImpl value, $Res Function(_$DailyTaskImpl) then) =
+      __$$DailyTaskImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    int id,
-    String name,
-    String description,
-    String status,
-    String assignee,
-    DateTime lastEdited,
-    String url,
-  });
+  $Res call(
+      {int id,
+      String name,
+      String description,
+      String status,
+      String assignee,
+      DateTime lastEdited,
+      String url});
 }
 
 /// @nodoc
@@ -134,9 +127,8 @@ class __$$DailyTaskImplCopyWithImpl<$Res>
     extends _$DailyTaskCopyWithImpl<$Res, _$DailyTaskImpl>
     implements _$$DailyTaskImplCopyWith<$Res> {
   __$$DailyTaskImplCopyWithImpl(
-    _$DailyTaskImpl _value,
-    $Res Function(_$DailyTaskImpl) _then,
-  ) : super(_value, _then);
+      _$DailyTaskImpl _value, $Res Function(_$DailyTaskImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -149,53 +141,51 @@ class __$$DailyTaskImplCopyWithImpl<$Res>
     Object? lastEdited = null,
     Object? url = null,
   }) {
-    return _then(
-      _$DailyTaskImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as int,
-        name: null == name
-            ? _value.name
-            : name // ignore: cast_nullable_to_non_nullable
-                  as String,
-        description: null == description
-            ? _value.description
-            : description // ignore: cast_nullable_to_non_nullable
-                  as String,
-        status: null == status
-            ? _value.status
-            : status // ignore: cast_nullable_to_non_nullable
-                  as String,
-        assignee: null == assignee
-            ? _value.assignee
-            : assignee // ignore: cast_nullable_to_non_nullable
-                  as String,
-        lastEdited: null == lastEdited
-            ? _value.lastEdited
-            : lastEdited // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        url: null == url
-            ? _value.url
-            : url // ignore: cast_nullable_to_non_nullable
-                  as String,
-      ),
-    );
+    return _then(_$DailyTaskImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      assignee: null == assignee
+          ? _value.assignee
+          : assignee // ignore: cast_nullable_to_non_nullable
+              as String,
+      lastEdited: null == lastEdited
+          ? _value.lastEdited
+          : lastEdited // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$DailyTaskImpl extends _DailyTask {
-  const _$DailyTaskImpl({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.status,
-    required this.assignee,
-    required this.lastEdited,
-    required this.url,
-  }) : super._();
+  const _$DailyTaskImpl(
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.status,
+      required this.assignee,
+      required this.lastEdited,
+      required this.url})
+      : super._();
 
   @override
   final int id;
@@ -242,15 +232,7 @@ class _$DailyTaskImpl extends _DailyTask {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    name,
-    description,
-    status,
-    assignee,
-    lastEdited,
-    url,
-  );
+      runtimeType, id, name, description, status, assignee, lastEdited, url);
 
   @JsonKey(ignore: true)
   @override
@@ -260,15 +242,14 @@ class _$DailyTaskImpl extends _DailyTask {
 }
 
 abstract class _DailyTask extends DailyTask {
-  const factory _DailyTask({
-    required final int id,
-    required final String name,
-    required final String description,
-    required final String status,
-    required final String assignee,
-    required final DateTime lastEdited,
-    required final String url,
-  }) = _$DailyTaskImpl;
+  const factory _DailyTask(
+      {required final int id,
+      required final String name,
+      required final String description,
+      required final String status,
+      required final String assignee,
+      required final DateTime lastEdited,
+      required final String url}) = _$DailyTaskImpl;
   const _DailyTask._() : super._();
 
   @override
@@ -276,12 +257,15 @@ abstract class _DailyTask extends DailyTask {
   @override
   String get name;
   @override
+
   /// Description as Markdown (converted from the HTML Zentao stores).
   String get description;
   @override
+
   /// Raw Zentao status: `wait`, `doing`, `done`, `closed`, …
   String get status;
   @override
+
   /// Display name of the assignee.
   String get assignee;
   @override
