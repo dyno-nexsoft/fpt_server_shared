@@ -13,6 +13,7 @@ _$HealthImpl _$$HealthImplFromJson(Map<String, dynamic> json) => _$HealthImpl(
       uptimeSeconds: (json['uptime_seconds'] as num).toInt(),
       hostname: json['hostname'] as String,
       remoteDesktopUrl: json['remote_desktop_url'] as String?,
+      devToolsUrl: json['dev_tools_url'] as String?,
     );
 
 Map<String, dynamic> _$$HealthImplToJson(_$HealthImpl instance) {
@@ -31,5 +32,6 @@ Map<String, dynamic> _$$HealthImplToJson(_$HealthImpl instance) {
   }
 
   writeNotNull('remote_desktop_url', instance.remoteDesktopUrl);
+  writeNotNull('dev_tools_url', instance.devToolsUrl);
   return val;
 }

@@ -25,6 +25,12 @@ abstract class Health with _$Health {
     /// which may be an *older* server that never sends this field, and a
     /// required one would make `fromJson` throw there.
     String? remoteDesktopUrl,
+
+    /// A live link into the running bot process's own Dart DevTools, if the
+    /// VM service was up by the time the gateway connected — same nullable
+    /// reasoning as [remoteDesktopUrl], plus the VM service itself being
+    /// disabled or the info call failing.
+    String? devToolsUrl,
   }) = _Health;
 
   factory Health.fromJson(Map<String, dynamic> json) => _$HealthFromJson(json);

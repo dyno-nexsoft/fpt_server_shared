@@ -39,6 +39,12 @@ mixin _$Health {
   /// required one would make `fromJson` throw there.
   String? get remoteDesktopUrl => throw _privateConstructorUsedError;
 
+  /// A live link into the running bot process's own Dart DevTools, if the
+  /// VM service was up by the time the gateway connected — same nullable
+  /// reasoning as [remoteDesktopUrl], plus the VM service itself being
+  /// disabled or the info call failing.
+  String? get devToolsUrl => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HealthCopyWith<Health> get copyWith => throw _privateConstructorUsedError;
@@ -55,7 +61,8 @@ abstract class $HealthCopyWith<$Res> {
       String appVersion,
       int uptimeSeconds,
       String hostname,
-      String? remoteDesktopUrl});
+      String? remoteDesktopUrl,
+      String? devToolsUrl});
 }
 
 /// @nodoc
@@ -77,6 +84,7 @@ class _$HealthCopyWithImpl<$Res, $Val extends Health>
     Object? uptimeSeconds = null,
     Object? hostname = null,
     Object? remoteDesktopUrl = freezed,
+    Object? devToolsUrl = freezed,
   }) {
     return _then(_value.copyWith(
       ok: null == ok
@@ -103,6 +111,10 @@ class _$HealthCopyWithImpl<$Res, $Val extends Health>
           ? _value.remoteDesktopUrl
           : remoteDesktopUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      devToolsUrl: freezed == devToolsUrl
+          ? _value.devToolsUrl
+          : devToolsUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -120,7 +132,8 @@ abstract class _$$HealthImplCopyWith<$Res> implements $HealthCopyWith<$Res> {
       String appVersion,
       int uptimeSeconds,
       String hostname,
-      String? remoteDesktopUrl});
+      String? remoteDesktopUrl,
+      String? devToolsUrl});
 }
 
 /// @nodoc
@@ -140,6 +153,7 @@ class __$$HealthImplCopyWithImpl<$Res>
     Object? uptimeSeconds = null,
     Object? hostname = null,
     Object? remoteDesktopUrl = freezed,
+    Object? devToolsUrl = freezed,
   }) {
     return _then(_$HealthImpl(
       ok: null == ok
@@ -166,6 +180,10 @@ class __$$HealthImplCopyWithImpl<$Res>
           ? _value.remoteDesktopUrl
           : remoteDesktopUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      devToolsUrl: freezed == devToolsUrl
+          ? _value.devToolsUrl
+          : devToolsUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -179,7 +197,8 @@ class _$HealthImpl implements _Health {
       required this.appVersion,
       required this.uptimeSeconds,
       required this.hostname,
-      this.remoteDesktopUrl});
+      this.remoteDesktopUrl,
+      this.devToolsUrl});
 
   factory _$HealthImpl.fromJson(Map<String, dynamic> json) =>
       _$$HealthImplFromJson(json);
@@ -209,9 +228,16 @@ class _$HealthImpl implements _Health {
   @override
   final String? remoteDesktopUrl;
 
+  /// A live link into the running bot process's own Dart DevTools, if the
+  /// VM service was up by the time the gateway connected — same nullable
+  /// reasoning as [remoteDesktopUrl], plus the VM service itself being
+  /// disabled or the info call failing.
+  @override
+  final String? devToolsUrl;
+
   @override
   String toString() {
-    return 'Health(ok: $ok, version: $version, appVersion: $appVersion, uptimeSeconds: $uptimeSeconds, hostname: $hostname, remoteDesktopUrl: $remoteDesktopUrl)';
+    return 'Health(ok: $ok, version: $version, appVersion: $appVersion, uptimeSeconds: $uptimeSeconds, hostname: $hostname, remoteDesktopUrl: $remoteDesktopUrl, devToolsUrl: $devToolsUrl)';
   }
 
   @override
@@ -228,13 +254,15 @@ class _$HealthImpl implements _Health {
             (identical(other.hostname, hostname) ||
                 other.hostname == hostname) &&
             (identical(other.remoteDesktopUrl, remoteDesktopUrl) ||
-                other.remoteDesktopUrl == remoteDesktopUrl));
+                other.remoteDesktopUrl == remoteDesktopUrl) &&
+            (identical(other.devToolsUrl, devToolsUrl) ||
+                other.devToolsUrl == devToolsUrl));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, ok, version, appVersion,
-      uptimeSeconds, hostname, remoteDesktopUrl);
+      uptimeSeconds, hostname, remoteDesktopUrl, devToolsUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -257,7 +285,8 @@ abstract class _Health implements Health {
       required final String appVersion,
       required final int uptimeSeconds,
       required final String hostname,
-      final String? remoteDesktopUrl}) = _$HealthImpl;
+      final String? remoteDesktopUrl,
+      final String? devToolsUrl}) = _$HealthImpl;
 
   factory _Health.fromJson(Map<String, dynamic> json) = _$HealthImpl.fromJson;
 
@@ -285,6 +314,13 @@ abstract class _Health implements Health {
   /// which may be an *older* server that never sends this field, and a
   /// required one would make `fromJson` throw there.
   String? get remoteDesktopUrl;
+  @override
+
+  /// A live link into the running bot process's own Dart DevTools, if the
+  /// VM service was up by the time the gateway connected — same nullable
+  /// reasoning as [remoteDesktopUrl], plus the VM service itself being
+  /// disabled or the info call failing.
+  String? get devToolsUrl;
   @override
   @JsonKey(ignore: true)
   _$$HealthImplCopyWith<_$HealthImpl> get copyWith =>
