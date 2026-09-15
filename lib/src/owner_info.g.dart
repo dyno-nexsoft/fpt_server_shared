@@ -9,9 +9,9 @@ part of 'owner_info.dart';
 _$OwnerInfoImpl _$$OwnerInfoImplFromJson(Map<String, dynamic> json) =>
     _$OwnerInfoImpl(
       id: json['id'] as String,
-      username: json['username'] as String?,
-      displayName: json['display_name'] as String?,
-      avatarUrl: json['avatar_url'] as String?,
+      discord: json['discord'] == null
+          ? null
+          : DiscordUserInfo.fromJson(json['discord'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$OwnerInfoImplToJson(_$OwnerInfoImpl instance) {
@@ -25,8 +25,6 @@ Map<String, dynamic> _$$OwnerInfoImplToJson(_$OwnerInfoImpl instance) {
     }
   }
 
-  writeNotNull('username', instance.username);
-  writeNotNull('display_name', instance.displayName);
-  writeNotNull('avatar_url', instance.avatarUrl);
+  writeNotNull('discord', instance.discord?.toJson());
   return val;
 }

@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'discord_user_info.dart';
 import 'permission.dart';
 
 part 'api_key_info.freezed.dart';
@@ -31,6 +32,10 @@ abstract class ApiKeyInfo with _$ApiKeyInfo {
     /// When this key last successfully authenticated a request — null if it
     /// has never been used since that started being recorded.
     DateTime? lastUsedAt,
+
+    /// The bound Discord account's own display details — null when
+    /// [discordUserId] is unset, or when resolving it failed.
+    DiscordUserInfo? discord,
   }) = _ApiKeyInfo;
 
   const ApiKeyInfo._();

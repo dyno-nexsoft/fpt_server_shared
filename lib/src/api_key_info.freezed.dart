@@ -12,8 +12,7 @@ part of 'api_key_info.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 ApiKeyInfo _$ApiKeyInfoFromJson(Map<String, dynamic> json) {
   return _ApiKeyInfo.fromJson(json);
@@ -44,6 +43,10 @@ mixin _$ApiKeyInfo {
   /// has never been used since that started being recorded.
   DateTime? get lastUsedAt => throw _privateConstructorUsedError;
 
+  /// The bound Discord account's own display details — null when
+  /// [discordUserId] is unset, or when resolving it failed.
+  DiscordUserInfo? get discord => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ApiKeyInfoCopyWith<ApiKeyInfo> get copyWith =>
@@ -53,18 +56,19 @@ mixin _$ApiKeyInfo {
 /// @nodoc
 abstract class $ApiKeyInfoCopyWith<$Res> {
   factory $ApiKeyInfoCopyWith(
-    ApiKeyInfo value,
-    $Res Function(ApiKeyInfo) then,
-  ) = _$ApiKeyInfoCopyWithImpl<$Res, ApiKeyInfo>;
+          ApiKeyInfo value, $Res Function(ApiKeyInfo) then) =
+      _$ApiKeyInfoCopyWithImpl<$Res, ApiKeyInfo>;
   @useResult
-  $Res call({
-    String id,
-    String name,
-    String keyHash,
-    List<String> scopes,
-    @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId,
-    DateTime? lastUsedAt,
-  });
+  $Res call(
+      {String id,
+      String name,
+      String keyHash,
+      List<String> scopes,
+      @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId,
+      DateTime? lastUsedAt,
+      DiscordUserInfo? discord});
+
+  $DiscordUserInfoCopyWith<$Res>? get discord;
 }
 
 /// @nodoc
@@ -86,36 +90,50 @@ class _$ApiKeyInfoCopyWithImpl<$Res, $Val extends ApiKeyInfo>
     Object? scopes = null,
     Object? discordUserId = freezed,
     Object? lastUsedAt = freezed,
+    Object? discord = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            name: null == name
-                ? _value.name
-                : name // ignore: cast_nullable_to_non_nullable
-                      as String,
-            keyHash: null == keyHash
-                ? _value.keyHash
-                : keyHash // ignore: cast_nullable_to_non_nullable
-                      as String,
-            scopes: null == scopes
-                ? _value.scopes
-                : scopes // ignore: cast_nullable_to_non_nullable
-                      as List<String>,
-            discordUserId: freezed == discordUserId
-                ? _value.discordUserId
-                : discordUserId // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            lastUsedAt: freezed == lastUsedAt
-                ? _value.lastUsedAt
-                : lastUsedAt // ignore: cast_nullable_to_non_nullable
-                      as DateTime?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      keyHash: null == keyHash
+          ? _value.keyHash
+          : keyHash // ignore: cast_nullable_to_non_nullable
+              as String,
+      scopes: null == scopes
+          ? _value.scopes
+          : scopes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      discordUserId: freezed == discordUserId
+          ? _value.discordUserId
+          : discordUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastUsedAt: freezed == lastUsedAt
+          ? _value.lastUsedAt
+          : lastUsedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      discord: freezed == discord
+          ? _value.discord
+          : discord // ignore: cast_nullable_to_non_nullable
+              as DiscordUserInfo?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DiscordUserInfoCopyWith<$Res>? get discord {
+    if (_value.discord == null) {
+      return null;
+    }
+
+    return $DiscordUserInfoCopyWith<$Res>(_value.discord!, (value) {
+      return _then(_value.copyWith(discord: value) as $Val);
+    });
   }
 }
 
@@ -123,19 +141,21 @@ class _$ApiKeyInfoCopyWithImpl<$Res, $Val extends ApiKeyInfo>
 abstract class _$$ApiKeyInfoImplCopyWith<$Res>
     implements $ApiKeyInfoCopyWith<$Res> {
   factory _$$ApiKeyInfoImplCopyWith(
-    _$ApiKeyInfoImpl value,
-    $Res Function(_$ApiKeyInfoImpl) then,
-  ) = __$$ApiKeyInfoImplCopyWithImpl<$Res>;
+          _$ApiKeyInfoImpl value, $Res Function(_$ApiKeyInfoImpl) then) =
+      __$$ApiKeyInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    String name,
-    String keyHash,
-    List<String> scopes,
-    @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId,
-    DateTime? lastUsedAt,
-  });
+  $Res call(
+      {String id,
+      String name,
+      String keyHash,
+      List<String> scopes,
+      @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId,
+      DateTime? lastUsedAt,
+      DiscordUserInfo? discord});
+
+  @override
+  $DiscordUserInfoCopyWith<$Res>? get discord;
 }
 
 /// @nodoc
@@ -143,9 +163,8 @@ class __$$ApiKeyInfoImplCopyWithImpl<$Res>
     extends _$ApiKeyInfoCopyWithImpl<$Res, _$ApiKeyInfoImpl>
     implements _$$ApiKeyInfoImplCopyWith<$Res> {
   __$$ApiKeyInfoImplCopyWithImpl(
-    _$ApiKeyInfoImpl _value,
-    $Res Function(_$ApiKeyInfoImpl) _then,
-  ) : super(_value, _then);
+      _$ApiKeyInfoImpl _value, $Res Function(_$ApiKeyInfoImpl) _then)
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -156,50 +175,54 @@ class __$$ApiKeyInfoImplCopyWithImpl<$Res>
     Object? scopes = null,
     Object? discordUserId = freezed,
     Object? lastUsedAt = freezed,
+    Object? discord = freezed,
   }) {
-    return _then(
-      _$ApiKeyInfoImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        name: null == name
-            ? _value.name
-            : name // ignore: cast_nullable_to_non_nullable
-                  as String,
-        keyHash: null == keyHash
-            ? _value.keyHash
-            : keyHash // ignore: cast_nullable_to_non_nullable
-                  as String,
-        scopes: null == scopes
-            ? _value._scopes
-            : scopes // ignore: cast_nullable_to_non_nullable
-                  as List<String>,
-        discordUserId: freezed == discordUserId
-            ? _value.discordUserId
-            : discordUserId // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        lastUsedAt: freezed == lastUsedAt
-            ? _value.lastUsedAt
-            : lastUsedAt // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
-      ),
-    );
+    return _then(_$ApiKeyInfoImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      keyHash: null == keyHash
+          ? _value.keyHash
+          : keyHash // ignore: cast_nullable_to_non_nullable
+              as String,
+      scopes: null == scopes
+          ? _value._scopes
+          : scopes // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      discordUserId: freezed == discordUserId
+          ? _value.discordUserId
+          : discordUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastUsedAt: freezed == lastUsedAt
+          ? _value.lastUsedAt
+          : lastUsedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      discord: freezed == discord
+          ? _value.discord
+          : discord // ignore: cast_nullable_to_non_nullable
+              as DiscordUserInfo?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ApiKeyInfoImpl extends _ApiKeyInfo {
-  const _$ApiKeyInfoImpl({
-    required this.id,
-    required this.name,
-    required this.keyHash,
-    final List<String> scopes = const [],
-    @JsonKey(fromJson: _discordUserIdFromJson) this.discordUserId,
-    this.lastUsedAt,
-  }) : _scopes = scopes,
-       super._();
+  const _$ApiKeyInfoImpl(
+      {required this.id,
+      required this.name,
+      required this.keyHash,
+      final List<String> scopes = const [],
+      @JsonKey(fromJson: _discordUserIdFromJson) this.discordUserId,
+      this.lastUsedAt,
+      this.discord})
+      : _scopes = scopes,
+        super._();
 
   factory _$ApiKeyInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ApiKeyInfoImplFromJson(json);
@@ -247,9 +270,14 @@ class _$ApiKeyInfoImpl extends _ApiKeyInfo {
   @override
   final DateTime? lastUsedAt;
 
+  /// The bound Discord account's own display details — null when
+  /// [discordUserId] is unset, or when resolving it failed.
+  @override
+  final DiscordUserInfo? discord;
+
   @override
   String toString() {
-    return 'ApiKeyInfo(id: $id, name: $name, keyHash: $keyHash, scopes: $scopes, discordUserId: $discordUserId, lastUsedAt: $lastUsedAt)';
+    return 'ApiKeyInfo(id: $id, name: $name, keyHash: $keyHash, scopes: $scopes, discordUserId: $discordUserId, lastUsedAt: $lastUsedAt, discord: $discord)';
   }
 
   @override
@@ -264,20 +292,21 @@ class _$ApiKeyInfoImpl extends _ApiKeyInfo {
             (identical(other.discordUserId, discordUserId) ||
                 other.discordUserId == discordUserId) &&
             (identical(other.lastUsedAt, lastUsedAt) ||
-                other.lastUsedAt == lastUsedAt));
+                other.lastUsedAt == lastUsedAt) &&
+            (identical(other.discord, discord) || other.discord == discord));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    id,
-    name,
-    keyHash,
-    const DeepCollectionEquality().hash(_scopes),
-    discordUserId,
-    lastUsedAt,
-  );
+      runtimeType,
+      id,
+      name,
+      keyHash,
+      const DeepCollectionEquality().hash(_scopes),
+      discordUserId,
+      lastUsedAt,
+      discord);
 
   @JsonKey(ignore: true)
   @override
@@ -287,19 +316,21 @@ class _$ApiKeyInfoImpl extends _ApiKeyInfo {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ApiKeyInfoImplToJson(this);
+    return _$$ApiKeyInfoImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _ApiKeyInfo extends ApiKeyInfo {
-  const factory _ApiKeyInfo({
-    required final String id,
-    required final String name,
-    required final String keyHash,
-    final List<String> scopes,
-    @JsonKey(fromJson: _discordUserIdFromJson) final String? discordUserId,
-    final DateTime? lastUsedAt,
-  }) = _$ApiKeyInfoImpl;
+  const factory _ApiKeyInfo(
+      {required final String id,
+      required final String name,
+      required final String keyHash,
+      final List<String> scopes,
+      @JsonKey(fromJson: _discordUserIdFromJson) final String? discordUserId,
+      final DateTime? lastUsedAt,
+      final DiscordUserInfo? discord}) = _$ApiKeyInfoImpl;
   const _ApiKeyInfo._() : super._();
 
   factory _ApiKeyInfo.fromJson(Map<String, dynamic> json) =
@@ -312,6 +343,7 @@ abstract class _ApiKeyInfo extends ApiKeyInfo {
   @override
   String get keyHash;
   @override
+
   /// `List<String>`, not `List<Permission>`: each entry is a `Permission`'s
   /// Dart-convention `.name` (`invokeDangerous`, not [Permission.toWire]'s
   /// `invoke_dangerous`) — this is how API key scopes are actually stored
@@ -321,15 +353,22 @@ abstract class _ApiKeyInfo extends ApiKeyInfo {
   /// silently disappearing.
   List<String> get scopes;
   @override
+
   /// A Discord snowflake, always read as a string — routinely exceeds the
   /// 2^53 precision limit of a browser's JS engine. This reader
   /// additionally tolerates a raw JSON number for older persisted records.
   @JsonKey(fromJson: _discordUserIdFromJson)
   String? get discordUserId;
   @override
+
   /// When this key last successfully authenticated a request — null if it
   /// has never been used since that started being recorded.
   DateTime? get lastUsedAt;
+  @override
+
+  /// The bound Discord account's own display details — null when
+  /// [discordUserId] is unset, or when resolving it failed.
+  DiscordUserInfo? get discord;
   @override
   @JsonKey(ignore: true)
   _$$ApiKeyInfoImplCopyWith<_$ApiKeyInfoImpl> get copyWith =>

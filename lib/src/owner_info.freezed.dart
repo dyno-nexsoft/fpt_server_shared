@@ -21,9 +21,7 @@ OwnerInfo _$OwnerInfoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$OwnerInfo {
   String get id => throw _privateConstructorUsedError;
-  String? get username => throw _privateConstructorUsedError;
-  String? get displayName => throw _privateConstructorUsedError;
-  String? get avatarUrl => throw _privateConstructorUsedError;
+  DiscordUserInfo? get discord => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,8 +34,9 @@ abstract class $OwnerInfoCopyWith<$Res> {
   factory $OwnerInfoCopyWith(OwnerInfo value, $Res Function(OwnerInfo) then) =
       _$OwnerInfoCopyWithImpl<$Res, OwnerInfo>;
   @useResult
-  $Res call(
-      {String id, String? username, String? displayName, String? avatarUrl});
+  $Res call({String id, DiscordUserInfo? discord});
+
+  $DiscordUserInfoCopyWith<$Res>? get discord;
 }
 
 /// @nodoc
@@ -54,28 +53,30 @@ class _$OwnerInfoCopyWithImpl<$Res, $Val extends OwnerInfo>
   @override
   $Res call({
     Object? id = null,
-    Object? username = freezed,
-    Object? displayName = freezed,
-    Object? avatarUrl = freezed,
+    Object? discord = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: freezed == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      discord: freezed == discord
+          ? _value.discord
+          : discord // ignore: cast_nullable_to_non_nullable
+              as DiscordUserInfo?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $DiscordUserInfoCopyWith<$Res>? get discord {
+    if (_value.discord == null) {
+      return null;
+    }
+
+    return $DiscordUserInfoCopyWith<$Res>(_value.discord!, (value) {
+      return _then(_value.copyWith(discord: value) as $Val);
+    });
   }
 }
 
@@ -87,8 +88,10 @@ abstract class _$$OwnerInfoImplCopyWith<$Res>
       __$$OwnerInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String id, String? username, String? displayName, String? avatarUrl});
+  $Res call({String id, DiscordUserInfo? discord});
+
+  @override
+  $DiscordUserInfoCopyWith<$Res>? get discord;
 }
 
 /// @nodoc
@@ -103,27 +106,17 @@ class __$$OwnerInfoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? username = freezed,
-    Object? displayName = freezed,
-    Object? avatarUrl = freezed,
+    Object? discord = freezed,
   }) {
     return _then(_$OwnerInfoImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      displayName: freezed == displayName
-          ? _value.displayName
-          : displayName // ignore: cast_nullable_to_non_nullable
-              as String?,
-      avatarUrl: freezed == avatarUrl
-          ? _value.avatarUrl
-          : avatarUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
+      discord: freezed == discord
+          ? _value.discord
+          : discord // ignore: cast_nullable_to_non_nullable
+              as DiscordUserInfo?,
     ));
   }
 }
@@ -131,9 +124,7 @@ class __$$OwnerInfoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$OwnerInfoImpl extends _OwnerInfo {
-  const _$OwnerInfoImpl(
-      {required this.id, this.username, this.displayName, this.avatarUrl})
-      : super._();
+  const _$OwnerInfoImpl({required this.id, this.discord}) : super._();
 
   factory _$OwnerInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$OwnerInfoImplFromJson(json);
@@ -141,15 +132,11 @@ class _$OwnerInfoImpl extends _OwnerInfo {
   @override
   final String id;
   @override
-  final String? username;
-  @override
-  final String? displayName;
-  @override
-  final String? avatarUrl;
+  final DiscordUserInfo? discord;
 
   @override
   String toString() {
-    return 'OwnerInfo(id: $id, username: $username, displayName: $displayName, avatarUrl: $avatarUrl)';
+    return 'OwnerInfo(id: $id, discord: $discord)';
   }
 
   @override
@@ -158,18 +145,12 @@ class _$OwnerInfoImpl extends _OwnerInfo {
         (other.runtimeType == runtimeType &&
             other is _$OwnerInfoImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            (identical(other.displayName, displayName) ||
-                other.displayName == displayName) &&
-            (identical(other.avatarUrl, avatarUrl) ||
-                other.avatarUrl == avatarUrl));
+            (identical(other.discord, discord) || other.discord == discord));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, username, displayName, avatarUrl);
+  int get hashCode => Object.hash(runtimeType, id, discord);
 
   @JsonKey(ignore: true)
   @override
@@ -188,9 +169,7 @@ class _$OwnerInfoImpl extends _OwnerInfo {
 abstract class _OwnerInfo extends OwnerInfo {
   const factory _OwnerInfo(
       {required final String id,
-      final String? username,
-      final String? displayName,
-      final String? avatarUrl}) = _$OwnerInfoImpl;
+      final DiscordUserInfo? discord}) = _$OwnerInfoImpl;
   const _OwnerInfo._() : super._();
 
   factory _OwnerInfo.fromJson(Map<String, dynamic> json) =
@@ -199,11 +178,7 @@ abstract class _OwnerInfo extends OwnerInfo {
   @override
   String get id;
   @override
-  String? get username;
-  @override
-  String? get displayName;
-  @override
-  String? get avatarUrl;
+  DiscordUserInfo? get discord;
   @override
   @JsonKey(ignore: true)
   _$$OwnerInfoImplCopyWith<_$OwnerInfoImpl> get copyWith =>

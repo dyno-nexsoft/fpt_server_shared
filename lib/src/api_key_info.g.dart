@@ -11,8 +11,7 @@ _$ApiKeyInfoImpl _$$ApiKeyInfoImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       name: json['name'] as String,
       keyHash: json['key_hash'] as String,
-      scopes:
-          (json['scopes'] as List<dynamic>?)
+      scopes: (json['scopes'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           const [],
@@ -20,6 +19,9 @@ _$ApiKeyInfoImpl _$$ApiKeyInfoImplFromJson(Map<String, dynamic> json) =>
       lastUsedAt: json['last_used_at'] == null
           ? null
           : DateTime.parse(json['last_used_at'] as String),
+      discord: json['discord'] == null
+          ? null
+          : DiscordUserInfo.fromJson(json['discord'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$ApiKeyInfoImplToJson(_$ApiKeyInfoImpl instance) {
@@ -38,5 +40,6 @@ Map<String, dynamic> _$$ApiKeyInfoImplToJson(_$ApiKeyInfoImpl instance) {
 
   writeNotNull('discord_user_id', instance.discordUserId);
   writeNotNull('last_used_at', instance.lastUsedAt?.toIso8601String());
+  writeNotNull('discord', instance.discord?.toJson());
   return val;
 }
