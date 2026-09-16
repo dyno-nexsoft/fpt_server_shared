@@ -24,6 +24,16 @@ abstract class Job with _$Job {
     @Default({}) Map<String, dynamic> actionParams,
     @Default({}) Map<String, dynamic> environments,
     String? createdBy,
+
+    /// Stable identity of whoever triggered this — an API key's `id`, a
+    /// Discord user id, or both null for a cron/system-triggered job.
+    /// [createdBy] is a display name and cannot be compared for
+    /// authorization (it isn't unique and can change); these are what
+    /// `ci.job.delete` actually checks a caller against to allow deleting
+    /// one's own build without `admin`. A string — see `Actor.discordUserId`'s
+    /// doc comment for why a Discord snowflake is never a raw `int`.
+    String? createdByApiKeyId,
+    String? createdByDiscordUserId,
     int? artifactKey,
     @Default(false) bool promoted,
     @Default(false) bool announce,

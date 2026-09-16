@@ -12,8 +12,7 @@ part of 'job.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Job _$JobFromJson(Map<String, dynamic> json) {
   return _Job.fromJson(json);
@@ -29,6 +28,16 @@ mixin _$Job {
   Map<String, dynamic> get actionParams => throw _privateConstructorUsedError;
   Map<String, dynamic> get environments => throw _privateConstructorUsedError;
   String? get createdBy => throw _privateConstructorUsedError;
+
+  /// Stable identity of whoever triggered this — an API key's `id`, a
+  /// Discord user id, or both null for a cron/system-triggered job.
+  /// [createdBy] is a display name and cannot be compared for
+  /// authorization (it isn't unique and can change); these are what
+  /// `ci.job.delete` actually checks a caller against to allow deleting
+  /// one's own build without `admin`. A string — see `Actor.discordUserId`'s
+  /// doc comment for why a Discord snowflake is never a raw `int`.
+  String? get createdByApiKeyId => throw _privateConstructorUsedError;
+  String? get createdByDiscordUserId => throw _privateConstructorUsedError;
   int? get artifactKey => throw _privateConstructorUsedError;
   bool get promoted => throw _privateConstructorUsedError;
   bool get announce => throw _privateConstructorUsedError;
@@ -65,30 +74,31 @@ abstract class $JobCopyWith<$Res> {
   factory $JobCopyWith(Job value, $Res Function(Job) then) =
       _$JobCopyWithImpl<$Res, Job>;
   @useResult
-  $Res call({
-    String id,
-    @JobStateConverter() JobState state,
-    String command,
-    String? actionName,
-    Map<String, dynamic> actionParams,
-    Map<String, dynamic> environments,
-    String? createdBy,
-    int? artifactKey,
-    bool promoted,
-    bool announce,
-    DateTime createdAt,
-    DateTime? startedAt,
-    DateTime? finishedAt,
-    int? exitCode,
-    String? lastLine,
-    int lastSeq,
-    DiscordMessageRef? discord,
-    String? resumedFrom,
-    String? cancelledBy,
-    String? logUrl,
-    List<String> warnings,
-    String? message,
-  });
+  $Res call(
+      {String id,
+      @JobStateConverter() JobState state,
+      String command,
+      String? actionName,
+      Map<String, dynamic> actionParams,
+      Map<String, dynamic> environments,
+      String? createdBy,
+      String? createdByApiKeyId,
+      String? createdByDiscordUserId,
+      int? artifactKey,
+      bool promoted,
+      bool announce,
+      DateTime createdAt,
+      DateTime? startedAt,
+      DateTime? finishedAt,
+      int? exitCode,
+      String? lastLine,
+      int lastSeq,
+      DiscordMessageRef? discord,
+      String? resumedFrom,
+      String? cancelledBy,
+      String? logUrl,
+      List<String> warnings,
+      String? message});
 
   $DiscordMessageRefCopyWith<$Res>? get discord;
 }
@@ -112,6 +122,8 @@ class _$JobCopyWithImpl<$Res, $Val extends Job> implements $JobCopyWith<$Res> {
     Object? actionParams = null,
     Object? environments = null,
     Object? createdBy = freezed,
+    Object? createdByApiKeyId = freezed,
+    Object? createdByDiscordUserId = freezed,
     Object? artifactKey = freezed,
     Object? promoted = null,
     Object? announce = null,
@@ -128,99 +140,104 @@ class _$JobCopyWithImpl<$Res, $Val extends Job> implements $JobCopyWith<$Res> {
     Object? warnings = null,
     Object? message = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            id: null == id
-                ? _value.id
-                : id // ignore: cast_nullable_to_non_nullable
-                      as String,
-            state: null == state
-                ? _value.state
-                : state // ignore: cast_nullable_to_non_nullable
-                      as JobState,
-            command: null == command
-                ? _value.command
-                : command // ignore: cast_nullable_to_non_nullable
-                      as String,
-            actionName: freezed == actionName
-                ? _value.actionName
-                : actionName // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            actionParams: null == actionParams
-                ? _value.actionParams
-                : actionParams // ignore: cast_nullable_to_non_nullable
-                      as Map<String, dynamic>,
-            environments: null == environments
-                ? _value.environments
-                : environments // ignore: cast_nullable_to_non_nullable
-                      as Map<String, dynamic>,
-            createdBy: freezed == createdBy
-                ? _value.createdBy
-                : createdBy // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            artifactKey: freezed == artifactKey
-                ? _value.artifactKey
-                : artifactKey // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            promoted: null == promoted
-                ? _value.promoted
-                : promoted // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            announce: null == announce
-                ? _value.announce
-                : announce // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            createdAt: null == createdAt
-                ? _value.createdAt
-                : createdAt // ignore: cast_nullable_to_non_nullable
-                      as DateTime,
-            startedAt: freezed == startedAt
-                ? _value.startedAt
-                : startedAt // ignore: cast_nullable_to_non_nullable
-                      as DateTime?,
-            finishedAt: freezed == finishedAt
-                ? _value.finishedAt
-                : finishedAt // ignore: cast_nullable_to_non_nullable
-                      as DateTime?,
-            exitCode: freezed == exitCode
-                ? _value.exitCode
-                : exitCode // ignore: cast_nullable_to_non_nullable
-                      as int?,
-            lastLine: freezed == lastLine
-                ? _value.lastLine
-                : lastLine // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            lastSeq: null == lastSeq
-                ? _value.lastSeq
-                : lastSeq // ignore: cast_nullable_to_non_nullable
-                      as int,
-            discord: freezed == discord
-                ? _value.discord
-                : discord // ignore: cast_nullable_to_non_nullable
-                      as DiscordMessageRef?,
-            resumedFrom: freezed == resumedFrom
-                ? _value.resumedFrom
-                : resumedFrom // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            cancelledBy: freezed == cancelledBy
-                ? _value.cancelledBy
-                : cancelledBy // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            logUrl: freezed == logUrl
-                ? _value.logUrl
-                : logUrl // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            warnings: null == warnings
-                ? _value.warnings
-                : warnings // ignore: cast_nullable_to_non_nullable
-                      as List<String>,
-            message: freezed == message
-                ? _value.message
-                : message // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as JobState,
+      command: null == command
+          ? _value.command
+          : command // ignore: cast_nullable_to_non_nullable
+              as String,
+      actionName: freezed == actionName
+          ? _value.actionName
+          : actionName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      actionParams: null == actionParams
+          ? _value.actionParams
+          : actionParams // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      environments: null == environments
+          ? _value.environments
+          : environments // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdByApiKeyId: freezed == createdByApiKeyId
+          ? _value.createdByApiKeyId
+          : createdByApiKeyId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdByDiscordUserId: freezed == createdByDiscordUserId
+          ? _value.createdByDiscordUserId
+          : createdByDiscordUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      artifactKey: freezed == artifactKey
+          ? _value.artifactKey
+          : artifactKey // ignore: cast_nullable_to_non_nullable
+              as int?,
+      promoted: null == promoted
+          ? _value.promoted
+          : promoted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      announce: null == announce
+          ? _value.announce
+          : announce // ignore: cast_nullable_to_non_nullable
+              as bool,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startedAt: freezed == startedAt
+          ? _value.startedAt
+          : startedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      finishedAt: freezed == finishedAt
+          ? _value.finishedAt
+          : finishedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      exitCode: freezed == exitCode
+          ? _value.exitCode
+          : exitCode // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastLine: freezed == lastLine
+          ? _value.lastLine
+          : lastLine // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastSeq: null == lastSeq
+          ? _value.lastSeq
+          : lastSeq // ignore: cast_nullable_to_non_nullable
+              as int,
+      discord: freezed == discord
+          ? _value.discord
+          : discord // ignore: cast_nullable_to_non_nullable
+              as DiscordMessageRef?,
+      resumedFrom: freezed == resumedFrom
+          ? _value.resumedFrom
+          : resumedFrom // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cancelledBy: freezed == cancelledBy
+          ? _value.cancelledBy
+          : cancelledBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      logUrl: freezed == logUrl
+          ? _value.logUrl
+          : logUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      warnings: null == warnings
+          ? _value.warnings
+          : warnings // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 
   @override
@@ -242,30 +259,31 @@ abstract class _$$JobImplCopyWith<$Res> implements $JobCopyWith<$Res> {
       __$$JobImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    String id,
-    @JobStateConverter() JobState state,
-    String command,
-    String? actionName,
-    Map<String, dynamic> actionParams,
-    Map<String, dynamic> environments,
-    String? createdBy,
-    int? artifactKey,
-    bool promoted,
-    bool announce,
-    DateTime createdAt,
-    DateTime? startedAt,
-    DateTime? finishedAt,
-    int? exitCode,
-    String? lastLine,
-    int lastSeq,
-    DiscordMessageRef? discord,
-    String? resumedFrom,
-    String? cancelledBy,
-    String? logUrl,
-    List<String> warnings,
-    String? message,
-  });
+  $Res call(
+      {String id,
+      @JobStateConverter() JobState state,
+      String command,
+      String? actionName,
+      Map<String, dynamic> actionParams,
+      Map<String, dynamic> environments,
+      String? createdBy,
+      String? createdByApiKeyId,
+      String? createdByDiscordUserId,
+      int? artifactKey,
+      bool promoted,
+      bool announce,
+      DateTime createdAt,
+      DateTime? startedAt,
+      DateTime? finishedAt,
+      int? exitCode,
+      String? lastLine,
+      int lastSeq,
+      DiscordMessageRef? discord,
+      String? resumedFrom,
+      String? cancelledBy,
+      String? logUrl,
+      List<String> warnings,
+      String? message});
 
   @override
   $DiscordMessageRefCopyWith<$Res>? get discord;
@@ -275,7 +293,7 @@ abstract class _$$JobImplCopyWith<$Res> implements $JobCopyWith<$Res> {
 class __$$JobImplCopyWithImpl<$Res> extends _$JobCopyWithImpl<$Res, _$JobImpl>
     implements _$$JobImplCopyWith<$Res> {
   __$$JobImplCopyWithImpl(_$JobImpl _value, $Res Function(_$JobImpl) _then)
-    : super(_value, _then);
+      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
@@ -287,6 +305,8 @@ class __$$JobImplCopyWithImpl<$Res> extends _$JobCopyWithImpl<$Res, _$JobImpl>
     Object? actionParams = null,
     Object? environments = null,
     Object? createdBy = freezed,
+    Object? createdByApiKeyId = freezed,
+    Object? createdByDiscordUserId = freezed,
     Object? artifactKey = freezed,
     Object? promoted = null,
     Object? announce = null,
@@ -303,131 +323,139 @@ class __$$JobImplCopyWithImpl<$Res> extends _$JobCopyWithImpl<$Res, _$JobImpl>
     Object? warnings = null,
     Object? message = freezed,
   }) {
-    return _then(
-      _$JobImpl(
-        id: null == id
-            ? _value.id
-            : id // ignore: cast_nullable_to_non_nullable
-                  as String,
-        state: null == state
-            ? _value.state
-            : state // ignore: cast_nullable_to_non_nullable
-                  as JobState,
-        command: null == command
-            ? _value.command
-            : command // ignore: cast_nullable_to_non_nullable
-                  as String,
-        actionName: freezed == actionName
-            ? _value.actionName
-            : actionName // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        actionParams: null == actionParams
-            ? _value._actionParams
-            : actionParams // ignore: cast_nullable_to_non_nullable
-                  as Map<String, dynamic>,
-        environments: null == environments
-            ? _value._environments
-            : environments // ignore: cast_nullable_to_non_nullable
-                  as Map<String, dynamic>,
-        createdBy: freezed == createdBy
-            ? _value.createdBy
-            : createdBy // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        artifactKey: freezed == artifactKey
-            ? _value.artifactKey
-            : artifactKey // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        promoted: null == promoted
-            ? _value.promoted
-            : promoted // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        announce: null == announce
-            ? _value.announce
-            : announce // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        createdAt: null == createdAt
-            ? _value.createdAt
-            : createdAt // ignore: cast_nullable_to_non_nullable
-                  as DateTime,
-        startedAt: freezed == startedAt
-            ? _value.startedAt
-            : startedAt // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
-        finishedAt: freezed == finishedAt
-            ? _value.finishedAt
-            : finishedAt // ignore: cast_nullable_to_non_nullable
-                  as DateTime?,
-        exitCode: freezed == exitCode
-            ? _value.exitCode
-            : exitCode // ignore: cast_nullable_to_non_nullable
-                  as int?,
-        lastLine: freezed == lastLine
-            ? _value.lastLine
-            : lastLine // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        lastSeq: null == lastSeq
-            ? _value.lastSeq
-            : lastSeq // ignore: cast_nullable_to_non_nullable
-                  as int,
-        discord: freezed == discord
-            ? _value.discord
-            : discord // ignore: cast_nullable_to_non_nullable
-                  as DiscordMessageRef?,
-        resumedFrom: freezed == resumedFrom
-            ? _value.resumedFrom
-            : resumedFrom // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        cancelledBy: freezed == cancelledBy
-            ? _value.cancelledBy
-            : cancelledBy // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        logUrl: freezed == logUrl
-            ? _value.logUrl
-            : logUrl // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        warnings: null == warnings
-            ? _value._warnings
-            : warnings // ignore: cast_nullable_to_non_nullable
-                  as List<String>,
-        message: freezed == message
-            ? _value.message
-            : message // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$JobImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      state: null == state
+          ? _value.state
+          : state // ignore: cast_nullable_to_non_nullable
+              as JobState,
+      command: null == command
+          ? _value.command
+          : command // ignore: cast_nullable_to_non_nullable
+              as String,
+      actionName: freezed == actionName
+          ? _value.actionName
+          : actionName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      actionParams: null == actionParams
+          ? _value._actionParams
+          : actionParams // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      environments: null == environments
+          ? _value._environments
+          : environments // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>,
+      createdBy: freezed == createdBy
+          ? _value.createdBy
+          : createdBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdByApiKeyId: freezed == createdByApiKeyId
+          ? _value.createdByApiKeyId
+          : createdByApiKeyId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      createdByDiscordUserId: freezed == createdByDiscordUserId
+          ? _value.createdByDiscordUserId
+          : createdByDiscordUserId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      artifactKey: freezed == artifactKey
+          ? _value.artifactKey
+          : artifactKey // ignore: cast_nullable_to_non_nullable
+              as int?,
+      promoted: null == promoted
+          ? _value.promoted
+          : promoted // ignore: cast_nullable_to_non_nullable
+              as bool,
+      announce: null == announce
+          ? _value.announce
+          : announce // ignore: cast_nullable_to_non_nullable
+              as bool,
+      createdAt: null == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      startedAt: freezed == startedAt
+          ? _value.startedAt
+          : startedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      finishedAt: freezed == finishedAt
+          ? _value.finishedAt
+          : finishedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      exitCode: freezed == exitCode
+          ? _value.exitCode
+          : exitCode // ignore: cast_nullable_to_non_nullable
+              as int?,
+      lastLine: freezed == lastLine
+          ? _value.lastLine
+          : lastLine // ignore: cast_nullable_to_non_nullable
+              as String?,
+      lastSeq: null == lastSeq
+          ? _value.lastSeq
+          : lastSeq // ignore: cast_nullable_to_non_nullable
+              as int,
+      discord: freezed == discord
+          ? _value.discord
+          : discord // ignore: cast_nullable_to_non_nullable
+              as DiscordMessageRef?,
+      resumedFrom: freezed == resumedFrom
+          ? _value.resumedFrom
+          : resumedFrom // ignore: cast_nullable_to_non_nullable
+              as String?,
+      cancelledBy: freezed == cancelledBy
+          ? _value.cancelledBy
+          : cancelledBy // ignore: cast_nullable_to_non_nullable
+              as String?,
+      logUrl: freezed == logUrl
+          ? _value.logUrl
+          : logUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      warnings: null == warnings
+          ? _value._warnings
+          : warnings // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$JobImpl extends _Job {
-  const _$JobImpl({
-    required this.id,
-    @JobStateConverter() required this.state,
-    required this.command,
-    this.actionName,
-    final Map<String, dynamic> actionParams = const {},
-    final Map<String, dynamic> environments = const {},
-    this.createdBy,
-    this.artifactKey,
-    this.promoted = false,
-    this.announce = false,
-    required this.createdAt,
-    this.startedAt,
-    this.finishedAt,
-    this.exitCode,
-    this.lastLine,
-    this.lastSeq = 0,
-    this.discord,
-    this.resumedFrom,
-    this.cancelledBy,
-    this.logUrl,
-    final List<String> warnings = const [],
-    this.message,
-  }) : _actionParams = actionParams,
-       _environments = environments,
-       _warnings = warnings,
-       super._();
+  const _$JobImpl(
+      {required this.id,
+      @JobStateConverter() required this.state,
+      required this.command,
+      this.actionName,
+      final Map<String, dynamic> actionParams = const {},
+      final Map<String, dynamic> environments = const {},
+      this.createdBy,
+      this.createdByApiKeyId,
+      this.createdByDiscordUserId,
+      this.artifactKey,
+      this.promoted = false,
+      this.announce = false,
+      required this.createdAt,
+      this.startedAt,
+      this.finishedAt,
+      this.exitCode,
+      this.lastLine,
+      this.lastSeq = 0,
+      this.discord,
+      this.resumedFrom,
+      this.cancelledBy,
+      this.logUrl,
+      final List<String> warnings = const [],
+      this.message})
+      : _actionParams = actionParams,
+        _environments = environments,
+        _warnings = warnings,
+        super._();
 
   factory _$JobImpl.fromJson(Map<String, dynamic> json) =>
       _$$JobImplFromJson(json);
@@ -461,6 +489,18 @@ class _$JobImpl extends _Job {
 
   @override
   final String? createdBy;
+
+  /// Stable identity of whoever triggered this — an API key's `id`, a
+  /// Discord user id, or both null for a cron/system-triggered job.
+  /// [createdBy] is a display name and cannot be compared for
+  /// authorization (it isn't unique and can change); these are what
+  /// `ci.job.delete` actually checks a caller against to allow deleting
+  /// one's own build without `admin`. A string — see `Actor.discordUserId`'s
+  /// doc comment for why a Discord snowflake is never a raw `int`.
+  @override
+  final String? createdByApiKeyId;
+  @override
+  final String? createdByDiscordUserId;
   @override
   final int? artifactKey;
   @override
@@ -518,7 +558,7 @@ class _$JobImpl extends _Job {
 
   @override
   String toString() {
-    return 'Job(id: $id, state: $state, command: $command, actionName: $actionName, actionParams: $actionParams, environments: $environments, createdBy: $createdBy, artifactKey: $artifactKey, promoted: $promoted, announce: $announce, createdAt: $createdAt, startedAt: $startedAt, finishedAt: $finishedAt, exitCode: $exitCode, lastLine: $lastLine, lastSeq: $lastSeq, discord: $discord, resumedFrom: $resumedFrom, cancelledBy: $cancelledBy, logUrl: $logUrl, warnings: $warnings, message: $message)';
+    return 'Job(id: $id, state: $state, command: $command, actionName: $actionName, actionParams: $actionParams, environments: $environments, createdBy: $createdBy, createdByApiKeyId: $createdByApiKeyId, createdByDiscordUserId: $createdByDiscordUserId, artifactKey: $artifactKey, promoted: $promoted, announce: $announce, createdAt: $createdAt, startedAt: $startedAt, finishedAt: $finishedAt, exitCode: $exitCode, lastLine: $lastLine, lastSeq: $lastSeq, discord: $discord, resumedFrom: $resumedFrom, cancelledBy: $cancelledBy, logUrl: $logUrl, warnings: $warnings, message: $message)';
   }
 
   @override
@@ -531,16 +571,16 @@ class _$JobImpl extends _Job {
             (identical(other.command, command) || other.command == command) &&
             (identical(other.actionName, actionName) ||
                 other.actionName == actionName) &&
-            const DeepCollectionEquality().equals(
-              other._actionParams,
-              _actionParams,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other._environments,
-              _environments,
-            ) &&
+            const DeepCollectionEquality()
+                .equals(other._actionParams, _actionParams) &&
+            const DeepCollectionEquality()
+                .equals(other._environments, _environments) &&
             (identical(other.createdBy, createdBy) ||
                 other.createdBy == createdBy) &&
+            (identical(other.createdByApiKeyId, createdByApiKeyId) ||
+                other.createdByApiKeyId == createdByApiKeyId) &&
+            (identical(other.createdByDiscordUserId, createdByDiscordUserId) ||
+                other.createdByDiscordUserId == createdByDiscordUserId) &&
             (identical(other.artifactKey, artifactKey) ||
                 other.artifactKey == artifactKey) &&
             (identical(other.promoted, promoted) ||
@@ -571,30 +611,32 @@ class _$JobImpl extends _Job {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
-    runtimeType,
-    id,
-    state,
-    command,
-    actionName,
-    const DeepCollectionEquality().hash(_actionParams),
-    const DeepCollectionEquality().hash(_environments),
-    createdBy,
-    artifactKey,
-    promoted,
-    announce,
-    createdAt,
-    startedAt,
-    finishedAt,
-    exitCode,
-    lastLine,
-    lastSeq,
-    discord,
-    resumedFrom,
-    cancelledBy,
-    logUrl,
-    const DeepCollectionEquality().hash(_warnings),
-    message,
-  ]);
+        runtimeType,
+        id,
+        state,
+        command,
+        actionName,
+        const DeepCollectionEquality().hash(_actionParams),
+        const DeepCollectionEquality().hash(_environments),
+        createdBy,
+        createdByApiKeyId,
+        createdByDiscordUserId,
+        artifactKey,
+        promoted,
+        announce,
+        createdAt,
+        startedAt,
+        finishedAt,
+        exitCode,
+        lastLine,
+        lastSeq,
+        discord,
+        resumedFrom,
+        cancelledBy,
+        logUrl,
+        const DeepCollectionEquality().hash(_warnings),
+        message
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -604,35 +646,38 @@ class _$JobImpl extends _Job {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$JobImplToJson(this);
+    return _$$JobImplToJson(
+      this,
+    );
   }
 }
 
 abstract class _Job extends Job {
-  const factory _Job({
-    required final String id,
-    @JobStateConverter() required final JobState state,
-    required final String command,
-    final String? actionName,
-    final Map<String, dynamic> actionParams,
-    final Map<String, dynamic> environments,
-    final String? createdBy,
-    final int? artifactKey,
-    final bool promoted,
-    final bool announce,
-    required final DateTime createdAt,
-    final DateTime? startedAt,
-    final DateTime? finishedAt,
-    final int? exitCode,
-    final String? lastLine,
-    final int lastSeq,
-    final DiscordMessageRef? discord,
-    final String? resumedFrom,
-    final String? cancelledBy,
-    final String? logUrl,
-    final List<String> warnings,
-    final String? message,
-  }) = _$JobImpl;
+  const factory _Job(
+      {required final String id,
+      @JobStateConverter() required final JobState state,
+      required final String command,
+      final String? actionName,
+      final Map<String, dynamic> actionParams,
+      final Map<String, dynamic> environments,
+      final String? createdBy,
+      final String? createdByApiKeyId,
+      final String? createdByDiscordUserId,
+      final int? artifactKey,
+      final bool promoted,
+      final bool announce,
+      required final DateTime createdAt,
+      final DateTime? startedAt,
+      final DateTime? finishedAt,
+      final int? exitCode,
+      final String? lastLine,
+      final int lastSeq,
+      final DiscordMessageRef? discord,
+      final String? resumedFrom,
+      final String? cancelledBy,
+      final String? logUrl,
+      final List<String> warnings,
+      final String? message}) = _$JobImpl;
   const _Job._() : super._();
 
   factory _Job.fromJson(Map<String, dynamic> json) = _$JobImpl.fromJson;
@@ -652,6 +697,18 @@ abstract class _Job extends Job {
   Map<String, dynamic> get environments;
   @override
   String? get createdBy;
+  @override
+
+  /// Stable identity of whoever triggered this — an API key's `id`, a
+  /// Discord user id, or both null for a cron/system-triggered job.
+  /// [createdBy] is a display name and cannot be compared for
+  /// authorization (it isn't unique and can change); these are what
+  /// `ci.job.delete` actually checks a caller against to allow deleting
+  /// one's own build without `admin`. A string — see `Actor.discordUserId`'s
+  /// doc comment for why a Discord snowflake is never a raw `int`.
+  String? get createdByApiKeyId;
+  @override
+  String? get createdByDiscordUserId;
   @override
   int? get artifactKey;
   @override
@@ -677,16 +734,19 @@ abstract class _Job extends Job {
   @override
   String? get cancelledBy;
   @override
+
   /// Set only on the response of an action invocation/retry — the build
   /// log's URL, served by the static file handler.
   String? get logUrl;
   @override
+
   /// Set only on the response of an action invocation/retry — non-fatal
   /// problems the caller should see (e.g. the Discord message could not be
   /// posted). The job still runs; a Discord outage must not become a CI
   /// outage.
   List<String> get warnings;
   @override
+
   /// Set only on the response of a cancel — e.g. `⛔️ Build cancelled!`.
   String? get message;
   @override
