@@ -31,6 +31,14 @@ abstract class Health with _$Health {
     /// reasoning as [remoteDesktopUrl], plus the VM service itself being
     /// disabled or the info call failing.
     String? devToolsUrl,
+
+    /// A `discord://-/channels/<server>/<channel>` deep link into the guild
+    /// and channel this bot operates in, for the login screen's "someone
+    /// with no key yet" button — same reasoning as [remoteDesktopUrl] for
+    /// carrying it here rather than behind its own action: the login screen
+    /// already probes `/health`, unauthenticated, before any key exists to
+    /// invoke an action with. Nullable for the same older-server reason too.
+    String? discordChannelUrl,
   }) = _Health;
 
   factory Health.fromJson(Map<String, dynamic> json) => _$HealthFromJson(json);

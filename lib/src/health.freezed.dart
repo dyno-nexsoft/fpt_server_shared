@@ -45,6 +45,14 @@ mixin _$Health {
   /// disabled or the info call failing.
   String? get devToolsUrl => throw _privateConstructorUsedError;
 
+  /// A `discord://-/channels/<server>/<channel>` deep link into the guild
+  /// and channel this bot operates in, for the login screen's "someone
+  /// with no key yet" button — same reasoning as [remoteDesktopUrl] for
+  /// carrying it here rather than behind its own action: the login screen
+  /// already probes `/health`, unauthenticated, before any key exists to
+  /// invoke an action with. Nullable for the same older-server reason too.
+  String? get discordChannelUrl => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HealthCopyWith<Health> get copyWith => throw _privateConstructorUsedError;
@@ -62,7 +70,8 @@ abstract class $HealthCopyWith<$Res> {
       int uptimeSeconds,
       String hostname,
       String? remoteDesktopUrl,
-      String? devToolsUrl});
+      String? devToolsUrl,
+      String? discordChannelUrl});
 }
 
 /// @nodoc
@@ -85,6 +94,7 @@ class _$HealthCopyWithImpl<$Res, $Val extends Health>
     Object? hostname = null,
     Object? remoteDesktopUrl = freezed,
     Object? devToolsUrl = freezed,
+    Object? discordChannelUrl = freezed,
   }) {
     return _then(_value.copyWith(
       ok: null == ok
@@ -115,6 +125,10 @@ class _$HealthCopyWithImpl<$Res, $Val extends Health>
           ? _value.devToolsUrl
           : devToolsUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      discordChannelUrl: freezed == discordChannelUrl
+          ? _value.discordChannelUrl
+          : discordChannelUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -133,7 +147,8 @@ abstract class _$$HealthImplCopyWith<$Res> implements $HealthCopyWith<$Res> {
       int uptimeSeconds,
       String hostname,
       String? remoteDesktopUrl,
-      String? devToolsUrl});
+      String? devToolsUrl,
+      String? discordChannelUrl});
 }
 
 /// @nodoc
@@ -154,6 +169,7 @@ class __$$HealthImplCopyWithImpl<$Res>
     Object? hostname = null,
     Object? remoteDesktopUrl = freezed,
     Object? devToolsUrl = freezed,
+    Object? discordChannelUrl = freezed,
   }) {
     return _then(_$HealthImpl(
       ok: null == ok
@@ -184,6 +200,10 @@ class __$$HealthImplCopyWithImpl<$Res>
           ? _value.devToolsUrl
           : devToolsUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      discordChannelUrl: freezed == discordChannelUrl
+          ? _value.discordChannelUrl
+          : discordChannelUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -198,7 +218,8 @@ class _$HealthImpl implements _Health {
       required this.uptimeSeconds,
       required this.hostname,
       this.remoteDesktopUrl,
-      this.devToolsUrl});
+      this.devToolsUrl,
+      this.discordChannelUrl});
 
   factory _$HealthImpl.fromJson(Map<String, dynamic> json) =>
       _$$HealthImplFromJson(json);
@@ -235,9 +256,18 @@ class _$HealthImpl implements _Health {
   @override
   final String? devToolsUrl;
 
+  /// A `discord://-/channels/<server>/<channel>` deep link into the guild
+  /// and channel this bot operates in, for the login screen's "someone
+  /// with no key yet" button — same reasoning as [remoteDesktopUrl] for
+  /// carrying it here rather than behind its own action: the login screen
+  /// already probes `/health`, unauthenticated, before any key exists to
+  /// invoke an action with. Nullable for the same older-server reason too.
+  @override
+  final String? discordChannelUrl;
+
   @override
   String toString() {
-    return 'Health(ok: $ok, version: $version, appVersion: $appVersion, uptimeSeconds: $uptimeSeconds, hostname: $hostname, remoteDesktopUrl: $remoteDesktopUrl, devToolsUrl: $devToolsUrl)';
+    return 'Health(ok: $ok, version: $version, appVersion: $appVersion, uptimeSeconds: $uptimeSeconds, hostname: $hostname, remoteDesktopUrl: $remoteDesktopUrl, devToolsUrl: $devToolsUrl, discordChannelUrl: $discordChannelUrl)';
   }
 
   @override
@@ -256,13 +286,23 @@ class _$HealthImpl implements _Health {
             (identical(other.remoteDesktopUrl, remoteDesktopUrl) ||
                 other.remoteDesktopUrl == remoteDesktopUrl) &&
             (identical(other.devToolsUrl, devToolsUrl) ||
-                other.devToolsUrl == devToolsUrl));
+                other.devToolsUrl == devToolsUrl) &&
+            (identical(other.discordChannelUrl, discordChannelUrl) ||
+                other.discordChannelUrl == discordChannelUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, ok, version, appVersion,
-      uptimeSeconds, hostname, remoteDesktopUrl, devToolsUrl);
+  int get hashCode => Object.hash(
+      runtimeType,
+      ok,
+      version,
+      appVersion,
+      uptimeSeconds,
+      hostname,
+      remoteDesktopUrl,
+      devToolsUrl,
+      discordChannelUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -286,7 +326,8 @@ abstract class _Health implements Health {
       required final int uptimeSeconds,
       required final String hostname,
       final String? remoteDesktopUrl,
-      final String? devToolsUrl}) = _$HealthImpl;
+      final String? devToolsUrl,
+      final String? discordChannelUrl}) = _$HealthImpl;
 
   factory _Health.fromJson(Map<String, dynamic> json) = _$HealthImpl.fromJson;
 
@@ -321,6 +362,15 @@ abstract class _Health implements Health {
   /// reasoning as [remoteDesktopUrl], plus the VM service itself being
   /// disabled or the info call failing.
   String? get devToolsUrl;
+  @override
+
+  /// A `discord://-/channels/<server>/<channel>` deep link into the guild
+  /// and channel this bot operates in, for the login screen's "someone
+  /// with no key yet" button — same reasoning as [remoteDesktopUrl] for
+  /// carrying it here rather than behind its own action: the login screen
+  /// already probes `/health`, unauthenticated, before any key exists to
+  /// invoke an action with. Nullable for the same older-server reason too.
+  String? get discordChannelUrl;
   @override
   @JsonKey(ignore: true)
   _$$HealthImplCopyWith<_$HealthImpl> get copyWith =>

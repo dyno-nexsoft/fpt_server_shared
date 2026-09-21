@@ -14,6 +14,7 @@ _$HealthImpl _$$HealthImplFromJson(Map<String, dynamic> json) => _$HealthImpl(
       hostname: json['hostname'] as String,
       remoteDesktopUrl: json['remote_desktop_url'] as String?,
       devToolsUrl: json['dev_tools_url'] as String?,
+      discordChannelUrl: json['discord_channel_url'] as String?,
     );
 
 Map<String, dynamic> _$$HealthImplToJson(_$HealthImpl instance) {
@@ -33,5 +34,6 @@ Map<String, dynamic> _$$HealthImplToJson(_$HealthImpl instance) {
 
   writeNotNull('remote_desktop_url', instance.remoteDesktopUrl);
   writeNotNull('dev_tools_url', instance.devToolsUrl);
+  writeNotNull('discord_channel_url', instance.discordChannelUrl);
   return val;
 }
