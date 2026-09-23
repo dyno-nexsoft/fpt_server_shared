@@ -62,6 +62,15 @@ class GitLabMergeRequest with _$GitLabMergeRequest {
     ///
     /// Used by the cron job to detect new commits and trigger re-reviews.
     @Default('') String sha,
+
+    /// The three SHAs GitLab's Discussions API requires to anchor a comment
+    /// to a specific diff line (`position.base_sha`/`start_sha`/`head_sha`)
+    /// — without these, a review can only ever post a single unthreaded
+    /// note, never a real inline discussion a reviewer can reply to or
+    /// resolve individually. Nullable because it is absent from any GitLab
+    /// response shape that doesn't include a diff (this one always does,
+    /// but the type shouldn't assume every future caller's response will).
+    GitLabDiffRefs? diffRefs,
   }) = _GitLabMergeRequest;
 
   factory GitLabMergeRequest.fromJson(Map<String, dynamic> json) =>
@@ -71,6 +80,20 @@ class GitLabMergeRequest with _$GitLabMergeRequest {
   String get projectPath =>
       GitLabMrUrl.tryParse(webUrl)?.projectPath ??
       (throw StateError('Could not parse project path from webUrl: $webUrl'));
+}
+
+/// The three commit SHAs that pin a diff-anchored comment's `position` to
+/// the exact diff it was reviewed against — see [GitLabMergeRequest.diffRefs].
+@freezed
+class GitLabDiffRefs with _$GitLabDiffRefs {
+  const factory GitLabDiffRefs({
+    required String baseSha,
+    required String startSha,
+    required String headSha,
+  }) = _GitLabDiffRefs;
+
+  factory GitLabDiffRefs.fromJson(Map<String, dynamic> json) =>
+      _$GitLabDiffRefsFromJson(json);
 }
 
 /// Represents a single file diff within a Merge Request.

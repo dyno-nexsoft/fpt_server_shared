@@ -56,6 +56,15 @@ mixin _$GitLabMergeRequest {
   /// Used by the cron job to detect new commits and trigger re-reviews.
   String get sha => throw _privateConstructorUsedError;
 
+  /// The three SHAs GitLab's Discussions API requires to anchor a comment
+  /// to a specific diff line (`position.base_sha`/`start_sha`/`head_sha`)
+  /// — without these, a review can only ever post a single unthreaded
+  /// note, never a real inline discussion a reviewer can reply to or
+  /// resolve individually. Nullable because it is absent from any GitLab
+  /// response shape that doesn't include a diff (this one always does,
+  /// but the type shouldn't assume every future caller's response will).
+  GitLabDiffRefs? get diffRefs => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GitLabMergeRequestCopyWith<GitLabMergeRequest> get copyWith =>
@@ -79,7 +88,10 @@ abstract class $GitLabMergeRequestCopyWith<$Res> {
       String description,
       List<String> labels,
       String changesCount,
-      String sha});
+      String sha,
+      GitLabDiffRefs? diffRefs});
+
+  $GitLabDiffRefsCopyWith<$Res>? get diffRefs;
 }
 
 /// @nodoc
@@ -106,6 +118,7 @@ class _$GitLabMergeRequestCopyWithImpl<$Res, $Val extends GitLabMergeRequest>
     Object? labels = null,
     Object? changesCount = null,
     Object? sha = null,
+    Object? diffRefs = freezed,
   }) {
     return _then(_value.copyWith(
       iid: null == iid
@@ -152,7 +165,23 @@ class _$GitLabMergeRequestCopyWithImpl<$Res, $Val extends GitLabMergeRequest>
           ? _value.sha
           : sha // ignore: cast_nullable_to_non_nullable
               as String,
+      diffRefs: freezed == diffRefs
+          ? _value.diffRefs
+          : diffRefs // ignore: cast_nullable_to_non_nullable
+              as GitLabDiffRefs?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GitLabDiffRefsCopyWith<$Res>? get diffRefs {
+    if (_value.diffRefs == null) {
+      return null;
+    }
+
+    return $GitLabDiffRefsCopyWith<$Res>(_value.diffRefs!, (value) {
+      return _then(_value.copyWith(diffRefs: value) as $Val);
+    });
   }
 }
 
@@ -175,7 +204,11 @@ abstract class _$$GitLabMergeRequestImplCopyWith<$Res>
       String description,
       List<String> labels,
       String changesCount,
-      String sha});
+      String sha,
+      GitLabDiffRefs? diffRefs});
+
+  @override
+  $GitLabDiffRefsCopyWith<$Res>? get diffRefs;
 }
 
 /// @nodoc
@@ -200,6 +233,7 @@ class __$$GitLabMergeRequestImplCopyWithImpl<$Res>
     Object? labels = null,
     Object? changesCount = null,
     Object? sha = null,
+    Object? diffRefs = freezed,
   }) {
     return _then(_$GitLabMergeRequestImpl(
       iid: null == iid
@@ -246,6 +280,10 @@ class __$$GitLabMergeRequestImplCopyWithImpl<$Res>
           ? _value.sha
           : sha // ignore: cast_nullable_to_non_nullable
               as String,
+      diffRefs: freezed == diffRefs
+          ? _value.diffRefs
+          : diffRefs // ignore: cast_nullable_to_non_nullable
+              as GitLabDiffRefs?,
     ));
   }
 }
@@ -265,7 +303,8 @@ class _$GitLabMergeRequestImpl extends _GitLabMergeRequest {
       this.description = '',
       final List<String> labels = const <String>[],
       this.changesCount = '0',
-      this.sha = ''})
+      this.sha = '',
+      this.diffRefs})
       : _labels = labels,
         super._();
 
@@ -330,9 +369,19 @@ class _$GitLabMergeRequestImpl extends _GitLabMergeRequest {
   @JsonKey()
   final String sha;
 
+  /// The three SHAs GitLab's Discussions API requires to anchor a comment
+  /// to a specific diff line (`position.base_sha`/`start_sha`/`head_sha`)
+  /// — without these, a review can only ever post a single unthreaded
+  /// note, never a real inline discussion a reviewer can reply to or
+  /// resolve individually. Nullable because it is absent from any GitLab
+  /// response shape that doesn't include a diff (this one always does,
+  /// but the type shouldn't assume every future caller's response will).
+  @override
+  final GitLabDiffRefs? diffRefs;
+
   @override
   String toString() {
-    return 'GitLabMergeRequest(iid: $iid, title: $title, sourceBranch: $sourceBranch, targetBranch: $targetBranch, authorName: $authorName, webUrl: $webUrl, state: $state, description: $description, labels: $labels, changesCount: $changesCount, sha: $sha)';
+    return 'GitLabMergeRequest(iid: $iid, title: $title, sourceBranch: $sourceBranch, targetBranch: $targetBranch, authorName: $authorName, webUrl: $webUrl, state: $state, description: $description, labels: $labels, changesCount: $changesCount, sha: $sha, diffRefs: $diffRefs)';
   }
 
   @override
@@ -355,7 +404,9 @@ class _$GitLabMergeRequestImpl extends _GitLabMergeRequest {
             const DeepCollectionEquality().equals(other._labels, _labels) &&
             (identical(other.changesCount, changesCount) ||
                 other.changesCount == changesCount) &&
-            (identical(other.sha, sha) || other.sha == sha));
+            (identical(other.sha, sha) || other.sha == sha) &&
+            (identical(other.diffRefs, diffRefs) ||
+                other.diffRefs == diffRefs));
   }
 
   @JsonKey(ignore: true)
@@ -372,7 +423,8 @@ class _$GitLabMergeRequestImpl extends _GitLabMergeRequest {
       description,
       const DeepCollectionEquality().hash(_labels),
       changesCount,
-      sha);
+      sha,
+      diffRefs);
 
   @JsonKey(ignore: true)
   @override
@@ -402,7 +454,8 @@ abstract class _GitLabMergeRequest extends GitLabMergeRequest {
       final String description,
       final List<String> labels,
       final String changesCount,
-      final String sha}) = _$GitLabMergeRequestImpl;
+      final String sha,
+      final GitLabDiffRefs? diffRefs}) = _$GitLabMergeRequestImpl;
   const _GitLabMergeRequest._() : super._();
 
   factory _GitLabMergeRequest.fromJson(Map<String, dynamic> json) =
@@ -456,8 +509,192 @@ abstract class _GitLabMergeRequest extends GitLabMergeRequest {
   /// Used by the cron job to detect new commits and trigger re-reviews.
   String get sha;
   @override
+
+  /// The three SHAs GitLab's Discussions API requires to anchor a comment
+  /// to a specific diff line (`position.base_sha`/`start_sha`/`head_sha`)
+  /// — without these, a review can only ever post a single unthreaded
+  /// note, never a real inline discussion a reviewer can reply to or
+  /// resolve individually. Nullable because it is absent from any GitLab
+  /// response shape that doesn't include a diff (this one always does,
+  /// but the type shouldn't assume every future caller's response will).
+  GitLabDiffRefs? get diffRefs;
+  @override
   @JsonKey(ignore: true)
   _$$GitLabMergeRequestImplCopyWith<_$GitLabMergeRequestImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+GitLabDiffRefs _$GitLabDiffRefsFromJson(Map<String, dynamic> json) {
+  return _GitLabDiffRefs.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GitLabDiffRefs {
+  String get baseSha => throw _privateConstructorUsedError;
+  String get startSha => throw _privateConstructorUsedError;
+  String get headSha => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GitLabDiffRefsCopyWith<GitLabDiffRefs> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GitLabDiffRefsCopyWith<$Res> {
+  factory $GitLabDiffRefsCopyWith(
+          GitLabDiffRefs value, $Res Function(GitLabDiffRefs) then) =
+      _$GitLabDiffRefsCopyWithImpl<$Res, GitLabDiffRefs>;
+  @useResult
+  $Res call({String baseSha, String startSha, String headSha});
+}
+
+/// @nodoc
+class _$GitLabDiffRefsCopyWithImpl<$Res, $Val extends GitLabDiffRefs>
+    implements $GitLabDiffRefsCopyWith<$Res> {
+  _$GitLabDiffRefsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? baseSha = null,
+    Object? startSha = null,
+    Object? headSha = null,
+  }) {
+    return _then(_value.copyWith(
+      baseSha: null == baseSha
+          ? _value.baseSha
+          : baseSha // ignore: cast_nullable_to_non_nullable
+              as String,
+      startSha: null == startSha
+          ? _value.startSha
+          : startSha // ignore: cast_nullable_to_non_nullable
+              as String,
+      headSha: null == headSha
+          ? _value.headSha
+          : headSha // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$GitLabDiffRefsImplCopyWith<$Res>
+    implements $GitLabDiffRefsCopyWith<$Res> {
+  factory _$$GitLabDiffRefsImplCopyWith(_$GitLabDiffRefsImpl value,
+          $Res Function(_$GitLabDiffRefsImpl) then) =
+      __$$GitLabDiffRefsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String baseSha, String startSha, String headSha});
+}
+
+/// @nodoc
+class __$$GitLabDiffRefsImplCopyWithImpl<$Res>
+    extends _$GitLabDiffRefsCopyWithImpl<$Res, _$GitLabDiffRefsImpl>
+    implements _$$GitLabDiffRefsImplCopyWith<$Res> {
+  __$$GitLabDiffRefsImplCopyWithImpl(
+      _$GitLabDiffRefsImpl _value, $Res Function(_$GitLabDiffRefsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? baseSha = null,
+    Object? startSha = null,
+    Object? headSha = null,
+  }) {
+    return _then(_$GitLabDiffRefsImpl(
+      baseSha: null == baseSha
+          ? _value.baseSha
+          : baseSha // ignore: cast_nullable_to_non_nullable
+              as String,
+      startSha: null == startSha
+          ? _value.startSha
+          : startSha // ignore: cast_nullable_to_non_nullable
+              as String,
+      headSha: null == headSha
+          ? _value.headSha
+          : headSha // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$GitLabDiffRefsImpl implements _GitLabDiffRefs {
+  const _$GitLabDiffRefsImpl(
+      {required this.baseSha, required this.startSha, required this.headSha});
+
+  factory _$GitLabDiffRefsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GitLabDiffRefsImplFromJson(json);
+
+  @override
+  final String baseSha;
+  @override
+  final String startSha;
+  @override
+  final String headSha;
+
+  @override
+  String toString() {
+    return 'GitLabDiffRefs(baseSha: $baseSha, startSha: $startSha, headSha: $headSha)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GitLabDiffRefsImpl &&
+            (identical(other.baseSha, baseSha) || other.baseSha == baseSha) &&
+            (identical(other.startSha, startSha) ||
+                other.startSha == startSha) &&
+            (identical(other.headSha, headSha) || other.headSha == headSha));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, baseSha, startSha, headSha);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GitLabDiffRefsImplCopyWith<_$GitLabDiffRefsImpl> get copyWith =>
+      __$$GitLabDiffRefsImplCopyWithImpl<_$GitLabDiffRefsImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$GitLabDiffRefsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GitLabDiffRefs implements GitLabDiffRefs {
+  const factory _GitLabDiffRefs(
+      {required final String baseSha,
+      required final String startSha,
+      required final String headSha}) = _$GitLabDiffRefsImpl;
+
+  factory _GitLabDiffRefs.fromJson(Map<String, dynamic> json) =
+      _$GitLabDiffRefsImpl.fromJson;
+
+  @override
+  String get baseSha;
+  @override
+  String get startSha;
+  @override
+  String get headSha;
+  @override
+  @JsonKey(ignore: true)
+  _$$GitLabDiffRefsImplCopyWith<_$GitLabDiffRefsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

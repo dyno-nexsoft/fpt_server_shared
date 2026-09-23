@@ -23,22 +23,50 @@ _$GitLabMergeRequestImpl _$$GitLabMergeRequestImplFromJson(
           const <String>[],
       changesCount: json['changes_count'] as String? ?? '0',
       sha: json['sha'] as String? ?? '',
+      diffRefs: json['diff_refs'] == null
+          ? null
+          : GitLabDiffRefs.fromJson(json['diff_refs'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$GitLabMergeRequestImplToJson(
-        _$GitLabMergeRequestImpl instance) =>
+    _$GitLabMergeRequestImpl instance) {
+  final val = <String, dynamic>{
+    'iid': instance.iid,
+    'title': instance.title,
+    'source_branch': instance.sourceBranch,
+    'target_branch': instance.targetBranch,
+    'author': instance.authorName,
+    'web_url': instance.webUrl,
+    'state': instance.state,
+    'description': instance.description,
+    'labels': instance.labels,
+    'changes_count': instance.changesCount,
+    'sha': instance.sha,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('diff_refs', instance.diffRefs?.toJson());
+  return val;
+}
+
+_$GitLabDiffRefsImpl _$$GitLabDiffRefsImplFromJson(Map<String, dynamic> json) =>
+    _$GitLabDiffRefsImpl(
+      baseSha: json['base_sha'] as String,
+      startSha: json['start_sha'] as String,
+      headSha: json['head_sha'] as String,
+    );
+
+Map<String, dynamic> _$$GitLabDiffRefsImplToJson(
+        _$GitLabDiffRefsImpl instance) =>
     <String, dynamic>{
-      'iid': instance.iid,
-      'title': instance.title,
-      'source_branch': instance.sourceBranch,
-      'target_branch': instance.targetBranch,
-      'author': instance.authorName,
-      'web_url': instance.webUrl,
-      'state': instance.state,
-      'description': instance.description,
-      'labels': instance.labels,
-      'changes_count': instance.changesCount,
-      'sha': instance.sha,
+      'base_sha': instance.baseSha,
+      'start_sha': instance.startSha,
+      'head_sha': instance.headSha,
     };
 
 _$GitLabMrDiffImpl _$$GitLabMrDiffImplFromJson(Map<String, dynamic> json) =>
