@@ -14,13 +14,12 @@ _$SystemStatusImpl _$$SystemStatusImplFromJson(Map<String, dynamic> json) =>
       uptimeSeconds: (json['uptime_seconds'] as num).toInt(),
       uptime: json['uptime'] as String,
       workingDirectory: json['working_directory'] as String,
-      running:
-          (json['running'] as List<dynamic>?)
+      remoteDesktopUrl: json['remote_desktop_url'] as String,
+      running: (json['running'] as List<dynamic>?)
               ?.map((e) => Job.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      queued:
-          (json['queued'] as List<dynamic>?)
+      queued: (json['queued'] as List<dynamic>?)
               ?.map((e) => Job.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
@@ -34,6 +33,7 @@ Map<String, dynamic> _$$SystemStatusImplToJson(_$SystemStatusImpl instance) =>
       'uptime_seconds': instance.uptimeSeconds,
       'uptime': instance.uptime,
       'working_directory': instance.workingDirectory,
+      'remote_desktop_url': instance.remoteDesktopUrl,
       'running': instance.running.map((e) => e.toJson()).toList(),
       'queued': instance.queued.map((e) => e.toJson()).toList(),
     };

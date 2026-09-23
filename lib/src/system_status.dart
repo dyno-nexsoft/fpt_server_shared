@@ -15,6 +15,14 @@ abstract class SystemStatus with _$SystemStatus {
     required int uptimeSeconds,
     required String uptime,
     required String workingDirectory,
+    // The live Cloudflare tunnel to the noVNC remote desktop, when the
+    // caller has `Permission.admin` and one is currently up — the fixed LAN
+    // address otherwise (including for every non-admin/anonymous caller;
+    // see `SystemStatusAction.run`'s doc comment for why this is gated).
+    // Always a real value, never null: unlike `Health.remoteDesktopUrl`
+    // (which is absent on a machine with no remote desktop at all), this
+    // field only ever varies in *which* URL, not whether one exists.
+    required String remoteDesktopUrl,
     @Default([]) List<Job> running,
     @Default([]) List<Job> queued,
   }) = _SystemStatus;
