@@ -1,4 +1,5 @@
 export 'src/action_schema.dart';
+export 'src/active_mutation.dart';
 export 'src/api_key_info.dart';
 export 'src/api_key_role.dart';
 export 'src/arb_key_utils.dart';

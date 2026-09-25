@@ -35,7 +35,12 @@ mixin _$SystemStatus {
 // field only ever varies in *which* URL, not whether one exists.
   String get remoteDesktopUrl => throw _privateConstructorUsedError;
   List<Job> get running => throw _privateConstructorUsedError;
-  List<Job> get queued => throw _privateConstructorUsedError;
+  List<Job> get queued =>
+      throw _privateConstructorUsedError; // A non-job-backed mutation (gitlab.review, gitlab.translateArb)
+// currently running — see ActiveMutation's own doc comment for why this
+// exists alongside running/queued rather than being folded into them.
+  List<ActiveMutation> get activeMutations =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +63,8 @@ abstract class $SystemStatusCopyWith<$Res> {
       String workingDirectory,
       String remoteDesktopUrl,
       List<Job> running,
-      List<Job> queued});
+      List<Job> queued,
+      List<ActiveMutation> activeMutations});
 }
 
 /// @nodoc
@@ -83,6 +89,7 @@ class _$SystemStatusCopyWithImpl<$Res, $Val extends SystemStatus>
     Object? remoteDesktopUrl = null,
     Object? running = null,
     Object? queued = null,
+    Object? activeMutations = null,
   }) {
     return _then(_value.copyWith(
       appVersion: null == appVersion
@@ -121,6 +128,10 @@ class _$SystemStatusCopyWithImpl<$Res, $Val extends SystemStatus>
           ? _value.queued
           : queued // ignore: cast_nullable_to_non_nullable
               as List<Job>,
+      activeMutations: null == activeMutations
+          ? _value.activeMutations
+          : activeMutations // ignore: cast_nullable_to_non_nullable
+              as List<ActiveMutation>,
     ) as $Val);
   }
 }
@@ -142,7 +153,8 @@ abstract class _$$SystemStatusImplCopyWith<$Res>
       String workingDirectory,
       String remoteDesktopUrl,
       List<Job> running,
-      List<Job> queued});
+      List<Job> queued,
+      List<ActiveMutation> activeMutations});
 }
 
 /// @nodoc
@@ -165,6 +177,7 @@ class __$$SystemStatusImplCopyWithImpl<$Res>
     Object? remoteDesktopUrl = null,
     Object? running = null,
     Object? queued = null,
+    Object? activeMutations = null,
   }) {
     return _then(_$SystemStatusImpl(
       appVersion: null == appVersion
@@ -203,6 +216,10 @@ class __$$SystemStatusImplCopyWithImpl<$Res>
           ? _value._queued
           : queued // ignore: cast_nullable_to_non_nullable
               as List<Job>,
+      activeMutations: null == activeMutations
+          ? _value._activeMutations
+          : activeMutations // ignore: cast_nullable_to_non_nullable
+              as List<ActiveMutation>,
     ));
   }
 }
@@ -219,9 +236,11 @@ class _$SystemStatusImpl extends _SystemStatus {
       required this.workingDirectory,
       required this.remoteDesktopUrl,
       final List<Job> running = const [],
-      final List<Job> queued = const []})
+      final List<Job> queued = const [],
+      final List<ActiveMutation> activeMutations = const []})
       : _running = running,
         _queued = queued,
+        _activeMutations = activeMutations,
         super._();
 
   factory _$SystemStatusImpl.fromJson(Map<String, dynamic> json) =>
@@ -266,9 +285,24 @@ class _$SystemStatusImpl extends _SystemStatus {
     return EqualUnmodifiableListView(_queued);
   }
 
+// A non-job-backed mutation (gitlab.review, gitlab.translateArb)
+// currently running — see ActiveMutation's own doc comment for why this
+// exists alongside running/queued rather than being folded into them.
+  final List<ActiveMutation> _activeMutations;
+// A non-job-backed mutation (gitlab.review, gitlab.translateArb)
+// currently running — see ActiveMutation's own doc comment for why this
+// exists alongside running/queued rather than being folded into them.
+  @override
+  @JsonKey()
+  List<ActiveMutation> get activeMutations {
+    if (_activeMutations is EqualUnmodifiableListView) return _activeMutations;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_activeMutations);
+  }
+
   @override
   String toString() {
-    return 'SystemStatus(appVersion: $appVersion, dartVersion: $dartVersion, hostname: $hostname, uptimeSeconds: $uptimeSeconds, uptime: $uptime, workingDirectory: $workingDirectory, remoteDesktopUrl: $remoteDesktopUrl, running: $running, queued: $queued)';
+    return 'SystemStatus(appVersion: $appVersion, dartVersion: $dartVersion, hostname: $hostname, uptimeSeconds: $uptimeSeconds, uptime: $uptime, workingDirectory: $workingDirectory, remoteDesktopUrl: $remoteDesktopUrl, running: $running, queued: $queued, activeMutations: $activeMutations)';
   }
 
   @override
@@ -290,7 +324,9 @@ class _$SystemStatusImpl extends _SystemStatus {
             (identical(other.remoteDesktopUrl, remoteDesktopUrl) ||
                 other.remoteDesktopUrl == remoteDesktopUrl) &&
             const DeepCollectionEquality().equals(other._running, _running) &&
-            const DeepCollectionEquality().equals(other._queued, _queued));
+            const DeepCollectionEquality().equals(other._queued, _queued) &&
+            const DeepCollectionEquality()
+                .equals(other._activeMutations, _activeMutations));
   }
 
   @JsonKey(ignore: true)
@@ -305,7 +341,8 @@ class _$SystemStatusImpl extends _SystemStatus {
       workingDirectory,
       remoteDesktopUrl,
       const DeepCollectionEquality().hash(_running),
-      const DeepCollectionEquality().hash(_queued));
+      const DeepCollectionEquality().hash(_queued),
+      const DeepCollectionEquality().hash(_activeMutations));
 
   @JsonKey(ignore: true)
   @override
@@ -331,7 +368,8 @@ abstract class _SystemStatus extends SystemStatus {
       required final String workingDirectory,
       required final String remoteDesktopUrl,
       final List<Job> running,
-      final List<Job> queued}) = _$SystemStatusImpl;
+      final List<Job> queued,
+      final List<ActiveMutation> activeMutations}) = _$SystemStatusImpl;
   const _SystemStatus._() : super._();
 
   factory _SystemStatus.fromJson(Map<String, dynamic> json) =
@@ -361,6 +399,10 @@ abstract class _SystemStatus extends SystemStatus {
   List<Job> get running;
   @override
   List<Job> get queued;
+  @override // A non-job-backed mutation (gitlab.review, gitlab.translateArb)
+// currently running — see ActiveMutation's own doc comment for why this
+// exists alongside running/queued rather than being folded into them.
+  List<ActiveMutation> get activeMutations;
   @override
   @JsonKey(ignore: true)
   _$$SystemStatusImplCopyWith<_$SystemStatusImpl> get copyWith =>

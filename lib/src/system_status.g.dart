@@ -23,6 +23,10 @@ _$SystemStatusImpl _$$SystemStatusImplFromJson(Map<String, dynamic> json) =>
               ?.map((e) => Job.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      activeMutations: (json['active_mutations'] as List<dynamic>?)
+              ?.map((e) => ActiveMutation.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$SystemStatusImplToJson(_$SystemStatusImpl instance) =>
@@ -36,4 +40,6 @@ Map<String, dynamic> _$$SystemStatusImplToJson(_$SystemStatusImpl instance) =>
       'remote_desktop_url': instance.remoteDesktopUrl,
       'running': instance.running.map((e) => e.toJson()).toList(),
       'queued': instance.queued.map((e) => e.toJson()).toList(),
+      'active_mutations':
+          instance.activeMutations.map((e) => e.toJson()).toList(),
     };

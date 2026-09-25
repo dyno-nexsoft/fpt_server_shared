@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import 'active_mutation.dart';
 import 'job.dart';
 
 part 'system_status.freezed.dart';
@@ -25,6 +26,10 @@ abstract class SystemStatus with _$SystemStatus {
     required String remoteDesktopUrl,
     @Default([]) List<Job> running,
     @Default([]) List<Job> queued,
+    // A non-job-backed mutation (gitlab.review, gitlab.translateArb)
+    // currently running — see ActiveMutation's own doc comment for why this
+    // exists alongside running/queued rather than being folded into them.
+    @Default([]) List<ActiveMutation> activeMutations,
   }) = _SystemStatus;
 
   const SystemStatus._();
