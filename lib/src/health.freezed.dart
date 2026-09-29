@@ -53,6 +53,14 @@ mixin _$Health {
   /// invoke an action with. Nullable for the same older-server reason too.
   String? get discordChannelUrl => throw _privateConstructorUsedError;
 
+  /// A `discord://-/users/<bot id>` deep link to the bot itself, for the
+  /// login screen's "get a key" steps: the `/admin` key commands work in a
+  /// direct message with the bot, so a team on any server can use them
+  /// without joining a fixed channel. Nullable for the same older-server
+  /// reason as [discordChannelUrl], and because the gateway may not be
+  /// connected yet.
+  String? get discordBotUrl => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $HealthCopyWith<Health> get copyWith => throw _privateConstructorUsedError;
@@ -71,7 +79,8 @@ abstract class $HealthCopyWith<$Res> {
       String hostname,
       String? remoteDesktopUrl,
       String? devToolsUrl,
-      String? discordChannelUrl});
+      String? discordChannelUrl,
+      String? discordBotUrl});
 }
 
 /// @nodoc
@@ -95,6 +104,7 @@ class _$HealthCopyWithImpl<$Res, $Val extends Health>
     Object? remoteDesktopUrl = freezed,
     Object? devToolsUrl = freezed,
     Object? discordChannelUrl = freezed,
+    Object? discordBotUrl = freezed,
   }) {
     return _then(_value.copyWith(
       ok: null == ok
@@ -129,6 +139,10 @@ class _$HealthCopyWithImpl<$Res, $Val extends Health>
           ? _value.discordChannelUrl
           : discordChannelUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      discordBotUrl: freezed == discordBotUrl
+          ? _value.discordBotUrl
+          : discordBotUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -148,7 +162,8 @@ abstract class _$$HealthImplCopyWith<$Res> implements $HealthCopyWith<$Res> {
       String hostname,
       String? remoteDesktopUrl,
       String? devToolsUrl,
-      String? discordChannelUrl});
+      String? discordChannelUrl,
+      String? discordBotUrl});
 }
 
 /// @nodoc
@@ -170,6 +185,7 @@ class __$$HealthImplCopyWithImpl<$Res>
     Object? remoteDesktopUrl = freezed,
     Object? devToolsUrl = freezed,
     Object? discordChannelUrl = freezed,
+    Object? discordBotUrl = freezed,
   }) {
     return _then(_$HealthImpl(
       ok: null == ok
@@ -204,6 +220,10 @@ class __$$HealthImplCopyWithImpl<$Res>
           ? _value.discordChannelUrl
           : discordChannelUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      discordBotUrl: freezed == discordBotUrl
+          ? _value.discordBotUrl
+          : discordBotUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -219,7 +239,8 @@ class _$HealthImpl implements _Health {
       required this.hostname,
       this.remoteDesktopUrl,
       this.devToolsUrl,
-      this.discordChannelUrl});
+      this.discordChannelUrl,
+      this.discordBotUrl});
 
   factory _$HealthImpl.fromJson(Map<String, dynamic> json) =>
       _$$HealthImplFromJson(json);
@@ -265,9 +286,18 @@ class _$HealthImpl implements _Health {
   @override
   final String? discordChannelUrl;
 
+  /// A `discord://-/users/<bot id>` deep link to the bot itself, for the
+  /// login screen's "get a key" steps: the `/admin` key commands work in a
+  /// direct message with the bot, so a team on any server can use them
+  /// without joining a fixed channel. Nullable for the same older-server
+  /// reason as [discordChannelUrl], and because the gateway may not be
+  /// connected yet.
+  @override
+  final String? discordBotUrl;
+
   @override
   String toString() {
-    return 'Health(ok: $ok, version: $version, appVersion: $appVersion, uptimeSeconds: $uptimeSeconds, hostname: $hostname, remoteDesktopUrl: $remoteDesktopUrl, devToolsUrl: $devToolsUrl, discordChannelUrl: $discordChannelUrl)';
+    return 'Health(ok: $ok, version: $version, appVersion: $appVersion, uptimeSeconds: $uptimeSeconds, hostname: $hostname, remoteDesktopUrl: $remoteDesktopUrl, devToolsUrl: $devToolsUrl, discordChannelUrl: $discordChannelUrl, discordBotUrl: $discordBotUrl)';
   }
 
   @override
@@ -288,7 +318,9 @@ class _$HealthImpl implements _Health {
             (identical(other.devToolsUrl, devToolsUrl) ||
                 other.devToolsUrl == devToolsUrl) &&
             (identical(other.discordChannelUrl, discordChannelUrl) ||
-                other.discordChannelUrl == discordChannelUrl));
+                other.discordChannelUrl == discordChannelUrl) &&
+            (identical(other.discordBotUrl, discordBotUrl) ||
+                other.discordBotUrl == discordBotUrl));
   }
 
   @JsonKey(ignore: true)
@@ -302,7 +334,8 @@ class _$HealthImpl implements _Health {
       hostname,
       remoteDesktopUrl,
       devToolsUrl,
-      discordChannelUrl);
+      discordChannelUrl,
+      discordBotUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -327,7 +360,8 @@ abstract class _Health implements Health {
       required final String hostname,
       final String? remoteDesktopUrl,
       final String? devToolsUrl,
-      final String? discordChannelUrl}) = _$HealthImpl;
+      final String? discordChannelUrl,
+      final String? discordBotUrl}) = _$HealthImpl;
 
   factory _Health.fromJson(Map<String, dynamic> json) = _$HealthImpl.fromJson;
 
@@ -371,6 +405,15 @@ abstract class _Health implements Health {
   /// already probes `/health`, unauthenticated, before any key exists to
   /// invoke an action with. Nullable for the same older-server reason too.
   String? get discordChannelUrl;
+  @override
+
+  /// A `discord://-/users/<bot id>` deep link to the bot itself, for the
+  /// login screen's "get a key" steps: the `/admin` key commands work in a
+  /// direct message with the bot, so a team on any server can use them
+  /// without joining a fixed channel. Nullable for the same older-server
+  /// reason as [discordChannelUrl], and because the gateway may not be
+  /// connected yet.
+  String? get discordBotUrl;
   @override
   @JsonKey(ignore: true)
   _$$HealthImplCopyWith<_$HealthImpl> get copyWith =>

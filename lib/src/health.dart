@@ -39,6 +39,14 @@ abstract class Health with _$Health {
     /// already probes `/health`, unauthenticated, before any key exists to
     /// invoke an action with. Nullable for the same older-server reason too.
     String? discordChannelUrl,
+
+    /// A `discord://-/users/<bot id>` deep link to the bot itself, for the
+    /// login screen's "get a key" steps: the `/admin` key commands work in a
+    /// direct message with the bot, so a team on any server can use them
+    /// without joining a fixed channel. Nullable for the same older-server
+    /// reason as [discordChannelUrl], and because the gateway may not be
+    /// connected yet.
+    String? discordBotUrl,
   }) = _Health;
 
   factory Health.fromJson(Map<String, dynamic> json) => _$HealthFromJson(json);
