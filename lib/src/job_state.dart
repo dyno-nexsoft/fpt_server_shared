@@ -4,11 +4,11 @@ import 'package:json_annotation/json_annotation.dart';
 /// `JobFinishedEvent.state`, etc.) — shared so the backend and the dashboard
 /// can never independently drift on what values exist.
 enum JobState {
-  queued,
   running,
+  queued,
+  cancelled,
   succeeded,
   failed,
-  cancelled,
   interrupted,
 
   /// Not a real state the server ever produces — [fromWire]'s fallback for a
