@@ -32,21 +32,13 @@ abstract class Health with _$Health {
     /// disabled or the info call failing.
     String? devToolsUrl,
 
-    /// A `discord://-/channels/<server>/<channel>` deep link into the guild
-    /// and channel this bot operates in, for the login screen's "someone
-    /// with no key yet" button — same reasoning as [remoteDesktopUrl] for
-    /// carrying it here rather than behind its own action: the login screen
-    /// already probes `/health`, unauthenticated, before any key exists to
-    /// invoke an action with. Nullable for the same older-server reason too.
-    String? discordChannelUrl,
-
-    /// A `discord://-/users/<bot id>` deep link to the bot itself, for the
-    /// login screen's "get a key" steps: the `/admin` key commands work in a
-    /// direct message with the bot, so a team on any server can use them
-    /// without joining a fixed channel. Nullable for the same older-server
-    /// reason as [discordChannelUrl], and because the gateway may not be
-    /// connected yet.
-    String? discordBotUrl,
+    /// Whether `GET /auth/discord/start` will work on this server — that is,
+    /// a Discord OAuth client secret is configured. The login screen only
+    /// offers "Sign in with Discord" when this is true.
+    ///
+    /// Defaults to false so an *older* server that never sends the field just
+    /// hides the button instead of making `fromJson` throw.
+    @Default(false) bool discordLoginEnabled,
   }) = _Health;
 
   factory Health.fromJson(Map<String, dynamic> json) => _$HealthFromJson(json);
