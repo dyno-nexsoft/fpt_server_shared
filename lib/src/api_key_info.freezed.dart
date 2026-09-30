@@ -47,6 +47,11 @@ mixin _$ApiKeyInfo {
   /// [discordUserId] is unset, or when resolving it failed.
   DiscordUserInfo? get discord => throw _privateConstructorUsedError;
 
+  /// How the key came to exist: [webLoginKeySource] for a browser session
+  /// created by the dashboard's Discord sign-in (removed again on sign-out),
+  /// null for a key someone created on purpose.
+  String? get source => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ApiKeyInfoCopyWith<ApiKeyInfo> get copyWith =>
@@ -66,7 +71,8 @@ abstract class $ApiKeyInfoCopyWith<$Res> {
       List<String> scopes,
       @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId,
       DateTime? lastUsedAt,
-      DiscordUserInfo? discord});
+      DiscordUserInfo? discord,
+      String? source});
 
   $DiscordUserInfoCopyWith<$Res>? get discord;
 }
@@ -91,6 +97,7 @@ class _$ApiKeyInfoCopyWithImpl<$Res, $Val extends ApiKeyInfo>
     Object? discordUserId = freezed,
     Object? lastUsedAt = freezed,
     Object? discord = freezed,
+    Object? source = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -121,6 +128,10 @@ class _$ApiKeyInfoCopyWithImpl<$Res, $Val extends ApiKeyInfo>
           ? _value.discord
           : discord // ignore: cast_nullable_to_non_nullable
               as DiscordUserInfo?,
+      source: freezed == source
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -152,7 +163,8 @@ abstract class _$$ApiKeyInfoImplCopyWith<$Res>
       List<String> scopes,
       @JsonKey(fromJson: _discordUserIdFromJson) String? discordUserId,
       DateTime? lastUsedAt,
-      DiscordUserInfo? discord});
+      DiscordUserInfo? discord,
+      String? source});
 
   @override
   $DiscordUserInfoCopyWith<$Res>? get discord;
@@ -176,6 +188,7 @@ class __$$ApiKeyInfoImplCopyWithImpl<$Res>
     Object? discordUserId = freezed,
     Object? lastUsedAt = freezed,
     Object? discord = freezed,
+    Object? source = freezed,
   }) {
     return _then(_$ApiKeyInfoImpl(
       id: null == id
@@ -206,6 +219,10 @@ class __$$ApiKeyInfoImplCopyWithImpl<$Res>
           ? _value.discord
           : discord // ignore: cast_nullable_to_non_nullable
               as DiscordUserInfo?,
+      source: freezed == source
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -220,7 +237,8 @@ class _$ApiKeyInfoImpl extends _ApiKeyInfo {
       final List<String> scopes = const [],
       @JsonKey(fromJson: _discordUserIdFromJson) this.discordUserId,
       this.lastUsedAt,
-      this.discord})
+      this.discord,
+      this.source})
       : _scopes = scopes,
         super._();
 
@@ -275,9 +293,15 @@ class _$ApiKeyInfoImpl extends _ApiKeyInfo {
   @override
   final DiscordUserInfo? discord;
 
+  /// How the key came to exist: [webLoginKeySource] for a browser session
+  /// created by the dashboard's Discord sign-in (removed again on sign-out),
+  /// null for a key someone created on purpose.
+  @override
+  final String? source;
+
   @override
   String toString() {
-    return 'ApiKeyInfo(id: $id, name: $name, keyHash: $keyHash, scopes: $scopes, discordUserId: $discordUserId, lastUsedAt: $lastUsedAt, discord: $discord)';
+    return 'ApiKeyInfo(id: $id, name: $name, keyHash: $keyHash, scopes: $scopes, discordUserId: $discordUserId, lastUsedAt: $lastUsedAt, discord: $discord, source: $source)';
   }
 
   @override
@@ -293,7 +317,8 @@ class _$ApiKeyInfoImpl extends _ApiKeyInfo {
                 other.discordUserId == discordUserId) &&
             (identical(other.lastUsedAt, lastUsedAt) ||
                 other.lastUsedAt == lastUsedAt) &&
-            (identical(other.discord, discord) || other.discord == discord));
+            (identical(other.discord, discord) || other.discord == discord) &&
+            (identical(other.source, source) || other.source == source));
   }
 
   @JsonKey(ignore: true)
@@ -306,7 +331,8 @@ class _$ApiKeyInfoImpl extends _ApiKeyInfo {
       const DeepCollectionEquality().hash(_scopes),
       discordUserId,
       lastUsedAt,
-      discord);
+      discord,
+      source);
 
   @JsonKey(ignore: true)
   @override
@@ -330,7 +356,8 @@ abstract class _ApiKeyInfo extends ApiKeyInfo {
       final List<String> scopes,
       @JsonKey(fromJson: _discordUserIdFromJson) final String? discordUserId,
       final DateTime? lastUsedAt,
-      final DiscordUserInfo? discord}) = _$ApiKeyInfoImpl;
+      final DiscordUserInfo? discord,
+      final String? source}) = _$ApiKeyInfoImpl;
   const _ApiKeyInfo._() : super._();
 
   factory _ApiKeyInfo.fromJson(Map<String, dynamic> json) =
@@ -369,6 +396,12 @@ abstract class _ApiKeyInfo extends ApiKeyInfo {
   /// The bound Discord account's own display details — null when
   /// [discordUserId] is unset, or when resolving it failed.
   DiscordUserInfo? get discord;
+  @override
+
+  /// How the key came to exist: [webLoginKeySource] for a browser session
+  /// created by the dashboard's Discord sign-in (removed again on sign-out),
+  /// null for a key someone created on purpose.
+  String? get source;
   @override
   @JsonKey(ignore: true)
   _$$ApiKeyInfoImplCopyWith<_$ApiKeyInfoImpl> get copyWith =>

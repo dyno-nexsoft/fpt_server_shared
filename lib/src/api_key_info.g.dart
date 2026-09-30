@@ -22,6 +22,7 @@ _$ApiKeyInfoImpl _$$ApiKeyInfoImplFromJson(Map<String, dynamic> json) =>
       discord: json['discord'] == null
           ? null
           : DiscordUserInfo.fromJson(json['discord'] as Map<String, dynamic>),
+      source: json['source'] as String?,
     );
 
 Map<String, dynamic> _$$ApiKeyInfoImplToJson(_$ApiKeyInfoImpl instance) {
@@ -41,5 +42,6 @@ Map<String, dynamic> _$$ApiKeyInfoImplToJson(_$ApiKeyInfoImpl instance) {
   writeNotNull('discord_user_id', instance.discordUserId);
   writeNotNull('last_used_at', instance.lastUsedAt?.toIso8601String());
   writeNotNull('discord', instance.discord?.toJson());
+  writeNotNull('source', instance.source);
   return val;
 }

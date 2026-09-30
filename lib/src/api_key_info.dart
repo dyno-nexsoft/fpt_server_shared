@@ -7,6 +7,9 @@ import 'permission.dart';
 part 'api_key_info.freezed.dart';
 part 'api_key_info.g.dart';
 
+/// [ApiKeyInfo.source] of a key minted by the dashboard's Discord sign-in.
+const webLoginKeySource = 'discord_login';
+
 /// One entry of `admin.apiKeys.list`'s `keys` array.
 @freezed
 abstract class ApiKeyInfo with _$ApiKeyInfo {
@@ -36,12 +39,19 @@ abstract class ApiKeyInfo with _$ApiKeyInfo {
     /// The bound Discord account's own display details — null when
     /// [discordUserId] is unset, or when resolving it failed.
     DiscordUserInfo? discord,
+
+    /// How the key came to exist: [webLoginKeySource] for a browser session
+    /// created by the dashboard's Discord sign-in (removed again on sign-out),
+    /// null for a key someone created on purpose.
+    String? source,
   }) = _ApiKeyInfo;
 
   const ApiKeyInfo._();
 
   factory ApiKeyInfo.fromJson(Map<String, dynamic> json) =>
       _$ApiKeyInfoFromJson(json);
+
+  bool get isWebLogin => source == webLoginKeySource;
 
   bool get isAdmin => scopes.contains(Permission.admin.name);
 
