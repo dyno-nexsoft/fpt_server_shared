@@ -3,6 +3,17 @@ import 'api_key_role.dart';
 import 'app_notification.dart';
 import 'owner_info.dart';
 
+/// What a mutating action answers with — the sentence the server would show
+/// ("✅ Deleted API key …"), ready for a toast.
+class ActionMessage {
+  const ActionMessage(this.message);
+
+  factory ActionMessage.fromJson(Map<String, dynamic> json) =>
+      ActionMessage(json['message'] as String? ?? 'Done');
+
+  final String message;
+}
+
 /// `admin.apiKeys.add` — the new key, with its secret. The only time the
 /// secret exists: the server keeps just a hash.
 class ApiKeyCreated {

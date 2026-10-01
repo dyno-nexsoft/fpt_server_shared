@@ -21,26 +21,35 @@ extension FptActions on ActionTransport {
         await invokeAction('admin.apiKeys.add', params.toJson()),
       );
 
-  Future<void> apiKeysEdit(ApiKeyEditParams params) =>
-      invokeAction('admin.apiKeys.edit', params.toJson());
+  Future<ActionMessage> apiKeysEdit(ApiKeyEditParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('admin.apiKeys.edit', params.toJson()),
+      );
 
-  Future<void> apiKeysRemove(ApiKeyRemoveParams params) =>
-      invokeAction('admin.apiKeys.remove', params.toJson());
+  Future<ActionMessage> apiKeysRemove(ApiKeyRemoveParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('admin.apiKeys.remove', params.toJson()),
+      );
 
   /// Ends this session's key if it came from Discord sign-in.
-  Future<void> apiKeysSignOut() =>
-      invokeAction('admin.apiKeys.signOut', const {});
+  Future<ActionMessage> apiKeysSignOut() async => ActionMessage.fromJson(
+    await invokeAction('admin.apiKeys.signOut', const {}),
+  );
 
   // admin.owners.*
 
   Future<OwnerList> ownersList() async =>
       OwnerList.fromJson(await invokeAction('admin.owners.list', const {}));
 
-  Future<void> ownersAdd(OwnerParams params) =>
-      invokeAction('admin.owners.add', params.toJson());
+  Future<ActionMessage> ownersAdd(OwnerParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('admin.owners.add', params.toJson()),
+      );
 
-  Future<void> ownersRemove(OwnerParams params) =>
-      invokeAction('admin.owners.remove', params.toJson());
+  Future<ActionMessage> ownersRemove(OwnerParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('admin.owners.remove', params.toJson()),
+      );
 
   // admin.logs.tail
 
@@ -56,29 +65,45 @@ extension FptActions on ActionTransport {
         await invokeAction('notifications.list', const {}),
       );
 
-  Future<void> notificationsMarkRead([
+  Future<ActionMessage> notificationsMarkRead([
     MarkNotificationsReadParams params = const MarkNotificationsReadParams(),
-  ]) => invokeAction('notifications.markRead', params.toJson());
+  ]) async => ActionMessage.fromJson(
+    await invokeAction('notifications.markRead', params.toJson()),
+  );
 
-  Future<void> notificationsAnnounce(AnnounceNotificationParams params) =>
-      invokeAction('notifications.announce', params.toJson());
+  Future<ActionMessage> notificationsAnnounce(
+    AnnounceNotificationParams params,
+  ) async => ActionMessage.fromJson(
+    await invokeAction('notifications.announce', params.toJson()),
+  );
 
-  Future<void> notificationsRemove(RemoveNotificationParams params) =>
-      invokeAction('notifications.remove', params.toJson());
+  Future<ActionMessage> notificationsRemove(
+    RemoveNotificationParams params,
+  ) async => ActionMessage.fromJson(
+    await invokeAction('notifications.remove', params.toJson()),
+  );
 
   // system.* / cron.* / p2p.*
 
-  Future<void> hotReload() => invokeAction('system.hotReload', const {});
+  Future<ActionMessage> hotReload() async =>
+      ActionMessage.fromJson(await invokeAction('system.hotReload', const {}));
 
-  Future<void> restart([RestartParams params = const RestartParams()]) =>
-      invokeAction('system.restart', params.toJson());
+  Future<ActionMessage> restart([
+    RestartParams params = const RestartParams(),
+  ]) async => ActionMessage.fromJson(
+    await invokeAction('system.restart', params.toJson()),
+  );
 
-  Future<void> hiveClean(HiveBoxCleanParams params) =>
-      invokeAction('system.hive.clean', params.toJson());
+  Future<ActionMessage> hiveClean(HiveBoxCleanParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('system.hive.clean', params.toJson()),
+      );
 
-  Future<void> cronRun(CronRunParams params) =>
-      invokeAction('cron.run', params.toJson());
+  Future<ActionMessage> cronRun(CronRunParams params) async =>
+      ActionMessage.fromJson(await invokeAction('cron.run', params.toJson()));
 
-  Future<void> p2pFilesDelete(P2pFilesDeleteParams params) =>
-      invokeAction('p2p.files.delete', params.toJson());
+  Future<ActionMessage> p2pFilesDelete(P2pFilesDeleteParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('p2p.files.delete', params.toJson()),
+      );
 }
