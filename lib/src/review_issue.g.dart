@@ -17,6 +17,9 @@ _$ReviewIssueImpl _$$ReviewIssueImplFromJson(Map<String, dynamic> json) =>
       url: json['url'] as String?,
       anchor: json['anchor'] as String?,
       discussionId: json['discussion_id'] as String?,
+      category: $enumDecodeNullable(_$ReviewCategoryEnumMap, json['category'],
+          unknownValue: JsonKey.nullForUndefinedEnumValue),
+      scenario: json['scenario'] as String?,
     );
 
 Map<String, dynamic> _$$ReviewIssueImplToJson(_$ReviewIssueImpl instance) {
@@ -37,6 +40,8 @@ Map<String, dynamic> _$$ReviewIssueImplToJson(_$ReviewIssueImpl instance) {
   writeNotNull('url', instance.url);
   writeNotNull('anchor', instance.anchor);
   writeNotNull('discussion_id', instance.discussionId);
+  writeNotNull('category', _$ReviewCategoryEnumMap[instance.category]);
+  writeNotNull('scenario', instance.scenario);
   return val;
 }
 
@@ -44,4 +49,15 @@ const _$ReviewSeverityEnumMap = {
   ReviewSeverity.high: 'HIGH',
   ReviewSeverity.medium: 'MEDIUM',
   ReviewSeverity.low: 'LOW',
+};
+
+const _$ReviewCategoryEnumMap = {
+  ReviewCategory.bug: 'bug',
+  ReviewCategory.async: 'async',
+  ReviewCategory.nullSafety: 'null_safety',
+  ReviewCategory.security: 'security',
+  ReviewCategory.performance: 'performance',
+  ReviewCategory.ui: 'ui',
+  ReviewCategory.architecture: 'architecture',
+  ReviewCategory.style: 'style',
 };

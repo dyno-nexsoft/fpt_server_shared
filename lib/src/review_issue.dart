@@ -43,6 +43,47 @@ enum ReviewSeverity {
       };
 }
 
+/// What kind of problem a [ReviewIssue] is — lets the dashboard filter by it,
+/// and shows at a glance whether a review is finding bugs or only style.
+///
+/// Snake_case on the wire because the model is asked for exactly these values.
+enum ReviewCategory {
+  @JsonValue('bug')
+  bug('Bug'),
+  @JsonValue('async')
+  async('Async & lifecycle'),
+  @JsonValue('null_safety')
+  nullSafety('Null safety & data'),
+  @JsonValue('security')
+  security('Security'),
+  @JsonValue('performance')
+  performance('Performance'),
+  @JsonValue('ui')
+  ui('UI'),
+  @JsonValue('architecture')
+  architecture('Architecture'),
+  @JsonValue('style')
+  style('Style');
+
+  const ReviewCategory(this.label);
+
+  final String label;
+
+  /// Never throws: the value comes from an AI response, and an unknown one
+  /// is better dropped than allowed to sink the whole review.
+  static ReviewCategory? fromWire(String? value) {
+    for (final category in values) {
+      if (category.name == value || _wire(category) == value) return category;
+    }
+    return null;
+  }
+
+  static String _wire(ReviewCategory c) =>
+      c == nullSafety ? 'null_safety' : c.name;
+
+  String toWire() => _wire(this);
+}
+
 /// One finding from `gitlab.review`, as it travels back to every caller.
 ///
 /// Shared rather than defined on each side because this exact six-field
@@ -80,6 +121,16 @@ abstract class ReviewIssue with _$ReviewIssue {
     /// next review of the MR can resolve the thread once the finding is fixed.
     /// Null for a pipeline notice, and when the inline post was rejected.
     String? discussionId,
+
+    /// What kind of problem this is. Null for a pipeline notice, and for
+    /// findings recorded before this existed.
+    @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+    ReviewCategory? category,
+
+    /// The concrete trigger — the input or state that makes this go wrong.
+    /// Separate from [description] so a reader can check whether the problem
+    /// is real without reading the whole explanation. Null when not given.
+    String? scenario,
   }) = _ReviewIssue;
 
   factory ReviewIssue.fromJson(Map<String, dynamic> json) =>

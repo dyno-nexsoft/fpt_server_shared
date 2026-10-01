@@ -45,6 +45,16 @@ mixin _$ReviewIssue {
   /// Null for a pipeline notice, and when the inline post was rejected.
   String? get discussionId => throw _privateConstructorUsedError;
 
+  /// What kind of problem this is. Null for a pipeline notice, and for
+  /// findings recorded before this existed.
+  @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+  ReviewCategory? get category => throw _privateConstructorUsedError;
+
+  /// The concrete trigger — the input or state that makes this go wrong.
+  /// Separate from [description] so a reader can check whether the problem
+  /// is real without reading the whole explanation. Null when not given.
+  String? get scenario => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ReviewIssueCopyWith<ReviewIssue> get copyWith =>
@@ -65,7 +75,10 @@ abstract class $ReviewIssueCopyWith<$Res> {
       String description,
       String? url,
       String? anchor,
-      String? discussionId});
+      String? discussionId,
+      @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      ReviewCategory? category,
+      String? scenario});
 }
 
 /// @nodoc
@@ -89,6 +102,8 @@ class _$ReviewIssueCopyWithImpl<$Res, $Val extends ReviewIssue>
     Object? url = freezed,
     Object? anchor = freezed,
     Object? discussionId = freezed,
+    Object? category = freezed,
+    Object? scenario = freezed,
   }) {
     return _then(_value.copyWith(
       severity: null == severity
@@ -123,6 +138,14 @@ class _$ReviewIssueCopyWithImpl<$Res, $Val extends ReviewIssue>
           ? _value.discussionId
           : discussionId // ignore: cast_nullable_to_non_nullable
               as String?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as ReviewCategory?,
+      scenario: freezed == scenario
+          ? _value.scenario
+          : scenario // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -143,7 +166,10 @@ abstract class _$$ReviewIssueImplCopyWith<$Res>
       String description,
       String? url,
       String? anchor,
-      String? discussionId});
+      String? discussionId,
+      @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      ReviewCategory? category,
+      String? scenario});
 }
 
 /// @nodoc
@@ -165,6 +191,8 @@ class __$$ReviewIssueImplCopyWithImpl<$Res>
     Object? url = freezed,
     Object? anchor = freezed,
     Object? discussionId = freezed,
+    Object? category = freezed,
+    Object? scenario = freezed,
   }) {
     return _then(_$ReviewIssueImpl(
       severity: null == severity
@@ -199,6 +227,14 @@ class __$$ReviewIssueImplCopyWithImpl<$Res>
           ? _value.discussionId
           : discussionId // ignore: cast_nullable_to_non_nullable
               as String?,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as ReviewCategory?,
+      scenario: freezed == scenario
+          ? _value.scenario
+          : scenario // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -214,7 +250,10 @@ class _$ReviewIssueImpl extends _ReviewIssue {
       required this.description,
       this.url,
       this.anchor,
-      this.discussionId})
+      this.discussionId,
+      @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      this.category,
+      this.scenario})
       : super._();
 
   factory _$ReviewIssueImpl.fromJson(Map<String, dynamic> json) =>
@@ -253,9 +292,21 @@ class _$ReviewIssueImpl extends _ReviewIssue {
   @override
   final String? discussionId;
 
+  /// What kind of problem this is. Null for a pipeline notice, and for
+  /// findings recorded before this existed.
+  @override
+  @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+  final ReviewCategory? category;
+
+  /// The concrete trigger — the input or state that makes this go wrong.
+  /// Separate from [description] so a reader can check whether the problem
+  /// is real without reading the whole explanation. Null when not given.
+  @override
+  final String? scenario;
+
   @override
   String toString() {
-    return 'ReviewIssue(severity: $severity, file: $file, lineStart: $lineStart, lineEnd: $lineEnd, description: $description, url: $url, anchor: $anchor, discussionId: $discussionId)';
+    return 'ReviewIssue(severity: $severity, file: $file, lineStart: $lineStart, lineEnd: $lineEnd, description: $description, url: $url, anchor: $anchor, discussionId: $discussionId, category: $category, scenario: $scenario)';
   }
 
   @override
@@ -274,13 +325,17 @@ class _$ReviewIssueImpl extends _ReviewIssue {
             (identical(other.url, url) || other.url == url) &&
             (identical(other.anchor, anchor) || other.anchor == anchor) &&
             (identical(other.discussionId, discussionId) ||
-                other.discussionId == discussionId));
+                other.discussionId == discussionId) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.scenario, scenario) ||
+                other.scenario == scenario));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, severity, file, lineStart,
-      lineEnd, description, url, anchor, discussionId);
+      lineEnd, description, url, anchor, discussionId, category, scenario);
 
   @JsonKey(ignore: true)
   @override
@@ -306,7 +361,10 @@ abstract class _ReviewIssue extends ReviewIssue {
       required final String description,
       final String? url,
       final String? anchor,
-      final String? discussionId}) = _$ReviewIssueImpl;
+      final String? discussionId,
+      @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+      final ReviewCategory? category,
+      final String? scenario}) = _$ReviewIssueImpl;
   const _ReviewIssue._() : super._();
 
   factory _ReviewIssue.fromJson(Map<String, dynamic> json) =
@@ -344,6 +402,18 @@ abstract class _ReviewIssue extends ReviewIssue {
   /// next review of the MR can resolve the thread once the finding is fixed.
   /// Null for a pipeline notice, and when the inline post was rejected.
   String? get discussionId;
+  @override
+
+  /// What kind of problem this is. Null for a pipeline notice, and for
+  /// findings recorded before this existed.
+  @JsonKey(unknownEnumValue: JsonKey.nullForUndefinedEnumValue)
+  ReviewCategory? get category;
+  @override
+
+  /// The concrete trigger — the input or state that makes this go wrong.
+  /// Separate from [description] so a reader can check whether the problem
+  /// is real without reading the whole explanation. Null when not given.
+  String? get scenario;
   @override
   @JsonKey(ignore: true)
   _$$ReviewIssueImplCopyWith<_$ReviewIssueImpl> get copyWith =>
