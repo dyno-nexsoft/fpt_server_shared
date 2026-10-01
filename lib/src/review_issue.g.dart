@@ -16,6 +16,7 @@ _$ReviewIssueImpl _$$ReviewIssueImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       url: json['url'] as String?,
       anchor: json['anchor'] as String?,
+      discussionId: json['discussion_id'] as String?,
     );
 
 Map<String, dynamic> _$$ReviewIssueImplToJson(_$ReviewIssueImpl instance) {
@@ -35,6 +36,7 @@ Map<String, dynamic> _$$ReviewIssueImplToJson(_$ReviewIssueImpl instance) {
   val['description'] = instance.description;
   writeNotNull('url', instance.url);
   writeNotNull('anchor', instance.anchor);
+  writeNotNull('discussion_id', instance.discussionId);
   return val;
 }
 

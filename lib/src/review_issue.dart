@@ -75,6 +75,11 @@ abstract class ReviewIssue with _$ReviewIssue {
     /// is what lets a later review find the same code again. Null for a pipeline
     /// notice, and for findings recorded before this existed.
     String? anchor,
+
+    /// The GitLab discussion thread this finding was posted as. Kept so the
+    /// next review of the MR can resolve the thread once the finding is fixed.
+    /// Null for a pipeline notice, and when the inline post was rejected.
+    String? discussionId,
   }) = _ReviewIssue;
 
   factory ReviewIssue.fromJson(Map<String, dynamic> json) =>

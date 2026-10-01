@@ -40,6 +40,11 @@ mixin _$ReviewIssue {
   /// notice, and for findings recorded before this existed.
   String? get anchor => throw _privateConstructorUsedError;
 
+  /// The GitLab discussion thread this finding was posted as. Kept so the
+  /// next review of the MR can resolve the thread once the finding is fixed.
+  /// Null for a pipeline notice, and when the inline post was rejected.
+  String? get discussionId => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ReviewIssueCopyWith<ReviewIssue> get copyWith =>
@@ -59,7 +64,8 @@ abstract class $ReviewIssueCopyWith<$Res> {
       int? lineEnd,
       String description,
       String? url,
-      String? anchor});
+      String? anchor,
+      String? discussionId});
 }
 
 /// @nodoc
@@ -82,6 +88,7 @@ class _$ReviewIssueCopyWithImpl<$Res, $Val extends ReviewIssue>
     Object? description = null,
     Object? url = freezed,
     Object? anchor = freezed,
+    Object? discussionId = freezed,
   }) {
     return _then(_value.copyWith(
       severity: null == severity
@@ -112,6 +119,10 @@ class _$ReviewIssueCopyWithImpl<$Res, $Val extends ReviewIssue>
           ? _value.anchor
           : anchor // ignore: cast_nullable_to_non_nullable
               as String?,
+      discussionId: freezed == discussionId
+          ? _value.discussionId
+          : discussionId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -131,7 +142,8 @@ abstract class _$$ReviewIssueImplCopyWith<$Res>
       int? lineEnd,
       String description,
       String? url,
-      String? anchor});
+      String? anchor,
+      String? discussionId});
 }
 
 /// @nodoc
@@ -152,6 +164,7 @@ class __$$ReviewIssueImplCopyWithImpl<$Res>
     Object? description = null,
     Object? url = freezed,
     Object? anchor = freezed,
+    Object? discussionId = freezed,
   }) {
     return _then(_$ReviewIssueImpl(
       severity: null == severity
@@ -182,6 +195,10 @@ class __$$ReviewIssueImplCopyWithImpl<$Res>
           ? _value.anchor
           : anchor // ignore: cast_nullable_to_non_nullable
               as String?,
+      discussionId: freezed == discussionId
+          ? _value.discussionId
+          : discussionId // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -196,7 +213,8 @@ class _$ReviewIssueImpl extends _ReviewIssue {
       this.lineEnd,
       required this.description,
       this.url,
-      this.anchor})
+      this.anchor,
+      this.discussionId})
       : super._();
 
   factory _$ReviewIssueImpl.fromJson(Map<String, dynamic> json) =>
@@ -229,9 +247,15 @@ class _$ReviewIssueImpl extends _ReviewIssue {
   @override
   final String? anchor;
 
+  /// The GitLab discussion thread this finding was posted as. Kept so the
+  /// next review of the MR can resolve the thread once the finding is fixed.
+  /// Null for a pipeline notice, and when the inline post was rejected.
+  @override
+  final String? discussionId;
+
   @override
   String toString() {
-    return 'ReviewIssue(severity: $severity, file: $file, lineStart: $lineStart, lineEnd: $lineEnd, description: $description, url: $url, anchor: $anchor)';
+    return 'ReviewIssue(severity: $severity, file: $file, lineStart: $lineStart, lineEnd: $lineEnd, description: $description, url: $url, anchor: $anchor, discussionId: $discussionId)';
   }
 
   @override
@@ -248,13 +272,15 @@ class _$ReviewIssueImpl extends _ReviewIssue {
             (identical(other.description, description) ||
                 other.description == description) &&
             (identical(other.url, url) || other.url == url) &&
-            (identical(other.anchor, anchor) || other.anchor == anchor));
+            (identical(other.anchor, anchor) || other.anchor == anchor) &&
+            (identical(other.discussionId, discussionId) ||
+                other.discussionId == discussionId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, severity, file, lineStart,
-      lineEnd, description, url, anchor);
+      lineEnd, description, url, anchor, discussionId);
 
   @JsonKey(ignore: true)
   @override
@@ -279,7 +305,8 @@ abstract class _ReviewIssue extends ReviewIssue {
       final int? lineEnd,
       required final String description,
       final String? url,
-      final String? anchor}) = _$ReviewIssueImpl;
+      final String? anchor,
+      final String? discussionId}) = _$ReviewIssueImpl;
   const _ReviewIssue._() : super._();
 
   factory _ReviewIssue.fromJson(Map<String, dynamic> json) =
@@ -311,6 +338,12 @@ abstract class _ReviewIssue extends ReviewIssue {
   /// is what lets a later review find the same code again. Null for a pipeline
   /// notice, and for findings recorded before this existed.
   String? get anchor;
+  @override
+
+  /// The GitLab discussion thread this finding was posted as. Kept so the
+  /// next review of the MR can resolve the thread once the finding is fixed.
+  /// Null for a pipeline notice, and when the inline post was rejected.
+  String? get discussionId;
   @override
   @JsonKey(ignore: true)
   _$$ReviewIssueImplCopyWith<_$ReviewIssueImpl> get copyWith =>
