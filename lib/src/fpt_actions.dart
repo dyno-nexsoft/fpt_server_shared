@@ -1,7 +1,9 @@
 import 'action_results.dart';
 import 'action_transport.dart';
 import 'artifact.dart';
+import 'job.dart';
 import 'params/admin_params.dart';
+import 'params/ci_params.dart';
 import 'params/notification_params.dart';
 import 'params/system_params.dart';
 
@@ -12,6 +14,21 @@ import 'params/system_params.dart';
 /// A failure is whatever the [ActionTransport] throws; nothing here swallows
 /// it.
 extension FptActions on ActionTransport {
+  // ci.* — each returns the job it queued, not its outcome: watch it through
+  // the job endpoints.
+
+  Future<Job> ciBuild(CiBuildParams params) async =>
+      Job.fromJson(await invokeAction('ci.build', params.toJson()));
+
+  Future<Job> ciGen([CiGenParams params = const CiGenParams()]) async =>
+      Job.fromJson(await invokeAction('ci.gen', params.toJson()));
+
+  Future<Job> ciReplace(CiReplaceParams params) async =>
+      Job.fromJson(await invokeAction('ci.replace', params.toJson()));
+
+  Future<Job> ciClean([CiCleanParams params = const CiCleanParams()]) async =>
+      Job.fromJson(await invokeAction('ci.clean', params.toJson()));
+
   // admin.apiKeys.*
 
   Future<ApiKeyList> apiKeysList() async =>

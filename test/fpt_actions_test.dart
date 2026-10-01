@@ -146,4 +146,62 @@ void main() {
     }).ownersList();
     expect(owners.owners.single.id, '1');
   });
+
+  group('CI params', () {
+    test('a build with only the required fields sends its defaults', () {
+      expect(const CiBuildParams(tbchat: 'a', database: 'b').toJson(), {
+        'tbchat': 'a',
+        'database': 'b',
+        'platform': 'android,ios',
+        'environment': 'dev',
+        'skip_firebase_distribution': false,
+      });
+    });
+
+    test('every field uses the keys the server reads', () {
+      const params = CiBuildParams(
+        tbchat: 'a',
+        database: 'b',
+        im: 'i',
+        wallet: 'w',
+        cloudStorage: 'c',
+        socialfi: 's',
+        platform: PlatformBuild.macosWindows,
+        environment: EnvironmentBuild.prod,
+        releaseNotes: 'notes',
+        buildName: '1.2.3',
+        buildNumber: 42,
+        skipFirebaseDistribution: true,
+      );
+      expect(params.toJson().keys.toSet(), {
+        'tbchat',
+        'database',
+        'im',
+        'wallet',
+        'cloud_storage',
+        'socialfi',
+        'platform',
+        'environment',
+        'release_notes',
+        'build_name',
+        'build_number',
+        'skip_firebase_distribution',
+      });
+      expect(params.toJson()['platform'], 'macos,windows');
+      expect(CiBuildParams.fromJson(params.toJson()), params);
+    });
+
+    test('gen, replace and clean round-trip', () {
+      const gen = CiGenParams(
+        environment: EnvironmentBuild.test,
+        socialfi: 'branch',
+      );
+      const replace = CiReplaceParams(url: 'https://sdk.example', tbchat: 'x');
+      const clean = CiCleanParams(mode: 'files');
+      expect(CiGenParams.fromJson(gen.toJson()), gen);
+      expect(CiReplaceParams.fromJson(replace.toJson()), replace);
+      expect(CiCleanParams.fromJson(clean.toJson()), clean);
+      expect(const CiCleanParams().toJson(), isEmpty);
+    });
+  });
 }

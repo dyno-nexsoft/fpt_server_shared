@@ -33,3 +33,4 @@ export 'src/fpt_actions.dart';
 export 'src/params/admin_params.dart';
 export 'src/params/notification_params.dart';
 export 'src/params/system_params.dart';
+export 'src/params/ci_params.dart';
