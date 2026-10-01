@@ -55,7 +55,7 @@ void main() {
         version: 'v1',
         appVersion: '0.2.0',
         uptimeSeconds: 42,
-        hostname: 'mac-mini-2.local',
+        hostname: 'build-host.local',
       );
       final json = health.toJson();
       expect(json, {
@@ -63,7 +63,8 @@ void main() {
         'version': 'v1',
         'app_version': '0.2.0',
         'uptime_seconds': 42,
-        'hostname': 'mac-mini-2.local',
+        'hostname': 'build-host.local',
+        'discord_login_enabled': false,
       });
       final parsed = Health.fromJson(json);
       expect(parsed.ok, health.ok);
