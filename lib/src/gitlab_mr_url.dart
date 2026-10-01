@@ -26,7 +26,7 @@ class GitLabMrUrl with _$GitLabMrUrl {
       _$GitLabMrUrlFromJson(json);
 
   static final _urlRegex = RegExp(
-    r'^https?://[^/]+/(.+?)/-/merge_requests/(\d+)(?:/.*)?$',
+    r'^https?://[^/]+/(.+?)/-/merge_requests/(\d+)(?:[/?#].*)?$',
   );
 
   /// The compact `projectPath!mrIid` form produced by [toString].
@@ -38,6 +38,8 @@ class GitLabMrUrl with _$GitLabMrUrl {
   /// - `https://gitlab.example.com/group/project/-/merge_requests/123`
   /// - `https://gitlab.example.com/group/project/-/merge_requests/123/diffs`
   /// - `https://gitlab.example.com/group/project/-/merge_requests/123/commits`
+  /// - the same with a query or fragment, as copied from the browser while
+  ///   viewing a file: `.../merge_requests/123?file=abc#diff-content-abc`
   ///
   /// …and the compact `group/project!123` form. The compact form matters because
   /// it is what [toString] and the persisted action parameters produce: without
