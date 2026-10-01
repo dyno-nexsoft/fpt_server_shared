@@ -1,5 +1,6 @@
 import 'action_results.dart';
 import 'action_transport.dart';
+import 'artifact.dart';
 import 'params/admin_params.dart';
 import 'params/notification_params.dart';
 import 'params/system_params.dart';
@@ -84,6 +85,23 @@ extension FptActions on ActionTransport {
   );
 
   // system.* / cron.* / p2p.*
+
+  Future<List<HiveBoxInfo>> hiveList() async {
+    final body = await invokeAction('system.hive.list', const {});
+    return [
+      for (final box in body['boxes'] as List<dynamic>? ?? const [])
+        HiveBoxInfo.fromJson(box as Map<String, dynamic>),
+    ];
+  }
+
+  /// Files sent "via server", as the server lists them.
+  Future<List<ArtifactFile>> p2pFilesList() async {
+    final body = await invokeAction('p2p.files.list', const {});
+    return [
+      for (final file in body['files'] as List<dynamic>? ?? const [])
+        ArtifactFile.fromJson(file as Map<String, dynamic>),
+    ];
+  }
 
   Future<ActionMessage> hotReload() async =>
       ActionMessage.fromJson(await invokeAction('system.hotReload', const {}));

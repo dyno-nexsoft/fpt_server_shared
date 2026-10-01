@@ -89,6 +89,19 @@ class LogsTail {
   final int totalLines;
 }
 
+/// One entry of `system.hive.list`'s `boxes` array.
+class HiveBoxInfo {
+  const HiveBoxInfo({required this.name, required this.entryCount});
+
+  factory HiveBoxInfo.fromJson(Map<String, dynamic> json) => HiveBoxInfo(
+    name: json['name'] as String? ?? '',
+    entryCount: (json['entry_count'] as num?)?.toInt() ?? 0,
+  );
+
+  final String name;
+  final int entryCount;
+}
+
 /// `notifications.list`.
 class NotificationList {
   const NotificationList({required this.notifications, required this.unread});
