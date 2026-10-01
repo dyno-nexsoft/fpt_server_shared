@@ -8,8 +8,10 @@ import 'owner_info.dart';
 class ActionMessage {
   const ActionMessage(this.message);
 
-  factory ActionMessage.fromJson(Map<String, dynamic> json) =>
-      ActionMessage(json['message'] as String? ?? 'Done');
+  factory ActionMessage.fromJson(Map<String, dynamic> json) => ActionMessage(
+    // `summary` is what a result that is a freezed class carries instead.
+    (json['message'] ?? json['summary']) as String? ?? 'Done',
+  );
 
   final String message;
 }
@@ -87,6 +89,20 @@ class LogsTail {
 
   /// How long the whole log is.
   final int totalLines;
+}
+
+/// `zentao.report.start` — the task it opened, and the server's sentence.
+class ZentaoReportStarted {
+  const ZentaoReportStarted({required this.taskId, required this.message});
+
+  factory ZentaoReportStarted.fromJson(Map<String, dynamic> json) =>
+      ZentaoReportStarted(
+        taskId: (json['task_id'] as num).toInt(),
+        message: ActionMessage.fromJson(json).message,
+      );
+
+  final int taskId;
+  final String message;
 }
 
 /// `gitlab.review` and `gitlab.translateArb` answer the moment the run

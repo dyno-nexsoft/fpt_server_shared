@@ -35,3 +35,4 @@ export 'src/params/notification_params.dart';
 export 'src/params/system_params.dart';
 export 'src/params/ci_params.dart';
 export 'src/params/gitlab_params.dart';
+export 'src/params/zentao_params.dart';

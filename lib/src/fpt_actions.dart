@@ -6,6 +6,9 @@ import 'params/admin_params.dart';
 import 'params/gitlab_params.dart';
 import 'params/ci_params.dart';
 import 'params/notification_params.dart';
+import 'params/zentao_params.dart';
+import 'daily_task.dart';
+import 'zentao_status.dart';
 import 'params/system_params.dart';
 
 /// Every action as a typed call: the params object in, the decoded result
@@ -54,6 +57,56 @@ extension FptActions on ActionTransport {
     HistoryDeleteParams params,
   ) async => ActionMessage.fromJson(
     await invokeAction('gitlab.translateArb.history.delete', params.toJson()),
+  );
+
+  // zentao.*
+
+  Future<ZentaoStatus> zentaoStatus() async =>
+      ZentaoStatus.fromJson(await invokeAction('zentao.status', const {}));
+
+  Future<ZentaoReportStarted> zentaoReportStart([
+    ZentaoReportStartParams params = const ZentaoReportStartParams(),
+  ]) async => ZentaoReportStarted.fromJson(
+    await invokeAction('zentao.report.start', params.toJson()),
+  );
+
+  Future<DailyTask> zentaoReportGet(ZentaoTaskParams params) async =>
+      DailyTask.parseJson(
+        await invokeAction('zentao.report.get', params.toJson()),
+      );
+
+  Future<ActionMessage> zentaoReportEdit(ZentaoReportEditParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('zentao.report.edit', params.toJson()),
+      );
+
+  Future<ActionMessage> zentaoReportFinish(ZentaoTaskParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('zentao.report.finish', params.toJson()),
+      );
+
+  Future<ActionMessage> zentaoReportClose(ZentaoTaskParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('zentao.report.close', params.toJson()),
+      );
+
+  Future<ActionMessage> zentaoLink(ZentaoLinkParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('zentao.link', params.toJson()),
+      );
+
+  Future<ActionMessage> zentaoUnlink() async =>
+      ActionMessage.fromJson(await invokeAction('zentao.unlink', const {}));
+
+  Future<ActionMessage> zentaoSetProject(ZentaoProjectParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('zentao.config.setProject', params.toJson()),
+      );
+
+  Future<ActionMessage> zentaoSetExecution(
+    ZentaoExecutionParams params,
+  ) async => ActionMessage.fromJson(
+    await invokeAction('zentao.config.setExecution', params.toJson()),
   );
 
   // admin.apiKeys.*

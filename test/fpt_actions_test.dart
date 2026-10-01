@@ -242,4 +242,47 @@ void main() {
       expect(const HistoryDeleteParams(id: 'gr-1').toJson(), {'id': 'gr-1'});
     });
   });
+
+  group('Zentao params', () {
+    test('keys are the ones the actions read', () {
+      expect(const ZentaoTaskParams(taskId: 7).toJson(), {'task_id': 7});
+      expect(
+        const ZentaoReportEditParams(taskId: 7, description: 'x').toJson(),
+        {'task_id': 7, 'description': 'x'},
+      );
+      expect(const ZentaoProjectParams(projectId: 3).toJson(), {
+        'project_id': 3,
+      });
+      expect(const ZentaoExecutionParams(executionId: 4).toJson(), {
+        'execution_id': 4,
+      });
+      expect(const ZentaoLinkParams(account: 'a', password: 'p').toJson(), {
+        'account': 'a',
+        'password': 'p',
+      });
+    });
+
+    test('an empty description is sent, not dropped — it clears the text', () {
+      expect(const ZentaoReportStartParams().toJson(), {'description': ''});
+      expect(const ZentaoReportEditParams(taskId: 1).toJson(), {
+        'task_id': 1,
+        'description': '',
+      });
+    });
+  });
+
+  test('ActionMessage reads message, falling back to summary', () {
+    expect(ActionMessage.fromJson({'message': 'm'}).message, 'm');
+    expect(ActionMessage.fromJson({'summary': 's', 'task_id': 1}).message, 's');
+    expect(ActionMessage.fromJson(const {}).message, 'Done');
+  });
+
+  test('a started report names its task', () async {
+    final started = await _Recorder({
+      'task_id': 9,
+      'summary': 'Created task #9.',
+    }).zentaoReportStart();
+    expect(started.taskId, 9);
+    expect(started.message, 'Created task #9.');
+  });
 }
