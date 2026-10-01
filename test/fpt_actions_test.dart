@@ -204,4 +204,42 @@ void main() {
       expect(const CiCleanParams().toJson(), isEmpty);
     });
   });
+
+  group('GitLab params', () {
+    test('the MR goes out as one string, the module by its wire name', () {
+      final review = GitlabReviewParams(
+        url: GitLabMrUrl(projectPath: 'group/app', mrIid: 12),
+        model: GeminiModel.pro31,
+      );
+      expect(review.toJson(), {'url': 'group/app!12', 'model': 'pro31'});
+      expect(GitlabReviewParams.fromJson(review.toJson()), review);
+
+      const translate = GitlabTranslateArbParams(
+        module: TbchatModule.cloudStorage,
+        targetBranch: 'develop',
+      );
+      final json = translate.toJson();
+      expect(json['module'], TbchatModule.cloudStorage.toWire());
+      expect(json['target_branch'], 'develop');
+      expect(json['model'], 'flash36');
+      expect(GitlabTranslateArbParams.fromJson(json), translate);
+    });
+
+    test('a pasted MR url is read, a bad one is refused', () {
+      final params = GitlabReviewParams.fromJson({
+        'url': 'https://git.example.com/group/app/-/merge_requests/7/diffs',
+      });
+      expect(params.url.storeKey, 'group/app!7');
+      expect(
+        () => GitlabReviewParams.fromJson({'url': 'nonsense'}),
+        throwsFormatException,
+      );
+    });
+
+    test('history params', () {
+      expect(const HistoryListParams().toJson(), isEmpty);
+      expect(const HistoryListParams(limit: 5).toJson(), {'limit': 5});
+      expect(const HistoryDeleteParams(id: 'gr-1').toJson(), {'id': 'gr-1'});
+    });
+  });
 }

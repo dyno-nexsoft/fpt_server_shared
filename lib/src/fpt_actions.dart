@@ -3,6 +3,7 @@ import 'action_transport.dart';
 import 'artifact.dart';
 import 'job.dart';
 import 'params/admin_params.dart';
+import 'params/gitlab_params.dart';
 import 'params/ci_params.dart';
 import 'params/notification_params.dart';
 import 'params/system_params.dart';
@@ -28,6 +29,32 @@ extension FptActions on ActionTransport {
 
   Future<Job> ciClean([CiCleanParams params = const CiCleanParams()]) async =>
       Job.fromJson(await invokeAction('ci.clean', params.toJson()));
+
+  // gitlab.* — a review or translation runs in the background; follow it
+  // through its history record (see GitlabRunStarted).
+
+  Future<GitlabRunStarted> gitlabReview(GitlabReviewParams params) async =>
+      GitlabRunStarted.fromJson(
+        await invokeAction('gitlab.review', params.toJson()),
+      );
+
+  Future<GitlabRunStarted> gitlabTranslateArb(
+    GitlabTranslateArbParams params,
+  ) async => GitlabRunStarted.fromJson(
+    await invokeAction('gitlab.translateArb', params.toJson()),
+  );
+
+  Future<ActionMessage> gitlabReviewHistoryDelete(
+    HistoryDeleteParams params,
+  ) async => ActionMessage.fromJson(
+    await invokeAction('gitlab.review.history.delete', params.toJson()),
+  );
+
+  Future<ActionMessage> gitlabTranslateArbHistoryDelete(
+    HistoryDeleteParams params,
+  ) async => ActionMessage.fromJson(
+    await invokeAction('gitlab.translateArb.history.delete', params.toJson()),
+  );
 
   // admin.apiKeys.*
 

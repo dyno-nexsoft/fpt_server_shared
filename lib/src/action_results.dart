@@ -89,6 +89,22 @@ class LogsTail {
   final int totalLines;
 }
 
+/// `gitlab.review` and `gitlab.translateArb` answer the moment the run
+/// starts, not when it ends: [id] is its history record, whose detail page
+/// shows the live status.
+class GitlabRunStarted {
+  const GitlabRunStarted({required this.id, required this.label});
+
+  factory GitlabRunStarted.fromJson(Map<String, dynamic> json) =>
+      GitlabRunStarted(
+        id: json['id'] as String,
+        label: json['label'] as String? ?? '',
+      );
+
+  final String id;
+  final String label;
+}
+
 /// One entry of `system.hive.list`'s `boxes` array.
 class HiveBoxInfo {
   const HiveBoxInfo({required this.name, required this.entryCount});
