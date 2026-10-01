@@ -69,6 +69,12 @@ abstract class ReviewIssue with _$ReviewIssue {
     /// Direct link to the exact line(s) in GitLab's blob view — null for a
     /// pipeline notice, which has no file to link to.
     String? url,
+
+    /// The cited line(s) as the file read when this was reported — a few
+    /// trimmed lines at most. Line numbers drift as an MR gains commits; this
+    /// is what lets a later review find the same code again. Null for a pipeline
+    /// notice, and for findings recorded before this existed.
+    String? anchor,
   }) = _ReviewIssue;
 
   factory ReviewIssue.fromJson(Map<String, dynamic> json) =>

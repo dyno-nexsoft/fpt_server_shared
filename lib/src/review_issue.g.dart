@@ -8,16 +8,14 @@ part of 'review_issue.dart';
 
 _$ReviewIssueImpl _$$ReviewIssueImplFromJson(Map<String, dynamic> json) =>
     _$ReviewIssueImpl(
-      severity: $enumDecode(
-        _$ReviewSeverityEnumMap,
-        json['severity'],
-        unknownValue: ReviewSeverity.low,
-      ),
+      severity: $enumDecode(_$ReviewSeverityEnumMap, json['severity'],
+          unknownValue: ReviewSeverity.low),
       file: json['file'] as String,
       lineStart: (json['line_start'] as num).toInt(),
       lineEnd: (json['line_end'] as num?)?.toInt(),
       description: json['description'] as String,
       url: json['url'] as String?,
+      anchor: json['anchor'] as String?,
     );
 
 Map<String, dynamic> _$$ReviewIssueImplToJson(_$ReviewIssueImpl instance) {
@@ -36,6 +34,7 @@ Map<String, dynamic> _$$ReviewIssueImplToJson(_$ReviewIssueImpl instance) {
   writeNotNull('line_end', instance.lineEnd);
   val['description'] = instance.description;
   writeNotNull('url', instance.url);
+  writeNotNull('anchor', instance.anchor);
   return val;
 }
 
