@@ -38,18 +38,15 @@ mixin _$AppLimits {
   /// Most findings one review shows; the rest are summarised as omitted.
   int get reviewMaxIssues => throw _privateConstructorUsedError;
 
-  /// Tries a request gets on one Gemini model and key before moving on.
+  /// Tries a request gets on one model and key before moving on.
   int get aiAttemptsPerModel => throw _privateConstructorUsedError;
 
-  /// Minutes a Gemini key that failed is left alone.
+  /// Minutes a provider key that failed is left alone.
   int get aiKeyRestMinutes => throw _privateConstructorUsedError;
 
-  /// Gemini requests in flight at once, across every review and
+  /// AI requests in flight at once, across every review and
   /// announcement.
   int get aiMaxConcurrentRequests => throw _privateConstructorUsedError;
-
-  /// Sibling models tried when the chosen one is out of capacity.
-  int get aiFallbackModels => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -71,8 +68,7 @@ abstract class $AppLimitsCopyWith<$Res> {
       int reviewMaxIssues,
       int aiAttemptsPerModel,
       int aiKeyRestMinutes,
-      int aiMaxConcurrentRequests,
-      int aiFallbackModels});
+      int aiMaxConcurrentRequests});
 }
 
 /// @nodoc
@@ -97,7 +93,6 @@ class _$AppLimitsCopyWithImpl<$Res, $Val extends AppLimits>
     Object? aiAttemptsPerModel = null,
     Object? aiKeyRestMinutes = null,
     Object? aiMaxConcurrentRequests = null,
-    Object? aiFallbackModels = null,
   }) {
     return _then(_value.copyWith(
       reviewsDays: null == reviewsDays
@@ -136,10 +131,6 @@ class _$AppLimitsCopyWithImpl<$Res, $Val extends AppLimits>
           ? _value.aiMaxConcurrentRequests
           : aiMaxConcurrentRequests // ignore: cast_nullable_to_non_nullable
               as int,
-      aiFallbackModels: null == aiFallbackModels
-          ? _value.aiFallbackModels
-          : aiFallbackModels // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -161,8 +152,7 @@ abstract class _$$AppLimitsImplCopyWith<$Res>
       int reviewMaxIssues,
       int aiAttemptsPerModel,
       int aiKeyRestMinutes,
-      int aiMaxConcurrentRequests,
-      int aiFallbackModels});
+      int aiMaxConcurrentRequests});
 }
 
 /// @nodoc
@@ -185,7 +175,6 @@ class __$$AppLimitsImplCopyWithImpl<$Res>
     Object? aiAttemptsPerModel = null,
     Object? aiKeyRestMinutes = null,
     Object? aiMaxConcurrentRequests = null,
-    Object? aiFallbackModels = null,
   }) {
     return _then(_$AppLimitsImpl(
       reviewsDays: null == reviewsDays
@@ -224,10 +213,6 @@ class __$$AppLimitsImplCopyWithImpl<$Res>
           ? _value.aiMaxConcurrentRequests
           : aiMaxConcurrentRequests // ignore: cast_nullable_to_non_nullable
               as int,
-      aiFallbackModels: null == aiFallbackModels
-          ? _value.aiFallbackModels
-          : aiFallbackModels // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -244,8 +229,7 @@ class _$AppLimitsImpl extends _AppLimits {
       this.reviewMaxIssues = 20,
       this.aiAttemptsPerModel = 3,
       this.aiKeyRestMinutes = 10,
-      this.aiMaxConcurrentRequests = 2,
-      this.aiFallbackModels = 2})
+      this.aiMaxConcurrentRequests = 2})
       : super._();
 
   factory _$AppLimitsImpl.fromJson(Map<String, dynamic> json) =>
@@ -281,30 +265,25 @@ class _$AppLimitsImpl extends _AppLimits {
   @JsonKey()
   final int reviewMaxIssues;
 
-  /// Tries a request gets on one Gemini model and key before moving on.
+  /// Tries a request gets on one model and key before moving on.
   @override
   @JsonKey()
   final int aiAttemptsPerModel;
 
-  /// Minutes a Gemini key that failed is left alone.
+  /// Minutes a provider key that failed is left alone.
   @override
   @JsonKey()
   final int aiKeyRestMinutes;
 
-  /// Gemini requests in flight at once, across every review and
+  /// AI requests in flight at once, across every review and
   /// announcement.
   @override
   @JsonKey()
   final int aiMaxConcurrentRequests;
 
-  /// Sibling models tried when the chosen one is out of capacity.
-  @override
-  @JsonKey()
-  final int aiFallbackModels;
-
   @override
   String toString() {
-    return 'AppLimits(reviewsDays: $reviewsDays, translatesDays: $translatesDays, notificationsDays: $notificationsDays, buildTimeoutMinutes: $buildTimeoutMinutes, reportSweepDays: $reportSweepDays, reviewMaxIssues: $reviewMaxIssues, aiAttemptsPerModel: $aiAttemptsPerModel, aiKeyRestMinutes: $aiKeyRestMinutes, aiMaxConcurrentRequests: $aiMaxConcurrentRequests, aiFallbackModels: $aiFallbackModels)';
+    return 'AppLimits(reviewsDays: $reviewsDays, translatesDays: $translatesDays, notificationsDays: $notificationsDays, buildTimeoutMinutes: $buildTimeoutMinutes, reportSweepDays: $reportSweepDays, reviewMaxIssues: $reviewMaxIssues, aiAttemptsPerModel: $aiAttemptsPerModel, aiKeyRestMinutes: $aiKeyRestMinutes, aiMaxConcurrentRequests: $aiMaxConcurrentRequests)';
   }
 
   @override
@@ -330,9 +309,7 @@ class _$AppLimitsImpl extends _AppLimits {
                 other.aiKeyRestMinutes == aiKeyRestMinutes) &&
             (identical(
                     other.aiMaxConcurrentRequests, aiMaxConcurrentRequests) ||
-                other.aiMaxConcurrentRequests == aiMaxConcurrentRequests) &&
-            (identical(other.aiFallbackModels, aiFallbackModels) ||
-                other.aiFallbackModels == aiFallbackModels));
+                other.aiMaxConcurrentRequests == aiMaxConcurrentRequests));
   }
 
   @JsonKey(ignore: true)
@@ -347,8 +324,7 @@ class _$AppLimitsImpl extends _AppLimits {
       reviewMaxIssues,
       aiAttemptsPerModel,
       aiKeyRestMinutes,
-      aiMaxConcurrentRequests,
-      aiFallbackModels);
+      aiMaxConcurrentRequests);
 
   @JsonKey(ignore: true)
   @override
@@ -374,8 +350,7 @@ abstract class _AppLimits extends AppLimits {
       final int reviewMaxIssues,
       final int aiAttemptsPerModel,
       final int aiKeyRestMinutes,
-      final int aiMaxConcurrentRequests,
-      final int aiFallbackModels}) = _$AppLimitsImpl;
+      final int aiMaxConcurrentRequests}) = _$AppLimitsImpl;
   const _AppLimits._() : super._();
 
   factory _AppLimits.fromJson(Map<String, dynamic> json) =
@@ -407,21 +382,17 @@ abstract class _AppLimits extends AppLimits {
   int get reviewMaxIssues;
   @override
 
-  /// Tries a request gets on one Gemini model and key before moving on.
+  /// Tries a request gets on one model and key before moving on.
   int get aiAttemptsPerModel;
   @override
 
-  /// Minutes a Gemini key that failed is left alone.
+  /// Minutes a provider key that failed is left alone.
   int get aiKeyRestMinutes;
   @override
 
-  /// Gemini requests in flight at once, across every review and
+  /// AI requests in flight at once, across every review and
   /// announcement.
   int get aiMaxConcurrentRequests;
-  @override
-
-  /// Sibling models tried when the chosen one is out of capacity.
-  int get aiFallbackModels;
   @override
   @JsonKey(ignore: true)
   _$$AppLimitsImplCopyWith<_$AppLimitsImpl> get copyWith =>

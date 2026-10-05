@@ -19,7 +19,6 @@ _$AppLimitsImpl _$$AppLimitsImplFromJson(Map<String, dynamic> json) =>
       aiKeyRestMinutes: (json['ai_key_rest_minutes'] as num?)?.toInt() ?? 10,
       aiMaxConcurrentRequests:
           (json['ai_max_concurrent_requests'] as num?)?.toInt() ?? 2,
-      aiFallbackModels: (json['ai_fallback_models'] as num?)?.toInt() ?? 2,
     );
 
 Map<String, dynamic> _$$AppLimitsImplToJson(_$AppLimitsImpl instance) =>
@@ -33,7 +32,6 @@ Map<String, dynamic> _$$AppLimitsImplToJson(_$AppLimitsImpl instance) =>
       'ai_attempts_per_model': instance.aiAttemptsPerModel,
       'ai_key_rest_minutes': instance.aiKeyRestMinutes,
       'ai_max_concurrent_requests': instance.aiMaxConcurrentRequests,
-      'ai_fallback_models': instance.aiFallbackModels,
     };
 
 _$LimitsSetParamsImpl _$$LimitsSetParamsImplFromJson(

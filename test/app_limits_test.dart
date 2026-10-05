@@ -24,13 +24,9 @@ void main() {
   });
 
   test('a value outside its range is named', () {
-    final problems = const AppLimits(
-      buildTimeoutMinutes: 5,
-      aiFallbackModels: 9,
-    ).problems();
-    expect(problems.length, 2);
+    final problems = const AppLimits(buildTimeoutMinutes: 5).problems();
+    expect(problems.length, 1);
     expect(problems.any((p) => p.startsWith('build_timeout_minutes')), isTrue);
-    expect(problems.any((p) => p.startsWith('ai_fallback_models')), isTrue);
   });
 
   test('round-trips through snake_case JSON, missing keys falling back', () {

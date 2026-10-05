@@ -17,9 +17,9 @@ class LimitRange {
 /// long a build may run, when the daily-report sweep may close a report, and
 /// how the AI is called.
 ///
-/// Only what is worth turning is here. Protocol facts (which statuses Gemini
-/// retries), Discord's own rate limits and internal tuning stay in code, where
-/// a wrong value cannot be typed in by mistake.
+/// Only what is worth turning is here. Protocol facts (which upstream statuses
+/// are transient), Discord's own rate limits and internal tuning stay in code,
+/// where a wrong value cannot be typed in by mistake.
 @freezed
 abstract class AppLimits with _$AppLimits {
   const AppLimits._();
@@ -43,18 +43,16 @@ abstract class AppLimits with _$AppLimits {
     /// Most findings one review shows; the rest are summarised as omitted.
     @Default(20) int reviewMaxIssues,
 
-    /// Tries a request gets on one Gemini model and key before moving on.
+    /// Tries a request gets on one model and key before moving on.
     @Default(3) int aiAttemptsPerModel,
 
-    /// Minutes a Gemini key that failed is left alone.
+    /// Minutes a provider key that failed is left alone.
     @Default(10) int aiKeyRestMinutes,
 
-    /// Gemini requests in flight at once, across every review and
+    /// AI requests in flight at once, across every review and
     /// announcement.
     @Default(2) int aiMaxConcurrentRequests,
 
-    /// Sibling models tried when the chosen one is out of capacity.
-    @Default(2) int aiFallbackModels,
   }) = _AppLimits;
 
   factory AppLimits.fromJson(Map<String, dynamic> json) =>
@@ -72,7 +70,6 @@ abstract class AppLimits with _$AppLimits {
     'ai_attempts_per_model': LimitRange(1, 6),
     'ai_key_rest_minutes': LimitRange(1, 120),
     'ai_max_concurrent_requests': LimitRange(1, 8),
-    'ai_fallback_models': LimitRange(0, 4),
   };
 
   /// Everything out of range, in words an admin can act on — empty when fine.
