@@ -7,6 +7,7 @@ import 'params/gitlab_params.dart';
 import 'params/ci_params.dart';
 import 'params/notification_params.dart';
 import 'params/zentao_params.dart';
+import 'ai_prompts.dart';
 import 'app_limits.dart';
 import 'daily_task.dart';
 import 'schedule_info.dart';
@@ -60,6 +61,14 @@ extension FptActions on ActionTransport {
   ) async => ActionMessage.fromJson(
     await invokeAction('gitlab.translateArb.history.delete', params.toJson()),
   );
+
+  // prompts.* — the project-specific parts of the AI prompts.
+
+  Future<AiPromptsInfo> promptsGet() async =>
+      AiPromptsInfo.fromJson(await invokeAction('prompts.get', const {}));
+
+  Future<AiPromptsInfo> promptsSet(AiPromptsSetParams params) async =>
+      AiPromptsInfo.fromJson(await invokeAction('prompts.set', params.toJson()));
 
   // limits.* — the knobs an admin can turn without a deploy.
 
