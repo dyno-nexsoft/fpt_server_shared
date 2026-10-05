@@ -48,6 +48,17 @@ abstract class WorkHours with _$WorkHours {
   int? get endMinutes => parseClock(end);
   int? get lunchStartMinutes => parseClock(lunchStart);
   int? get lunchEndMinutes => parseClock(lunchEnd);
+
+  /// Minutes actually worked: the day's length less its lunch break.
+  int get workMinutes {
+    final start = startMinutes ?? 0;
+    final end = endMinutes ?? start;
+    final lunch = (lunchStartMinutes != null && lunchEndMinutes != null)
+        ? lunchEndMinutes! - lunchStartMinutes!
+        : 0;
+    final worked = end - start - lunch;
+    return worked < 0 ? 0 : worked;
+  }
 }
 
 /// The standing rule for one day of the week.
@@ -167,6 +178,40 @@ abstract class WorkCalendar with _$WorkCalendar {
           : null;
     }
     return rule.working ? DayPlan(hours: rule.hours) : null;
+  }
+
+  /// The hours [day] runs on: its plan when it is a working day, otherwise
+  /// what its weekday would be if worked. A report posted on a day off still
+  /// needs a start, an end and an estimate, and the weekday's own are the
+  /// plausible ones.
+  WorkHours hoursOn(DateTime day) =>
+      planFor(day)?.hours ?? ruleFor(day.weekday).hours;
+
+  /// When [day]'s work starts, as a local date-time.
+  DateTime startOfWorkday(DateTime day) => DateTime(
+    day.year,
+    day.month,
+    day.day,
+    0,
+    hoursOn(day).startMinutes ?? 8 * 60 + 30,
+  );
+
+  /// When [day]'s work ends, as a local date-time.
+  DateTime endOfWorkday(DateTime day) => DateTime(
+    day.year,
+    day.month,
+    day.day,
+    0,
+    hoursOn(day).endMinutes ?? 18 * 60,
+  );
+
+  /// The hours of work to estimate for [day], rounded to the nearest half
+  /// hour: 8 for the standard 08:30–18:00 with a lunch break, 3.5 for a
+  /// morning-only Saturday. Never below half an hour, so a task is never
+  /// estimated at nothing.
+  double estimateHours(DateTime day) {
+    final halves = (hoursOn(day).workMinutes / 30).round();
+    return (halves < 1 ? 1 : halves) / 2;
   }
 
   /// Everything wrong with this calendar, in words an admin can act on — empty

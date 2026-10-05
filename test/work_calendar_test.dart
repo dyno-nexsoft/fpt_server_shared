@@ -169,6 +169,55 @@ void main() {
     expect(WorkCalendar.fromJson(calendar.toJson()), calendar);
   });
 
+  group('the working day as dates and hours', () {
+    final calendar = WorkCalendar.standard();
+
+    test('the standard day starts 08:30, ends 18:00 and estimates 8 hours', () {
+      expect(calendar.startOfWorkday(monday), DateTime(2026, 10, 5, 8, 30));
+      expect(calendar.endOfWorkday(monday), DateTime(2026, 10, 5, 18, 0));
+      expect(calendar.estimateHours(monday), 8.0);
+      expect(calendar.hoursOn(monday).workMinutes, 570 - 85);
+    });
+
+    test('a changed end moves the end and the estimate', () {
+      final earlier = calendar.copyWith(
+        weekdays: [
+          for (final rule in calendar.weekdays)
+            rule.copyWith(hours: rule.hours.copyWith(end: '17:30')),
+        ],
+      );
+      expect(earlier.endOfWorkday(monday), DateTime(2026, 10, 5, 17, 30));
+      expect(earlier.estimateHours(monday), 7.5);
+    });
+
+    test('a morning-only make-up Saturday estimates its own hours', () {
+      final makeUp = calendar.copyWith(
+        exceptions: [
+          const CalendarException(date: '2026-10-10', working: true),
+        ],
+      );
+      expect(makeUp.endOfWorkday(saturday), DateTime(2026, 10, 10, 12, 0));
+      expect(makeUp.estimateHours(saturday), 3.5);
+    });
+
+    test('a day off still has the weekday’s own hours to fall back on', () {
+      expect(calendar.planFor(sunday), isNull);
+      expect(calendar.endOfWorkday(sunday), DateTime(2026, 10, 11, 12, 0));
+    });
+
+    test('an estimate is never nothing', () {
+      final tiny = calendar.copyWith(
+        weekdays: [
+          for (final rule in calendar.weekdays)
+            rule.copyWith(
+              hours: const WorkHours(start: '09:00', end: '09:05'),
+            ),
+        ],
+      );
+      expect(tiny.estimateHours(monday), 0.5);
+    });
+  });
+
   test('clock helpers', () {
     expect(parseClock('08:30'), 510);
     expect(parseClock('24:00'), isNull);
