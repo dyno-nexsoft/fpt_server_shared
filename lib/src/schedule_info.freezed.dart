@@ -20,18 +20,15 @@ ScheduledJobInfo _$ScheduledJobInfoFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ScheduledJobInfo {
-  String get name => throw _privateConstructorUsedError;
+  ScheduledJobConfig get config => throw _privateConstructorUsedError;
 
   /// When it runs, e.g. "Working days, at the start of the day + 30 min" or
   /// "Every day at 23:00".
   String get rule => throw _privateConstructorUsedError;
 
-  /// Whether the working calendar decides which days it runs on. False for a
-  /// job that runs every day regardless, such as the nightly cleanup.
-  bool get followsCalendar => throw _privateConstructorUsedError;
-
-  /// The next time it will run, in the server's local time; null when the
-  /// calendar leaves it no day to run on in the coming weeks.
+  /// The next time it will run, in the server's local time; null when it is
+  /// disabled, or the calendar leaves it no day to run on in the coming
+  /// weeks.
   DateTime? get nextRun => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -46,8 +43,9 @@ abstract class $ScheduledJobInfoCopyWith<$Res> {
           ScheduledJobInfo value, $Res Function(ScheduledJobInfo) then) =
       _$ScheduledJobInfoCopyWithImpl<$Res, ScheduledJobInfo>;
   @useResult
-  $Res call(
-      {String name, String rule, bool followsCalendar, DateTime? nextRun});
+  $Res call({ScheduledJobConfig config, String rule, DateTime? nextRun});
+
+  $ScheduledJobConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -63,29 +61,32 @@ class _$ScheduledJobInfoCopyWithImpl<$Res, $Val extends ScheduledJobInfo>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? config = null,
     Object? rule = null,
-    Object? followsCalendar = null,
     Object? nextRun = freezed,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as ScheduledJobConfig,
       rule: null == rule
           ? _value.rule
           : rule // ignore: cast_nullable_to_non_nullable
               as String,
-      followsCalendar: null == followsCalendar
-          ? _value.followsCalendar
-          : followsCalendar // ignore: cast_nullable_to_non_nullable
-              as bool,
       nextRun: freezed == nextRun
           ? _value.nextRun
           : nextRun // ignore: cast_nullable_to_non_nullable
               as DateTime?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ScheduledJobConfigCopyWith<$Res> get config {
+    return $ScheduledJobConfigCopyWith<$Res>(_value.config, (value) {
+      return _then(_value.copyWith(config: value) as $Val);
+    });
   }
 }
 
@@ -97,8 +98,10 @@ abstract class _$$ScheduledJobInfoImplCopyWith<$Res>
       __$$ScheduledJobInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String name, String rule, bool followsCalendar, DateTime? nextRun});
+  $Res call({ScheduledJobConfig config, String rule, DateTime? nextRun});
+
+  @override
+  $ScheduledJobConfigCopyWith<$Res> get config;
 }
 
 /// @nodoc
@@ -112,24 +115,19 @@ class __$$ScheduledJobInfoImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
+    Object? config = null,
     Object? rule = null,
-    Object? followsCalendar = null,
     Object? nextRun = freezed,
   }) {
     return _then(_$ScheduledJobInfoImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
+      config: null == config
+          ? _value.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as ScheduledJobConfig,
       rule: null == rule
           ? _value.rule
           : rule // ignore: cast_nullable_to_non_nullable
               as String,
-      followsCalendar: null == followsCalendar
-          ? _value.followsCalendar
-          : followsCalendar // ignore: cast_nullable_to_non_nullable
-              as bool,
       nextRun: freezed == nextRun
           ? _value.nextRun
           : nextRun // ignore: cast_nullable_to_non_nullable
@@ -142,35 +140,28 @@ class __$$ScheduledJobInfoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ScheduledJobInfoImpl implements _ScheduledJobInfo {
   const _$ScheduledJobInfoImpl(
-      {required this.name,
-      required this.rule,
-      required this.followsCalendar,
-      this.nextRun});
+      {required this.config, required this.rule, this.nextRun});
 
   factory _$ScheduledJobInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ScheduledJobInfoImplFromJson(json);
 
   @override
-  final String name;
+  final ScheduledJobConfig config;
 
   /// When it runs, e.g. "Working days, at the start of the day + 30 min" or
   /// "Every day at 23:00".
   @override
   final String rule;
 
-  /// Whether the working calendar decides which days it runs on. False for a
-  /// job that runs every day regardless, such as the nightly cleanup.
-  @override
-  final bool followsCalendar;
-
-  /// The next time it will run, in the server's local time; null when the
-  /// calendar leaves it no day to run on in the coming weeks.
+  /// The next time it will run, in the server's local time; null when it is
+  /// disabled, or the calendar leaves it no day to run on in the coming
+  /// weeks.
   @override
   final DateTime? nextRun;
 
   @override
   String toString() {
-    return 'ScheduledJobInfo(name: $name, rule: $rule, followsCalendar: $followsCalendar, nextRun: $nextRun)';
+    return 'ScheduledJobInfo(config: $config, rule: $rule, nextRun: $nextRun)';
   }
 
   @override
@@ -178,17 +169,14 @@ class _$ScheduledJobInfoImpl implements _ScheduledJobInfo {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScheduledJobInfoImpl &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.config, config) || other.config == config) &&
             (identical(other.rule, rule) || other.rule == rule) &&
-            (identical(other.followsCalendar, followsCalendar) ||
-                other.followsCalendar == followsCalendar) &&
             (identical(other.nextRun, nextRun) || other.nextRun == nextRun));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, name, rule, followsCalendar, nextRun);
+  int get hashCode => Object.hash(runtimeType, config, rule, nextRun);
 
   @JsonKey(ignore: true)
   @override
@@ -207,16 +195,15 @@ class _$ScheduledJobInfoImpl implements _ScheduledJobInfo {
 
 abstract class _ScheduledJobInfo implements ScheduledJobInfo {
   const factory _ScheduledJobInfo(
-      {required final String name,
+      {required final ScheduledJobConfig config,
       required final String rule,
-      required final bool followsCalendar,
       final DateTime? nextRun}) = _$ScheduledJobInfoImpl;
 
   factory _ScheduledJobInfo.fromJson(Map<String, dynamic> json) =
       _$ScheduledJobInfoImpl.fromJson;
 
   @override
-  String get name;
+  ScheduledJobConfig get config;
   @override
 
   /// When it runs, e.g. "Working days, at the start of the day + 30 min" or
@@ -224,13 +211,9 @@ abstract class _ScheduledJobInfo implements ScheduledJobInfo {
   String get rule;
   @override
 
-  /// Whether the working calendar decides which days it runs on. False for a
-  /// job that runs every day regardless, such as the nightly cleanup.
-  bool get followsCalendar;
-  @override
-
-  /// The next time it will run, in the server's local time; null when the
-  /// calendar leaves it no day to run on in the coming weeks.
+  /// The next time it will run, in the server's local time; null when it is
+  /// disabled, or the calendar leaves it no day to run on in the coming
+  /// weeks.
   DateTime? get nextRun;
   @override
   @JsonKey(ignore: true)
@@ -426,6 +409,10 @@ mixin _$ScheduleSetParams {
   /// as one document, so there is no partial update to get half applied.
   WorkCalendar get calendar => throw _privateConstructorUsedError;
 
+  /// The whole job list, replacing what is stored. Null leaves the jobs as
+  /// they are, which is what a client that only edits the calendar sends.
+  List<ScheduledJobConfig>? get jobs => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ScheduleSetParamsCopyWith<ScheduleSetParams> get copyWith =>
@@ -438,7 +425,7 @@ abstract class $ScheduleSetParamsCopyWith<$Res> {
           ScheduleSetParams value, $Res Function(ScheduleSetParams) then) =
       _$ScheduleSetParamsCopyWithImpl<$Res, ScheduleSetParams>;
   @useResult
-  $Res call({WorkCalendar calendar});
+  $Res call({WorkCalendar calendar, List<ScheduledJobConfig>? jobs});
 
   $WorkCalendarCopyWith<$Res> get calendar;
 }
@@ -457,12 +444,17 @@ class _$ScheduleSetParamsCopyWithImpl<$Res, $Val extends ScheduleSetParams>
   @override
   $Res call({
     Object? calendar = null,
+    Object? jobs = freezed,
   }) {
     return _then(_value.copyWith(
       calendar: null == calendar
           ? _value.calendar
           : calendar // ignore: cast_nullable_to_non_nullable
               as WorkCalendar,
+      jobs: freezed == jobs
+          ? _value.jobs
+          : jobs // ignore: cast_nullable_to_non_nullable
+              as List<ScheduledJobConfig>?,
     ) as $Val);
   }
 
@@ -483,7 +475,7 @@ abstract class _$$ScheduleSetParamsImplCopyWith<$Res>
       __$$ScheduleSetParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({WorkCalendar calendar});
+  $Res call({WorkCalendar calendar, List<ScheduledJobConfig>? jobs});
 
   @override
   $WorkCalendarCopyWith<$Res> get calendar;
@@ -501,12 +493,17 @@ class __$$ScheduleSetParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? calendar = null,
+    Object? jobs = freezed,
   }) {
     return _then(_$ScheduleSetParamsImpl(
       calendar: null == calendar
           ? _value.calendar
           : calendar // ignore: cast_nullable_to_non_nullable
               as WorkCalendar,
+      jobs: freezed == jobs
+          ? _value._jobs
+          : jobs // ignore: cast_nullable_to_non_nullable
+              as List<ScheduledJobConfig>?,
     ));
   }
 }
@@ -514,7 +511,9 @@ class __$$ScheduleSetParamsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$ScheduleSetParamsImpl implements _ScheduleSetParams {
-  const _$ScheduleSetParamsImpl({required this.calendar});
+  const _$ScheduleSetParamsImpl(
+      {required this.calendar, final List<ScheduledJobConfig>? jobs})
+      : _jobs = jobs;
 
   factory _$ScheduleSetParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$ScheduleSetParamsImplFromJson(json);
@@ -524,9 +523,24 @@ class _$ScheduleSetParamsImpl implements _ScheduleSetParams {
   @override
   final WorkCalendar calendar;
 
+  /// The whole job list, replacing what is stored. Null leaves the jobs as
+  /// they are, which is what a client that only edits the calendar sends.
+  final List<ScheduledJobConfig>? _jobs;
+
+  /// The whole job list, replacing what is stored. Null leaves the jobs as
+  /// they are, which is what a client that only edits the calendar sends.
+  @override
+  List<ScheduledJobConfig>? get jobs {
+    final value = _jobs;
+    if (value == null) return null;
+    if (_jobs is EqualUnmodifiableListView) return _jobs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString() {
-    return 'ScheduleSetParams(calendar: $calendar)';
+    return 'ScheduleSetParams(calendar: $calendar, jobs: $jobs)';
   }
 
   @override
@@ -535,12 +549,14 @@ class _$ScheduleSetParamsImpl implements _ScheduleSetParams {
         (other.runtimeType == runtimeType &&
             other is _$ScheduleSetParamsImpl &&
             (identical(other.calendar, calendar) ||
-                other.calendar == calendar));
+                other.calendar == calendar) &&
+            const DeepCollectionEquality().equals(other._jobs, _jobs));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, calendar);
+  int get hashCode => Object.hash(
+      runtimeType, calendar, const DeepCollectionEquality().hash(_jobs));
 
   @JsonKey(ignore: true)
   @override
@@ -558,8 +574,9 @@ class _$ScheduleSetParamsImpl implements _ScheduleSetParams {
 }
 
 abstract class _ScheduleSetParams implements ScheduleSetParams {
-  const factory _ScheduleSetParams({required final WorkCalendar calendar}) =
-      _$ScheduleSetParamsImpl;
+  const factory _ScheduleSetParams(
+      {required final WorkCalendar calendar,
+      final List<ScheduledJobConfig>? jobs}) = _$ScheduleSetParamsImpl;
 
   factory _ScheduleSetParams.fromJson(Map<String, dynamic> json) =
       _$ScheduleSetParamsImpl.fromJson;
@@ -569,6 +586,11 @@ abstract class _ScheduleSetParams implements ScheduleSetParams {
   /// The whole calendar, replacing what is stored — the dashboard edits it
   /// as one document, so there is no partial update to get half applied.
   WorkCalendar get calendar;
+  @override
+
+  /// The whole job list, replacing what is stored. Null leaves the jobs as
+  /// they are, which is what a client that only edits the calendar sends.
+  List<ScheduledJobConfig>? get jobs;
   @override
   @JsonKey(ignore: true)
   _$$ScheduleSetParamsImplCopyWith<_$ScheduleSetParamsImpl> get copyWith =>
