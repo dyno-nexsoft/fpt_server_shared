@@ -6,7 +6,6 @@ void main() {
     const limits = AppLimits();
     expect(limits.reviewsDays, 7);
     expect(limits.buildTimeoutMinutes, 120);
-    expect(limits.reportCloseGraceMinutes, 60);
     expect(limits.reviewMaxIssues, 20);
     expect(limits.aiMaxConcurrentRequests, 2);
     expect(limits.problems(), isEmpty);

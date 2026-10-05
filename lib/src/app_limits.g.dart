@@ -13,8 +13,6 @@ _$AppLimitsImpl _$$AppLimitsImplFromJson(Map<String, dynamic> json) =>
       notificationsDays: (json['notifications_days'] as num?)?.toInt() ?? 7,
       buildTimeoutMinutes:
           (json['build_timeout_minutes'] as num?)?.toInt() ?? 120,
-      reportCloseGraceMinutes:
-          (json['report_close_grace_minutes'] as num?)?.toInt() ?? 60,
       reportSweepDays: (json['report_sweep_days'] as num?)?.toInt() ?? 7,
       reviewMaxIssues: (json['review_max_issues'] as num?)?.toInt() ?? 20,
       aiAttemptsPerModel: (json['ai_attempts_per_model'] as num?)?.toInt() ?? 3,
@@ -30,7 +28,6 @@ Map<String, dynamic> _$$AppLimitsImplToJson(_$AppLimitsImpl instance) =>
       'translates_days': instance.translatesDays,
       'notifications_days': instance.notificationsDays,
       'build_timeout_minutes': instance.buildTimeoutMinutes,
-      'report_close_grace_minutes': instance.reportCloseGraceMinutes,
       'report_sweep_days': instance.reportSweepDays,
       'review_max_issues': instance.reviewMaxIssues,
       'ai_attempts_per_model': instance.aiAttemptsPerModel,

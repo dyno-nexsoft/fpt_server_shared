@@ -37,11 +37,6 @@ abstract class AppLimits with _$AppLimits {
     /// Minutes a build may run before it is stopped as hung.
     @Default(120) int buildTimeoutMinutes,
 
-    /// Minutes a daily report must have been left alone (not posted or edited)
-    /// before the nightly sweep finishes or closes it, so a task someone is
-    /// still editing is not cut off.
-    @Default(60) int reportCloseGraceMinutes,
-
     /// Days back the sweep looks on a day off, closing the week's reports.
     @Default(7) int reportSweepDays,
 
@@ -72,7 +67,6 @@ abstract class AppLimits with _$AppLimits {
     'translates_days': LimitRange(1, 90),
     'notifications_days': LimitRange(1, 90),
     'build_timeout_minutes': LimitRange(10, 1440),
-    'report_close_grace_minutes': LimitRange(0, 720),
     'report_sweep_days': LimitRange(1, 30),
     'review_max_issues': LimitRange(1, 100),
     'ai_attempts_per_model': LimitRange(1, 6),

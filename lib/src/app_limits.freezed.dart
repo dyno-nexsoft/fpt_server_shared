@@ -32,11 +32,6 @@ mixin _$AppLimits {
   /// Minutes a build may run before it is stopped as hung.
   int get buildTimeoutMinutes => throw _privateConstructorUsedError;
 
-  /// Minutes a daily report must have been left alone (not posted or edited)
-  /// before the nightly sweep finishes or closes it, so a task someone is
-  /// still editing is not cut off.
-  int get reportCloseGraceMinutes => throw _privateConstructorUsedError;
-
   /// Days back the sweep looks on a day off, closing the week's reports.
   int get reportSweepDays => throw _privateConstructorUsedError;
 
@@ -72,7 +67,6 @@ abstract class $AppLimitsCopyWith<$Res> {
       int translatesDays,
       int notificationsDays,
       int buildTimeoutMinutes,
-      int reportCloseGraceMinutes,
       int reportSweepDays,
       int reviewMaxIssues,
       int aiAttemptsPerModel,
@@ -98,7 +92,6 @@ class _$AppLimitsCopyWithImpl<$Res, $Val extends AppLimits>
     Object? translatesDays = null,
     Object? notificationsDays = null,
     Object? buildTimeoutMinutes = null,
-    Object? reportCloseGraceMinutes = null,
     Object? reportSweepDays = null,
     Object? reviewMaxIssues = null,
     Object? aiAttemptsPerModel = null,
@@ -122,10 +115,6 @@ class _$AppLimitsCopyWithImpl<$Res, $Val extends AppLimits>
       buildTimeoutMinutes: null == buildTimeoutMinutes
           ? _value.buildTimeoutMinutes
           : buildTimeoutMinutes // ignore: cast_nullable_to_non_nullable
-              as int,
-      reportCloseGraceMinutes: null == reportCloseGraceMinutes
-          ? _value.reportCloseGraceMinutes
-          : reportCloseGraceMinutes // ignore: cast_nullable_to_non_nullable
               as int,
       reportSweepDays: null == reportSweepDays
           ? _value.reportSweepDays
@@ -168,7 +157,6 @@ abstract class _$$AppLimitsImplCopyWith<$Res>
       int translatesDays,
       int notificationsDays,
       int buildTimeoutMinutes,
-      int reportCloseGraceMinutes,
       int reportSweepDays,
       int reviewMaxIssues,
       int aiAttemptsPerModel,
@@ -192,7 +180,6 @@ class __$$AppLimitsImplCopyWithImpl<$Res>
     Object? translatesDays = null,
     Object? notificationsDays = null,
     Object? buildTimeoutMinutes = null,
-    Object? reportCloseGraceMinutes = null,
     Object? reportSweepDays = null,
     Object? reviewMaxIssues = null,
     Object? aiAttemptsPerModel = null,
@@ -216,10 +203,6 @@ class __$$AppLimitsImplCopyWithImpl<$Res>
       buildTimeoutMinutes: null == buildTimeoutMinutes
           ? _value.buildTimeoutMinutes
           : buildTimeoutMinutes // ignore: cast_nullable_to_non_nullable
-              as int,
-      reportCloseGraceMinutes: null == reportCloseGraceMinutes
-          ? _value.reportCloseGraceMinutes
-          : reportCloseGraceMinutes // ignore: cast_nullable_to_non_nullable
               as int,
       reportSweepDays: null == reportSweepDays
           ? _value.reportSweepDays
@@ -257,7 +240,6 @@ class _$AppLimitsImpl extends _AppLimits {
       this.translatesDays = 7,
       this.notificationsDays = 7,
       this.buildTimeoutMinutes = 120,
-      this.reportCloseGraceMinutes = 60,
       this.reportSweepDays = 7,
       this.reviewMaxIssues = 20,
       this.aiAttemptsPerModel = 3,
@@ -288,13 +270,6 @@ class _$AppLimitsImpl extends _AppLimits {
   @override
   @JsonKey()
   final int buildTimeoutMinutes;
-
-  /// Minutes a daily report must have been left alone (not posted or edited)
-  /// before the nightly sweep finishes or closes it, so a task someone is
-  /// still editing is not cut off.
-  @override
-  @JsonKey()
-  final int reportCloseGraceMinutes;
 
   /// Days back the sweep looks on a day off, closing the week's reports.
   @override
@@ -329,7 +304,7 @@ class _$AppLimitsImpl extends _AppLimits {
 
   @override
   String toString() {
-    return 'AppLimits(reviewsDays: $reviewsDays, translatesDays: $translatesDays, notificationsDays: $notificationsDays, buildTimeoutMinutes: $buildTimeoutMinutes, reportCloseGraceMinutes: $reportCloseGraceMinutes, reportSweepDays: $reportSweepDays, reviewMaxIssues: $reviewMaxIssues, aiAttemptsPerModel: $aiAttemptsPerModel, aiKeyRestMinutes: $aiKeyRestMinutes, aiMaxConcurrentRequests: $aiMaxConcurrentRequests, aiFallbackModels: $aiFallbackModels)';
+    return 'AppLimits(reviewsDays: $reviewsDays, translatesDays: $translatesDays, notificationsDays: $notificationsDays, buildTimeoutMinutes: $buildTimeoutMinutes, reportSweepDays: $reportSweepDays, reviewMaxIssues: $reviewMaxIssues, aiAttemptsPerModel: $aiAttemptsPerModel, aiKeyRestMinutes: $aiKeyRestMinutes, aiMaxConcurrentRequests: $aiMaxConcurrentRequests, aiFallbackModels: $aiFallbackModels)';
   }
 
   @override
@@ -345,9 +320,6 @@ class _$AppLimitsImpl extends _AppLimits {
                 other.notificationsDays == notificationsDays) &&
             (identical(other.buildTimeoutMinutes, buildTimeoutMinutes) ||
                 other.buildTimeoutMinutes == buildTimeoutMinutes) &&
-            (identical(
-                    other.reportCloseGraceMinutes, reportCloseGraceMinutes) ||
-                other.reportCloseGraceMinutes == reportCloseGraceMinutes) &&
             (identical(other.reportSweepDays, reportSweepDays) ||
                 other.reportSweepDays == reportSweepDays) &&
             (identical(other.reviewMaxIssues, reviewMaxIssues) ||
@@ -371,7 +343,6 @@ class _$AppLimitsImpl extends _AppLimits {
       translatesDays,
       notificationsDays,
       buildTimeoutMinutes,
-      reportCloseGraceMinutes,
       reportSweepDays,
       reviewMaxIssues,
       aiAttemptsPerModel,
@@ -399,7 +370,6 @@ abstract class _AppLimits extends AppLimits {
       final int translatesDays,
       final int notificationsDays,
       final int buildTimeoutMinutes,
-      final int reportCloseGraceMinutes,
       final int reportSweepDays,
       final int reviewMaxIssues,
       final int aiAttemptsPerModel,
@@ -427,12 +397,6 @@ abstract class _AppLimits extends AppLimits {
 
   /// Minutes a build may run before it is stopped as hung.
   int get buildTimeoutMinutes;
-  @override
-
-  /// Minutes a daily report must have been left alone (not posted or edited)
-  /// before the nightly sweep finishes or closes it, so a task someone is
-  /// still editing is not cut off.
-  int get reportCloseGraceMinutes;
   @override
 
   /// Days back the sweep looks on a day off, closing the week's reports.
