@@ -7,6 +7,7 @@ import 'params/gitlab_params.dart';
 import 'params/ci_params.dart';
 import 'params/notification_params.dart';
 import 'params/zentao_params.dart';
+import 'app_limits.dart';
 import 'daily_task.dart';
 import 'schedule_info.dart';
 import 'zentao_status.dart';
@@ -59,6 +60,14 @@ extension FptActions on ActionTransport {
   ) async => ActionMessage.fromJson(
     await invokeAction('gitlab.translateArb.history.delete', params.toJson()),
   );
+
+  // limits.* — the knobs an admin can turn without a deploy.
+
+  Future<LimitsInfo> limitsGet() async =>
+      LimitsInfo.fromJson(await invokeAction('limits.get', const {}));
+
+  Future<LimitsInfo> limitsSet(LimitsSetParams params) async =>
+      LimitsInfo.fromJson(await invokeAction('limits.set', params.toJson()));
 
   // schedule.* — the working calendar the scheduled jobs follow.
 
