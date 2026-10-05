@@ -1,6 +1,7 @@
 import 'action_results.dart';
 import 'action_transport.dart';
 import 'ai_prompts.dart';
+import 'ai_provider.dart';
 import 'app_limits.dart';
 import 'artifact.dart';
 import 'daily_task.dart';
@@ -62,13 +63,26 @@ extension FptActions on ActionTransport {
     await invokeAction('gitlab.translateArb.history.delete', params.toJson()),
   );
 
+  // admin.aiProvider.* — which AI backend serves requests.
+
+  Future<AiProviderInfo> aiProviderGet() async => AiProviderInfo.fromJson(
+    await invokeAction('admin.aiProvider.get', const {}),
+  );
+
+  Future<AiProviderInfo> aiProviderSet(AiProviderSetParams params) async =>
+      AiProviderInfo.fromJson(
+        await invokeAction('admin.aiProvider.set', params.toJson()),
+      );
+
   // prompts.* — the project-specific parts of the AI prompts.
 
   Future<AiPromptsInfo> promptsGet() async =>
       AiPromptsInfo.fromJson(await invokeAction('prompts.get', const {}));
 
   Future<AiPromptsInfo> promptsSet(AiPromptsSetParams params) async =>
-      AiPromptsInfo.fromJson(await invokeAction('prompts.set', params.toJson()));
+      AiPromptsInfo.fromJson(
+        await invokeAction('prompts.set', params.toJson()),
+      );
 
   // limits.* — the knobs an admin can turn without a deploy.
 
@@ -84,7 +98,9 @@ extension FptActions on ActionTransport {
       ScheduleInfo.fromJson(await invokeAction('schedule.get', const {}));
 
   Future<ScheduleInfo> scheduleSet(ScheduleSetParams params) async =>
-      ScheduleInfo.fromJson(await invokeAction('schedule.set', params.toJson()));
+      ScheduleInfo.fromJson(
+        await invokeAction('schedule.set', params.toJson()),
+      );
 
   // zentao.*
 
