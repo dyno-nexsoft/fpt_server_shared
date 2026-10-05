@@ -8,6 +8,7 @@ import 'params/ci_params.dart';
 import 'params/notification_params.dart';
 import 'params/zentao_params.dart';
 import 'daily_task.dart';
+import 'schedule_info.dart';
 import 'zentao_status.dart';
 import 'params/system_params.dart';
 
@@ -58,6 +59,14 @@ extension FptActions on ActionTransport {
   ) async => ActionMessage.fromJson(
     await invokeAction('gitlab.translateArb.history.delete', params.toJson()),
   );
+
+  // schedule.* — the working calendar the scheduled jobs follow.
+
+  Future<ScheduleInfo> scheduleGet() async =>
+      ScheduleInfo.fromJson(await invokeAction('schedule.get', const {}));
+
+  Future<ScheduleInfo> scheduleSet(ScheduleSetParams params) async =>
+      ScheduleInfo.fromJson(await invokeAction('schedule.set', params.toJson()));
 
   // zentao.*
 

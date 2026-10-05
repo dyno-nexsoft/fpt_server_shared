@@ -36,3 +36,5 @@ export 'src/params/system_params.dart';
 export 'src/params/ci_params.dart';
 export 'src/params/gitlab_params.dart';
 export 'src/params/zentao_params.dart';
+export 'src/schedule_info.dart';
+export 'src/work_calendar.dart';
