@@ -23,6 +23,10 @@ mixin _$AiProviderSetParams {
   /// The backend to activate: `gemini` or `groq`.
   String get provider => throw _privateConstructorUsedError;
 
+  /// Whether to try the other provider when the active one is down. Null
+  /// leaves it as it is.
+  bool? get failover => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AiProviderSetParamsCopyWith<AiProviderSetParams> get copyWith =>
@@ -35,7 +39,7 @@ abstract class $AiProviderSetParamsCopyWith<$Res> {
           AiProviderSetParams value, $Res Function(AiProviderSetParams) then) =
       _$AiProviderSetParamsCopyWithImpl<$Res, AiProviderSetParams>;
   @useResult
-  $Res call({String provider});
+  $Res call({String provider, bool? failover});
 }
 
 /// @nodoc
@@ -52,12 +56,17 @@ class _$AiProviderSetParamsCopyWithImpl<$Res, $Val extends AiProviderSetParams>
   @override
   $Res call({
     Object? provider = null,
+    Object? failover = freezed,
   }) {
     return _then(_value.copyWith(
       provider: null == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as String,
+      failover: freezed == failover
+          ? _value.failover
+          : failover // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -70,7 +79,7 @@ abstract class _$$AiProviderSetParamsImplCopyWith<$Res>
       __$$AiProviderSetParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String provider});
+  $Res call({String provider, bool? failover});
 }
 
 /// @nodoc
@@ -85,12 +94,17 @@ class __$$AiProviderSetParamsImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? provider = null,
+    Object? failover = freezed,
   }) {
     return _then(_$AiProviderSetParamsImpl(
       provider: null == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as String,
+      failover: freezed == failover
+          ? _value.failover
+          : failover // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -98,7 +112,7 @@ class __$$AiProviderSetParamsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AiProviderSetParamsImpl implements _AiProviderSetParams {
-  const _$AiProviderSetParamsImpl({required this.provider});
+  const _$AiProviderSetParamsImpl({required this.provider, this.failover});
 
   factory _$AiProviderSetParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$AiProviderSetParamsImplFromJson(json);
@@ -107,9 +121,14 @@ class _$AiProviderSetParamsImpl implements _AiProviderSetParams {
   @override
   final String provider;
 
+  /// Whether to try the other provider when the active one is down. Null
+  /// leaves it as it is.
+  @override
+  final bool? failover;
+
   @override
   String toString() {
-    return 'AiProviderSetParams(provider: $provider)';
+    return 'AiProviderSetParams(provider: $provider, failover: $failover)';
   }
 
   @override
@@ -118,12 +137,14 @@ class _$AiProviderSetParamsImpl implements _AiProviderSetParams {
         (other.runtimeType == runtimeType &&
             other is _$AiProviderSetParamsImpl &&
             (identical(other.provider, provider) ||
-                other.provider == provider));
+                other.provider == provider) &&
+            (identical(other.failover, failover) ||
+                other.failover == failover));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, provider);
+  int get hashCode => Object.hash(runtimeType, provider, failover);
 
   @JsonKey(ignore: true)
   @override
@@ -141,8 +162,9 @@ class _$AiProviderSetParamsImpl implements _AiProviderSetParams {
 }
 
 abstract class _AiProviderSetParams implements AiProviderSetParams {
-  const factory _AiProviderSetParams({required final String provider}) =
-      _$AiProviderSetParamsImpl;
+  const factory _AiProviderSetParams(
+      {required final String provider,
+      final bool? failover}) = _$AiProviderSetParamsImpl;
 
   factory _AiProviderSetParams.fromJson(Map<String, dynamic> json) =
       _$AiProviderSetParamsImpl.fromJson;
@@ -151,6 +173,11 @@ abstract class _AiProviderSetParams implements AiProviderSetParams {
 
   /// The backend to activate: `gemini` or `groq`.
   String get provider;
+  @override
+
+  /// Whether to try the other provider when the active one is down. Null
+  /// leaves it as it is.
+  bool? get failover;
   @override
   @JsonKey(ignore: true)
   _$$AiProviderSetParamsImplCopyWith<_$AiProviderSetParamsImpl> get copyWith =>
@@ -165,6 +192,13 @@ AiProviderInfo _$AiProviderInfoFromJson(Map<String, dynamic> json) {
 mixin _$AiProviderInfo {
   String get provider => throw _privateConstructorUsedError;
 
+  /// Every provider with at least one API key configured — the ones that can
+  /// be selected.
+  List<String> get available => throw _privateConstructorUsedError;
+
+  /// Whether a provider that is down hands its request to the other one.
+  bool get failover => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AiProviderInfoCopyWith<AiProviderInfo> get copyWith =>
@@ -177,7 +211,7 @@ abstract class $AiProviderInfoCopyWith<$Res> {
           AiProviderInfo value, $Res Function(AiProviderInfo) then) =
       _$AiProviderInfoCopyWithImpl<$Res, AiProviderInfo>;
   @useResult
-  $Res call({String provider});
+  $Res call({String provider, List<String> available, bool failover});
 }
 
 /// @nodoc
@@ -194,12 +228,22 @@ class _$AiProviderInfoCopyWithImpl<$Res, $Val extends AiProviderInfo>
   @override
   $Res call({
     Object? provider = null,
+    Object? available = null,
+    Object? failover = null,
   }) {
     return _then(_value.copyWith(
       provider: null == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as String,
+      available: null == available
+          ? _value.available
+          : available // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      failover: null == failover
+          ? _value.failover
+          : failover // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -212,7 +256,7 @@ abstract class _$$AiProviderInfoImplCopyWith<$Res>
       __$$AiProviderInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String provider});
+  $Res call({String provider, List<String> available, bool failover});
 }
 
 /// @nodoc
@@ -227,12 +271,22 @@ class __$$AiProviderInfoImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? provider = null,
+    Object? available = null,
+    Object? failover = null,
   }) {
     return _then(_$AiProviderInfoImpl(
       provider: null == provider
           ? _value.provider
           : provider // ignore: cast_nullable_to_non_nullable
               as String,
+      available: null == available
+          ? _value._available
+          : available // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      failover: null == failover
+          ? _value.failover
+          : failover // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -240,7 +294,11 @@ class __$$AiProviderInfoImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AiProviderInfoImpl implements _AiProviderInfo {
-  const _$AiProviderInfoImpl({required this.provider});
+  const _$AiProviderInfoImpl(
+      {required this.provider,
+      final List<String> available = const <String>[],
+      this.failover = true})
+      : _available = available;
 
   factory _$AiProviderInfoImpl.fromJson(Map<String, dynamic> json) =>
       _$$AiProviderInfoImplFromJson(json);
@@ -248,9 +306,28 @@ class _$AiProviderInfoImpl implements _AiProviderInfo {
   @override
   final String provider;
 
+  /// Every provider with at least one API key configured — the ones that can
+  /// be selected.
+  final List<String> _available;
+
+  /// Every provider with at least one API key configured — the ones that can
+  /// be selected.
+  @override
+  @JsonKey()
+  List<String> get available {
+    if (_available is EqualUnmodifiableListView) return _available;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_available);
+  }
+
+  /// Whether a provider that is down hands its request to the other one.
+  @override
+  @JsonKey()
+  final bool failover;
+
   @override
   String toString() {
-    return 'AiProviderInfo(provider: $provider)';
+    return 'AiProviderInfo(provider: $provider, available: $available, failover: $failover)';
   }
 
   @override
@@ -259,12 +336,17 @@ class _$AiProviderInfoImpl implements _AiProviderInfo {
         (other.runtimeType == runtimeType &&
             other is _$AiProviderInfoImpl &&
             (identical(other.provider, provider) ||
-                other.provider == provider));
+                other.provider == provider) &&
+            const DeepCollectionEquality()
+                .equals(other._available, _available) &&
+            (identical(other.failover, failover) ||
+                other.failover == failover));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, provider);
+  int get hashCode => Object.hash(runtimeType, provider,
+      const DeepCollectionEquality().hash(_available), failover);
 
   @JsonKey(ignore: true)
   @override
@@ -282,14 +364,25 @@ class _$AiProviderInfoImpl implements _AiProviderInfo {
 }
 
 abstract class _AiProviderInfo implements AiProviderInfo {
-  const factory _AiProviderInfo({required final String provider}) =
-      _$AiProviderInfoImpl;
+  const factory _AiProviderInfo(
+      {required final String provider,
+      final List<String> available,
+      final bool failover}) = _$AiProviderInfoImpl;
 
   factory _AiProviderInfo.fromJson(Map<String, dynamic> json) =
       _$AiProviderInfoImpl.fromJson;
 
   @override
   String get provider;
+  @override
+
+  /// Every provider with at least one API key configured — the ones that can
+  /// be selected.
+  List<String> get available;
+  @override
+
+  /// Whether a provider that is down hands its request to the other one.
+  bool get failover;
   @override
   @JsonKey(ignore: true)
   _$$AiProviderInfoImplCopyWith<_$AiProviderInfoImpl> get copyWith =>

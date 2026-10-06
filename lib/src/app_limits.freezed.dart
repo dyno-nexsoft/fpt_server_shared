@@ -48,6 +48,11 @@ mixin _$AppLimits {
   /// announcement.
   int get aiMaxConcurrentRequests => throw _privateConstructorUsedError;
 
+  /// Characters of code one review (or translation) request may carry when
+  /// Groq answers. Groq's free and low tiers allow far fewer tokens a minute
+  /// than Gemini, so its batches are smaller and a big MR takes more of them.
+  int get aiGroqBatchChars => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AppLimitsCopyWith<AppLimits> get copyWith =>
@@ -68,7 +73,8 @@ abstract class $AppLimitsCopyWith<$Res> {
       int reviewMaxIssues,
       int aiAttemptsPerModel,
       int aiKeyRestMinutes,
-      int aiMaxConcurrentRequests});
+      int aiMaxConcurrentRequests,
+      int aiGroqBatchChars});
 }
 
 /// @nodoc
@@ -93,6 +99,7 @@ class _$AppLimitsCopyWithImpl<$Res, $Val extends AppLimits>
     Object? aiAttemptsPerModel = null,
     Object? aiKeyRestMinutes = null,
     Object? aiMaxConcurrentRequests = null,
+    Object? aiGroqBatchChars = null,
   }) {
     return _then(_value.copyWith(
       reviewsDays: null == reviewsDays
@@ -131,6 +138,10 @@ class _$AppLimitsCopyWithImpl<$Res, $Val extends AppLimits>
           ? _value.aiMaxConcurrentRequests
           : aiMaxConcurrentRequests // ignore: cast_nullable_to_non_nullable
               as int,
+      aiGroqBatchChars: null == aiGroqBatchChars
+          ? _value.aiGroqBatchChars
+          : aiGroqBatchChars // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -152,7 +163,8 @@ abstract class _$$AppLimitsImplCopyWith<$Res>
       int reviewMaxIssues,
       int aiAttemptsPerModel,
       int aiKeyRestMinutes,
-      int aiMaxConcurrentRequests});
+      int aiMaxConcurrentRequests,
+      int aiGroqBatchChars});
 }
 
 /// @nodoc
@@ -175,6 +187,7 @@ class __$$AppLimitsImplCopyWithImpl<$Res>
     Object? aiAttemptsPerModel = null,
     Object? aiKeyRestMinutes = null,
     Object? aiMaxConcurrentRequests = null,
+    Object? aiGroqBatchChars = null,
   }) {
     return _then(_$AppLimitsImpl(
       reviewsDays: null == reviewsDays
@@ -213,6 +226,10 @@ class __$$AppLimitsImplCopyWithImpl<$Res>
           ? _value.aiMaxConcurrentRequests
           : aiMaxConcurrentRequests // ignore: cast_nullable_to_non_nullable
               as int,
+      aiGroqBatchChars: null == aiGroqBatchChars
+          ? _value.aiGroqBatchChars
+          : aiGroqBatchChars // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -229,7 +246,8 @@ class _$AppLimitsImpl extends _AppLimits {
       this.reviewMaxIssues = 20,
       this.aiAttemptsPerModel = 3,
       this.aiKeyRestMinutes = 10,
-      this.aiMaxConcurrentRequests = 2})
+      this.aiMaxConcurrentRequests = 2,
+      this.aiGroqBatchChars = 40000})
       : super._();
 
   factory _$AppLimitsImpl.fromJson(Map<String, dynamic> json) =>
@@ -281,9 +299,16 @@ class _$AppLimitsImpl extends _AppLimits {
   @JsonKey()
   final int aiMaxConcurrentRequests;
 
+  /// Characters of code one review (or translation) request may carry when
+  /// Groq answers. Groq's free and low tiers allow far fewer tokens a minute
+  /// than Gemini, so its batches are smaller and a big MR takes more of them.
+  @override
+  @JsonKey()
+  final int aiGroqBatchChars;
+
   @override
   String toString() {
-    return 'AppLimits(reviewsDays: $reviewsDays, translatesDays: $translatesDays, notificationsDays: $notificationsDays, buildTimeoutMinutes: $buildTimeoutMinutes, reportSweepDays: $reportSweepDays, reviewMaxIssues: $reviewMaxIssues, aiAttemptsPerModel: $aiAttemptsPerModel, aiKeyRestMinutes: $aiKeyRestMinutes, aiMaxConcurrentRequests: $aiMaxConcurrentRequests)';
+    return 'AppLimits(reviewsDays: $reviewsDays, translatesDays: $translatesDays, notificationsDays: $notificationsDays, buildTimeoutMinutes: $buildTimeoutMinutes, reportSweepDays: $reportSweepDays, reviewMaxIssues: $reviewMaxIssues, aiAttemptsPerModel: $aiAttemptsPerModel, aiKeyRestMinutes: $aiKeyRestMinutes, aiMaxConcurrentRequests: $aiMaxConcurrentRequests, aiGroqBatchChars: $aiGroqBatchChars)';
   }
 
   @override
@@ -309,7 +334,9 @@ class _$AppLimitsImpl extends _AppLimits {
                 other.aiKeyRestMinutes == aiKeyRestMinutes) &&
             (identical(
                     other.aiMaxConcurrentRequests, aiMaxConcurrentRequests) ||
-                other.aiMaxConcurrentRequests == aiMaxConcurrentRequests));
+                other.aiMaxConcurrentRequests == aiMaxConcurrentRequests) &&
+            (identical(other.aiGroqBatchChars, aiGroqBatchChars) ||
+                other.aiGroqBatchChars == aiGroqBatchChars));
   }
 
   @JsonKey(ignore: true)
@@ -324,7 +351,8 @@ class _$AppLimitsImpl extends _AppLimits {
       reviewMaxIssues,
       aiAttemptsPerModel,
       aiKeyRestMinutes,
-      aiMaxConcurrentRequests);
+      aiMaxConcurrentRequests,
+      aiGroqBatchChars);
 
   @JsonKey(ignore: true)
   @override
@@ -350,7 +378,8 @@ abstract class _AppLimits extends AppLimits {
       final int reviewMaxIssues,
       final int aiAttemptsPerModel,
       final int aiKeyRestMinutes,
-      final int aiMaxConcurrentRequests}) = _$AppLimitsImpl;
+      final int aiMaxConcurrentRequests,
+      final int aiGroqBatchChars}) = _$AppLimitsImpl;
   const _AppLimits._() : super._();
 
   factory _AppLimits.fromJson(Map<String, dynamic> json) =
@@ -393,6 +422,12 @@ abstract class _AppLimits extends AppLimits {
   /// AI requests in flight at once, across every review and
   /// announcement.
   int get aiMaxConcurrentRequests;
+  @override
+
+  /// Characters of code one review (or translation) request may carry when
+  /// Groq answers. Groq's free and low tiers allow far fewer tokens a minute
+  /// than Gemini, so its batches are smaller and a big MR takes more of them.
+  int get aiGroqBatchChars;
   @override
   @JsonKey(ignore: true)
   _$$AppLimitsImplCopyWith<_$AppLimitsImpl> get copyWith =>
