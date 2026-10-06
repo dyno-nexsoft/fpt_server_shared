@@ -1,6 +1,5 @@
 import 'action_results.dart';
 import 'action_transport.dart';
-import 'ai_prompts.dart';
 import 'ai_provider.dart';
 import 'app_limits.dart';
 import 'artifact.dart';
@@ -72,16 +71,6 @@ extension FptActions on ActionTransport {
   Future<AiProviderInfo> aiProviderSet(AiProviderSetParams params) async =>
       AiProviderInfo.fromJson(
         await invokeAction('admin.aiProvider.set', params.toJson()),
-      );
-
-  // prompts.* — the project-specific parts of the AI prompts.
-
-  Future<AiPromptsInfo> promptsGet() async =>
-      AiPromptsInfo.fromJson(await invokeAction('prompts.get', const {}));
-
-  Future<AiPromptsInfo> promptsSet(AiPromptsSetParams params) async =>
-      AiPromptsInfo.fromJson(
-        await invokeAction('prompts.set', params.toJson()),
       );
 
   // limits.* — the knobs an admin can turn without a deploy.
