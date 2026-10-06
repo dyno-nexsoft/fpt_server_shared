@@ -22,6 +22,7 @@ GitlabReviewParams _$GitlabReviewParamsFromJson(Map<String, dynamic> json) {
 mixin _$GitlabReviewParams {
   @GitLabMrUrlConverter()
   GitLabMrUrl get url => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: AiModel.parse)
   AiModel get model => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,9 @@ abstract class $GitlabReviewParamsCopyWith<$Res> {
           GitlabReviewParams value, $Res Function(GitlabReviewParams) then) =
       _$GitlabReviewParamsCopyWithImpl<$Res, GitlabReviewParams>;
   @useResult
-  $Res call({@GitLabMrUrlConverter() GitLabMrUrl url, AiModel model});
+  $Res call(
+      {@GitLabMrUrlConverter() GitLabMrUrl url,
+      @JsonKey(fromJson: AiModel.parse) AiModel model});
 
   $GitLabMrUrlCopyWith<$Res> get url;
 }
@@ -86,7 +89,9 @@ abstract class _$$GitlabReviewParamsImplCopyWith<$Res>
       __$$GitlabReviewParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@GitLabMrUrlConverter() GitLabMrUrl url, AiModel model});
+  $Res call(
+      {@GitLabMrUrlConverter() GitLabMrUrl url,
+      @JsonKey(fromJson: AiModel.parse) AiModel model});
 
   @override
   $GitLabMrUrlCopyWith<$Res> get url;
@@ -124,7 +129,7 @@ class __$$GitlabReviewParamsImplCopyWithImpl<$Res>
 class _$GitlabReviewParamsImpl implements _GitlabReviewParams {
   const _$GitlabReviewParamsImpl(
       {@GitLabMrUrlConverter() required this.url,
-      this.model = AiModel.flash36});
+      @JsonKey(fromJson: AiModel.parse) this.model = AiModel.flash});
 
   factory _$GitlabReviewParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$GitlabReviewParamsImplFromJson(json);
@@ -133,7 +138,7 @@ class _$GitlabReviewParamsImpl implements _GitlabReviewParams {
   @GitLabMrUrlConverter()
   final GitLabMrUrl url;
   @override
-  @JsonKey()
+  @JsonKey(fromJson: AiModel.parse)
   final AiModel model;
 
   @override
@@ -171,8 +176,9 @@ class _$GitlabReviewParamsImpl implements _GitlabReviewParams {
 
 abstract class _GitlabReviewParams implements GitlabReviewParams {
   const factory _GitlabReviewParams(
-      {@GitLabMrUrlConverter() required final GitLabMrUrl url,
-      final AiModel model}) = _$GitlabReviewParamsImpl;
+          {@GitLabMrUrlConverter() required final GitLabMrUrl url,
+          @JsonKey(fromJson: AiModel.parse) final AiModel model}) =
+      _$GitlabReviewParamsImpl;
 
   factory _GitlabReviewParams.fromJson(Map<String, dynamic> json) =
       _$GitlabReviewParamsImpl.fromJson;
@@ -181,6 +187,7 @@ abstract class _GitlabReviewParams implements GitlabReviewParams {
   @GitLabMrUrlConverter()
   GitLabMrUrl get url;
   @override
+  @JsonKey(fromJson: AiModel.parse)
   AiModel get model;
   @override
   @JsonKey(ignore: true)
@@ -200,6 +207,7 @@ mixin _$GitlabTranslateArbParams {
 
   /// Branch to read the current `.arb` files from and open the MR into.
   String get targetBranch => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: AiModel.parse)
   AiModel get model => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -217,7 +225,7 @@ abstract class $GitlabTranslateArbParamsCopyWith<$Res> {
   $Res call(
       {@TbchatModuleConverter() TbchatModule module,
       String targetBranch,
-      AiModel model});
+      @JsonKey(fromJson: AiModel.parse) AiModel model});
 }
 
 /// @nodoc
@@ -267,7 +275,7 @@ abstract class _$$GitlabTranslateArbParamsImplCopyWith<$Res>
   $Res call(
       {@TbchatModuleConverter() TbchatModule module,
       String targetBranch,
-      AiModel model});
+      @JsonKey(fromJson: AiModel.parse) AiModel model});
 }
 
 /// @nodoc
@@ -310,7 +318,7 @@ class _$GitlabTranslateArbParamsImpl implements _GitlabTranslateArbParams {
   const _$GitlabTranslateArbParamsImpl(
       {@TbchatModuleConverter() required this.module,
       required this.targetBranch,
-      this.model = AiModel.flash36});
+      @JsonKey(fromJson: AiModel.parse) this.model = AiModel.flash});
 
   factory _$GitlabTranslateArbParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$GitlabTranslateArbParamsImplFromJson(json);
@@ -323,7 +331,7 @@ class _$GitlabTranslateArbParamsImpl implements _GitlabTranslateArbParams {
   @override
   final String targetBranch;
   @override
-  @JsonKey()
+  @JsonKey(fromJson: AiModel.parse)
   final AiModel model;
 
   @override
@@ -363,9 +371,10 @@ class _$GitlabTranslateArbParamsImpl implements _GitlabTranslateArbParams {
 
 abstract class _GitlabTranslateArbParams implements GitlabTranslateArbParams {
   const factory _GitlabTranslateArbParams(
-      {@TbchatModuleConverter() required final TbchatModule module,
-      required final String targetBranch,
-      final AiModel model}) = _$GitlabTranslateArbParamsImpl;
+          {@TbchatModuleConverter() required final TbchatModule module,
+          required final String targetBranch,
+          @JsonKey(fromJson: AiModel.parse) final AiModel model}) =
+      _$GitlabTranslateArbParamsImpl;
 
   factory _GitlabTranslateArbParams.fromJson(Map<String, dynamic> json) =
       _$GitlabTranslateArbParamsImpl.fromJson;
@@ -378,6 +387,7 @@ abstract class _GitlabTranslateArbParams implements GitlabTranslateArbParams {
   /// Branch to read the current `.arb` files from and open the MR into.
   String get targetBranch;
   @override
+  @JsonKey(fromJson: AiModel.parse)
   AiModel get model;
   @override
   @JsonKey(ignore: true)

@@ -1,37 +1,26 @@
-import 'package:collection/collection.dart';
-
-/// AI models `AiService` can call, shared so `gitlab.review`'s and
-/// `gitlab.translateArb`'s `model` param — exposed to Discord, REST, MCP,
-/// and the website's form — has one canonical set of choices instead of
-/// each surface hardcoding its own copy.
+/// The two model tiers a caller can ask for — `gitlab.review`'s and
+/// `gitlab.translateArb`'s `model` param, on Discord, REST, MCP and the
+/// website — shared so every surface offers the same choice.
 ///
-/// Deliberately just these four, matching what's actually enabled for this
-/// project's API key — not every Gemini model Google offers.
+/// A tier names *what kind* of model is wanted (quick and cheap, or slower and
+/// stronger), never one vendor's version of it: which model id each provider
+/// answers a tier with is an admin setting, [AiModelIds].
 enum AiModel {
-  flash38,
-  flash37,
-  flash36,
-  flash35,
-  pro31;
+  flash,
+  pro;
 
-  /// The literal model id Google's Generative Language API expects.
-  String get id => switch (this) {
-    AiModel.flash38 => 'gemini-3.8-flash',
-    AiModel.flash37 => 'gemini-3.7-flash',
-    AiModel.flash36 => 'gemini-3.6-flash',
-    AiModel.flash35 => 'gemini-3.5-flash',
-    AiModel.pro31 => 'gemini-3.1-pro',
-  };
-
-  /// Human-readable form for a picker — "Gemini 3.8 Flash", etc.
+  /// Human-readable form for a picker.
   String get label => switch (this) {
-    AiModel.flash38 => 'Gemini 3.8 Flash',
-    AiModel.flash37 => 'Gemini 3.7 Flash',
-    AiModel.flash36 => 'Gemini 3.6 Flash',
-    AiModel.flash35 => 'Gemini 3.5 Flash',
-    AiModel.pro31 => 'Gemini 3.1 Pro',
+    AiModel.flash => 'Flash',
+    AiModel.pro => 'Pro',
   };
 
-  static AiModel? tryParse(String? id) =>
-      AiModel.values.firstWhereOrNull((e) => e.id == id);
+  /// Reads a tier from the wire. Also takes the names the tiers had when each
+  /// model version was its own value (`flash36`, `pro31`, …), so a saved
+  /// command or an older client keeps working: anything starting with `pro` is
+  /// [pro], everything else [flash].
+  static AiModel parse(Object? value) =>
+      value is String && value.trim().toLowerCase().startsWith('pro')
+      ? AiModel.pro
+      : AiModel.flash;
 }

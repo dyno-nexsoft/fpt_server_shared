@@ -3,6 +3,7 @@ export 'src/action_schema.dart';
 export 'src/action_transport.dart';
 export 'src/active_mutation.dart';
 export 'src/ai_model.dart';
+export 'src/ai_model_ids.dart';
 export 'src/ai_prompts.dart';
 export 'src/ai_provider.dart';
 export 'src/api_key_info.dart';

@@ -10,8 +10,8 @@ _$GitlabReviewParamsImpl _$$GitlabReviewParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$GitlabReviewParamsImpl(
       url: const GitLabMrUrlConverter().fromJson(json['url'] as String),
-      model: $enumDecodeNullable(_$AiModelEnumMap, json['model']) ??
-          AiModel.flash36,
+      model:
+          json['model'] == null ? AiModel.flash : AiModel.parse(json['model']),
     );
 
 Map<String, dynamic> _$$GitlabReviewParamsImplToJson(
@@ -22,11 +22,8 @@ Map<String, dynamic> _$$GitlabReviewParamsImplToJson(
     };
 
 const _$AiModelEnumMap = {
-  AiModel.flash38: 'flash38',
-  AiModel.flash37: 'flash37',
-  AiModel.flash36: 'flash36',
-  AiModel.flash35: 'flash35',
-  AiModel.pro31: 'pro31',
+  AiModel.flash: 'flash',
+  AiModel.pro: 'pro',
 };
 
 _$GitlabTranslateArbParamsImpl _$$GitlabTranslateArbParamsImplFromJson(
@@ -34,8 +31,8 @@ _$GitlabTranslateArbParamsImpl _$$GitlabTranslateArbParamsImplFromJson(
     _$GitlabTranslateArbParamsImpl(
       module: const TbchatModuleConverter().fromJson(json['module'] as String),
       targetBranch: json['target_branch'] as String,
-      model: $enumDecodeNullable(_$AiModelEnumMap, json['model']) ??
-          AiModel.flash36,
+      model:
+          json['model'] == null ? AiModel.flash : AiModel.parse(json['model']),
     );
 
 Map<String, dynamic> _$$GitlabTranslateArbParamsImplToJson(

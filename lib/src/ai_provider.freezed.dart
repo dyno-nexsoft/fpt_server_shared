@@ -27,6 +27,13 @@ mixin _$AiProviderSetParams {
   /// leaves it as it is.
   bool? get failover => throw _privateConstructorUsedError;
 
+  /// The model id a provider answers a tier with — see [AiModelIds]. Each is
+  /// null to leave that one as it is.
+  String? get geminiFlash => throw _privateConstructorUsedError;
+  String? get geminiPro => throw _privateConstructorUsedError;
+  String? get groqFlash => throw _privateConstructorUsedError;
+  String? get groqPro => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AiProviderSetParamsCopyWith<AiProviderSetParams> get copyWith =>
@@ -39,7 +46,13 @@ abstract class $AiProviderSetParamsCopyWith<$Res> {
           AiProviderSetParams value, $Res Function(AiProviderSetParams) then) =
       _$AiProviderSetParamsCopyWithImpl<$Res, AiProviderSetParams>;
   @useResult
-  $Res call({String provider, bool? failover});
+  $Res call(
+      {String provider,
+      bool? failover,
+      String? geminiFlash,
+      String? geminiPro,
+      String? groqFlash,
+      String? groqPro});
 }
 
 /// @nodoc
@@ -57,6 +70,10 @@ class _$AiProviderSetParamsCopyWithImpl<$Res, $Val extends AiProviderSetParams>
   $Res call({
     Object? provider = null,
     Object? failover = freezed,
+    Object? geminiFlash = freezed,
+    Object? geminiPro = freezed,
+    Object? groqFlash = freezed,
+    Object? groqPro = freezed,
   }) {
     return _then(_value.copyWith(
       provider: null == provider
@@ -67,6 +84,22 @@ class _$AiProviderSetParamsCopyWithImpl<$Res, $Val extends AiProviderSetParams>
           ? _value.failover
           : failover // ignore: cast_nullable_to_non_nullable
               as bool?,
+      geminiFlash: freezed == geminiFlash
+          ? _value.geminiFlash
+          : geminiFlash // ignore: cast_nullable_to_non_nullable
+              as String?,
+      geminiPro: freezed == geminiPro
+          ? _value.geminiPro
+          : geminiPro // ignore: cast_nullable_to_non_nullable
+              as String?,
+      groqFlash: freezed == groqFlash
+          ? _value.groqFlash
+          : groqFlash // ignore: cast_nullable_to_non_nullable
+              as String?,
+      groqPro: freezed == groqPro
+          ? _value.groqPro
+          : groqPro // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -79,7 +112,13 @@ abstract class _$$AiProviderSetParamsImplCopyWith<$Res>
       __$$AiProviderSetParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String provider, bool? failover});
+  $Res call(
+      {String provider,
+      bool? failover,
+      String? geminiFlash,
+      String? geminiPro,
+      String? groqFlash,
+      String? groqPro});
 }
 
 /// @nodoc
@@ -95,6 +134,10 @@ class __$$AiProviderSetParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? provider = null,
     Object? failover = freezed,
+    Object? geminiFlash = freezed,
+    Object? geminiPro = freezed,
+    Object? groqFlash = freezed,
+    Object? groqPro = freezed,
   }) {
     return _then(_$AiProviderSetParamsImpl(
       provider: null == provider
@@ -105,6 +148,22 @@ class __$$AiProviderSetParamsImplCopyWithImpl<$Res>
           ? _value.failover
           : failover // ignore: cast_nullable_to_non_nullable
               as bool?,
+      geminiFlash: freezed == geminiFlash
+          ? _value.geminiFlash
+          : geminiFlash // ignore: cast_nullable_to_non_nullable
+              as String?,
+      geminiPro: freezed == geminiPro
+          ? _value.geminiPro
+          : geminiPro // ignore: cast_nullable_to_non_nullable
+              as String?,
+      groqFlash: freezed == groqFlash
+          ? _value.groqFlash
+          : groqFlash // ignore: cast_nullable_to_non_nullable
+              as String?,
+      groqPro: freezed == groqPro
+          ? _value.groqPro
+          : groqPro // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -112,7 +171,13 @@ class __$$AiProviderSetParamsImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$AiProviderSetParamsImpl implements _AiProviderSetParams {
-  const _$AiProviderSetParamsImpl({required this.provider, this.failover});
+  const _$AiProviderSetParamsImpl(
+      {required this.provider,
+      this.failover,
+      this.geminiFlash,
+      this.geminiPro,
+      this.groqFlash,
+      this.groqPro});
 
   factory _$AiProviderSetParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$AiProviderSetParamsImplFromJson(json);
@@ -126,9 +191,20 @@ class _$AiProviderSetParamsImpl implements _AiProviderSetParams {
   @override
   final bool? failover;
 
+  /// The model id a provider answers a tier with — see [AiModelIds]. Each is
+  /// null to leave that one as it is.
+  @override
+  final String? geminiFlash;
+  @override
+  final String? geminiPro;
+  @override
+  final String? groqFlash;
+  @override
+  final String? groqPro;
+
   @override
   String toString() {
-    return 'AiProviderSetParams(provider: $provider, failover: $failover)';
+    return 'AiProviderSetParams(provider: $provider, failover: $failover, geminiFlash: $geminiFlash, geminiPro: $geminiPro, groqFlash: $groqFlash, groqPro: $groqPro)';
   }
 
   @override
@@ -139,12 +215,20 @@ class _$AiProviderSetParamsImpl implements _AiProviderSetParams {
             (identical(other.provider, provider) ||
                 other.provider == provider) &&
             (identical(other.failover, failover) ||
-                other.failover == failover));
+                other.failover == failover) &&
+            (identical(other.geminiFlash, geminiFlash) ||
+                other.geminiFlash == geminiFlash) &&
+            (identical(other.geminiPro, geminiPro) ||
+                other.geminiPro == geminiPro) &&
+            (identical(other.groqFlash, groqFlash) ||
+                other.groqFlash == groqFlash) &&
+            (identical(other.groqPro, groqPro) || other.groqPro == groqPro));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, provider, failover);
+  int get hashCode => Object.hash(runtimeType, provider, failover, geminiFlash,
+      geminiPro, groqFlash, groqPro);
 
   @JsonKey(ignore: true)
   @override
@@ -164,7 +248,11 @@ class _$AiProviderSetParamsImpl implements _AiProviderSetParams {
 abstract class _AiProviderSetParams implements AiProviderSetParams {
   const factory _AiProviderSetParams(
       {required final String provider,
-      final bool? failover}) = _$AiProviderSetParamsImpl;
+      final bool? failover,
+      final String? geminiFlash,
+      final String? geminiPro,
+      final String? groqFlash,
+      final String? groqPro}) = _$AiProviderSetParamsImpl;
 
   factory _AiProviderSetParams.fromJson(Map<String, dynamic> json) =
       _$AiProviderSetParamsImpl.fromJson;
@@ -178,6 +266,17 @@ abstract class _AiProviderSetParams implements AiProviderSetParams {
   /// Whether to try the other provider when the active one is down. Null
   /// leaves it as it is.
   bool? get failover;
+  @override
+
+  /// The model id a provider answers a tier with — see [AiModelIds]. Each is
+  /// null to leave that one as it is.
+  String? get geminiFlash;
+  @override
+  String? get geminiPro;
+  @override
+  String? get groqFlash;
+  @override
+  String? get groqPro;
   @override
   @JsonKey(ignore: true)
   _$$AiProviderSetParamsImplCopyWith<_$AiProviderSetParamsImpl> get copyWith =>
@@ -199,6 +298,9 @@ mixin _$AiProviderInfo {
   /// Whether a provider that is down hands its request to the other one.
   bool get failover => throw _privateConstructorUsedError;
 
+  /// The model id each provider uses for each tier.
+  AiModelIds get models => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $AiProviderInfoCopyWith<AiProviderInfo> get copyWith =>
@@ -211,7 +313,13 @@ abstract class $AiProviderInfoCopyWith<$Res> {
           AiProviderInfo value, $Res Function(AiProviderInfo) then) =
       _$AiProviderInfoCopyWithImpl<$Res, AiProviderInfo>;
   @useResult
-  $Res call({String provider, List<String> available, bool failover});
+  $Res call(
+      {String provider,
+      List<String> available,
+      bool failover,
+      AiModelIds models});
+
+  $AiModelIdsCopyWith<$Res> get models;
 }
 
 /// @nodoc
@@ -230,6 +338,7 @@ class _$AiProviderInfoCopyWithImpl<$Res, $Val extends AiProviderInfo>
     Object? provider = null,
     Object? available = null,
     Object? failover = null,
+    Object? models = null,
   }) {
     return _then(_value.copyWith(
       provider: null == provider
@@ -244,7 +353,19 @@ class _$AiProviderInfoCopyWithImpl<$Res, $Val extends AiProviderInfo>
           ? _value.failover
           : failover // ignore: cast_nullable_to_non_nullable
               as bool,
+      models: null == models
+          ? _value.models
+          : models // ignore: cast_nullable_to_non_nullable
+              as AiModelIds,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AiModelIdsCopyWith<$Res> get models {
+    return $AiModelIdsCopyWith<$Res>(_value.models, (value) {
+      return _then(_value.copyWith(models: value) as $Val);
+    });
   }
 }
 
@@ -256,7 +377,14 @@ abstract class _$$AiProviderInfoImplCopyWith<$Res>
       __$$AiProviderInfoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String provider, List<String> available, bool failover});
+  $Res call(
+      {String provider,
+      List<String> available,
+      bool failover,
+      AiModelIds models});
+
+  @override
+  $AiModelIdsCopyWith<$Res> get models;
 }
 
 /// @nodoc
@@ -273,6 +401,7 @@ class __$$AiProviderInfoImplCopyWithImpl<$Res>
     Object? provider = null,
     Object? available = null,
     Object? failover = null,
+    Object? models = null,
   }) {
     return _then(_$AiProviderInfoImpl(
       provider: null == provider
@@ -287,6 +416,10 @@ class __$$AiProviderInfoImplCopyWithImpl<$Res>
           ? _value.failover
           : failover // ignore: cast_nullable_to_non_nullable
               as bool,
+      models: null == models
+          ? _value.models
+          : models // ignore: cast_nullable_to_non_nullable
+              as AiModelIds,
     ));
   }
 }
@@ -297,7 +430,8 @@ class _$AiProviderInfoImpl implements _AiProviderInfo {
   const _$AiProviderInfoImpl(
       {required this.provider,
       final List<String> available = const <String>[],
-      this.failover = true})
+      this.failover = true,
+      this.models = const AiModelIds()})
       : _available = available;
 
   factory _$AiProviderInfoImpl.fromJson(Map<String, dynamic> json) =>
@@ -325,9 +459,14 @@ class _$AiProviderInfoImpl implements _AiProviderInfo {
   @JsonKey()
   final bool failover;
 
+  /// The model id each provider uses for each tier.
+  @override
+  @JsonKey()
+  final AiModelIds models;
+
   @override
   String toString() {
-    return 'AiProviderInfo(provider: $provider, available: $available, failover: $failover)';
+    return 'AiProviderInfo(provider: $provider, available: $available, failover: $failover, models: $models)';
   }
 
   @override
@@ -340,13 +479,14 @@ class _$AiProviderInfoImpl implements _AiProviderInfo {
             const DeepCollectionEquality()
                 .equals(other._available, _available) &&
             (identical(other.failover, failover) ||
-                other.failover == failover));
+                other.failover == failover) &&
+            (identical(other.models, models) || other.models == models));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, provider,
-      const DeepCollectionEquality().hash(_available), failover);
+      const DeepCollectionEquality().hash(_available), failover, models);
 
   @JsonKey(ignore: true)
   @override
@@ -367,7 +507,8 @@ abstract class _AiProviderInfo implements AiProviderInfo {
   const factory _AiProviderInfo(
       {required final String provider,
       final List<String> available,
-      final bool failover}) = _$AiProviderInfoImpl;
+      final bool failover,
+      final AiModelIds models}) = _$AiProviderInfoImpl;
 
   factory _AiProviderInfo.fromJson(Map<String, dynamic> json) =
       _$AiProviderInfoImpl.fromJson;
@@ -383,6 +524,10 @@ abstract class _AiProviderInfo implements AiProviderInfo {
 
   /// Whether a provider that is down hands its request to the other one.
   bool get failover;
+  @override
+
+  /// The model id each provider uses for each tier.
+  AiModelIds get models;
   @override
   @JsonKey(ignore: true)
   _$$AiProviderInfoImplCopyWith<_$AiProviderInfoImpl> get copyWith =>

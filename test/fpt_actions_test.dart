@@ -209,9 +209,9 @@ void main() {
     test('the MR goes out as one string, the module by its wire name', () {
       final review = GitlabReviewParams(
         url: GitLabMrUrl(projectPath: 'group/app', mrIid: 12),
-        model: AiModel.pro31,
+        model: AiModel.pro,
       );
-      expect(review.toJson(), {'url': 'group/app!12', 'model': 'pro31'});
+      expect(review.toJson(), {'url': 'group/app!12', 'model': 'pro'});
       expect(GitlabReviewParams.fromJson(review.toJson()), review);
 
       const translate = GitlabTranslateArbParams(
@@ -221,7 +221,7 @@ void main() {
       final json = translate.toJson();
       expect(json['module'], TbchatModule.cloudStorage.toWire());
       expect(json['target_branch'], 'develop');
-      expect(json['model'], 'flash36');
+      expect(json['model'], 'flash');
       expect(GitlabTranslateArbParams.fromJson(json), translate);
     });
 

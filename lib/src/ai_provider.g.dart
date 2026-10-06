@@ -11,6 +11,10 @@ _$AiProviderSetParamsImpl _$$AiProviderSetParamsImplFromJson(
     _$AiProviderSetParamsImpl(
       provider: json['provider'] as String,
       failover: json['failover'] as bool?,
+      geminiFlash: json['gemini_flash'] as String?,
+      geminiPro: json['gemini_pro'] as String?,
+      groqFlash: json['groq_flash'] as String?,
+      groqPro: json['groq_pro'] as String?,
     );
 
 Map<String, dynamic> _$$AiProviderSetParamsImplToJson(
@@ -26,6 +30,10 @@ Map<String, dynamic> _$$AiProviderSetParamsImplToJson(
   }
 
   writeNotNull('failover', instance.failover);
+  writeNotNull('gemini_flash', instance.geminiFlash);
+  writeNotNull('gemini_pro', instance.geminiPro);
+  writeNotNull('groq_flash', instance.groqFlash);
+  writeNotNull('groq_pro', instance.groqPro);
   return val;
 }
 
@@ -37,6 +45,9 @@ _$AiProviderInfoImpl _$$AiProviderInfoImplFromJson(Map<String, dynamic> json) =>
               .toList() ??
           const <String>[],
       failover: json['failover'] as bool? ?? true,
+      models: json['models'] == null
+          ? const AiModelIds()
+          : AiModelIds.fromJson(json['models'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$AiProviderInfoImplToJson(
@@ -45,4 +56,5 @@ Map<String, dynamic> _$$AiProviderInfoImplToJson(
       'provider': instance.provider,
       'available': instance.available,
       'failover': instance.failover,
+      'models': instance.models.toJson(),
     };

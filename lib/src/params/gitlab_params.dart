@@ -39,7 +39,7 @@ class TbchatModuleConverter implements JsonConverter<TbchatModule, String> {
 abstract class GitlabReviewParams with _$GitlabReviewParams {
   const factory GitlabReviewParams({
     @GitLabMrUrlConverter() required GitLabMrUrl url,
-    @Default(AiModel.flash36) AiModel model,
+    @JsonKey(fromJson: AiModel.parse) @Default(AiModel.flash) AiModel model,
   }) = _GitlabReviewParams;
 
   factory GitlabReviewParams.fromJson(Map<String, dynamic> json) =>
@@ -54,7 +54,7 @@ abstract class GitlabTranslateArbParams with _$GitlabTranslateArbParams {
 
     /// Branch to read the current `.arb` files from and open the MR into.
     required String targetBranch,
-    @Default(AiModel.flash36) AiModel model,
+    @JsonKey(fromJson: AiModel.parse) @Default(AiModel.flash) AiModel model,
   }) = _GitlabTranslateArbParams;
 
   factory GitlabTranslateArbParams.fromJson(Map<String, dynamic> json) =>
