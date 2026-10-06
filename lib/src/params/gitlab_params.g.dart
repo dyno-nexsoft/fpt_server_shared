@@ -10,23 +10,23 @@ _$GitlabReviewParamsImpl _$$GitlabReviewParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$GitlabReviewParamsImpl(
       url: const GitLabMrUrlConverter().fromJson(json['url'] as String),
-      model: $enumDecodeNullable(_$GeminiModelEnumMap, json['model']) ??
-          GeminiModel.flash36,
+      model: $enumDecodeNullable(_$AiModelEnumMap, json['model']) ??
+          AiModel.flash36,
     );
 
 Map<String, dynamic> _$$GitlabReviewParamsImplToJson(
         _$GitlabReviewParamsImpl instance) =>
     <String, dynamic>{
       'url': const GitLabMrUrlConverter().toJson(instance.url),
-      'model': _$GeminiModelEnumMap[instance.model]!,
+      'model': _$AiModelEnumMap[instance.model]!,
     };
 
-const _$GeminiModelEnumMap = {
-  GeminiModel.flash38: 'flash38',
-  GeminiModel.flash37: 'flash37',
-  GeminiModel.flash36: 'flash36',
-  GeminiModel.flash35: 'flash35',
-  GeminiModel.pro31: 'pro31',
+const _$AiModelEnumMap = {
+  AiModel.flash38: 'flash38',
+  AiModel.flash37: 'flash37',
+  AiModel.flash36: 'flash36',
+  AiModel.flash35: 'flash35',
+  AiModel.pro31: 'pro31',
 };
 
 _$GitlabTranslateArbParamsImpl _$$GitlabTranslateArbParamsImplFromJson(
@@ -34,8 +34,8 @@ _$GitlabTranslateArbParamsImpl _$$GitlabTranslateArbParamsImplFromJson(
     _$GitlabTranslateArbParamsImpl(
       module: const TbchatModuleConverter().fromJson(json['module'] as String),
       targetBranch: json['target_branch'] as String,
-      model: $enumDecodeNullable(_$GeminiModelEnumMap, json['model']) ??
-          GeminiModel.flash36,
+      model: $enumDecodeNullable(_$AiModelEnumMap, json['model']) ??
+          AiModel.flash36,
     );
 
 Map<String, dynamic> _$$GitlabTranslateArbParamsImplToJson(
@@ -43,7 +43,7 @@ Map<String, dynamic> _$$GitlabTranslateArbParamsImplToJson(
     <String, dynamic>{
       'module': const TbchatModuleConverter().toJson(instance.module),
       'target_branch': instance.targetBranch,
-      'model': _$GeminiModelEnumMap[instance.model]!,
+      'model': _$AiModelEnumMap[instance.model]!,
     };
 
 _$HistoryListParamsImpl _$$HistoryListParamsImplFromJson(

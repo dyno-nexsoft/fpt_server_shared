@@ -22,7 +22,7 @@ GitlabReviewParams _$GitlabReviewParamsFromJson(Map<String, dynamic> json) {
 mixin _$GitlabReviewParams {
   @GitLabMrUrlConverter()
   GitLabMrUrl get url => throw _privateConstructorUsedError;
-  GeminiModel get model => throw _privateConstructorUsedError;
+  AiModel get model => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $GitlabReviewParamsCopyWith<$Res> {
           GitlabReviewParams value, $Res Function(GitlabReviewParams) then) =
       _$GitlabReviewParamsCopyWithImpl<$Res, GitlabReviewParams>;
   @useResult
-  $Res call({@GitLabMrUrlConverter() GitLabMrUrl url, GeminiModel model});
+  $Res call({@GitLabMrUrlConverter() GitLabMrUrl url, AiModel model});
 
   $GitLabMrUrlCopyWith<$Res> get url;
 }
@@ -65,7 +65,7 @@ class _$GitlabReviewParamsCopyWithImpl<$Res, $Val extends GitlabReviewParams>
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as GeminiModel,
+              as AiModel,
     ) as $Val);
   }
 
@@ -86,7 +86,7 @@ abstract class _$$GitlabReviewParamsImplCopyWith<$Res>
       __$$GitlabReviewParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({@GitLabMrUrlConverter() GitLabMrUrl url, GeminiModel model});
+  $Res call({@GitLabMrUrlConverter() GitLabMrUrl url, AiModel model});
 
   @override
   $GitLabMrUrlCopyWith<$Res> get url;
@@ -114,7 +114,7 @@ class __$$GitlabReviewParamsImplCopyWithImpl<$Res>
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as GeminiModel,
+              as AiModel,
     ));
   }
 }
@@ -124,7 +124,7 @@ class __$$GitlabReviewParamsImplCopyWithImpl<$Res>
 class _$GitlabReviewParamsImpl implements _GitlabReviewParams {
   const _$GitlabReviewParamsImpl(
       {@GitLabMrUrlConverter() required this.url,
-      this.model = GeminiModel.flash36});
+      this.model = AiModel.flash36});
 
   factory _$GitlabReviewParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$GitlabReviewParamsImplFromJson(json);
@@ -134,7 +134,7 @@ class _$GitlabReviewParamsImpl implements _GitlabReviewParams {
   final GitLabMrUrl url;
   @override
   @JsonKey()
-  final GeminiModel model;
+  final AiModel model;
 
   @override
   String toString() {
@@ -172,7 +172,7 @@ class _$GitlabReviewParamsImpl implements _GitlabReviewParams {
 abstract class _GitlabReviewParams implements GitlabReviewParams {
   const factory _GitlabReviewParams(
       {@GitLabMrUrlConverter() required final GitLabMrUrl url,
-      final GeminiModel model}) = _$GitlabReviewParamsImpl;
+      final AiModel model}) = _$GitlabReviewParamsImpl;
 
   factory _GitlabReviewParams.fromJson(Map<String, dynamic> json) =
       _$GitlabReviewParamsImpl.fromJson;
@@ -181,7 +181,7 @@ abstract class _GitlabReviewParams implements GitlabReviewParams {
   @GitLabMrUrlConverter()
   GitLabMrUrl get url;
   @override
-  GeminiModel get model;
+  AiModel get model;
   @override
   @JsonKey(ignore: true)
   _$$GitlabReviewParamsImplCopyWith<_$GitlabReviewParamsImpl> get copyWith =>
@@ -200,7 +200,7 @@ mixin _$GitlabTranslateArbParams {
 
   /// Branch to read the current `.arb` files from and open the MR into.
   String get targetBranch => throw _privateConstructorUsedError;
-  GeminiModel get model => throw _privateConstructorUsedError;
+  AiModel get model => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -217,7 +217,7 @@ abstract class $GitlabTranslateArbParamsCopyWith<$Res> {
   $Res call(
       {@TbchatModuleConverter() TbchatModule module,
       String targetBranch,
-      GeminiModel model});
+      AiModel model});
 }
 
 /// @nodoc
@@ -250,7 +250,7 @@ class _$GitlabTranslateArbParamsCopyWithImpl<$Res,
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as GeminiModel,
+              as AiModel,
     ) as $Val);
   }
 }
@@ -267,7 +267,7 @@ abstract class _$$GitlabTranslateArbParamsImplCopyWith<$Res>
   $Res call(
       {@TbchatModuleConverter() TbchatModule module,
       String targetBranch,
-      GeminiModel model});
+      AiModel model});
 }
 
 /// @nodoc
@@ -299,7 +299,7 @@ class __$$GitlabTranslateArbParamsImplCopyWithImpl<$Res>
       model: null == model
           ? _value.model
           : model // ignore: cast_nullable_to_non_nullable
-              as GeminiModel,
+              as AiModel,
     ));
   }
 }
@@ -310,7 +310,7 @@ class _$GitlabTranslateArbParamsImpl implements _GitlabTranslateArbParams {
   const _$GitlabTranslateArbParamsImpl(
       {@TbchatModuleConverter() required this.module,
       required this.targetBranch,
-      this.model = GeminiModel.flash36});
+      this.model = AiModel.flash36});
 
   factory _$GitlabTranslateArbParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$GitlabTranslateArbParamsImplFromJson(json);
@@ -324,7 +324,7 @@ class _$GitlabTranslateArbParamsImpl implements _GitlabTranslateArbParams {
   final String targetBranch;
   @override
   @JsonKey()
-  final GeminiModel model;
+  final AiModel model;
 
   @override
   String toString() {
@@ -365,7 +365,7 @@ abstract class _GitlabTranslateArbParams implements GitlabTranslateArbParams {
   const factory _GitlabTranslateArbParams(
       {@TbchatModuleConverter() required final TbchatModule module,
       required final String targetBranch,
-      final GeminiModel model}) = _$GitlabTranslateArbParamsImpl;
+      final AiModel model}) = _$GitlabTranslateArbParamsImpl;
 
   factory _GitlabTranslateArbParams.fromJson(Map<String, dynamic> json) =
       _$GitlabTranslateArbParamsImpl.fromJson;
@@ -378,7 +378,7 @@ abstract class _GitlabTranslateArbParams implements GitlabTranslateArbParams {
   /// Branch to read the current `.arb` files from and open the MR into.
   String get targetBranch;
   @override
-  GeminiModel get model;
+  AiModel get model;
   @override
   @JsonKey(ignore: true)
   _$$GitlabTranslateArbParamsImplCopyWith<_$GitlabTranslateArbParamsImpl>

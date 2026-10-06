@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../gemini_model.dart';
+import '../ai_model.dart';
 import '../gitlab_mr_url.dart';
 import '../tbchat_module.dart';
 
@@ -39,7 +39,7 @@ class TbchatModuleConverter implements JsonConverter<TbchatModule, String> {
 abstract class GitlabReviewParams with _$GitlabReviewParams {
   const factory GitlabReviewParams({
     @GitLabMrUrlConverter() required GitLabMrUrl url,
-    @Default(GeminiModel.flash36) GeminiModel model,
+    @Default(AiModel.flash36) AiModel model,
   }) = _GitlabReviewParams;
 
   factory GitlabReviewParams.fromJson(Map<String, dynamic> json) =>
@@ -54,7 +54,7 @@ abstract class GitlabTranslateArbParams with _$GitlabTranslateArbParams {
 
     /// Branch to read the current `.arb` files from and open the MR into.
     required String targetBranch,
-    @Default(GeminiModel.flash36) GeminiModel model,
+    @Default(AiModel.flash36) AiModel model,
   }) = _GitlabTranslateArbParams;
 
   factory GitlabTranslateArbParams.fromJson(Map<String, dynamic> json) =>

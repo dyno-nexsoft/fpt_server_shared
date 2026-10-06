@@ -209,7 +209,7 @@ void main() {
     test('the MR goes out as one string, the module by its wire name', () {
       final review = GitlabReviewParams(
         url: GitLabMrUrl(projectPath: 'group/app', mrIid: 12),
-        model: GeminiModel.pro31,
+        model: AiModel.pro31,
       );
       expect(review.toJson(), {'url': 'group/app!12', 'model': 'pro31'});
       expect(GitlabReviewParams.fromJson(review.toJson()), review);
