@@ -10,7 +10,7 @@ _$AiModelIdsImpl _$$AiModelIdsImplFromJson(Map<String, dynamic> json) =>
     _$AiModelIdsImpl(
       geminiFlash: json['gemini_flash'] as String? ?? 'gemini-3.6-flash',
       geminiPro: json['gemini_pro'] as String? ?? 'gemini-3.1-pro',
-      groqFlash: json['groq_flash'] as String? ?? 'llama-3.3-70b-versatile',
+      groqFlash: json['groq_flash'] as String? ?? 'openai/gpt-oss-20b',
       groqPro: json['groq_pro'] as String? ?? 'openai/gpt-oss-120b',
     );
 

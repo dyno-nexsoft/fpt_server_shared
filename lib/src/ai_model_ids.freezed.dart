@@ -135,7 +135,7 @@ class _$AiModelIdsImpl extends _AiModelIds {
   const _$AiModelIdsImpl(
       {this.geminiFlash = 'gemini-3.6-flash',
       this.geminiPro = 'gemini-3.1-pro',
-      this.groqFlash = 'llama-3.3-70b-versatile',
+      this.groqFlash = 'openai/gpt-oss-20b',
       this.groqPro = 'openai/gpt-oss-120b'})
       : super._();
 

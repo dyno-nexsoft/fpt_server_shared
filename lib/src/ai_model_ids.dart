@@ -18,7 +18,7 @@ abstract class AiModelIds with _$AiModelIds {
   const factory AiModelIds({
     @Default('gemini-3.6-flash') String geminiFlash,
     @Default('gemini-3.1-pro') String geminiPro,
-    @Default('llama-3.3-70b-versatile') String groqFlash,
+    @Default('openai/gpt-oss-20b') String groqFlash,
     @Default('openai/gpt-oss-120b') String groqPro,
   }) = _AiModelIds;
 
