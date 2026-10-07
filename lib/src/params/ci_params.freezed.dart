@@ -610,12 +610,12 @@ abstract class _CiGenParams implements CiGenParams {
       throw _privateConstructorUsedError;
 }
 
-CiSocialfiParams _$CiSocialfiParamsFromJson(Map<String, dynamic> json) {
-  return _CiSocialfiParams.fromJson(json);
+CiRepostsParams _$CiRepostsParamsFromJson(Map<String, dynamic> json) {
+  return _CiRepostsParams.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CiSocialfiParams {
+mixin _$CiRepostsParams {
   /// A TikTok video or profile link.
   String get url => throw _privateConstructorUsedError;
   EnvironmentBuild get environment => throw _privateConstructorUsedError;
@@ -625,23 +625,23 @@ mixin _$CiSocialfiParams {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CiSocialfiParamsCopyWith<CiSocialfiParams> get copyWith =>
+  $CiRepostsParamsCopyWith<CiRepostsParams> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CiSocialfiParamsCopyWith<$Res> {
-  factory $CiSocialfiParamsCopyWith(
-          CiSocialfiParams value, $Res Function(CiSocialfiParams) then) =
-      _$CiSocialfiParamsCopyWithImpl<$Res, CiSocialfiParams>;
+abstract class $CiRepostsParamsCopyWith<$Res> {
+  factory $CiRepostsParamsCopyWith(
+          CiRepostsParams value, $Res Function(CiRepostsParams) then) =
+      _$CiRepostsParamsCopyWithImpl<$Res, CiRepostsParams>;
   @useResult
   $Res call({String url, EnvironmentBuild environment, int limit});
 }
 
 /// @nodoc
-class _$CiSocialfiParamsCopyWithImpl<$Res, $Val extends CiSocialfiParams>
-    implements $CiSocialfiParamsCopyWith<$Res> {
-  _$CiSocialfiParamsCopyWithImpl(this._value, this._then);
+class _$CiRepostsParamsCopyWithImpl<$Res, $Val extends CiRepostsParams>
+    implements $CiRepostsParamsCopyWith<$Res> {
+  _$CiRepostsParamsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -673,22 +673,22 @@ class _$CiSocialfiParamsCopyWithImpl<$Res, $Val extends CiSocialfiParams>
 }
 
 /// @nodoc
-abstract class _$$CiSocialfiParamsImplCopyWith<$Res>
-    implements $CiSocialfiParamsCopyWith<$Res> {
-  factory _$$CiSocialfiParamsImplCopyWith(_$CiSocialfiParamsImpl value,
-          $Res Function(_$CiSocialfiParamsImpl) then) =
-      __$$CiSocialfiParamsImplCopyWithImpl<$Res>;
+abstract class _$$CiRepostsParamsImplCopyWith<$Res>
+    implements $CiRepostsParamsCopyWith<$Res> {
+  factory _$$CiRepostsParamsImplCopyWith(_$CiRepostsParamsImpl value,
+          $Res Function(_$CiRepostsParamsImpl) then) =
+      __$$CiRepostsParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String url, EnvironmentBuild environment, int limit});
 }
 
 /// @nodoc
-class __$$CiSocialfiParamsImplCopyWithImpl<$Res>
-    extends _$CiSocialfiParamsCopyWithImpl<$Res, _$CiSocialfiParamsImpl>
-    implements _$$CiSocialfiParamsImplCopyWith<$Res> {
-  __$$CiSocialfiParamsImplCopyWithImpl(_$CiSocialfiParamsImpl _value,
-      $Res Function(_$CiSocialfiParamsImpl) _then)
+class __$$CiRepostsParamsImplCopyWithImpl<$Res>
+    extends _$CiRepostsParamsCopyWithImpl<$Res, _$CiRepostsParamsImpl>
+    implements _$$CiRepostsParamsImplCopyWith<$Res> {
+  __$$CiRepostsParamsImplCopyWithImpl(_$CiRepostsParamsImpl _value,
+      $Res Function(_$CiRepostsParamsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -698,7 +698,7 @@ class __$$CiSocialfiParamsImplCopyWithImpl<$Res>
     Object? environment = null,
     Object? limit = null,
   }) {
-    return _then(_$CiSocialfiParamsImpl(
+    return _then(_$CiRepostsParamsImpl(
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -717,14 +717,14 @@ class __$$CiSocialfiParamsImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$CiSocialfiParamsImpl implements _CiSocialfiParams {
-  const _$CiSocialfiParamsImpl(
+class _$CiRepostsParamsImpl implements _CiRepostsParams {
+  const _$CiRepostsParamsImpl(
       {required this.url,
       this.environment = EnvironmentBuild.dev,
       this.limit = 3});
 
-  factory _$CiSocialfiParamsImpl.fromJson(Map<String, dynamic> json) =>
-      _$$CiSocialfiParamsImplFromJson(json);
+  factory _$CiRepostsParamsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CiRepostsParamsImplFromJson(json);
 
   /// A TikTok video or profile link.
   @override
@@ -740,14 +740,14 @@ class _$CiSocialfiParamsImpl implements _CiSocialfiParams {
 
   @override
   String toString() {
-    return 'CiSocialfiParams(url: $url, environment: $environment, limit: $limit)';
+    return 'CiRepostsParams(url: $url, environment: $environment, limit: $limit)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CiSocialfiParamsImpl &&
+            other is _$CiRepostsParamsImpl &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.environment, environment) ||
                 other.environment == environment) &&
@@ -761,26 +761,26 @@ class _$CiSocialfiParamsImpl implements _CiSocialfiParams {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CiSocialfiParamsImplCopyWith<_$CiSocialfiParamsImpl> get copyWith =>
-      __$$CiSocialfiParamsImplCopyWithImpl<_$CiSocialfiParamsImpl>(
+  _$$CiRepostsParamsImplCopyWith<_$CiRepostsParamsImpl> get copyWith =>
+      __$$CiRepostsParamsImplCopyWithImpl<_$CiRepostsParamsImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$CiSocialfiParamsImplToJson(
+    return _$$CiRepostsParamsImplToJson(
       this,
     );
   }
 }
 
-abstract class _CiSocialfiParams implements CiSocialfiParams {
-  const factory _CiSocialfiParams(
+abstract class _CiRepostsParams implements CiRepostsParams {
+  const factory _CiRepostsParams(
       {required final String url,
       final EnvironmentBuild environment,
-      final int limit}) = _$CiSocialfiParamsImpl;
+      final int limit}) = _$CiRepostsParamsImpl;
 
-  factory _CiSocialfiParams.fromJson(Map<String, dynamic> json) =
-      _$CiSocialfiParamsImpl.fromJson;
+  factory _CiRepostsParams.fromJson(Map<String, dynamic> json) =
+      _$CiRepostsParamsImpl.fromJson;
 
   @override
 
@@ -794,7 +794,7 @@ abstract class _CiSocialfiParams implements CiSocialfiParams {
   int get limit;
   @override
   @JsonKey(ignore: true)
-  _$$CiSocialfiParamsImplCopyWith<_$CiSocialfiParamsImpl> get copyWith =>
+  _$$CiRepostsParamsImplCopyWith<_$CiRepostsParamsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

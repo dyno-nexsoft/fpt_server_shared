@@ -62,20 +62,20 @@ abstract class CiGenParams with _$CiGenParams {
       _$CiGenParamsFromJson(json);
 }
 
-/// `ci.socialfi` — reposts TikTok videos to TBChat SocialFi.
+/// `ci.reposts` — reposts TikTok videos to TBChat SocialFi.
 @freezed
-abstract class CiSocialfiParams with _$CiSocialfiParams {
-  const factory CiSocialfiParams({
+abstract class CiRepostsParams with _$CiRepostsParams {
+  const factory CiRepostsParams({
     /// A TikTok video or profile link.
     required String url,
     @Default(EnvironmentBuild.dev) EnvironmentBuild environment,
 
     /// How many of the profile's most recent videos to consider.
     @Default(3) int limit,
-  }) = _CiSocialfiParams;
+  }) = _CiRepostsParams;
 
-  factory CiSocialfiParams.fromJson(Map<String, dynamic> json) =>
-      _$CiSocialfiParamsFromJson(json);
+  factory CiRepostsParams.fromJson(Map<String, dynamic> json) =>
+      _$CiRepostsParamsFromJson(json);
 }
 
 /// `ci.replace` — swaps the SDK inside `tbchat`.
