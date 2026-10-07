@@ -610,6 +610,194 @@ abstract class _CiGenParams implements CiGenParams {
       throw _privateConstructorUsedError;
 }
 
+CiSocialfiParams _$CiSocialfiParamsFromJson(Map<String, dynamic> json) {
+  return _CiSocialfiParams.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CiSocialfiParams {
+  /// A TikTok video or profile link.
+  String get url => throw _privateConstructorUsedError;
+  EnvironmentBuild get environment => throw _privateConstructorUsedError;
+
+  /// How many of the profile's most recent videos to consider.
+  int get limit => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CiSocialfiParamsCopyWith<CiSocialfiParams> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CiSocialfiParamsCopyWith<$Res> {
+  factory $CiSocialfiParamsCopyWith(
+          CiSocialfiParams value, $Res Function(CiSocialfiParams) then) =
+      _$CiSocialfiParamsCopyWithImpl<$Res, CiSocialfiParams>;
+  @useResult
+  $Res call({String url, EnvironmentBuild environment, int limit});
+}
+
+/// @nodoc
+class _$CiSocialfiParamsCopyWithImpl<$Res, $Val extends CiSocialfiParams>
+    implements $CiSocialfiParamsCopyWith<$Res> {
+  _$CiSocialfiParamsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+    Object? environment = null,
+    Object? limit = null,
+  }) {
+    return _then(_value.copyWith(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      environment: null == environment
+          ? _value.environment
+          : environment // ignore: cast_nullable_to_non_nullable
+              as EnvironmentBuild,
+      limit: null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$CiSocialfiParamsImplCopyWith<$Res>
+    implements $CiSocialfiParamsCopyWith<$Res> {
+  factory _$$CiSocialfiParamsImplCopyWith(_$CiSocialfiParamsImpl value,
+          $Res Function(_$CiSocialfiParamsImpl) then) =
+      __$$CiSocialfiParamsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String url, EnvironmentBuild environment, int limit});
+}
+
+/// @nodoc
+class __$$CiSocialfiParamsImplCopyWithImpl<$Res>
+    extends _$CiSocialfiParamsCopyWithImpl<$Res, _$CiSocialfiParamsImpl>
+    implements _$$CiSocialfiParamsImplCopyWith<$Res> {
+  __$$CiSocialfiParamsImplCopyWithImpl(_$CiSocialfiParamsImpl _value,
+      $Res Function(_$CiSocialfiParamsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+    Object? environment = null,
+    Object? limit = null,
+  }) {
+    return _then(_$CiSocialfiParamsImpl(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+      environment: null == environment
+          ? _value.environment
+          : environment // ignore: cast_nullable_to_non_nullable
+              as EnvironmentBuild,
+      limit: null == limit
+          ? _value.limit
+          : limit // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$CiSocialfiParamsImpl implements _CiSocialfiParams {
+  const _$CiSocialfiParamsImpl(
+      {required this.url,
+      this.environment = EnvironmentBuild.dev,
+      this.limit = 3});
+
+  factory _$CiSocialfiParamsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CiSocialfiParamsImplFromJson(json);
+
+  /// A TikTok video or profile link.
+  @override
+  final String url;
+  @override
+  @JsonKey()
+  final EnvironmentBuild environment;
+
+  /// How many of the profile's most recent videos to consider.
+  @override
+  @JsonKey()
+  final int limit;
+
+  @override
+  String toString() {
+    return 'CiSocialfiParams(url: $url, environment: $environment, limit: $limit)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CiSocialfiParamsImpl &&
+            (identical(other.url, url) || other.url == url) &&
+            (identical(other.environment, environment) ||
+                other.environment == environment) &&
+            (identical(other.limit, limit) || other.limit == limit));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, url, environment, limit);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CiSocialfiParamsImplCopyWith<_$CiSocialfiParamsImpl> get copyWith =>
+      __$$CiSocialfiParamsImplCopyWithImpl<_$CiSocialfiParamsImpl>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$CiSocialfiParamsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CiSocialfiParams implements CiSocialfiParams {
+  const factory _CiSocialfiParams(
+      {required final String url,
+      final EnvironmentBuild environment,
+      final int limit}) = _$CiSocialfiParamsImpl;
+
+  factory _CiSocialfiParams.fromJson(Map<String, dynamic> json) =
+      _$CiSocialfiParamsImpl.fromJson;
+
+  @override
+
+  /// A TikTok video or profile link.
+  String get url;
+  @override
+  EnvironmentBuild get environment;
+  @override
+
+  /// How many of the profile's most recent videos to consider.
+  int get limit;
+  @override
+  @JsonKey(ignore: true)
+  _$$CiSocialfiParamsImplCopyWith<_$CiSocialfiParamsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 CiReplaceParams _$CiReplaceParamsFromJson(Map<String, dynamic> json) {
   return _CiReplaceParams.fromJson(json);
 }

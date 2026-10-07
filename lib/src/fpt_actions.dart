@@ -30,6 +30,9 @@ extension FptActions on ActionTransport {
   Future<Job> ciGen([CiGenParams params = const CiGenParams()]) async =>
       Job.fromJson(await invokeAction('ci.gen', params.toJson()));
 
+  Future<Job> ciSocialfi(CiSocialfiParams params) async =>
+      Job.fromJson(await invokeAction('ci.socialfi', params.toJson()));
+
   Future<Job> ciReplace(CiReplaceParams params) async =>
       Job.fromJson(await invokeAction('ci.replace', params.toJson()));
 

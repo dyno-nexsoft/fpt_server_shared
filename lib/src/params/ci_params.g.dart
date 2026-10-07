@@ -82,6 +82,24 @@ Map<String, dynamic> _$$CiGenParamsImplToJson(_$CiGenParamsImpl instance) {
   return val;
 }
 
+_$CiSocialfiParamsImpl _$$CiSocialfiParamsImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CiSocialfiParamsImpl(
+      url: json['url'] as String,
+      environment:
+          $enumDecodeNullable(_$EnvironmentBuildEnumMap, json['environment']) ??
+              EnvironmentBuild.dev,
+      limit: (json['limit'] as num?)?.toInt() ?? 3,
+    );
+
+Map<String, dynamic> _$$CiSocialfiParamsImplToJson(
+        _$CiSocialfiParamsImpl instance) =>
+    <String, dynamic>{
+      'url': instance.url,
+      'environment': _$EnvironmentBuildEnumMap[instance.environment]!,
+      'limit': instance.limit,
+    };
+
 _$CiReplaceParamsImpl _$$CiReplaceParamsImplFromJson(
         Map<String, dynamic> json) =>
     _$CiReplaceParamsImpl(
