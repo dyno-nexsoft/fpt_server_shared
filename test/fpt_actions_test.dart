@@ -154,8 +154,17 @@ void main() {
         'database': 'b',
         'platform': 'android,ios',
         'environment': 'dev',
-        'skip_firebase_distribution': false,
       });
+    });
+
+    test('skip_firebase_distribution is sent only when true', () {
+      const skipping = CiBuildParams(
+        tbchat: 'a',
+        database: 'b',
+        skipFirebaseDistribution: true,
+      );
+      expect(skipping.toJson()['skip_firebase_distribution'], isTrue);
+      expect(CiBuildParams.fromJson(skipping.toJson()), skipping);
     });
 
     test('every field uses the keys the server reads', () {

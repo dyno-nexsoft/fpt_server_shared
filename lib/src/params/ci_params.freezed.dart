@@ -45,6 +45,7 @@ mixin _$CiBuildParams {
 
   /// Builds and copies the artifact but does not push it to Firebase App
   /// Distribution.
+  @JsonKey(toJson: _onlyWhenTrue)
   bool get skipFirebaseDistribution => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -71,7 +72,7 @@ abstract class $CiBuildParamsCopyWith<$Res> {
       String? releaseNotes,
       String? buildName,
       int? buildNumber,
-      bool skipFirebaseDistribution});
+      @JsonKey(toJson: _onlyWhenTrue) bool skipFirebaseDistribution});
 }
 
 /// @nodoc
@@ -173,7 +174,7 @@ abstract class _$$CiBuildParamsImplCopyWith<$Res>
       String? releaseNotes,
       String? buildName,
       int? buildNumber,
-      bool skipFirebaseDistribution});
+      @JsonKey(toJson: _onlyWhenTrue) bool skipFirebaseDistribution});
 }
 
 /// @nodoc
@@ -268,7 +269,7 @@ class _$CiBuildParamsImpl implements _CiBuildParams {
       this.releaseNotes,
       this.buildName,
       this.buildNumber,
-      this.skipFirebaseDistribution = false});
+      @JsonKey(toJson: _onlyWhenTrue) this.skipFirebaseDistribution = false});
 
   factory _$CiBuildParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CiBuildParamsImplFromJson(json);
@@ -312,7 +313,7 @@ class _$CiBuildParamsImpl implements _CiBuildParams {
   /// Builds and copies the artifact but does not push it to Firebase App
   /// Distribution.
   @override
-  @JsonKey()
+  @JsonKey(toJson: _onlyWhenTrue)
   final bool skipFirebaseDistribution;
 
   @override
@@ -393,6 +394,7 @@ abstract class _CiBuildParams implements CiBuildParams {
       final String? releaseNotes,
       final String? buildName,
       final int? buildNumber,
+      @JsonKey(toJson: _onlyWhenTrue)
       final bool skipFirebaseDistribution}) = _$CiBuildParamsImpl;
 
   factory _CiBuildParams.fromJson(Map<String, dynamic> json) =
@@ -436,6 +438,7 @@ abstract class _CiBuildParams implements CiBuildParams {
 
   /// Builds and copies the artifact but does not push it to Firebase App
   /// Distribution.
+  @JsonKey(toJson: _onlyWhenTrue)
   bool get skipFirebaseDistribution;
   @override
   @JsonKey(ignore: true)

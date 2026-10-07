@@ -39,7 +39,9 @@ abstract class CiBuildParams with _$CiBuildParams {
 
     /// Builds and copies the artifact but does not push it to Firebase App
     /// Distribution.
-    @Default(false) bool skipFirebaseDistribution,
+    @JsonKey(toJson: _onlyWhenTrue)
+    @Default(false)
+    bool skipFirebaseDistribution,
   }) = _CiBuildParams;
 
   factory CiBuildParams.fromJson(Map<String, dynamic> json) =>
@@ -86,3 +88,8 @@ abstract class CiCleanParams with _$CiCleanParams {
   factory CiCleanParams.fromJson(Map<String, dynamic> json) =>
       _$CiCleanParamsFromJson(json);
 }
+
+/// Written to JSON only when true. `false` is the default, so leaving it out
+/// reads back the same, and a build's recorded params (what the dashboard and
+/// the job list show) carry the flag only when it changed something.
+bool? _onlyWhenTrue(bool value) => value ? true : null;
