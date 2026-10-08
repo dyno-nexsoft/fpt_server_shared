@@ -41,6 +41,7 @@ export 'src/schedule_info.dart';
 export 'src/scheduled_job_config.dart';
 export 'src/system_status.dart';
 export 'src/tbchat_module.dart';
+export 'src/url_input.dart';
 export 'src/work_calendar.dart';
 export 'src/zentao_status.dart';
 export 'src/zentao_user.dart';

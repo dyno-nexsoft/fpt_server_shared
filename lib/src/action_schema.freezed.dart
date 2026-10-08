@@ -427,6 +427,10 @@ mixin _$ActionParam {
   dynamic get defaultValue => throw _privateConstructorUsedError;
   bool get isBranchRef => throw _privateConstructorUsedError;
 
+  /// A `string` param that is a web link. The dashboard checks it and sends it through `tidyUrl` (a missing
+  /// `https://` added, share tracking dropped) so what is sent and stored stays short; the server does the same.
+  bool get isUrl => throw _privateConstructorUsedError;
+
   /// A `string` param whose wire value is actually a JSON array of
   /// strings, one per logical entry (e.g. `gitlab.analyze`'s `urls` —
   /// there's no dedicated `ParamType` for "list of strings", since every
@@ -456,6 +460,7 @@ abstract class $ActionParamCopyWith<$Res> {
       List<String> choices,
       @JsonKey(name: 'default') dynamic defaultValue,
       bool isBranchRef,
+      bool isUrl,
       bool isStringList});
 }
 
@@ -479,6 +484,7 @@ class _$ActionParamCopyWithImpl<$Res, $Val extends ActionParam>
     Object? choices = null,
     Object? defaultValue = freezed,
     Object? isBranchRef = null,
+    Object? isUrl = null,
     Object? isStringList = null,
   }) {
     return _then(_value.copyWith(
@@ -510,6 +516,10 @@ class _$ActionParamCopyWithImpl<$Res, $Val extends ActionParam>
           ? _value.isBranchRef
           : isBranchRef // ignore: cast_nullable_to_non_nullable
               as bool,
+      isUrl: null == isUrl
+          ? _value.isUrl
+          : isUrl // ignore: cast_nullable_to_non_nullable
+              as bool,
       isStringList: null == isStringList
           ? _value.isStringList
           : isStringList // ignore: cast_nullable_to_non_nullable
@@ -534,6 +544,7 @@ abstract class _$$ActionParamImplCopyWith<$Res>
       List<String> choices,
       @JsonKey(name: 'default') dynamic defaultValue,
       bool isBranchRef,
+      bool isUrl,
       bool isStringList});
 }
 
@@ -555,6 +566,7 @@ class __$$ActionParamImplCopyWithImpl<$Res>
     Object? choices = null,
     Object? defaultValue = freezed,
     Object? isBranchRef = null,
+    Object? isUrl = null,
     Object? isStringList = null,
   }) {
     return _then(_$ActionParamImpl(
@@ -586,6 +598,10 @@ class __$$ActionParamImplCopyWithImpl<$Res>
           ? _value.isBranchRef
           : isBranchRef // ignore: cast_nullable_to_non_nullable
               as bool,
+      isUrl: null == isUrl
+          ? _value.isUrl
+          : isUrl // ignore: cast_nullable_to_non_nullable
+              as bool,
       isStringList: null == isStringList
           ? _value.isStringList
           : isStringList // ignore: cast_nullable_to_non_nullable
@@ -605,6 +621,7 @@ class _$ActionParamImpl implements _ActionParam {
       final List<String> choices = const [],
       @JsonKey(name: 'default') this.defaultValue,
       this.isBranchRef = false,
+      this.isUrl = false,
       this.isStringList = false})
       : _choices = choices;
 
@@ -637,6 +654,12 @@ class _$ActionParamImpl implements _ActionParam {
   @JsonKey()
   final bool isBranchRef;
 
+  /// A `string` param that is a web link. The dashboard checks it and sends it through `tidyUrl` (a missing
+  /// `https://` added, share tracking dropped) so what is sent and stored stays short; the server does the same.
+  @override
+  @JsonKey()
+  final bool isUrl;
+
   /// A `string` param whose wire value is actually a JSON array of
   /// strings, one per logical entry (e.g. `gitlab.analyze`'s `urls` —
   /// there's no dedicated `ParamType` for "list of strings", since every
@@ -650,7 +673,7 @@ class _$ActionParamImpl implements _ActionParam {
 
   @override
   String toString() {
-    return 'ActionParam(name: $name, description: $description, type: $type, isRequired: $isRequired, choices: $choices, defaultValue: $defaultValue, isBranchRef: $isBranchRef, isStringList: $isStringList)';
+    return 'ActionParam(name: $name, description: $description, type: $type, isRequired: $isRequired, choices: $choices, defaultValue: $defaultValue, isBranchRef: $isBranchRef, isUrl: $isUrl, isStringList: $isStringList)';
   }
 
   @override
@@ -669,6 +692,7 @@ class _$ActionParamImpl implements _ActionParam {
                 .equals(other.defaultValue, defaultValue) &&
             (identical(other.isBranchRef, isBranchRef) ||
                 other.isBranchRef == isBranchRef) &&
+            (identical(other.isUrl, isUrl) || other.isUrl == isUrl) &&
             (identical(other.isStringList, isStringList) ||
                 other.isStringList == isStringList));
   }
@@ -684,6 +708,7 @@ class _$ActionParamImpl implements _ActionParam {
       const DeepCollectionEquality().hash(_choices),
       const DeepCollectionEquality().hash(defaultValue),
       isBranchRef,
+      isUrl,
       isStringList);
 
   @JsonKey(ignore: true)
@@ -709,6 +734,7 @@ abstract class _ActionParam implements ActionParam {
       final List<String> choices,
       @JsonKey(name: 'default') final dynamic defaultValue,
       final bool isBranchRef,
+      final bool isUrl,
       final bool isStringList}) = _$ActionParamImpl;
 
   factory _ActionParam.fromJson(Map<String, dynamic> json) =
@@ -730,6 +756,11 @@ abstract class _ActionParam implements ActionParam {
   dynamic get defaultValue;
   @override
   bool get isBranchRef;
+  @override
+
+  /// A `string` param that is a web link. The dashboard checks it and sends it through `tidyUrl` (a missing
+  /// `https://` added, share tracking dropped) so what is sent and stored stays short; the server does the same.
+  bool get isUrl;
   @override
 
   /// A `string` param whose wire value is actually a JSON array of

@@ -52,6 +52,7 @@ _$ActionParamImpl _$$ActionParamImplFromJson(Map<String, dynamic> json) =>
           const [],
       defaultValue: json['default'],
       isBranchRef: json['is_branch_ref'] as bool? ?? false,
+      isUrl: json['is_url'] as bool? ?? false,
       isStringList: json['is_string_list'] as bool? ?? false,
     );
 
@@ -72,6 +73,7 @@ Map<String, dynamic> _$$ActionParamImplToJson(_$ActionParamImpl instance) {
 
   writeNotNull('default', instance.defaultValue);
   val['is_branch_ref'] = instance.isBranchRef;
+  val['is_url'] = instance.isUrl;
   val['is_string_list'] = instance.isStringList;
   return val;
 }

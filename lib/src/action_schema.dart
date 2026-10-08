@@ -92,6 +92,10 @@ abstract class ActionParam with _$ActionParam {
     @JsonKey(name: 'default') dynamic defaultValue,
     @Default(false) bool isBranchRef,
 
+    /// A `string` param that is a web link. The dashboard checks it and sends it through `tidyUrl` (a missing
+    /// `https://` added, share tracking dropped) so what is sent and stored stays short; the server does the same.
+    @Default(false) bool isUrl,
+
     /// A `string` param whose wire value is actually a JSON array of
     /// strings, one per logical entry (e.g. `gitlab.analyze`'s `urls` —
     /// there's no dedicated `ParamType` for "list of strings", since every
