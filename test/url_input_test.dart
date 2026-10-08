@@ -20,6 +20,13 @@ void main() {
       );
     });
 
+    test('dropQuery keeps the keys that name the post', () {
+      expect(
+        tidyUrl('https://www.youtube.com/watch?v=abc&feature=shared&si=x', dropQuery: true, keepKeys: {'v'}),
+        'https://www.youtube.com/watch?v=abc',
+      );
+    });
+
     test('without dropQuery only tracking keys go', () {
       expect(
         tidyUrl('https://x.test/f.zip?token=abc&utm_source=a&fbclid=z&_r=1'),

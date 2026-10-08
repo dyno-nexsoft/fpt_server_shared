@@ -22,11 +22,11 @@ bool _isTrackingKey(String key) =>
 /// - A missing scheme is `https://` (what [raw] has when it was pasted without one, `www.tiktok.com/@a`).
 /// - The fragment (`#…`) goes, and so do userinfo and an empty query.
 /// - With [dropQuery] the whole query goes — for a link whose address is its path (a TikTok post), where the query is
-///   only share tracking. Without it only known tracking keys go, since another link (a signed download, say) may need
-///   the rest.
+///   only share tracking — except the keys in [keepKeys] (the `v` of a YouTube `watch?v=…`, which is the video).
+///   Without it only known tracking keys go, since another link (a signed download, say) may need the rest.
 ///
 /// Null when [raw] is empty or is not an `http(s)` link with a host.
-String? tidyUrl(String raw, {bool dropQuery = false}) {
+String? tidyUrl(String raw, {bool dropQuery = false, Set<String> keepKeys = const {}}) {
   var text = raw.trim();
   if (text.isEmpty) return null;
   if (text.startsWith('//')) text = text.substring(2);
@@ -37,12 +37,10 @@ String? tidyUrl(String raw, {bool dropQuery = false}) {
   // A bare word is not a link; a host needs a dot (or be localhost / an address).
   if (!uri.host.contains('.') && !uri.host.contains(':') && uri.host != 'localhost') return null;
 
-  final kept = dropQuery
-      ? const <String, List<String>>{}
-      : {
-          for (final entry in uri.queryParametersAll.entries)
-            if (!_isTrackingKey(entry.key)) entry.key: entry.value,
-        };
+  final kept = {
+    for (final entry in uri.queryParametersAll.entries)
+      if (dropQuery ? keepKeys.contains(entry.key) : !_isTrackingKey(entry.key)) entry.key: entry.value,
+  };
   return Uri(
     scheme: uri.scheme,
     host: uri.host,
