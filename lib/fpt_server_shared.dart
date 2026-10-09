@@ -23,6 +23,7 @@ export 'src/gitlab_mr_url.dart';
 export 'src/health.dart';
 export 'src/job.dart';
 export 'src/job_event.dart';
+export 'src/job_label.dart';
 export 'src/job_state.dart';
 export 'src/job_submission.dart';
 export 'src/job_timing.dart';
