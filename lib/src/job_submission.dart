@@ -10,7 +10,7 @@ part 'job_submission.freezed.dart';
 /// [toJson] flattens [job]'s own fields into the top level rather than
 /// nesting them under a `job` key, so a REST client sees exactly [Job]'s wire
 /// shape plus these two extra fields — matching the previous hand-written
-/// `JobSubmitted.toJson()` in `fpt_server` exactly, which this replaces.
+/// `JobSubmitted.toJson()` in `nexsoft_server` exactly, which this replaces.
 @freezed
 class JobSubmission with _$JobSubmission {
   const JobSubmission._();

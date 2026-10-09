@@ -55,7 +55,7 @@ mixin _$ActionSchema {
   /// entirely) so the safe failure is showing an action a screen has no
   /// form for yet, not hiding one a screen actually needs. `false` today
   /// only for `zentao.*` and `admin.owners.*` — real capabilities other
-  /// callers (a Discord slash command, `fpt_server_mcp`) still reach, just
+  /// callers (a Discord slash command, `nexsoft_server_mcp`) still reach, just
   /// not through this particular browse-everything view.
   bool get exposedInDashboard => throw _privateConstructorUsedError;
 
@@ -286,7 +286,7 @@ class _$ActionSchemaImpl extends _ActionSchema {
   /// entirely) so the safe failure is showing an action a screen has no
   /// form for yet, not hiding one a screen actually needs. `false` today
   /// only for `zentao.*` and `admin.owners.*` — real capabilities other
-  /// callers (a Discord slash command, `fpt_server_mcp`) still reach, just
+  /// callers (a Discord slash command, `nexsoft_server_mcp`) still reach, just
   /// not through this particular browse-everything view.
   @override
   @JsonKey()
@@ -402,7 +402,7 @@ abstract class _ActionSchema extends ActionSchema {
   /// entirely) so the safe failure is showing an action a screen has no
   /// form for yet, not hiding one a screen actually needs. `false` today
   /// only for `zentao.*` and `admin.owners.*` — real capabilities other
-  /// callers (a Discord slash command, `fpt_server_mcp`) still reach, just
+  /// callers (a Discord slash command, `nexsoft_server_mcp`) still reach, just
   /// not through this particular browse-everything view.
   bool get exposedInDashboard;
   @override

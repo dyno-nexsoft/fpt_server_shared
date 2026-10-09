@@ -1,20 +1,20 @@
-# fpt_server_shared
+# nexsoft_server_shared
 
-Wire-contract and data-model types shared across the `fpt_server` ecosystem —
+Wire-contract and data-model types shared across the `nexsoft_server` ecosystem —
 one compiled definition instead of every consumer hand-copying its own. Not
 published to pub.dev; consumed as a git submodule + `path:` pubspec
 dependency.
 
 ## Consumers
 
-- [fpt_server](https://github.com/dyno-nexsoft/fpt_server) (the Discord bot /
-  CI backend) — submodule at `fpt_server_shared`, `path: fpt_server_shared`.
-- [fpt_server_website](https://github.com/dyno-nexsoft/fpt_server_website)
-  (its dashboard) — no submodule of its own; `path: ../fpt_server_shared`
-  resolves to the same checkout living inside `fpt_server`, since the website
-  itself is nested at `fpt_server/fpt_server_website`.
-- [fpt_server_mcp](https://github.com/dyno-nexsoft/fpt_server_mcp) (the MCP
-  server) — same pattern as the website, `path: ../fpt_server_shared`.
+- [nexsoft_server](https://github.com/dyno-nexsoft/nexsoft_server) (the Discord bot /
+  CI backend) — submodule at `nexsoft_server_shared`, `path: nexsoft_server_shared`.
+- [nexsoft_server_website](https://github.com/dyno-nexsoft/nexsoft_server_website)
+  (its dashboard) — no submodule of its own; `path: ../nexsoft_server_shared`
+  resolves to the same checkout living inside `nexsoft_server`, since the website
+  itself is nested at `nexsoft_server/nexsoft_server_website`.
+- [nexsoft_server_mcp](https://github.com/dyno-nexsoft/nexsoft_server_mcp) (the MCP
+  server) — same pattern as the website, `path: ../nexsoft_server_shared`.
 
 ## What's here
 
@@ -41,7 +41,7 @@ overhead.
 
 Anything that isn't a data shape, or that only one repo will ever need:
 
-- `fpt_server`'s domain `Job` — a live object with an event stream and mutable
+- `nexsoft_server`'s domain `Job` — a live object with an event stream and mutable
   state (`emit`/`subscribe`/`finish`), not a DTO. Only its JSON shape lives
   here, as this package's `Job`; the domain object builds one via `toDto()`.
 - `ApiKey` (hashing/verification logic) and `StreamTokenService` — server-only
@@ -56,16 +56,16 @@ Anything that isn't a data shape, or that only one repo will ever need:
 ## Version pin
 
 `freezed 2.5.2` / `freezed_annotation ^2.4.4` / `json_serializable 6.8.0` /
-`build_runner 2.4.13` — deliberately **not** freezed 3.x. `fpt_server` has a
+`build_runner 2.4.13` — deliberately **not** freezed 3.x. `nexsoft_server` has a
 real (non-dev) dependency on `nyxx_commands 6.1.0`, which pins
 `dart_style ^2.3.2`; `freezed >=3.1.0` requires `dart_style ^3.0.0`, so
-upgrading here would break `fpt_server`'s own `pub get`. Don't bump these
+upgrading here would break `nexsoft_server`'s own `pub get`. Don't bump these
 without checking that constraint first.
 
 ## Keeping consumers in sync
 
 Every consumer pins its own submodule commit of this repo independently —
-there's no version solver checking they match. Bump `fpt_server`'s submodule
+there's no version solver checking they match. Bump `nexsoft_server`'s submodule
 pointer whenever this package changes; the website and MCP server pick up the
 same checkout automatically since they reference it via `path:`, not their own
 submodule.

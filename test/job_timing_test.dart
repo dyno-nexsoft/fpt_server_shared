@@ -1,4 +1,4 @@
-import 'package:fpt_server_shared/fpt_server_shared.dart';
+import 'package:nexsoft_server_shared/nexsoft_server_shared.dart';
 import 'package:test/test.dart';
 
 // 2026-10-05 is a Monday, 2026-10-09 a Friday, 2026-10-10 a Saturday.

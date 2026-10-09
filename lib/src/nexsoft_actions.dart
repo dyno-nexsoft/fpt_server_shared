@@ -16,11 +16,11 @@ import 'zentao_status.dart';
 
 /// Every action as a typed call: the params object in, the decoded result
 /// out. A caller never writes an action name or a parameter key — those are
-/// spelled here, once, for the dashboard and `fpt_server_mcp` alike.
+/// spelled here, once, for the dashboard and `nexsoft_server_mcp` alike.
 ///
 /// A failure is whatever the [ActionTransport] throws; nothing here swallows
 /// it.
-extension FptActions on ActionTransport {
+extension NexsoftActions on ActionTransport {
   // ci.* — each returns the job it queued, not its outcome: watch it through
   // the job endpoints.
 

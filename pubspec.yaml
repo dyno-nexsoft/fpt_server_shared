@@ -1,7 +1,7 @@
-name: fpt_server_shared
+name: nexsoft_server_shared
 description: >
-  Wire-contract types shared between the fpt_server backend and its
-  fpt_server_website dashboard — one compiled definition instead of two
+  Wire-contract types shared between the nexsoft_server backend and its
+  nexsoft_server_website dashboard — one compiled definition instead of two
   hand-copied ones.
 publish_to: none
 version: 0.1.0

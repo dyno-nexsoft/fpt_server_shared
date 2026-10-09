@@ -81,8 +81,8 @@ class PlatformBuildConverter implements JsonConverter<PlatformBuild, String> {
 /// `GitBranchService.defaultRemoteUrl`, not here — it needs no override);
 /// every other value has an entry in `GitBranchService.moduleConfig`.
 ///
-/// Kept here rather than only in `GitBranchService` so `fpt_server_mcp`'s
-/// `fpt_autocomplete_branches` tool can list valid repo names without its
+/// Kept here rather than only in `GitBranchService` so `nexsoft_server_mcp`'s
+/// `nexsoft_autocomplete_branches` tool can list valid repo names without its
 /// own hardcoded copy — the two drifted before this existed.
 enum GitRepo {
   tbchat,

@@ -8,7 +8,7 @@ import 'package:collection/collection.dart';
 /// exactly the same permissions a Discord member of that tier already has:
 /// [user] mirrors a non-owner (`read` + `invoke`), [admin] mirrors an owner.
 /// `admin` is never actually broader than what the caller could already do
-/// from Discord — see `fpt_server`'s `ApiKeyAddAction`, which downgrades an
+/// from Discord — see `nexsoft_server`'s `ApiKeyAddAction`, which downgrades an
 /// `admin` request from a non-owner to [user] rather than granting it.
 enum ApiKeyRole {
   user,

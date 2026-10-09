@@ -5,8 +5,8 @@ part 'admin_params.g.dart';
 
 /// `admin.apiKeys.add`.
 ///
-/// The wire shape of every action's parameters lives in `fpt_server_shared`,
-/// not in the server: the dashboard and `fpt_server_mcp` build these and send
+/// The wire shape of every action's parameters lives in `nexsoft_server_shared`,
+/// not in the server: the dashboard and `nexsoft_server_mcp` build these and send
 /// [toJson], the server parses into them, so a field is spelled once.
 @freezed
 abstract class ApiKeyAddParams with _$ApiKeyAddParams {

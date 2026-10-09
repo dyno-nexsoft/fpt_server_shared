@@ -1,4 +1,4 @@
-import 'package:fpt_server_shared/fpt_server_shared.dart';
+import 'package:nexsoft_server_shared/nexsoft_server_shared.dart';
 import 'package:test/test.dart';
 
 void main() {
