@@ -620,8 +620,9 @@ mixin _$CiRepostsParams {
   String get url => throw _privateConstructorUsedError;
   EnvironmentBuild get environment => throw _privateConstructorUsedError;
 
-  /// How many of the profile's most recent videos to consider.
-  int get limit => throw _privateConstructorUsedError;
+  /// How many of the profile's most recent videos to consider. Left out (null) when the caller gave none, so the job
+  /// shows only what was asked for and the server's default applies.
+  int? get limit => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -635,7 +636,7 @@ abstract class $CiRepostsParamsCopyWith<$Res> {
           CiRepostsParams value, $Res Function(CiRepostsParams) then) =
       _$CiRepostsParamsCopyWithImpl<$Res, CiRepostsParams>;
   @useResult
-  $Res call({String url, EnvironmentBuild environment, int limit});
+  $Res call({String url, EnvironmentBuild environment, int? limit});
 }
 
 /// @nodoc
@@ -653,7 +654,7 @@ class _$CiRepostsParamsCopyWithImpl<$Res, $Val extends CiRepostsParams>
   $Res call({
     Object? url = null,
     Object? environment = null,
-    Object? limit = null,
+    Object? limit = freezed,
   }) {
     return _then(_value.copyWith(
       url: null == url
@@ -664,10 +665,10 @@ class _$CiRepostsParamsCopyWithImpl<$Res, $Val extends CiRepostsParams>
           ? _value.environment
           : environment // ignore: cast_nullable_to_non_nullable
               as EnvironmentBuild,
-      limit: null == limit
+      limit: freezed == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -680,15 +681,15 @@ abstract class _$$CiRepostsParamsImplCopyWith<$Res>
       __$$CiRepostsParamsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String url, EnvironmentBuild environment, int limit});
+  $Res call({String url, EnvironmentBuild environment, int? limit});
 }
 
 /// @nodoc
 class __$$CiRepostsParamsImplCopyWithImpl<$Res>
     extends _$CiRepostsParamsCopyWithImpl<$Res, _$CiRepostsParamsImpl>
     implements _$$CiRepostsParamsImplCopyWith<$Res> {
-  __$$CiRepostsParamsImplCopyWithImpl(_$CiRepostsParamsImpl _value,
-      $Res Function(_$CiRepostsParamsImpl) _then)
+  __$$CiRepostsParamsImplCopyWithImpl(
+      _$CiRepostsParamsImpl _value, $Res Function(_$CiRepostsParamsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -696,7 +697,7 @@ class __$$CiRepostsParamsImplCopyWithImpl<$Res>
   $Res call({
     Object? url = null,
     Object? environment = null,
-    Object? limit = null,
+    Object? limit = freezed,
   }) {
     return _then(_$CiRepostsParamsImpl(
       url: null == url
@@ -707,10 +708,10 @@ class __$$CiRepostsParamsImplCopyWithImpl<$Res>
           ? _value.environment
           : environment // ignore: cast_nullable_to_non_nullable
               as EnvironmentBuild,
-      limit: null == limit
+      limit: freezed == limit
           ? _value.limit
           : limit // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -719,9 +720,7 @@ class __$$CiRepostsParamsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CiRepostsParamsImpl implements _CiRepostsParams {
   const _$CiRepostsParamsImpl(
-      {required this.url,
-      this.environment = EnvironmentBuild.dev,
-      this.limit = 3});
+      {required this.url, this.environment = EnvironmentBuild.dev, this.limit});
 
   factory _$CiRepostsParamsImpl.fromJson(Map<String, dynamic> json) =>
       _$$CiRepostsParamsImplFromJson(json);
@@ -733,10 +732,10 @@ class _$CiRepostsParamsImpl implements _CiRepostsParams {
   @JsonKey()
   final EnvironmentBuild environment;
 
-  /// How many of the profile's most recent videos to consider.
+  /// How many of the profile's most recent videos to consider. Left out (null) when the caller gave none, so the job
+  /// shows only what was asked for and the server's default applies.
   @override
-  @JsonKey()
-  final int limit;
+  final int? limit;
 
   @override
   String toString() {
@@ -777,7 +776,7 @@ abstract class _CiRepostsParams implements CiRepostsParams {
   const factory _CiRepostsParams(
       {required final String url,
       final EnvironmentBuild environment,
-      final int limit}) = _$CiRepostsParamsImpl;
+      final int? limit}) = _$CiRepostsParamsImpl;
 
   factory _CiRepostsParams.fromJson(Map<String, dynamic> json) =
       _$CiRepostsParamsImpl.fromJson;
@@ -790,8 +789,9 @@ abstract class _CiRepostsParams implements CiRepostsParams {
   EnvironmentBuild get environment;
   @override
 
-  /// How many of the profile's most recent videos to consider.
-  int get limit;
+  /// How many of the profile's most recent videos to consider. Left out (null) when the caller gave none, so the job
+  /// shows only what was asked for and the server's default applies.
+  int? get limit;
   @override
   @JsonKey(ignore: true)
   _$$CiRepostsParamsImplCopyWith<_$CiRepostsParamsImpl> get copyWith =>

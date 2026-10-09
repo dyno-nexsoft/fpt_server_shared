@@ -89,16 +89,25 @@ _$CiRepostsParamsImpl _$$CiRepostsParamsImplFromJson(
       environment:
           $enumDecodeNullable(_$EnvironmentBuildEnumMap, json['environment']) ??
               EnvironmentBuild.dev,
-      limit: (json['limit'] as num?)?.toInt() ?? 3,
+      limit: (json['limit'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$CiRepostsParamsImplToJson(
-        _$CiRepostsParamsImpl instance) =>
-    <String, dynamic>{
-      'url': instance.url,
-      'environment': _$EnvironmentBuildEnumMap[instance.environment]!,
-      'limit': instance.limit,
-    };
+    _$CiRepostsParamsImpl instance) {
+  final val = <String, dynamic>{
+    'url': instance.url,
+    'environment': _$EnvironmentBuildEnumMap[instance.environment]!,
+  };
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('limit', instance.limit);
+  return val;
+}
 
 _$CiReplaceParamsImpl _$$CiReplaceParamsImplFromJson(
         Map<String, dynamic> json) =>

@@ -70,8 +70,9 @@ abstract class CiRepostsParams with _$CiRepostsParams {
     required String url,
     @Default(EnvironmentBuild.dev) EnvironmentBuild environment,
 
-    /// How many of the profile's most recent videos to consider.
-    @Default(3) int limit,
+    /// How many of the profile's most recent videos to consider. Left out (null) when the caller gave none, so the job
+    /// shows only what was asked for and the server's default applies.
+    int? limit,
   }) = _CiRepostsParams;
 
   factory CiRepostsParams.fromJson(Map<String, dynamic> json) =>
