@@ -106,6 +106,16 @@ abstract class CiCleanParams with _$CiCleanParams {
       _$CiCleanParamsFromJson(json);
 }
 
+/// `ci.job.cancel`, `ci.job.promote` and `ci.job.delete` — the one job they
+/// act on.
+@freezed
+abstract class JobIdParams with _$JobIdParams {
+  const factory JobIdParams({required String jobId}) = _JobIdParams;
+
+  factory JobIdParams.fromJson(Map<String, dynamic> json) =>
+      _$JobIdParamsFromJson(json);
+}
+
 /// Written to JSON only when true. `false` is the default, so leaving it out
 /// reads back the same, and a build's recorded params (what the dashboard and
 /// the job list show) carry the flag only when it changed something.

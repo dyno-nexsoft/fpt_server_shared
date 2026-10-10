@@ -4,6 +4,7 @@ import 'ai_provider.dart';
 import 'app_limits.dart';
 import 'artifact.dart';
 import 'daily_task.dart';
+import 'gitlab_history.dart';
 import 'job.dart';
 import 'params/admin_params.dart';
 import 'params/ci_params.dart';
@@ -39,6 +40,23 @@ extension NexsoftActions on ActionTransport {
   Future<Job> ciClean([CiCleanParams params = const CiCleanParams()]) async =>
       Job.fromJson(await invokeAction('ci.clean', params.toJson()));
 
+  // ci.job.* — act on one job by its id.
+
+  Future<ActionMessage> jobCancel(JobIdParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('ci.job.cancel', params.toJson()),
+      );
+
+  Future<ActionMessage> jobPromote(JobIdParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('ci.job.promote', params.toJson()),
+      );
+
+  Future<ActionMessage> jobDelete(JobIdParams params) async =>
+      ActionMessage.fromJson(
+        await invokeAction('ci.job.delete', params.toJson()),
+      );
+
   // gitlab.* — a review or translation runs in the background; follow it
   // through its history record (see GitlabRunStarted).
 
@@ -52,6 +70,31 @@ extension NexsoftActions on ActionTransport {
   ) async => GitlabRunStarted.fromJson(
     await invokeAction('gitlab.translateArb', params.toJson()),
   );
+
+  /// Past and running reviews, newest first.
+  Future<List<ReviewHistoryEntry>> gitlabReviewHistory([
+    HistoryListParams params = const HistoryListParams(),
+  ]) async {
+    final body = await invokeAction('gitlab.review.history', params.toJson());
+    return [
+      for (final run in body['reviews'] as List<dynamic>? ?? const [])
+        ReviewHistoryEntry.fromJson(run as Map<String, dynamic>),
+    ];
+  }
+
+  /// Past and running translations, newest first.
+  Future<List<TranslateArbHistoryEntry>> gitlabTranslateArbHistory([
+    HistoryListParams params = const HistoryListParams(),
+  ]) async {
+    final body = await invokeAction(
+      'gitlab.translateArb.history',
+      params.toJson(),
+    );
+    return [
+      for (final run in body['records'] as List<dynamic>? ?? const [])
+        TranslateArbHistoryEntry.fromJson(run as Map<String, dynamic>),
+    ];
+  }
 
   Future<ActionMessage> gitlabReviewHistoryDelete(
     HistoryDeleteParams params,

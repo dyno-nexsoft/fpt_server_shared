@@ -1102,3 +1102,139 @@ abstract class _CiCleanParams implements CiCleanParams {
   _$$CiCleanParamsImplCopyWith<_$CiCleanParamsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+JobIdParams _$JobIdParamsFromJson(Map<String, dynamic> json) {
+  return _JobIdParams.fromJson(json);
+}
+
+/// @nodoc
+mixin _$JobIdParams {
+  String get jobId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $JobIdParamsCopyWith<JobIdParams> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $JobIdParamsCopyWith<$Res> {
+  factory $JobIdParamsCopyWith(
+          JobIdParams value, $Res Function(JobIdParams) then) =
+      _$JobIdParamsCopyWithImpl<$Res, JobIdParams>;
+  @useResult
+  $Res call({String jobId});
+}
+
+/// @nodoc
+class _$JobIdParamsCopyWithImpl<$Res, $Val extends JobIdParams>
+    implements $JobIdParamsCopyWith<$Res> {
+  _$JobIdParamsCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? jobId = null,
+  }) {
+    return _then(_value.copyWith(
+      jobId: null == jobId
+          ? _value.jobId
+          : jobId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$JobIdParamsImplCopyWith<$Res>
+    implements $JobIdParamsCopyWith<$Res> {
+  factory _$$JobIdParamsImplCopyWith(
+          _$JobIdParamsImpl value, $Res Function(_$JobIdParamsImpl) then) =
+      __$$JobIdParamsImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String jobId});
+}
+
+/// @nodoc
+class __$$JobIdParamsImplCopyWithImpl<$Res>
+    extends _$JobIdParamsCopyWithImpl<$Res, _$JobIdParamsImpl>
+    implements _$$JobIdParamsImplCopyWith<$Res> {
+  __$$JobIdParamsImplCopyWithImpl(
+      _$JobIdParamsImpl _value, $Res Function(_$JobIdParamsImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? jobId = null,
+  }) {
+    return _then(_$JobIdParamsImpl(
+      jobId: null == jobId
+          ? _value.jobId
+          : jobId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$JobIdParamsImpl implements _JobIdParams {
+  const _$JobIdParamsImpl({required this.jobId});
+
+  factory _$JobIdParamsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$JobIdParamsImplFromJson(json);
+
+  @override
+  final String jobId;
+
+  @override
+  String toString() {
+    return 'JobIdParams(jobId: $jobId)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$JobIdParamsImpl &&
+            (identical(other.jobId, jobId) || other.jobId == jobId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, jobId);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$JobIdParamsImplCopyWith<_$JobIdParamsImpl> get copyWith =>
+      __$$JobIdParamsImplCopyWithImpl<_$JobIdParamsImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$JobIdParamsImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _JobIdParams implements JobIdParams {
+  const factory _JobIdParams({required final String jobId}) = _$JobIdParamsImpl;
+
+  factory _JobIdParams.fromJson(Map<String, dynamic> json) =
+      _$JobIdParamsImpl.fromJson;
+
+  @override
+  String get jobId;
+  @override
+  @JsonKey(ignore: true)
+  _$$JobIdParamsImplCopyWith<_$JobIdParamsImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

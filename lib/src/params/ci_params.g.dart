@@ -140,3 +140,13 @@ Map<String, dynamic> _$$CiCleanParamsImplToJson(_$CiCleanParamsImpl instance) {
   writeNotNull('mode', instance.mode);
   return val;
 }
+
+_$JobIdParamsImpl _$$JobIdParamsImplFromJson(Map<String, dynamic> json) =>
+    _$JobIdParamsImpl(
+      jobId: json['job_id'] as String,
+    );
+
+Map<String, dynamic> _$$JobIdParamsImplToJson(_$JobIdParamsImpl instance) =>
+    <String, dynamic>{
+      'job_id': instance.jobId,
+    };
